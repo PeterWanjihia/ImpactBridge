@@ -276,7 +276,7 @@ const pilotStats = [
               <div v-for="(stat, index) in challengeStats" :key="index" class="challenge-stat">
                 <div v-if="stat.value" class="challenge-stat-value">{{ stat.value }}</div>
                 <div v-else class="challenge-stat-icon">
-                  <GraduationCap class="w-8 h-8" />
+                  <User class="w-8 h-8" />
                 </div>
                 <p class="challenge-stat-label">{{ stat.label }}</p>
               </div>
