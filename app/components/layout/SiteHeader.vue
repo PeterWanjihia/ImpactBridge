@@ -1,12 +1,16 @@
 <script setup lang="ts">
+import { Heart, Menu, X } from '@lucide/vue'
+
 const route = useRoute()
 
 const navigation = [
-  { label: 'Our Story', to: '/our-story' },
+  { label: 'About', to: '/our-story' },
   { label: 'Our Model', to: '/our-model' },
   { label: 'Impact', to: '/impact' },
   { label: 'Stories', to: '/stories' },
-  { label: 'Partnerships', to: '/corporate-partnerships' },
+  { label: 'Get Involved', to: '/get-involved' },
+  { label: 'Corporate Partnerships', to: '/corporate-partnerships' },
+  { label: 'Transparency', to: '/transparency' },
 ]
 
 const isMenuOpen = ref(false)
@@ -24,7 +28,15 @@ function closeMenu() {
   <header class="site-header">
     <div class="site-header-container">
       <NuxtLink to="/" class="site-header-logo" @click="closeMenu">
-        <span class="site-header-logo-text">Impact Bridge</span>
+        <img src="/logo.png" alt="Impact Bridge logo" class="site-header-logo-icon" />
+        <div class="site-header-logo-text">
+          <span>IMPACT</span>
+          <span>BRIDGE</span>
+        </div>
+        <div class="site-header-logo-divider"></div>
+        <span class="site-header-logo-tagline">
+          Bridging connectivity.<br />Building futures.
+        </span>
       </NuxtLink>
 
       <nav class="site-header-nav" :class="{ 'site-header-nav--open': isMenuOpen }">
@@ -38,9 +50,13 @@ function closeMenu() {
         >
           {{ item.label }}
         </NuxtLink>
-        <UiButton variant="primary" size="sm" @click="closeMenu">
-          <NuxtLink to="/donate">Donate</NuxtLink>
-        </UiButton>
+        <NuxtLink to="/our-story" class="site-header-btn-outline" @click="closeMenu">
+          Who We Are
+        </NuxtLink>
+        <NuxtLink to="/donate" class="site-header-btn-donate" @click="closeMenu">
+          <Heart class="w-4 h-4" fill="currentColor" />
+          Donate
+        </NuxtLink>
       </nav>
 
       <button
@@ -50,12 +66,8 @@ function closeMenu() {
         aria-label="Toggle menu"
         @click="toggleMenu"
       >
-        <svg v-if="!isMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-        <svg v-else class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-        </svg>
+        <Menu v-if="!isMenuOpen" class="w-6 h-6" />
+        <X v-else class="w-6 h-6" />
       </button>
     </div>
   </header>
@@ -63,39 +75,65 @@ function closeMenu() {
 
 <style scoped>
 .site-header {
-  @apply sticky top-0 z-40 bg-white border-b border-gray-200;
+  @apply sticky top-0 z-50 bg-white border-b border-gray-100;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
 .site-header-container {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
-  @apply flex items-center justify-between h-16;
+  @apply max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8;
+  @apply flex items-center justify-between h-20;
 }
 
 .site-header-logo {
-  @apply flex items-center gap-2;
+  @apply flex items-center gap-3 flex-shrink-0;
+}
+
+.site-header-logo-icon {
+  @apply w-10 h-10 object-contain;
 }
 
 .site-header-logo-text {
-  @apply text-xl font-serif font-bold text-navy;
+  @apply flex flex-col text-[15px] font-sans font-black text-black leading-none tracking-tight uppercase;
+}
+
+.site-header-logo-tagline {
+  @apply text-[11px] text-gray-600 leading-tight font-normal pl-2 border-l border-gray-300;
 }
 
 .site-header-nav {
-  @apply hidden md:flex items-center gap-6;
+  @apply hidden lg:flex items-center gap-6 ml-auto;
 }
 
 .site-header-nav--open {
-  @apply fixed inset-0 top-16 bg-white flex flex-col p-4 gap-4 md:hidden;
+  @apply fixed inset-0 top-20 bg-white flex flex-col p-6 gap-4 lg:hidden;
+  z-index: 40;
 }
 
 .site-header-link {
-  @apply text-sm font-sans font-medium text-gray-600 hover:text-navy transition-colors;
+  @apply text-[14px] font-sans font-semibold text-gray-800 hover:text-blue-600 transition-colors whitespace-nowrap;
 }
 
 .site-header-link--active {
-  @apply text-navy;
+  @apply text-blue-600 font-bold;
+}
+
+.site-header-btn-outline {
+  @apply inline-flex items-center justify-center px-5 py-2.5 ml-2;
+  @apply text-[14px] font-sans font-semibold text-gray-800;
+  @apply border border-blue-400 rounded-xl;
+  @apply hover:bg-blue-50 transition-colors whitespace-nowrap;
+  @apply focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-blue-600;
+}
+
+.site-header-btn-donate {
+  @apply inline-flex items-center justify-center gap-2 px-6 py-2.5;
+  @apply text-[14px] font-sans font-semibold text-white;
+  @apply bg-[#1d4ed8] rounded-xl;
+  @apply hover:bg-[#1e40af] transition-colors whitespace-nowrap;
+  @apply focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-blue-600;
 }
 
 .site-header-menu-btn {
-  @apply md:hidden p-2 text-gray-600 hover:text-navy rounded-md focus:outline-none focus:ring-2 focus:ring-cobalt;
+  @apply lg:hidden p-2 text-gray-600 hover:text-gray-900 rounded-md focus:outline-none;
 }
 </style>

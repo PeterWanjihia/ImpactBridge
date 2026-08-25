@@ -11,6 +11,13 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
   ],
 
+  components: [
+    {
+      path: '~/components',
+      pathPrefix: false,
+    },
+  ],
+
   // Image optimization setup (R2/S3 CDN domain)
   image: {
     domains: ['cdn.impactbridge.org'],

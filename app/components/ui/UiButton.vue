@@ -1,6 +1,6 @@
 <script setup lang="ts">
 interface Props {
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost'
+  variant?: 'primary' | 'secondary' | 'outline' | 'outline-white' | 'ghost'
   size?: 'sm' | 'md' | 'lg'
   disabled?: boolean
   loading?: boolean
@@ -52,6 +52,10 @@ const emit = defineEmits<{
 
 .ui-button--outline {
   @apply border-2 border-navy text-navy hover:bg-navy hover:text-white focus:ring-navy;
+}
+
+.ui-button--outline-white {
+  @apply border border-white text-white hover:bg-white hover:text-navy focus:ring-white;
 }
 
 .ui-button--ghost {

@@ -53,7 +53,7 @@ export default {
       },
       fontFamily: {
         serif: ['Georgia', 'Times New Roman', 'serif'],
-        sans: ['Arial', 'Helvetica Neue', 'sans-serif'],
+        sans: ['Inter', 'Arial', 'Helvetica Neue', 'sans-serif'],
         display: ['Cinzel', 'serif'],
         body: ['Lora', 'serif'],
       },
