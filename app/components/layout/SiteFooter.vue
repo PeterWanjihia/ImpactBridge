@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { Facebook, Instagram, Linkedin, Mail, Send } from '@lucide/vue'
+// fa brand
+import FacebookIcon from '~icons/fa6-brands/facebook'
+import InstagramIcon from '~icons/fa6-brands/instagram'
+import LinkedinIcon from '~icons/fa6-brands/linkedin'
+import YoutubeIcon from '~icons/fa6-brands/youtube'
 
 const currentYear = new Date().getFullYear()
 
@@ -25,13 +29,12 @@ const transparencyLinks = [
 ]
 
 const socialLinks = [
-  { icon: Facebook, label: 'Facebook', href: '#' },
-  { icon: Instagram, label: 'Instagram', href: '#' },
-  { icon: Linkedin, label: 'LinkedIn', href: '#' },
-  { icon: Mail, label: 'Email', href: '#' },
+  { icon: FacebookIcon, label: 'Facebook', href: '#' },
+  { icon: InstagramIcon, label: 'Instagram', href: '#' },
+  { icon: LinkedinIcon, label: 'LinkedIn', href: '#' },
+  { icon: YoutubeIcon, label: 'YouTube', href: '#' },
 ]
 </script>
-
 <template>
   <footer class="site-footer">
     <div class="site-footer-container">
@@ -40,23 +43,27 @@ const socialLinks = [
         <div class="site-footer-brand">
           <NuxtLink to="/" class="site-footer-logo">
             <img src="/logo.png" alt="Impact Bridge logo" class="site-footer-logo-icon" />
-            <span class="site-footer-logo-text">Impact Bridge</span>
+            <div class="site-footer-logo-text">
+              <span>IMPACT</span>
+              <span>BRIDGE</span>
+            </div>
           </NuxtLink>
+
           <p class="site-footer-tagline">
             Bridging connectivity.<br />
             Building futures.
           </p>
+
           <div class="site-footer-social">
-            <a
-              v-for="social in socialLinks"
-              :key="social.label"
-              :href="social.href"
-              :aria-label="social.label"
-              class="site-footer-social-link"
-            >
-              <component :is="social.icon" class="w-5 h-5" />
+            <a v-for="social in socialLinks" :key="social.label" :href="social.href" :aria-label="social.label"
+              class="site-footer-social-link">
+              <component :is="social.icon" class="w-4 h-4" />
             </a>
           </div>
+
+          <p class="site-footer-copyright">
+            &copy; {{ currentYear }} Impact Bridge. All rights reserved.
+          </p>
         </div>
 
         <!-- Explore Column -->
@@ -89,33 +96,25 @@ const socialLinks = [
           </ul>
         </div>
 
-        <!-- Stay Connected Column -->
-        <div class="site-footer-newsletter">
+        <!-- Stay Connected & Legal Column -->
+        <div class="site-footer-newsletter-col">
           <h3 class="site-footer-heading">Stay Connected</h3>
           <p class="site-footer-newsletter-text">
             Sign up for our newsletter to receive impact stories and updates.
           </p>
+
           <form class="site-footer-newsletter-form" @submit.prevent>
-            <input
-              type="email"
-              placeholder="Your email address"
-              class="site-footer-newsletter-input"
-              aria-label="Email address for newsletter"
-            />
+            <input type="email" placeholder="Your email address" class="site-footer-newsletter-input"
+              aria-label="Email address for newsletter" />
             <button type="submit" class="site-footer-newsletter-btn">
               Subscribe
             </button>
           </form>
-        </div>
-      </div>
 
-      <div class="site-footer-bottom">
-        <p class="site-footer-copyright">
-          &copy; {{ currentYear }} Impact Bridge. All rights reserved.
-        </p>
-        <div class="site-footer-legal">
-          <NuxtLink to="/privacy" class="site-footer-legal-link">Privacy Policy</NuxtLink>
-          <NuxtLink to="/terms" class="site-footer-legal-link">Terms</NuxtLink>
+          <div class="site-footer-legal">
+            <NuxtLink to="/privacy" class="site-footer-legal-link">Privacy Policy</NuxtLink>
+            <NuxtLink to="/terms" class="site-footer-legal-link">Terms</NuxtLink>
+          </div>
         </div>
       </div>
     </div>
@@ -124,96 +123,86 @@ const socialLinks = [
 
 <style scoped>
 .site-footer {
-  @apply bg-navy text-white;
+  @apply bg-[#011438] text-white py-12;
 }
 
 .site-footer-container {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12;
+  @apply max-w-7xl mx-auto px-6 sm:px-8 lg:px-12;
 }
 
 .site-footer-grid {
-  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8;
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 items-start;
 }
 
 .site-footer-brand {
-  @apply lg:col-span-1;
+  @apply lg:col-span-1 flex flex-col justify-between h-full;
 }
 
 .site-footer-logo {
-  @apply inline-flex items-center gap-2;
+  @apply inline-flex items-center gap-2.5;
 }
 
 .site-footer-logo-icon {
-  @apply w-8 h-8 object-contain;
+  @apply w-9 h-9 object-contain;
 }
 
 .site-footer-logo-text {
-  @apply text-xl font-serif font-bold;
+  @apply flex flex-col text-sm font-sans font-extrabold tracking-wider leading-none text-white;
 }
 
 .site-footer-tagline {
-  @apply mt-4 text-sm text-gray-300;
+  @apply mt-4 text-[13px] font-sans text-gray-300 leading-snug;
 }
 
 .site-footer-social {
-  @apply mt-6 flex items-center gap-3;
+  @apply mt-5 flex items-center gap-4;
 }
 
 .site-footer-social-link {
-  @apply w-9 h-9 flex items-center justify-center rounded-full bg-white/10 text-gray-300 hover:bg-white/20 hover:text-white transition-colors;
-}
-
-.site-footer-links {
-  @apply lg:col-span-1;
-}
-
-.site-footer-heading {
-  @apply text-sm font-sans font-semibold tracking-wider text-gray-400;
-}
-
-.site-footer-list {
-  @apply mt-4 space-y-2;
-}
-
-.site-footer-link {
-  @apply text-sm text-gray-300 hover:text-white transition-colors;
-}
-
-.site-footer-newsletter {
-  @apply lg:col-span-1;
-}
-
-.site-footer-newsletter-text {
-  @apply mt-4 text-sm text-gray-300;
-}
-
-.site-footer-newsletter-form {
-  @apply mt-4 flex;
-}
-
-.site-footer-newsletter-input {
-  @apply flex-1 min-w-0 px-3 py-2 text-sm text-white bg-white/10 border border-white/20 rounded-l-md;
-  @apply placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-cobalt focus:border-cobalt;
-}
-
-.site-footer-newsletter-btn {
-  @apply px-4 py-2 text-sm font-semibold text-white bg-cobalt rounded-r-md;
-  @apply hover:bg-cobalt/80 transition-colors whitespace-nowrap;
-}
-
-.site-footer-bottom {
-  @apply mt-12 pt-8 border-t border-gray-700 flex flex-col sm:flex-row justify-between items-center gap-4;
+  @apply text-[#1450f5] hover:text-white transition-colors;
 }
 
 .site-footer-copyright {
-  @apply text-sm text-gray-400;
+  @apply mt-6 text-[11px] font-sans text-gray-400 whitespace-nowrap;
+}
+
+.site-footer-heading {
+  @apply text-sm font-sans font-bold text-white mb-4;
+}
+
+.site-footer-list {
+  @apply space-y-2.5;
+}
+
+.site-footer-link {
+  @apply text-[13px] font-sans text-gray-300 hover:text-white transition-colors;
+}
+
+.site-footer-newsletter-col {
+  @apply lg:col-span-1 flex flex-col justify-between h-full;
+}
+
+.site-footer-newsletter-text {
+  @apply text-[13px] font-sans text-gray-300 leading-snug mb-4;
+}
+
+.site-footer-newsletter-form {
+  @apply relative flex items-center bg-white/5 border border-white/20 rounded-lg p-1 max-w-xs mb-8;
+}
+
+.site-footer-newsletter-input {
+  @apply flex-1 bg-transparent px-3 py-1.5 text-[12px] text-white placeholder:text-gray-400 focus:outline-none;
+}
+
+.site-footer-newsletter-btn {
+  @apply px-4 py-1.5 text-[12px] font-sans font-semibold text-white bg-[#1450f5] hover:bg-blue-600 rounded-md transition-colors whitespace-nowrap;
 }
 
 .site-footer-legal {
-  @apply flex gap-4;
+  @apply flex items-center gap-6 mt-auto;
 }
 
 .site-footer-legal-link {
-  @apply text-sm text-gray-400 hover:text-white transition-colors;
+  @apply text-[12px] font-sans text-gray-400 hover:text-white transition-colors;
 }
 </style>

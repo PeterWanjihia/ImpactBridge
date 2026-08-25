@@ -4,12 +4,19 @@ export default defineNuxtConfig({
   future: {
     compatibilityVersion: 4,
   },
-  
+
   modules: [
     '@nuxtjs/tailwindcss',
     '@nuxt/image',
     '@pinia/nuxt',
+    'unplugin-icons/nuxt', // 1. Add module here
   ],
+
+  // 2. Configure unplugin-icons
+  icons: {
+    compiler: 'vue3',
+    autoInstall: true, // Automatically fetches icon sets if missing
+  },
 
   components: [
     {
@@ -57,5 +64,10 @@ export default defineNuxtConfig({
   typescript: {
     strict: true,
     typeCheck: false,
+    tsConfig: {
+      compilerOptions: {
+        types: ['unplugin-icons/types/vue'], // Adds virtual ~icons/ module definitions
+      },
+    },
   },
 });

@@ -3,13 +3,17 @@ import {
   Heart,
   Building2,
   MapPin,
+  Laptop,
+  Box,
   Monitor,
   Users,
   FileText,
+  ArrowRight,
   ChevronRight,
-  CircleCheck,
+  WifiOff,
   User,
-  ChartNoAxesCombined,
+  CheckCircle2,
+  ChartNoAxesColumnIncreasing,
   ShieldCheck,
   Check,
   GraduationCap,
@@ -18,6 +22,8 @@ import {
   Shield,
 } from '@lucide/vue'
 import type { Component } from 'vue'
+
+import IconUsers from '~icons/fa6-solid/users'
 
 useHead({
   title: 'Impact Bridge - Offline Learning Hubs for Schools Without Connectivity',
@@ -36,10 +42,10 @@ const campaign = {
 }
 
 const iconMap: Record<string, Component> = {
-  offline: CircleCheck,
+  offline: WifiOff,
   teacher: User,
-  community: Building2,
-  measure: ChartNoAxesCombined,
+  community: MapPin,
+  measure: ChartNoAxesColumnIncreasing,
   school: GraduationCap,
   heart: Heart,
   building: Building2,
@@ -52,7 +58,7 @@ const iconMap: Record<string, Component> = {
   shieldCheck: ShieldCheck,
   clipboard: ClipboardList,
   mapPin: MapPin,
-  users: Users,
+  userGroup: IconUsers,
 }
 
 const valueProps = [
@@ -85,11 +91,36 @@ const challengeStats = [
 ]
 
 const modelSteps = [
-  { number: 1, title: 'Offline Learning Hub', description: 'Local curriculum and resources without continuous internet.' },
-  { number: 2, title: 'Trained Teacher', description: 'A supported teacher leads and maintains the programme.' },
-  { number: 3, title: 'Engaged Classroom', description: 'Lessons become interactive and collaborative.' },
-  { number: 4, title: 'Confident Learners', description: 'Understanding, participation and confidence improve.' },
-  { number: 5, title: 'Stronger Communities', description: 'Local ownership sustains educational access.' }
+  {
+    number: 1,
+    title: 'Offline Learning Hub',
+    description: 'Local curriculum and resources without continuous internet.',
+    icon: Laptop
+  },
+  {
+    number: 2,
+    title: 'Trained Teacher',
+    description: 'A supported teacher leads and maintains the programme.',
+    icon: User
+  },
+  {
+    number: 3,
+    title: 'Engaged Classroom',
+    description: 'Lessons become interactive and collaborative.',
+    icon: IconUsers
+  },
+  {
+    number: 4,
+    title: 'Confident Learners',
+    description: 'Understanding, participation and confidence improve.',
+    icon: Heart
+  },
+  {
+    number: 5,
+    title: 'Stronger Communities',
+    description: 'Local ownership sustains educational access.',
+    icon: MapPin
+  }
 ]
 
 const pilotStats = [
@@ -200,7 +231,7 @@ const pilotStats = [
 
                   <NuxtLink to="/donate-equipment" class="hero-card-link"
                     aria-label="View equipment donation guidelines">
-                    <Package class="w-4 h-4 text-blue-600 flex-shrink-0" />
+                    <Box class="w-4 h-4 text-blue-600 flex-shrink-0" />
                     <span>View equipment donation guidelines</span>
                     <ArrowRight class="w-4 h-4 ml-auto text-blue-600" />
                   </NuxtLink>
@@ -262,60 +293,90 @@ const pilotStats = [
     </LayoutSection>
 
     <!-- Our Model -->
-    <LayoutSection background="gray">
+    <LayoutSection class="model-section">
       <LayoutContainer>
-        <div class="model-header">
-          <p class="model-eyebrow">Our Model</p>
-          <h2 class="model-title">A simple model. Lasting change.</h2>
-        </div>
-        <div class="model-timeline">
-          <div v-for="(step, index) in modelSteps" :key="index" class="model-step">
-            <div class="model-step-number">{{ step.number }}</div>
-            <h3 class="model-step-title">{{ step.title }}</h3>
-            <p class="model-step-description">{{ step.description }}</p>
-            <ChevronRight v-if="index < modelSteps.length - 1" class="model-step-arrow" />
+        <div class="model-grid">
+          <!-- Left Content Column -->
+          <div class="model-content">
+            <div class="model-header">
+              <p class="model-eyebrow">OUR MODEL</p>
+              <h2 class="model-title">A simple model. Lasting change.</h2>
+            </div>
+
+            <div class="model-timeline">
+              <div v-for="(step, index) in modelSteps" :key="index" class="model-step">
+                <div class="model-step-wrapper">
+                  <!-- Circular Icon Badge -->
+                  <div class="model-step-icon-badge">
+                    <component :is="step.icon" class="w-6 h-6 text-blue-600" />
+                  </div>
+
+                  <!-- Arrow between items -->
+                  <ArrowRight v-if="index < modelSteps.length - 1" class="model-step-arrow" />
+                </div>
+
+                <h3 class="model-step-title">
+                  <span class="model-step-number">{{ step.number }}. </span>{{ step.title }}
+                </h3>
+                <p class="model-step-description">{{ step.description }}</p>
+              </div>
+            </div>
           </div>
         </div>
       </LayoutContainer>
     </LayoutSection>
 
     <!-- Early Evidence -->
-    <LayoutSection background="white">
+    <LayoutSection class="bg-white py-12 lg:py-16">
       <LayoutContainer>
+        <h2 class="evidence-title">Early evidence. Real lives.</h2>
+
         <div class="evidence-grid">
-          <div class="evidence-content">
-            <h2 class="evidence-title">Early evidence. Real lives.</h2>
-            <div class="evidence-pilot-label">
-              <span class="evidence-pilot-badge">Pilot Period: Jan – June 2026</span>
-              <span class="evidence-pilot-location">Kiryandongo District</span>
-            </div>
-            <div class="evidence-stats">
-              <div v-for="(stat, index) in pilotStats" :key="index" class="evidence-stat">
-                <div class="evidence-stat-value">{{ stat.value }}</div>
-                <div class="evidence-stat-label">{{ stat.label }}</div>
+          <!-- Left Box: Stats Container -->
+          <div class="evidence-stats-card">
+            <div>
+              <div class="evidence-pilot-label">
+                <span class="evidence-pilot-badge">PILOT PERIOD: JAN–JUNE 2026</span>
+                <span class="evidence-pilot-dot">•</span>
+                <span class="evidence-pilot-location">KIRYANDONGO DISTRICT</span>
+              </div>
+
+              <div class="evidence-stats">
+                <div v-for="(stat, index) in pilotStats" :key="index" class="evidence-stat-tile">
+                  <div class="evidence-stat-value">{{ stat.value }}</div>
+                  <div class="evidence-stat-label">{{ stat.label }}</div>
+                </div>
               </div>
             </div>
+
             <NuxtLink to="/impact" class="evidence-link" aria-label="Learn how we measure impact">
-              How we measure impact
-              <ChevronRight class="w-4 h-4" />
+              <span>How we measure impact</span>
+              <ArrowRight class="w-4 h-4 ml-1" />
             </NuxtLink>
           </div>
+
+          <!-- Right Box: Testimonial Card -->
           <div class="evidence-testimonial">
+            <img src="/images/namulava-portrait.jpg" alt="Namulava" class="evidence-testimonial-bg" />
+            <div class="evidence-testimonial-overlay"></div>
+
             <div class="evidence-testimonial-inner">
               <blockquote class="evidence-quote">
-                <span aria-hidden="true">&ldquo;</span>I feel like I can now finish my schooling.<span
-                  aria-hidden="true">&rdquo;</span>
+                &ldquo;I feel like I can now finish my schooling.&rdquo;
               </blockquote>
+
               <div class="evidence-attribution">
-                <span class="evidence-author">— Namulowa, P7 Student</span>
+                <span class="evidence-author">— Namulava, P7 Student</span>
               </div>
+
               <p class="evidence-story">
-                Namulowa is part of our pilot at Bwalya Primary School. With offline lessons and a trained teacher, she
-                is gaining the confidence to learn and lead.
+                Namulava is part of our pilot at Bwikya Primary School. With offline lessons and a supportive teacher,
+                she’s gaining the confidence to learn and lead.
               </p>
-              <NuxtLink to="/stories/namulowa" class="evidence-story-link" aria-label="Read Namulowa's full story">
-                Read Namulowa's story
-                <ChevronRight class="w-4 h-4" />
+
+              <NuxtLink to="/stories/namulava" class="evidence-story-link" aria-label="Read Namulava's full story">
+                <span>Read Namulava's story</span>
+                <ArrowRight class="w-4 h-4 ml-1" />
               </NuxtLink>
             </div>
           </div>
@@ -324,97 +385,100 @@ const pilotStats = [
     </LayoutSection>
 
     <!-- Two Ways to Give -->
-    <LayoutSection background="white">
+    <LayoutSection class="bg-white py-12 lg:py-16">
       <LayoutContainer>
         <h2 class="ways-title">Two ways to build brighter futures.</h2>
+
         <div class="ways-grid">
+          <!-- Card 1: Give as an Individual -->
           <div class="ways-card">
-            <div class="ways-card-inner">
-              <div class="ways-card-text">
-                <div class="ways-card-header">
-                  <Heart class="ways-card-icon" fill="currentColor" />
-                  <h3 class="ways-card-title">Give as an individual</h3>
-                </div>
-                <p class="ways-card-description">
-                  Your support today helps a child learn, a teacher teach, and a community grow.
-                </p>
-                <ul class="ways-card-list">
-                  <li class="ways-card-item">
-                    <Check class="ways-card-check" />
-                    One-time or monthly giving
-                  </li>
-                  <li class="ways-card-item">
-                    <Check class="ways-card-check" />
-                    Secure payments
-                  </li>
-                  <li class="ways-card-item">
-                    <Check class="ways-card-check" />
-                    Instant receipt
-                  </li>
-                  <li class="ways-card-item">
-                    <Check class="ways-card-check" />
-                    Direct classroom support
-                  </li>
-                </ul>
-                <UiButton variant="primary" size="md" class="mt-6">
-                  <NuxtLink to="/donate" class="flex items-center gap-2"
-                    aria-label="Give personally — make a personal donation">
-                    Give Personally
-                    <ChevronRight class="w-4 h-4" />
-                  </NuxtLink>
-                </UiButton>
+            <div class="ways-card-content">
+              <div class="ways-card-header">
+                <Heart class="w-6 h-6 text-blue-600" />
+                <h3 class="ways-card-title text-blue-600">Give as an individual</h3>
               </div>
-              <div class="ways-card-image">
-                <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&q=80"
-                  alt="Children in a classroom learning together" class="ways-card-img" loading="lazy" width="600"
-                  height="400" />
-              </div>
+
+              <p class="ways-card-description">
+                Your support today helps a child learn, a teacher teach and a community grow.
+              </p>
+
+              <ul class="ways-card-list">
+                <li class="ways-card-item">
+                  <CheckCircle2 class="w-4 h-4 text-blue-600 flex-shrink-0" />
+                  <span>One-time or monthly giving</span>
+                </li>
+                <li class="ways-card-item">
+                  <CheckCircle2 class="w-4 h-4 text-blue-600 flex-shrink-0" />
+                  <span>Secure payments</span>
+                </li>
+                <li class="ways-card-item">
+                  <CheckCircle2 class="w-4 h-4 text-blue-600 flex-shrink-0" />
+                  <span>Instant receipt</span>
+                </li>
+                <li class="ways-card-item">
+                  <CheckCircle2 class="w-4 h-4 text-blue-600 flex-shrink-0" />
+                  <span>Direct classroom support</span>
+                </li>
+              </ul>
+
+              <NuxtLink to="/donate" class="ways-btn ways-btn-blue">
+                <span>Give Personally</span>
+                <ArrowRight class="w-4 h-4 ml-1" />
+              </NuxtLink>
+            </div>
+
+            <!-- Image Container with White Fade Gradient -->
+            <div class="ways-card-image-wrap">
+              <div class="ways-card-fade"></div>
+              <img src="/images/children-learning.jpg" alt="Children in classroom" class="ways-card-img" />
             </div>
           </div>
+
+          <!-- Card 2: Partner as a Company -->
           <div class="ways-card">
-            <div class="ways-card-inner">
-              <div class="ways-card-text">
-                <div class="ways-card-header">
-                  <Building2 class="ways-card-icon" />
-                  <h3 class="ways-card-title">Partner as a company</h3>
-                </div>
-                <p class="ways-card-description">
-                  Work with us to expand access to learning and create long-term impact.
-                </p>
-                <ul class="ways-card-list">
-                  <li class="ways-card-item">
-                    <Check class="ways-card-check" />
-                    Fund or sponsor learning hubs
-                  </li>
-                  <li class="ways-card-item">
-                    <Check class="ways-card-check" />
-                    Donate suitable technology
-                  </li>
-                  <li class="ways-card-item">
-                    <Check class="ways-card-check" />
-                    Enable teacher development
-                  </li>
-                  <li class="ways-card-item">
-                    <Check class="ways-card-check" />
-                    Strategic partnerships & reporting
-                  </li>
-                </ul>
-                <p class="ways-card-note">
-                  Receive a clear proposal, implementation plan, donation acknowledgement and impact report.
-                </p>
-                <UiButton variant="secondary" size="md" class="mt-6">
-                  <NuxtLink to="/corporate-partnerships" class="flex items-center gap-2"
-                    aria-label="Start a corporate partnership">
-                    Start a Corporate Partnership
-                    <ChevronRight class="w-4 h-4" />
-                  </NuxtLink>
-                </UiButton>
+            <div class="ways-card-content">
+              <div class="ways-card-header">
+                <Building2 class="w-6 h-6 text-[#0d5c45]" />
+                <h3 class="ways-card-title text-[#0d5c45]">Partner as a company</h3>
               </div>
-              <div class="ways-card-image">
-                <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&q=80"
-                  alt="Students working together with laptops in a corporate learning environment" class="ways-card-img"
-                  loading="lazy" width="600" height="400" />
-              </div>
+
+              <p class="ways-card-description">
+                Work with us to expand access to learning and create long-term impact.
+              </p>
+
+              <ul class="ways-card-list">
+                <li class="ways-card-item">
+                  <CheckCircle2 class="w-4 h-4 text-[#0d5c45] flex-shrink-0" />
+                  <span>Fund or sponsor learning hubs</span>
+                </li>
+                <li class="ways-card-item">
+                  <CheckCircle2 class="w-4 h-4 text-[#0d5c45] flex-shrink-0" />
+                  <span>Donate suitable technology</span>
+                </li>
+                <li class="ways-card-item">
+                  <CheckCircle2 class="w-4 h-4 text-[#0d5c45] flex-shrink-0" />
+                  <span>Employee giving & volunteering</span>
+                </li>
+                <li class="ways-card-item">
+                  <CheckCircle2 class="w-4 h-4 text-[#0d5c45] flex-shrink-0" />
+                  <span>Strategic partnerships & reporting</span>
+                </li>
+              </ul>
+
+              <p class="ways-card-note">
+                Receive a clear proposal, implementation plan, donation acknowledgement and impact report.
+              </p>
+
+              <NuxtLink to="/corporate-partnerships" class="ways-btn ways-btn-green">
+                <span>Start a Corporate Partnership</span>
+                <ArrowRight class="w-4 h-4 ml-1" />
+              </NuxtLink>
+            </div>
+
+            <!-- Image Container with White Fade Gradient -->
+            <div class="ways-card-image-wrap">
+              <div class="ways-card-fade"></div>
+              <img src="/images/corporate-partner.jpg" alt="Corporate partner working" class="ways-card-img" />
             </div>
           </div>
         </div>
@@ -452,7 +516,7 @@ const pilotStats = [
           </NuxtLink>
           <NuxtLink to="/transparency" class="implementation-card" aria-label="View Governance and Financial Reports">
             <div class="implementation-card-icon">
-              <PieChart class="w-6 h-6" />
+              <Shield class="w-6 h-6" />
             </div>
             <h3 class="implementation-card-title">Governance & Financial Reports</h3>
             <p class="implementation-card-description">Financial reporting and responsible stewardship.</p>
@@ -463,7 +527,7 @@ const pilotStats = [
           <NuxtLink to="/transparency#safeguarding" class="implementation-card"
             aria-label="View Safeguarding and Complaints information">
             <div class="implementation-card-icon">
-              <ShieldCheck class="w-6 h-6" />
+              <IconUsers class="w-6 h-6" />
             </div>
             <h3 class="implementation-card-title">Safeguarding & Complaints</h3>
             <p class="implementation-card-description">Our commitment to child safety and accountability.</p>
@@ -477,29 +541,43 @@ const pilotStats = [
 
     <!-- Be the Bridge CTA -->
     <section class="bridge-cta-section">
+      <!-- Geometric Wireframe Illustration on the Left -->
+      <div class="bridge-cta-graphic">
+        <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full opacity-35">
+          <path d="M0 300L100 120L200 300L300 80L400 300" stroke="#2563eb" stroke-width="1.5" />
+          <path d="M50 300L150 180L250 300L350 140" stroke="#1d4ed8" stroke-width="1.5" />
+          <path d="M100 120L300 80" stroke="#2563eb" stroke-width="1.5" />
+          <path d="M0 200L400 200" stroke="#1e40af" stroke-width="1" />
+          <path d="M0 250L400 250" stroke="#1e40af" stroke-width="1" />
+          <circle cx="100" cy="120" r="3" fill="#60a5fa" />
+          <circle cx="300" cy="80" r="3" fill="#60a5fa" />
+        </svg>
+      </div>
+
       <div class="bridge-cta-inner">
         <div class="bridge-cta-content">
           <h2 class="bridge-cta-title">Be the bridge.</h2>
           <p class="bridge-cta-description">Help us launch the next 10 learning hubs.</p>
         </div>
+
         <div class="bridge-cta-actions">
-          <UiButton variant="primary" size="lg">
-            <NuxtLink to="/donate" class="flex items-center gap-2"
-              aria-label="Donate now to support offline learning hubs">
-              <Heart class="w-5 h-5" fill="currentColor" />
-              Donate Now
-            </NuxtLink>
-          </UiButton>
-          <UiButton variant="outline-white" size="lg">
-            <NuxtLink to="/corporate-partnerships" class="flex items-center gap-2"
-              aria-label="Partner with us — corporate partnership opportunities">
-              <Building2 class="w-5 h-5" />
-              Partner With Us
-            </NuxtLink>
-          </UiButton>
+          <!-- Donate Now Button (Vibrant Blue Fill, Outlined Heart Icon) -->
+          <NuxtLink to="/donate" class="bridge-btn bridge-btn-primary"
+            aria-label="Donate now to support offline learning hubs">
+            <Heart class="w-5 h-5 text-white stroke-[2]" />
+            <span>Donate Now</span>
+          </NuxtLink>
+
+          <!-- Partner With Us Button (Cyan/Teal Outline Border) -->
+          <NuxtLink to="/corporate-partnerships" class="bridge-btn bridge-btn-outline"
+            aria-label="Partner with us — corporate partnership opportunities">
+            <Building2 class="w-5 h-5 text-white" />
+            <span>Partner With Us</span>
+          </NuxtLink>
         </div>
       </div>
     </section>
+
   </div>
 </template>
 
@@ -559,7 +637,7 @@ const pilotStats = [
 }
 
 .hero-card {
-  @apply hidden lg:block max-w-[340px];
+  @apply hidden justify-self-end ml-auto lg:block max-w-[300px];
 }
 
 .hero-card-inner {
@@ -681,170 +759,241 @@ const pilotStats = [
 }
 
 /* Our Model */
+.model-section {
+  @apply relative bg-white py-16 lg:py-24;
+}
+
 .model-header {
-  @apply text-center mb-12;
+  @apply text-center mb-16;
 }
 
 .model-eyebrow {
-  @apply text-sm font-sans font-semibold text-cobalt uppercase tracking-wider mb-3;
+  @apply text-xs font-sans font-bold text-blue-600 uppercase tracking-widest mb-2;
 }
 
 .model-title {
-  @apply text-3xl md:text-4xl font-serif font-bold text-navy;
+  @apply text-3xl md:text-4xl font-serif font-bold text-gray-900 tracking-tight;
 }
 
+/* 5-Column Grid spanning full width */
 .model-timeline {
-  @apply flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-0;
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-4 items-start w-full;
 }
 
 .model-step {
-  @apply flex-1 relative text-center px-4;
+  @apply flex flex-col items-center text-center relative px-2;
 }
 
-.model-step-number {
-  @apply w-10 h-10 mx-auto flex items-center justify-center bg-cobalt text-white rounded-full font-sans font-bold text-sm;
+.model-step-wrapper {
+  @apply relative flex items-center justify-center w-full mb-5;
+}
+
+.model-step-icon-badge {
+  @apply w-16 h-16 rounded-full bg-blue-50/80 flex items-center justify-center flex-shrink-0 transition-transform duration-200 hover:scale-105;
+}
+
+/* Centered horizontal arrow pointing to the next step */
+.model-step-arrow {
+  @apply hidden lg:block w-4 h-4 text-blue-500 absolute -right-2 top-1/2 -translate-y-1/2 z-10;
 }
 
 .model-step-title {
-  @apply mt-3 text-sm font-sans font-bold text-navy;
+  @apply text-[15px] font-sans font-bold text-gray-900 leading-snug;
+}
+
+.model-step-number {
+  @apply font-bold text-gray-900;
 }
 
 .model-step-description {
-  @apply mt-1 text-xs text-gray-600;
-}
-
-.model-step-arrow {
-  @apply hidden md:block w-6 h-6 text-gray-400 absolute -right-3 top-3;
-}
-
-/* Early Evidence */
-.evidence-grid {
-  @apply grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start;
+  @apply mt-2 text-[13px] font-sans text-gray-600 leading-relaxed max-w-[200px] mx-auto;
 }
 
 .evidence-title {
-  @apply text-3xl md:text-4xl font-serif font-bold text-navy;
+  @apply text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-6 tracking-tight;
+}
+
+.evidence-grid {
+  @apply grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch;
+}
+
+/* Left Card (Stats Container) */
+.evidence-stats-card {
+  @apply bg-[#f0f5fe] rounded-2xl p-6 md:p-8 flex flex-col justify-between;
 }
 
 .evidence-pilot-label {
-  @apply mt-4 flex flex-wrap items-center gap-3;
+  @apply flex items-center gap-2 text-[11px] font-sans font-bold text-blue-500 tracking-wider uppercase mb-6;
 }
 
-.evidence-pilot-badge {
-  @apply text-xs font-sans font-semibold text-cobalt uppercase tracking-wider;
-}
-
-.evidence-pilot-location {
-  @apply text-xs text-gray-500;
+.evidence-pilot-dot {
+  @apply text-blue-400;
 }
 
 .evidence-stats {
-  @apply mt-8 grid grid-cols-5 gap-4;
+  @apply grid grid-cols-5 gap-2 md:gap-3 my-auto;
 }
 
-.evidence-stat {
-  @apply text-center;
+.evidence-stat-tile {
+  @apply bg-white rounded-xl p-3 md:p-4 text-center flex flex-col justify-between shadow-sm min-h-[110px];
 }
 
 .evidence-stat-value {
-  @apply text-2xl md:text-3xl font-sans font-bold text-navy;
+  @apply text-2xl md:text-3xl font-serif font-bold text-blue-700 leading-none mb-2;
 }
 
 .evidence-stat-label {
-  @apply mt-1 text-xs text-gray-600;
+  @apply text-[11px] font-sans text-gray-600 leading-tight font-medium;
 }
 
 .evidence-link {
-  @apply mt-6 inline-flex items-center gap-2 text-sm font-sans font-semibold text-cobalt hover:text-navy transition-colors;
+  @apply mt-6 inline-flex items-center text-[13px] font-sans font-bold text-blue-600 hover:text-blue-800 transition-colors;
 }
 
+/* Right Card (Testimonial with Image) */
+.evidence-title {
+  @apply text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-6 tracking-tight;
+}
+
+.evidence-grid {
+  @apply grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch;
+}
+
+/* Left Card (Stats Container) */
+.evidence-stats-card {
+  @apply bg-[#f0f5fe] rounded-2xl p-6 md:p-8 flex flex-col justify-between h-full;
+}
+
+.evidence-pilot-label {
+  @apply flex items-center gap-2 text-[11px] font-sans font-bold text-blue-500 tracking-wider uppercase mb-6;
+}
+
+.evidence-pilot-dot {
+  @apply text-blue-400;
+}
+
+/* 5-Column layout for metric boxes */
+.evidence-stats {
+  @apply grid grid-cols-5 gap-2.5 my-auto;
+}
+
+.evidence-stat-tile {
+  @apply bg-white rounded-xl p-3 md:py-5 md:px-3 text-center flex flex-col items-center justify-between shadow-sm min-h-[120px];
+}
+
+.evidence-stat-value {
+  @apply text-2xl md:text-3xl font-serif font-bold text-blue-700 leading-none mb-2;
+}
+
+.evidence-stat-label {
+  @apply text-[11px] font-sans text-gray-600 leading-snug font-medium max-w-[85px] mx-auto;
+}
+
+.evidence-link {
+  @apply mt-6 inline-flex items-center text-[13px] font-sans font-bold text-blue-600 hover:text-blue-800 transition-colors;
+}
+
+/* Right Card (Testimonial with Image Overlay) */
 .evidence-testimonial {
-  @apply rounded-xl p-8 bg-gradient-to-br from-navy to-teal;
+  @apply relative rounded-2xl overflow-hidden min-h-[360px] flex items-center p-6 md:p-8 bg-gray-900 text-white;
+}
+
+.evidence-testimonial-bg {
+  @apply absolute inset-0 w-full h-full object-cover object-right z-0;
+}
+
+.evidence-testimonial-overlay {
+  @apply absolute inset-0 bg-gradient-to-r from-[#030d1a] via-[#030d1a]/80 to-transparent z-10;
 }
 
 .evidence-testimonial-inner {
-  @apply relative;
+  @apply relative z-20 max-w-[65%] flex flex-col justify-center;
 }
 
 .evidence-quote {
-  @apply text-2xl md:text-3xl font-serif font-bold text-white leading-snug;
+  @apply text-2xl md:text-3xl font-serif font-bold text-white leading-tight tracking-tight;
 }
 
 .evidence-attribution {
-  @apply mt-4;
+  @apply mt-2 mb-4;
 }
 
 .evidence-author {
-  @apply text-sm font-sans font-semibold text-gray-200;
+  @apply text-[13px] font-sans font-semibold text-gray-300;
 }
 
 .evidence-story {
-  @apply mt-4 text-sm text-gray-300;
+  @apply text-[12px] font-sans text-gray-300 leading-relaxed max-w-[280px];
 }
 
 .evidence-story-link {
-  @apply mt-4 inline-flex items-center gap-2 text-sm font-sans font-semibold text-cobalt-300 hover:text-white transition-colors;
+  @apply mt-6 inline-flex items-center text-[13px] font-sans font-bold text-white hover:underline transition-all;
 }
 
 /* Two Ways to Give */
 .ways-title {
-  @apply text-3xl md:text-4xl font-serif font-bold text-navy text-center mb-12;
+  @apply text-3xl md:text-4xl font-serif font-bold text-gray-900 text-center mb-10 tracking-tight;
 }
 
 .ways-grid {
-  @apply grid grid-cols-1 md:grid-cols-2 gap-8;
+  @apply grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch;
 }
 
 .ways-card {
-  @apply bg-white border border-gray-200 rounded-xl overflow-hidden;
+  @apply relative bg-white border border-gray-200/80 rounded-2xl overflow-hidden flex flex-col md:flex-row shadow-sm min-h-[380px];
 }
 
-.ways-card-inner {
-  @apply flex flex-col md:flex-row;
-}
-
-.ways-card-text {
-  @apply flex-1 p-8;
-}
-
-.ways-card-image {
-  @apply md:w-2/5 flex-shrink-0;
-}
-
-.ways-card-img {
-  @apply w-full h-full object-cover;
+.ways-card-content {
+  @apply relative z-20 flex-1 p-6 md:p-8 flex flex-col justify-between max-w-full md:max-w-[62%];
 }
 
 .ways-card-header {
-  @apply flex items-center gap-3;
-}
-
-.ways-card-icon {
-  @apply w-6 h-6 text-cobalt;
+  @apply flex items-center gap-2.5 mb-2;
 }
 
 .ways-card-title {
-  @apply text-xl font-serif font-bold text-navy;
+  @apply text-xl font-serif font-bold tracking-tight;
 }
 
 .ways-card-description {
-  @apply mt-4 text-sm text-gray-600;
+  @apply text-[13px] font-sans text-gray-600 leading-snug mb-5;
 }
 
 .ways-card-list {
-  @apply mt-6 space-y-3;
+  @apply space-y-2.5 mb-4;
 }
 
 .ways-card-item {
-  @apply flex items-start gap-2 text-sm text-gray-700;
-}
-
-.ways-card-check {
-  @apply w-4 h-4 text-green-500 mt-0.5 flex-shrink-0;
+  @apply flex items-center gap-2.5 text-[12px] font-sans font-medium text-gray-800;
 }
 
 .ways-card-note {
-  @apply mt-4 text-xs text-gray-500;
+  @apply text-[11px] font-sans text-gray-500 leading-relaxed mb-4;
+}
+
+.ways-btn {
+  @apply inline-flex items-center justify-center px-5 py-2.5 rounded-full text-[13px] font-sans font-semibold text-white transition-all whitespace-nowrap self-start mt-auto;
+}
+
+.ways-btn-blue {
+  @apply bg-blue-600 hover:bg-blue-700;
+}
+
+.ways-btn-green {
+  @apply bg-[#0d5c45] hover:bg-[#094231];
+}
+
+/* Image & Gradient Fade */
+.ways-card-image-wrap {
+  @apply relative md:absolute md:right-0 md:top-0 md:bottom-0 md:w-[48%] h-48 md:h-full z-10 overflow-hidden;
+}
+
+.ways-card-fade {
+  @apply hidden md:block absolute inset-0 z-10 bg-gradient-to-r from-white via-white/80 to-transparent pointer-events-none;
+}
+
+.ways-card-img {
+  @apply w-full h-full object-cover object-center;
 }
 
 /* Built for Responsible Implementation */
@@ -876,41 +1025,47 @@ const pilotStats = [
   @apply mt-4 inline-flex items-center gap-1 text-sm font-sans font-semibold text-cobalt hover:text-navy transition-colors;
 }
 
-/* Be the Bridge CTA */
 .bridge-cta-section {
-  @apply bg-navy text-white;
-  @apply relative overflow-hidden;
+  @apply relative overflow-hidden bg-gradient-to-r from-[#011438] via-[#032363] to-[#011233] text-white py-12 md:py-16;
 }
 
-.bridge-cta-section::before {
-  content: '';
-  @apply absolute inset-0 opacity-10;
-  background-image: url('/logo.png');
-  background-size: 400px;
-  background-position: right center;
-  background-repeat: no-repeat;
+.bridge-cta-graphic {
+  @apply absolute left-0 top-0 bottom-0 w-[45%] pointer-events-none z-0 mix-blend-screen;
 }
 
 .bridge-cta-inner {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
-  @apply flex flex-col md:flex-row items-center justify-between gap-8 py-16;
-  @apply relative z-10;
+  @apply max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 relative z-10;
 }
 
 .bridge-cta-content {
-  @apply text-left;
+  @apply text-left max-w-xl;
 }
 
 .bridge-cta-title {
-  @apply text-3xl md:text-4xl font-serif font-bold;
+  @apply text-3xl sm:text-4xl md:text-5xl font-serif font-bold tracking-tight text-white leading-tight;
 }
 
 .bridge-cta-description {
-  @apply mt-4 text-lg opacity-90;
+  @apply mt-2 text-base md:text-lg font-sans text-gray-200 font-normal opacity-90;
 }
 
 .bridge-cta-actions {
-  @apply flex flex-wrap gap-4;
+  @apply flex flex-wrap items-center gap-4;
+}
+
+/* Button Base Class */
+.bridge-btn {
+  @apply inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl font-sans text-sm font-semibold transition-all duration-200 shadow-md;
+}
+
+/* Primary Donate Button */
+.bridge-btn-primary {
+  @apply bg-[#1450f5] hover:bg-[#0f43d4] text-white border border-transparent;
+}
+
+/* Teal/Cyan Outlined Partner Button */
+.bridge-btn-outline {
+  @apply bg-transparent text-white border-2 border-[#00c4cc] hover:bg-[#00c4cc]/10;
 }
 
 /* UI/UX Pro Max Priority 1: Focus-visible for keyboard navigation */
