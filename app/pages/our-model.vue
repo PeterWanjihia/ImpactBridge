@@ -127,6 +127,47 @@ const readinessCards = [
     alt: 'Community members supporting the learning hub',
   },
 ]
+
+const hubComponents = [
+  {
+    name: 'Microcomputer',
+    description: 'Low-power, reliable and easy to maintain.',
+    side: 'left' as const,
+  },
+  {
+    name: 'Offline content storage',
+    description: 'Stores months of curriculum resources.',
+    side: 'left' as const,
+  },
+  {
+    name: 'Protective enclosure',
+    description: 'Shields against dust, heat and damage.',
+    side: 'left' as const,
+  },
+  {
+    name: 'Teacher laptop',
+    description: 'Easy access to lessons, resources and tools.',
+    side: 'right' as const,
+  },
+  {
+    name: 'Projector / display',
+    description: 'Shares content with the entire class.',
+    side: 'right' as const,
+  },
+  {
+    name: 'Power & accessories',
+    description: 'Reliable power and connectivity components.',
+    side: 'right' as const,
+  },
+]
+
+const hubFeatures = [
+  'Works offline without internet',
+  'Built for low power use',
+  'Designed for classroom use',
+  'Easy to service and update',
+  'Secure storage when not in use',
+]
 </script>
 
 <template>
@@ -296,6 +337,86 @@ const readinessCards = [
               <h3 class="model-readiness-card-title">{{ card.title }}</h3>
               <p class="model-readiness-card-description">{{ card.description }}</p>
             </div>
+          </div>
+        </div>
+      </LayoutContainer>
+    </section>
+
+    <!-- Inside the Learning Hub -->
+    <section id="inside-the-hub" class="model-hub">
+      <LayoutContainer>
+        <div class="model-hub-layout">
+          <!-- Header -->
+          <div class="model-hub-header">
+            <span class="model-hub-number">03</span>
+            <h2 class="model-hub-title">Inside the<br />learning hub</h2>
+            <p class="model-hub-description">
+              Every component is chosen for a reason—solving a real classroom constraint.
+            </p>
+            <UiButton variant="outline-white" size="md" class="mt-6">
+              <NuxtLink to="/transparency" class="flex items-center gap-2" aria-label="View technical specifications for the learning hub">
+                View technical specifications
+                <ArrowRight class="w-4 h-4" />
+              </NuxtLink>
+            </UiButton>
+          </div>
+
+          <!-- Hub Diagram -->
+          <div class="model-hub-diagram">
+            <div class="model-hub-image-wrap">
+              <ClientOnly>
+                <img
+                  src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80"
+                  alt="Impact Bridge learning hub equipment including microcomputer, projector, laptop and protective enclosure"
+                  class="model-hub-image"
+                  loading="lazy"
+                />
+                <template #fallback>
+                  <div class="model-hub-image model-hub-image--placeholder" />
+                </template>
+              </ClientOnly>
+
+              <!-- Callout Lines (decorative SVG) -->
+              <svg class="model-hub-callouts" viewBox="0 0 600 400" fill="none" aria-hidden="true">
+                <!-- Left side lines -->
+                <line x1="180" y1="120" x2="120" y2="80" stroke="white" stroke-width="1" opacity="0.4" />
+                <line x1="180" y1="200" x2="120" y2="180" stroke="white" stroke-width="1" opacity="0.4" />
+                <line x1="180" y1="280" x2="120" y2="280" stroke="white" stroke-width="1" opacity="0.4" />
+                <!-- Right side lines -->
+                <line x1="420" y1="120" x2="480" y2="80" stroke="white" stroke-width="1" opacity="0.4" />
+                <line x1="420" y1="200" x2="480" y2="200" stroke="white" stroke-width="1" opacity="0.4" />
+                <line x1="420" y1="280" x2="480" y2="300" stroke="white" stroke-width="1" opacity="0.4" />
+              </svg>
+            </div>
+
+            <!-- Component Labels -->
+            <div class="model-hub-labels">
+              <!-- Left column -->
+              <div class="model-hub-labels-col model-hub-labels-col--left">
+                <div v-for="comp in hubComponents.filter(c => c.side === 'left')" :key="comp.name" class="model-hub-label">
+                  <h3 class="model-hub-label-name">{{ comp.name }}</h3>
+                  <p class="model-hub-label-description">{{ comp.description }}</p>
+                </div>
+              </div>
+
+              <!-- Right column -->
+              <div class="model-hub-labels-col model-hub-labels-col--right">
+                <div v-for="comp in hubComponents.filter(c => c.side === 'right')" :key="comp.name" class="model-hub-label">
+                  <h3 class="model-hub-label-name">{{ comp.name }}</h3>
+                  <p class="model-hub-label-description">{{ comp.description }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hub Features Strip -->
+        <div class="model-hub-features">
+          <div v-for="feature in hubFeatures" :key="feature" class="model-hub-feature">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="model-hub-feature-icon">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            <span class="model-hub-feature-label">{{ feature }}</span>
           </div>
         </div>
       </LayoutContainer>
@@ -514,5 +635,90 @@ const readinessCards = [
 
 .model-readiness-card-description {
   @apply mt-2 text-sm text-gray-500 leading-relaxed;
+}
+
+/* Inside the Learning Hub */
+.model-hub {
+  @apply py-16 md:py-24 bg-navy;
+}
+
+.model-hub-layout {
+  @apply grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-12 lg:gap-8 items-start;
+}
+
+.model-hub-header {
+  @apply lg:sticky lg:top-8;
+}
+
+.model-hub-number {
+  @apply inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/10 text-cobalt-400 font-sans font-bold text-sm;
+}
+
+.model-hub-title {
+  @apply mt-4 text-3xl md:text-4xl font-serif font-bold text-white leading-tight;
+}
+
+.model-hub-description {
+  @apply mt-4 text-gray-300;
+}
+
+.model-hub-diagram {
+  @apply relative;
+}
+
+.model-hub-image-wrap {
+  @apply relative;
+}
+
+.model-hub-image {
+  @apply w-full rounded-xl;
+}
+
+.model-hub-image--placeholder {
+  @apply bg-navy-700 aspect-[4/3] rounded-xl;
+}
+
+.model-hub-callouts {
+  @apply absolute inset-0 w-full h-full pointer-events-none;
+}
+
+.model-hub-labels {
+  @apply grid grid-cols-2 gap-6 mt-8;
+}
+
+.model-hub-labels-col {
+  @apply flex flex-col gap-6;
+}
+
+.model-hub-labels-col--left {
+  @apply items-start;
+}
+
+.model-hub-labels-col--right {
+  @apply items-end text-right;
+}
+
+.model-hub-label-name {
+  @apply text-sm font-sans font-bold text-white;
+}
+
+.model-hub-label-description {
+  @apply mt-1 text-sm text-gray-400;
+}
+
+.model-hub-features {
+  @apply flex flex-wrap items-center justify-center gap-x-6 gap-y-3 mt-12 pt-8 border-t border-white/10;
+}
+
+.model-hub-feature {
+  @apply flex items-center gap-2;
+}
+
+.model-hub-feature-icon {
+  @apply text-cobalt-400 flex-shrink-0;
+}
+
+.model-hub-feature-label {
+  @apply text-sm font-sans text-gray-300;
 }
 </style>
