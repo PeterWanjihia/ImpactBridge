@@ -61,7 +61,7 @@ const features = [
     <!-- Hero Overlay Component with Custom Image & Content -->
     <HeroOverlay
       title="A computer does not transform a classroom."
-      image-url="/images/hero-classroom.jpg"
+      image-url="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1920&q=80"
       image-alt="Classroom with interactive digital board"
       overlay="dark"
       class="relative overflow-hidden"

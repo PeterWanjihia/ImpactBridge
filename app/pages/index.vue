@@ -357,7 +357,7 @@ const pilotStats = [
 
           <!-- Right Box: Testimonial Card -->
           <div class="evidence-testimonial">
-            <img src="/images/namulava-portrait.jpg" alt="Namulava" class="evidence-testimonial-bg" />
+            <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=1200&q=80" alt="Namulava" class="evidence-testimonial-bg" />
             <div class="evidence-testimonial-overlay"></div>
 
             <div class="evidence-testimonial-inner">
@@ -430,7 +430,7 @@ const pilotStats = [
             <!-- Image Container with White Fade Gradient -->
             <div class="ways-card-image-wrap">
               <div class="ways-card-fade"></div>
-              <img src="/images/children-learning.jpg" alt="Children in classroom" class="ways-card-img" />
+              <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1200&q=80" alt="Children in classroom" class="ways-card-img" />
             </div>
           </div>
 
@@ -478,7 +478,7 @@ const pilotStats = [
             <!-- Image Container with White Fade Gradient -->
             <div class="ways-card-image-wrap">
               <div class="ways-card-fade"></div>
-              <img src="/images/corporate-partner.jpg" alt="Corporate partner working" class="ways-card-img" />
+              <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1200&q=80" alt="Corporate partner working" class="ways-card-img" />
             </div>
           </div>
         </div>
