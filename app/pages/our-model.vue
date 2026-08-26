@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { type VNode, h } from 'vue'
 import {
   WifiOff,
   Users,
@@ -35,49 +36,63 @@ const features = [
   { icon: BarChart3, label: 'Transparently measured' },
 ]
 
+// Inline SVG render functions — SSR-safe, no template compiler needed
+function renderServerIcon(): VNode {
+  return h('svg', { width: 24, height: 24, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': 1.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, [
+    h('rect', { x: 2, y: 2, width: 20, height: 8, rx: 2, ry: 2 }),
+    h('rect', { x: 2, y: 14, width: 20, height: 8, rx: 2, ry: 2 }),
+    h('line', { x1: 6, y1: 6, x2: 6.01, y2: 6 }),
+    h('line', { x1: 6, y1: 18, x2: 6.01, y2: 18 }),
+  ])
+}
+
+function renderBookIcon(): VNode {
+  return h('svg', { width: 24, height: 24, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': 1.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, [
+    h('path', { d: 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20' }),
+    h('path', { d: 'M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z' }),
+  ])
+}
+
+function renderTeacherIcon(): VNode {
+  return h('svg', { width: 24, height: 24, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': 1.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, [
+    h('path', { d: 'M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2' }),
+    h('circle', { cx: 12, cy: 7, r: 4 }),
+  ])
+}
+
+function renderGroupIcon(): VNode {
+  return h('svg', { width: 24, height: 24, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': 1.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, [
+    h('path', { d: 'M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2' }),
+    h('circle', { cx: 9, cy: 7, r: 4 }),
+    h('path', { d: 'M23 21v-2a4 4 0 0 0-3-3.87' }),
+    h('path', { d: 'M16 3.13a4 4 0 0 1 0 7.75' }),
+  ])
+}
+
+function renderUsersIcon(): VNode {
+  return h('svg', { width: 24, height: 24, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': 1.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, [
+    h('path', { d: 'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2' }),
+    h('circle', { cx: 9, cy: 7, r: 4 }),
+    h('path', { d: 'M22 21v-2a4 4 0 0 0-3-3.87' }),
+    h('path', { d: 'M16 3.13a4 4 0 0 1 0 7.75' }),
+  ])
+}
+
+function renderChartIcon(): VNode {
+  return h('svg', { width: 24, height: 24, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': 1.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, [
+    h('line', { x1: 18, y1: 20, x2: 18, y2: 10 }),
+    h('line', { x1: 12, y1: 20, x2: 12, y2: 4 }),
+    h('line', { x1: 6, y1: 20, x2: 6, y2: 14 }),
+  ])
+}
+
 const modelSteps = [
-  {
-    title: 'Appropriate infrastructure',
-    description: 'Reliable technology built for real classroom conditions.',
-    icon: {
-      template: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2" /><rect x="2" y="14" width="20" height="8" rx="2" ry="2" /><line x1="6" y1="6" x2="6.01" y2="6" /><line x1="6" y1="18" x2="6.01" y2="18" /></svg>`
-    }
-  },
-  {
-    title: 'Curated offline content',
-    description: 'Curriculum-relevant resources available without the internet.',
-    icon: {
-      template: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" /></svg>`
-    }
-  },
-  {
-    title: 'Prepared teachers',
-    description: 'Teachers trained to integrate technology into lessons.',
-    icon: {
-      template: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>`
-    }
-  },
-  {
-    title: 'Classroom practice',
-    description: 'Interactive teaching that engages and deepens learning.',
-    icon: {
-      template: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>`
-    }
-  },
-  {
-    title: 'Local ownership and support',
-    description: 'Champion teachers and school leaders carry it forward.',
-    icon: {
-      template: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>`
-    }
-  },
-  {
-    title: 'Measurement and improvement',
-    description: 'We monitor, learn and make the model stronger.',
-    icon: {
-      template: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" /></svg>`
-    }
-  },
+  { title: 'Appropriate infrastructure', description: 'Reliable technology built for real classroom conditions.', icon: renderServerIcon },
+  { title: 'Curated offline content', description: 'Curriculum-relevant resources available without the internet.', icon: renderBookIcon },
+  { title: 'Prepared teachers', description: 'Teachers trained to integrate technology into lessons.', icon: renderTeacherIcon },
+  { title: 'Classroom practice', description: 'Interactive teaching that engages and deepens learning.', icon: renderGroupIcon },
+  { title: 'Local ownership and support', description: 'Champion teachers and school leaders carry it forward.', icon: renderUsersIcon },
+  { title: 'Measurement and improvement', description: 'We monitor, learn and make the model stronger.', icon: renderChartIcon },
 ]
 </script>
 
@@ -86,14 +101,18 @@ const modelSteps = [
     <!-- Hero Section -->
     <section class="model-hero">
       <div class="model-hero-bg">
-        <img
-          src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=1920&q=80"
-          alt="Teacher guiding students in a classroom using digital learning resources"
-          class="model-hero-image"
-          width="1920"
-          height="1080"
-          fetchpriority="high"
-        />
+        <ClientOnly>
+          <img
+            src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=1920&q=80"
+            alt="Teacher guiding students in a classroom using digital learning resources"
+            class="model-hero-image"
+            width="1920"
+            height="1080"
+          />
+          <template #fallback>
+            <div class="model-hero-image model-hero-image--placeholder" />
+          </template>
+        </ClientOnly>
         <div class="model-hero-overlay" />
       </div>
 
@@ -224,6 +243,10 @@ const modelSteps = [
 
 .model-hero-image {
   @apply w-full h-full object-cover;
+}
+
+.model-hero-image--placeholder {
+  @apply bg-navy-800;
 }
 
 .model-hero-overlay {
