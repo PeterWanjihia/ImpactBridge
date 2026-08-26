@@ -168,6 +168,45 @@ const hubFeatures = [
   'Easy to service and update',
   'Secure storage when not in use',
 ]
+
+const contentCategories = [
+  {
+    title: 'Mathematics',
+    count: '1,300+ resources',
+    image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&q=80',
+    alt: 'Mathematics learning resources with graphs and equations',
+  },
+  {
+    title: 'Science',
+    count: '1,000+ resources',
+    image: 'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=400&q=80',
+    alt: 'Science learning resources with planets and space imagery',
+  },
+  {
+    title: 'English & Literacy',
+    count: '900+ resources',
+    image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80',
+    alt: 'English and literacy learning resources with text documents',
+  },
+  {
+    title: 'Simulations',
+    count: '700+ resources',
+    image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&q=80',
+    alt: 'Interactive science simulations with molecular models',
+  },
+  {
+    title: 'Teacher Guides',
+    count: '300+ resources',
+    image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&q=80',
+    alt: 'Teacher guides with checklists and lesson plans',
+  },
+  {
+    title: 'Local & AlloUg',
+    count: '800+ resources',
+    image: 'https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?w=400&q=80',
+    alt: 'Local cultural and historical learning resources',
+  },
+]
 </script>
 
 <template>
@@ -417,6 +456,49 @@ const hubFeatures = [
               <polyline points="20 6 9 17 4 12" />
             </svg>
             <span class="model-hub-feature-label">{{ feature }}</span>
+          </div>
+        </div>
+      </LayoutContainer>
+    </section>
+
+    <!-- Offline Content Library -->
+    <section class="model-content">
+      <LayoutContainer>
+        <div class="model-content-layout">
+          <!-- Header -->
+          <div class="model-content-header">
+            <span class="model-content-number">04</span>
+            <h2 class="model-content-title">Offline does<br />not mean limited.</h2>
+            <p class="model-content-description">
+              Our hubs include thousands of high-quality, curriculum-aligned resources.
+            </p>
+            <NuxtLink to="/transparency" class="model-content-link">
+              Explore content library
+              <ArrowRight class="w-4 h-4" />
+            </NuxtLink>
+          </div>
+
+          <!-- Content Cards -->
+          <div class="model-content-cards">
+            <div v-for="category in contentCategories" :key="category.title" class="model-content-card">
+              <div class="model-content-card-info">
+                <h3 class="model-content-card-title">{{ category.title }}</h3>
+                <span class="model-content-card-count">{{ category.count }}</span>
+              </div>
+              <ClientOnly>
+                <div class="model-content-card-image">
+                  <img
+                    :src="category.image"
+                    :alt="category.alt"
+                    class="model-content-card-img"
+                    loading="lazy"
+                  />
+                </div>
+                <template #fallback>
+                  <div class="model-content-card-image model-content-card-image--placeholder" />
+                </template>
+              </ClientOnly>
+            </div>
           </div>
         </div>
       </LayoutContainer>
@@ -720,5 +802,67 @@ const hubFeatures = [
 
 .model-hub-feature-label {
   @apply text-sm font-sans text-gray-300;
+}
+
+/* Offline Content Library */
+.model-content {
+  @apply py-16 md:py-24 bg-white;
+}
+
+.model-content-layout {
+  @apply grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-12 lg:gap-8 items-start;
+}
+
+.model-content-header {
+  @apply lg:sticky lg:top-8;
+}
+
+.model-content-number {
+  @apply inline-flex items-center justify-center w-10 h-10 rounded-full bg-cobalt/10 text-cobalt font-sans font-bold text-sm;
+}
+
+.model-content-title {
+  @apply mt-4 text-3xl md:text-4xl font-serif font-bold text-navy leading-tight;
+}
+
+.model-content-description {
+  @apply mt-4 text-gray-600;
+}
+
+.model-content-link {
+  @apply mt-6 inline-flex items-center gap-2 text-cobalt font-sans font-semibold text-sm hover:text-cobalt/80 transition-colors;
+}
+
+.model-content-cards {
+  @apply grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4;
+}
+
+.model-content-card {
+  @apply flex flex-col;
+}
+
+.model-content-card-info {
+  @apply mb-3;
+}
+
+.model-content-card-title {
+  @apply text-sm font-sans font-bold text-navy;
+}
+
+.model-content-card-count {
+  @apply text-xs font-sans text-cobalt mt-0.5 block;
+}
+
+.model-content-card-image {
+  @apply relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-navy/5;
+}
+
+.model-content-card-image--placeholder {
+  @apply bg-gray-200;
+}
+
+.model-content-card-img {
+  @apply w-full h-full object-cover mix-blend-multiply;
+  filter: hue-rotate(200deg) saturate(1.2);
 }
 </style>
