@@ -94,6 +94,39 @@ const modelSteps = [
   { title: 'Local ownership and support', description: 'Champion teachers and school leaders carry it forward.', icon: renderUsersIcon },
   { title: 'Measurement and improvement', description: 'We monitor, learn and make the model stronger.', icon: renderChartIcon },
 ]
+
+const readinessCards = [
+  {
+    title: 'Leadership commitment',
+    description: 'School leaders understand and support the vision.',
+    image: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?w=400&q=80',
+    alt: 'School leader discussing partnership plans',
+  },
+  {
+    title: 'Teacher readiness',
+    description: 'Teachers are ready to learn, lead and integrate.',
+    image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&q=80',
+    alt: 'Teacher training session in progress',
+  },
+  {
+    title: 'Classroom suitability',
+    description: 'Space, security and power are assessed and prepared.',
+    image: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400&q=80',
+    alt: 'Classroom space being assessed for hub setup',
+  },
+  {
+    title: 'Curriculum needs',
+    description: 'We understand the subjects and topics that matter most.',
+    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&q=80',
+    alt: 'Students engaged with curriculum materials',
+  },
+  {
+    title: 'Local support capacity',
+    description: 'Communities and partners help sustain the hub.',
+    image: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&q=80',
+    alt: 'Community members supporting the learning hub',
+  },
+]
 </script>
 
 <template>
@@ -221,6 +254,47 @@ const modelSteps = [
                 </svg>
               </div>
               <span class="model-glance-result-label">A functioning classroom.</span>
+            </div>
+          </div>
+        </div>
+      </LayoutContainer>
+    </section>
+
+    <!-- Readiness Assessment -->
+    <section class="model-readiness">
+      <LayoutContainer>
+        <div class="model-readiness-layout">
+          <!-- Header -->
+          <div class="model-readiness-header">
+            <span class="model-readiness-number">02</span>
+            <h2 class="model-readiness-title">The model begins with a school—not a device.</h2>
+            <p class="model-readiness-description">
+              We assess readiness in partnership with school leaders to ensure the hub will be used, protected and sustained.
+            </p>
+            <NuxtLink to="/transparency" class="model-readiness-link">
+              Readiness assessment framework
+              <ArrowRight class="w-4 h-4" />
+            </NuxtLink>
+          </div>
+
+          <!-- Cards -->
+          <div class="model-readiness-cards">
+            <div v-for="card in readinessCards" :key="card.title" class="model-readiness-card">
+              <ClientOnly>
+                <div class="model-readiness-card-image">
+                  <img
+                    :src="card.image"
+                    :alt="card.alt"
+                    class="model-readiness-card-img"
+                    loading="lazy"
+                  />
+                </div>
+                <template #fallback>
+                  <div class="model-readiness-card-image model-readiness-card-image--placeholder" />
+                </template>
+              </ClientOnly>
+              <h3 class="model-readiness-card-title">{{ card.title }}</h3>
+              <p class="model-readiness-card-description">{{ card.description }}</p>
             </div>
           </div>
         </div>
@@ -383,5 +457,62 @@ const modelSteps = [
 
 .model-glance-result-label {
   @apply text-sm font-sans font-bold text-cobalt;
+}
+
+/* Readiness Assessment */
+.model-readiness {
+  @apply py-16 md:py-24 bg-white;
+}
+
+.model-readiness-layout {
+  @apply grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-12 lg:gap-16 items-start;
+}
+
+.model-readiness-header {
+  @apply lg:sticky lg:top-8;
+}
+
+.model-readiness-number {
+  @apply inline-flex items-center justify-center w-10 h-10 rounded-full bg-cobalt/10 text-cobalt font-sans font-bold text-sm;
+}
+
+.model-readiness-title {
+  @apply mt-4 text-3xl md:text-4xl font-serif font-bold text-navy leading-tight;
+}
+
+.model-readiness-description {
+  @apply mt-4 text-gray-600;
+}
+
+.model-readiness-link {
+  @apply mt-6 inline-flex items-center gap-2 text-cobalt font-sans font-semibold text-sm hover:text-cobalt/80 transition-colors;
+}
+
+.model-readiness-cards {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5;
+}
+
+.model-readiness-card {
+  @apply flex flex-col;
+}
+
+.model-readiness-card-image {
+  @apply relative w-full aspect-[4/3] rounded-xl overflow-hidden mb-4;
+}
+
+.model-readiness-card-image--placeholder {
+  @apply bg-gray-200;
+}
+
+.model-readiness-card-img {
+  @apply w-full h-full object-cover;
+}
+
+.model-readiness-card-title {
+  @apply text-base font-sans font-bold text-navy leading-snug;
+}
+
+.model-readiness-card-description {
+  @apply mt-2 text-sm text-gray-500 leading-relaxed;
 }
 </style>
