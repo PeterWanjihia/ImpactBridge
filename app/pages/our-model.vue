@@ -427,11 +427,11 @@ const timelineSteps = [
       </LayoutContainer>
     </section>
 
-<!-- Inside the Learning Hub -->
+    <!-- Inside the Learning Hub -->
     <section id="inside-the-hub" class="model-hub">
       <LayoutContainer class="relative z-10">
         <div class="model-hub-grid">
-          
+
           <!-- Left Column: Header & CTA -->
           <div class="model-hub-header">
             <span class="model-hub-number">03</span>
@@ -450,12 +450,8 @@ const timelineSteps = [
             <!-- Composite Graphic Container -->
             <div class="model-hub-graphic-wrap">
               <ClientOnly>
-                <img
-                  src="modelHubEquipmentImage"
-                  alt="Inside the learning hub - annotated hardware breakdown"
-                  class="model-hub-graphic-img"
-                  loading="lazy"
-                />
+                <img :src="modelHubEquipmentImage" alt="Inside the learning hub - annotated hardware breakdown"
+                  class="model-hub-graphic-img" loading="lazy" />
                 <template #fallback>
                   <div class="model-hub-graphic-placeholder" />
                 </template>
@@ -464,11 +460,7 @@ const timelineSteps = [
 
             <!-- Integrated Bottom Feature Dock -->
             <div class="model-hub-feature-bar">
-              <div
-                v-for="feature in hubFeatures"
-                :key="feature.label"
-                class="model-hub-feature-card"
-              >
+              <div v-for="feature in hubFeatures" :key="feature.label" class="model-hub-feature-card">
                 <div class="model-hub-feature-icon-box">
                   <component :is="feature.icon" class="w-4 h-4 text-cobalt-400" />
                 </div>
