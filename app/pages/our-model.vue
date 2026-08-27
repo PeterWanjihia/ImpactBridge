@@ -428,93 +428,11 @@ const timelineSteps = [
     </section>
 
     <!-- Inside the Learning Hub -->
-    <!-- Inside the Learning Hub -->
     <section id="inside-the-hub" class="model-hub">
       <LayoutContainer class="relative z-10">
-        <div class="model-hub-grid">
-
-          <!-- Left Column: Header & Call-to-Action -->
-          <div class="model-hub-header">
-            <span class="model-hub-number">02</span>
-            <h2 class="model-hub-title">Inside the<br />learning hub</h2>
-            <p class="model-hub-description">
-              Every component is chosen for a reason—solving a real classroom constraint.
-            </p>
-            <NuxtLink to="/transparency" class="model-hub-cta-btn">
-              View technical specifications
-              <ArrowRight class="w-4 h-4" />
-            </NuxtLink>
-          </div>
-
-          <!-- Middle Column: Interactive Equipment Display -->
-          <div class="model-hub-stage">
-            <div class="model-hub-diagram">
-
-              <!-- Left Annotations -->
-              <div class="model-hub-col model-hub-col--left">
-                <div v-for="comp in hubComponents.filter(c => c.side === 'left')" :key="comp.name"
-                  class="model-hub-annotation">
-                  <h3 class="model-hub-label-name">{{ comp.name }}</h3>
-                  <p class="model-hub-label-description">{{ comp.description }}</p>
-                </div>
-              </div>
-
-              <!-- Center Image with SVG Callout Lines -->
-              <div class="model-hub-center-image">
-                <img :src="modelHubEquipmentImage" alt="Impact Bridge learning hub hardware equipment"
-                  class="model-hub-equipment-img" />
-
-                <!-- SVG Callout Pointer Lines with Endpoint Dots -->
-                <svg class="model-hub-pointer-svg" viewBox="0 0 600 350" fill="none" aria-hidden="true">
-                  <!-- Left Pointers -->
-                  <path d="M 50 40 C 180 40, 200 80, 260 90" stroke="#a5b4fc" stroke-width="1.2" />
-                  <circle cx="260" cy="90" r="3" fill="#a5b4fc" />
-
-                  <path d="M 50 140 C 160 140, 190 170, 250 175" stroke="#a5b4fc" stroke-width="1.2" />
-                  <circle cx="250" cy="175" r="3" fill="#a5b4fc" />
-
-                  <path d="M 50 240 C 150 240, 180 230, 240 220" stroke="#a5b4fc" stroke-width="1.2" />
-                  <circle cx="240" cy="220" r="3" fill="#a5b4fc" />
-
-                  <!-- Right Pointers -->
-                  <path d="M 550 40 C 440 40, 410 70, 370 85" stroke="#a5b4fc" stroke-width="1.2" />
-                  <circle cx="370" cy="85" r="3" fill="#a5b4fc" />
-
-                  <path d="M 550 140 C 470 140, 440 180, 420 190" stroke="#a5b4fc" stroke-width="1.2" />
-                  <circle cx="420" cy="190" r="3" fill="#a5b4fc" />
-
-                  <path d="M 550 240 C 460 240, 430 250, 400 245" stroke="#a5b4fc" stroke-width="1.2" />
-                  <circle cx="400" cy="245" r="3" fill="#a5b4fc" />
-                </svg>
-              </div>
-
-              <!-- Right Annotations -->
-              <div class="model-hub-col model-hub-col--right">
-                <div v-for="comp in hubComponents.filter(c => c.side === 'right')" :key="comp.name"
-                  class="model-hub-annotation">
-                  <h3 class="model-hub-label-name">{{ comp.name }}</h3>
-                  <p class="model-hub-label-description">{{ comp.description }}</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Integrated Bottom Feature Bar -->
-            <div class="model-hub-feature-bar">
-              <div v-for="(feature, idx) in hubFeatures" :key="idx" class="model-hub-feature-card">
-                <div class="model-hub-feature-icon-box">
-                  <component :is="feature.icon" class="w-4 h-4 text-cobalt-400" />
-                </div>
-                <span class="model-hub-feature-text">{{ feature }}</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Far Right Student Image Layer -->
-          <div class="model-hub-person-wrap" aria-hidden="true">
-            <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=600&q=80"
-              alt="Student looking at learning hub equipment" class="model-hub-person-img" />
-          </div>
-
+        <div class="model-hub-image-only">
+          <img :src="modelHubEquipmentImage" alt="Impact Bridge learning hub hardware equipment"
+            class="model-hub-equipment-img" />
         </div>
       </LayoutContainer>
     </section>
