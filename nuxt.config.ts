@@ -16,6 +16,12 @@ export default defineNuxtConfig({
   icons: {
     compiler: 'vue3',
     autoInstall: true, // Automatically fetches icon sets if missing
+    customCollections: [
+      {
+        prefix: 'custom',
+        dir: './app/assets/icons',
+      },
+    ],
   },
 
   components: [
