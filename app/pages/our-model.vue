@@ -669,7 +669,7 @@ const timelineSteps = [
   </div>
 </template>
 
-<style scoped>
+<style>
 /* Hero Section */
 .model-hero {
   @apply relative min-h-[85vh] flex flex-col overflow-hidden;
