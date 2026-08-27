@@ -427,15 +427,14 @@ const timelineSteps = [
       </LayoutContainer>
     </section>
 
-    <!-- Inside the Learning Hub -->
-    <!-- Inside the Learning Hub -->
+<!-- Inside the Learning Hub -->
     <section id="inside-the-hub" class="model-hub">
       <LayoutContainer class="relative z-10">
         <div class="model-hub-grid">
-
-          <!-- Left Column: Header & Call-to-Action -->
+          
+          <!-- Left Column: Header & CTA -->
           <div class="model-hub-header">
-            <span class="model-hub-number">02</span>
+            <span class="model-hub-number">03</span>
             <h2 class="model-hub-title">Inside the<br />learning hub</h2>
             <p class="model-hub-description">
               Every component is chosen for a reason—solving a real classroom constraint.
@@ -446,73 +445,36 @@ const timelineSteps = [
             </NuxtLink>
           </div>
 
-          <!-- Middle Column: Interactive Equipment Display -->
+          <!-- Center Diagram Stage (Single Composite Graphic + Bottom Dock) -->
           <div class="model-hub-stage">
-            <div class="model-hub-diagram">
-
-              <!-- Left Annotations -->
-              <div class="model-hub-col model-hub-col--left">
-                <div v-for="comp in hubComponents.filter(c => c.side === 'left')" :key="comp.name"
-                  class="model-hub-annotation">
-                  <h3 class="model-hub-label-name">{{ comp.name }}</h3>
-                  <p class="model-hub-label-description">{{ comp.description }}</p>
-                </div>
-              </div>
-
-              <!-- Center Image with SVG Callout Lines -->
-              <div class="model-hub-center-image">
-                <img :src="modelHubEquipmentImage" alt="Impact Bridge learning hub hardware equipment"
-                  class="model-hub-equipment-img" />
-
-                <!-- SVG Callout Pointer Lines with Endpoint Dots -->
-                <svg class="model-hub-pointer-svg" viewBox="0 0 600 350" fill="none" aria-hidden="true">
-                  <!-- Left Pointers -->
-                  <path d="M 50 40 C 180 40, 200 80, 260 90" stroke="#a5b4fc" stroke-width="1.2" />
-                  <circle cx="260" cy="90" r="3" fill="#a5b4fc" />
-
-                  <path d="M 50 140 C 160 140, 190 170, 250 175" stroke="#a5b4fc" stroke-width="1.2" />
-                  <circle cx="250" cy="175" r="3" fill="#a5b4fc" />
-
-                  <path d="M 50 240 C 150 240, 180 230, 240 220" stroke="#a5b4fc" stroke-width="1.2" />
-                  <circle cx="240" cy="220" r="3" fill="#a5b4fc" />
-
-                  <!-- Right Pointers -->
-                  <path d="M 550 40 C 440 40, 410 70, 370 85" stroke="#a5b4fc" stroke-width="1.2" />
-                  <circle cx="370" cy="85" r="3" fill="#a5b4fc" />
-
-                  <path d="M 550 140 C 470 140, 440 180, 420 190" stroke="#a5b4fc" stroke-width="1.2" />
-                  <circle cx="420" cy="190" r="3" fill="#a5b4fc" />
-
-                  <path d="M 550 240 C 460 240, 430 250, 400 245" stroke="#a5b4fc" stroke-width="1.2" />
-                  <circle cx="400" cy="245" r="3" fill="#a5b4fc" />
-                </svg>
-              </div>
-
-              <!-- Right Annotations -->
-              <div class="model-hub-col model-hub-col--right">
-                <div v-for="comp in hubComponents.filter(c => c.side === 'right')" :key="comp.name"
-                  class="model-hub-annotation">
-                  <h3 class="model-hub-label-name">{{ comp.name }}</h3>
-                  <p class="model-hub-label-description">{{ comp.description }}</p>
-                </div>
-              </div>
+            <!-- Composite Graphic Container -->
+            <div class="model-hub-graphic-wrap">
+              <ClientOnly>
+                <img
+                  src="modelHubEquipmentImage"
+                  alt="Inside the learning hub - annotated hardware breakdown"
+                  class="model-hub-graphic-img"
+                  loading="lazy"
+                />
+                <template #fallback>
+                  <div class="model-hub-graphic-placeholder" />
+                </template>
+              </ClientOnly>
             </div>
 
-            <!-- Integrated Bottom Feature Bar -->
+            <!-- Integrated Bottom Feature Dock -->
             <div class="model-hub-feature-bar">
-              <div v-for="(feature, idx) in hubFeatures" :key="idx" class="model-hub-feature-card">
+              <div
+                v-for="feature in hubFeatures"
+                :key="feature.label"
+                class="model-hub-feature-card"
+              >
                 <div class="model-hub-feature-icon-box">
                   <component :is="feature.icon" class="w-4 h-4 text-cobalt-400" />
                 </div>
-                <span class="model-hub-feature-text">{{ feature }}</span>
+                <span class="model-hub-feature-text">{{ feature.label }}</span>
               </div>
             </div>
-          </div>
-
-          <!-- Far Right Student Image Layer -->
-          <div class="model-hub-person-wrap" aria-hidden="true">
-            <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=600&q=80"
-              alt="Student looking at learning hub equipment" class="model-hub-person-img" />
           </div>
 
         </div>
@@ -797,69 +759,67 @@ const timelineSteps = [
 }
 
 /* The Model at a Glance */
-/* The Model at a Glance */
-.model-glance {
-  @apply py-16 md:py-24 bg-gray-50;
+.model-hub {
+  @apply relative py-16 md:py-24 bg-[#0a2540] overflow-hidden text-white;
 }
 
-.model-glance-layout {
-  @apply grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-12 lg:gap-12 items-start;
+.model-hub-grid {
+  @apply grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-10 items-center;
 }
 
-.model-glance-header {
-  @apply lg:sticky lg:top-8;
+/* Left Header Section */
+.model-hub-header {
+  @apply flex flex-col items-start;
 }
 
-.model-glance-number {
-  @apply inline-flex items-center justify-center w-10 h-10 rounded-full bg-cobalt/10 text-cobalt font-sans font-bold text-sm;
+.model-hub-number {
+  @apply inline-flex items-center justify-center w-10 h-10 rounded-full border border-blue-400/30 text-blue-300 font-sans font-semibold text-xs mb-4;
 }
 
-.model-glance-title {
-  @apply mt-4 text-3xl md:text-4xl font-serif font-bold text-navy leading-tight;
+.model-hub-title {
+  @apply text-3xl md:text-4xl font-serif font-bold leading-tight text-white;
 }
 
-.model-glance-description {
-  @apply mt-4 text-gray-600 text-sm leading-relaxed;
+.model-hub-description {
+  @apply mt-4 text-sm text-blue-100/70 leading-relaxed max-w-xs;
 }
 
-/* Flow Container */
-.model-glance-flow {
-  @apply relative flex flex-col items-center w-full;
+.model-hub-cta-btn {
+  @apply mt-8 inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-cobalt hover:bg-cobalt/90 text-white font-sans font-medium text-sm transition-colors shadow-lg shadow-cobalt/20;
 }
 
-/* Dashed background line behind top row icons */
-.model-glance-dashed-line {
-  @apply absolute top-7 left-[8.33%] right-[8.33%] h-px border-t border-dashed border-indigo-200 z-0 pointer-events-none;
+/* Center Stage */
+.model-hub-stage {
+  @apply flex flex-col gap-6 w-full;
 }
 
-/* 6-step Grid */
-.model-glance-steps {
-  @apply relative z-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 w-full;
+.model-hub-graphic-wrap {
+  @apply relative w-full flex items-center justify-center overflow-hidden rounded-xl;
 }
 
-.model-glance-step {
-  @apply flex flex-col items-center text-center px-1;
+.model-hub-graphic-img {
+  @apply w-full h-auto object-contain max-h-[480px] drop-shadow-xl;
 }
 
-.model-glance-step-circle {
-  @apply w-14 h-14 rounded-full border border-indigo-200 bg-white flex items-center justify-center text-cobalt shadow-sm mb-4 transition-transform hover:scale-105;
+.model-hub-graphic-placeholder {
+  @apply w-full aspect-[16/9] bg-blue-950/40 rounded-xl animate-pulse;
 }
 
-.model-glance-step-title {
-  @apply text-sm font-sans font-bold text-navy leading-snug;
+/* Bottom Feature Dock */
+.model-hub-feature-bar {
+  @apply grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 bg-[#071d33]/90 border border-blue-500/20 rounded-xl p-3 gap-2 backdrop-blur-sm;
 }
 
-.model-glance-step-description {
-  @apply mt-2 text-xs text-gray-500 leading-relaxed max-w-[150px];
+.model-hub-feature-card {
+  @apply flex items-center gap-2.5 px-3 py-2 border-r border-blue-500/10 last:border-r-0;
 }
 
-/* Bracket SVG Wrapper */
-.model-glance-bracket-wrap {
-  @apply hidden lg:block w-full h-16 relative mt-2 z-0 pointer-events-none;
+.model-hub-feature-icon-box {
+  @apply w-7 h-7 rounded border border-blue-400/20 bg-blue-900/40 flex items-center justify-center flex-shrink-0;
 }
 
-.model-glance-bracket-svg {
-  @apply w-full h-full;
+.model-hub-feature-text {
+  @apply text-xs font-sans font-medium text-blue-100/80 leading-snug;
 }
 
 /* Central Pill Badge */
