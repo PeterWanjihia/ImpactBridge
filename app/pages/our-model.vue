@@ -446,7 +446,7 @@ const timelineSteps = [
 
               <!-- Center Image with SVG Callout Lines -->
               <div class="model-hub-center-image">
-                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80"
+                <img src="model-hub-equipment-img.png"
                   alt="Impact Bridge learning hub hardware equipment" class="model-hub-equipment-img" />
 
                 <!-- SVG Callout Pointer Lines with Endpoint Dots -->
