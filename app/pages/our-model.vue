@@ -249,13 +249,9 @@ const timelineSteps = [
     <section class="model-hero">
       <div class="model-hero-bg">
         <ClientOnly>
-          <img
-            src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=1920&q=80"
-            alt="Teacher guiding students in a classroom using digital learning resources"
-            class="model-hero-image"
-            width="1920"
-            height="1080"
-          />
+          <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=1920&q=80"
+            alt="Teacher guiding students in a classroom using digital learning resources" class="model-hero-image"
+            width="1920" height="1080" />
           <template #fallback>
             <div class="model-hero-image model-hero-image--placeholder" />
           </template>
@@ -268,10 +264,7 @@ const timelineSteps = [
         <LayoutContainer>
           <ul class="model-hero-tab-list">
             <li v-for="tab in tabs" :key="tab.label">
-              <a
-                :href="tab.href"
-                :class="['model-hero-tab', { 'model-hero-tab--active': tab.active }]"
-              >
+              <a :href="tab.href" :class="['model-hero-tab', { 'model-hero-tab--active': tab.active }]">
                 {{ tab.label }}
               </a>
             </li>
@@ -295,14 +288,16 @@ const timelineSteps = [
 
             <div class="model-hero-actions">
               <UiButton variant="primary" size="lg">
-                <NuxtLink to="/donate" class="flex items-center gap-2" aria-label="Explore the model — learn how our approach works">
+                <NuxtLink to="/donate" class="flex items-center gap-2"
+                  aria-label="Explore the model — learn how our approach works">
                   Explore the model
                   <ArrowDown class="w-5 h-5" />
                 </NuxtLink>
               </UiButton>
 
               <UiButton variant="outline-white" size="lg" class="border-1 border-white/90">
-                <a href="#inside-the-hub" class="flex items-center gap-2" aria-label="See a hub in action — view how a learning hub operates">
+                <a href="#inside-the-hub" class="flex items-center gap-2"
+                  aria-label="See a hub in action — view how a learning hub operates">
                   See a hub in action
                   <ArrowRight class="w-5 h-5" />
                 </a>
@@ -357,9 +352,11 @@ const timelineSteps = [
             <div class="model-glance-bracket-wrap" aria-hidden="true">
               <svg class="model-glance-bracket-svg" viewBox="0 0 1000 70" fill="none" preserveAspectRatio="none">
                 <!-- Left path: from center of step 1 down and right toward badge -->
-                <path d="M 83.33 0 V 45 Q 83.33 60 98.33 60 H 280" stroke="#c7d2fe" stroke-width="1.5" stroke-dasharray="4 4" />
+                <path d="M 83.33 0 V 45 Q 83.33 60 98.33 60 H 280" stroke="#c7d2fe" stroke-width="1.5"
+                  stroke-dasharray="4 4" />
                 <!-- Right path: from center of step 6 down and left toward badge -->
-                <path d="M 916.67 0 V 45 Q 916.67 60 901.67 60 H 720" stroke="#c7d2fe" stroke-width="1.5" stroke-dasharray="4 4" />
+                <path d="M 916.67 0 V 45 Q 916.67 60 901.67 60 H 720" stroke="#c7d2fe" stroke-width="1.5"
+                  stroke-dasharray="4 4" />
               </svg>
             </div>
 
@@ -387,7 +384,8 @@ const timelineSteps = [
             <span class="model-readiness-number">02</span>
             <h2 class="model-readiness-title">The model begins with a school—not a device.</h2>
             <p class="model-readiness-description">
-              We assess readiness in partnership with school leaders to ensure the hub will be used, protected and sustained.
+              We assess readiness in partnership with school leaders to ensure the hub will be used, protected and
+              sustained.
             </p>
             <NuxtLink to="/transparency" class="model-readiness-link">
               Readiness assessment framework
@@ -400,12 +398,7 @@ const timelineSteps = [
             <div v-for="card in readinessCards" :key="card.title" class="model-readiness-card">
               <ClientOnly>
                 <div class="model-readiness-card-image">
-                  <img
-                    :src="card.image"
-                    :alt="card.alt"
-                    class="model-readiness-card-img"
-                    loading="lazy"
-                  />
+                  <img :src="card.image" :alt="card.alt" class="model-readiness-card-img" loading="lazy" />
                 </div>
                 <template #fallback>
                   <div class="model-readiness-card-image model-readiness-card-image--placeholder" />
@@ -420,81 +413,97 @@ const timelineSteps = [
     </section>
 
     <!-- Inside the Learning Hub -->
+    <!-- Inside the Learning Hub -->
     <section id="inside-the-hub" class="model-hub">
-      <LayoutContainer>
-        <div class="model-hub-layout">
-          <!-- Header -->
+      <LayoutContainer class="relative z-10">
+        <div class="model-hub-grid">
+
+          <!-- Left Column: Header & Call-to-Action -->
           <div class="model-hub-header">
-            <span class="model-hub-number">03</span>
+            <span class="model-hub-number">02</span>
             <h2 class="model-hub-title">Inside the<br />learning hub</h2>
             <p class="model-hub-description">
               Every component is chosen for a reason—solving a real classroom constraint.
             </p>
-            <UiButton variant="outline-white" size="md" class="mt-6">
-              <NuxtLink to="/transparency" class="flex items-center gap-2" aria-label="View technical specifications for the learning hub">
-                View technical specifications
-                <ArrowRight class="w-4 h-4" />
-              </NuxtLink>
-            </UiButton>
+            <NuxtLink to="/transparency" class="model-hub-cta-btn">
+              View technical specifications
+              <ArrowRight class="w-4 h-4" />
+            </NuxtLink>
           </div>
 
-          <!-- Hub Diagram -->
-          <div class="model-hub-diagram">
-            <div class="model-hub-image-wrap">
-              <ClientOnly>
-                <img
-                  src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80"
-                  alt="Impact Bridge learning hub equipment including microcomputer, projector, laptop and protective enclosure"
-                  class="model-hub-image"
-                  loading="lazy"
-                />
-                <template #fallback>
-                  <div class="model-hub-image model-hub-image--placeholder" />
-                </template>
-              </ClientOnly>
+          <!-- Middle Column: Interactive Equipment Display -->
+          <div class="model-hub-stage">
+            <div class="model-hub-diagram">
 
-              <!-- Callout Lines (decorative SVG) -->
-              <svg class="model-hub-callouts" viewBox="0 0 600 400" fill="none" aria-hidden="true">
-                <!-- Left side lines -->
-                <line x1="180" y1="120" x2="120" y2="80" stroke="white" stroke-width="1" opacity="0.4" />
-                <line x1="180" y1="200" x2="120" y2="180" stroke="white" stroke-width="1" opacity="0.4" />
-                <line x1="180" y1="280" x2="120" y2="280" stroke="white" stroke-width="1" opacity="0.4" />
-                <!-- Right side lines -->
-                <line x1="420" y1="120" x2="480" y2="80" stroke="white" stroke-width="1" opacity="0.4" />
-                <line x1="420" y1="200" x2="480" y2="200" stroke="white" stroke-width="1" opacity="0.4" />
-                <line x1="420" y1="280" x2="480" y2="300" stroke="white" stroke-width="1" opacity="0.4" />
-              </svg>
-            </div>
-
-            <!-- Component Labels -->
-            <div class="model-hub-labels">
-              <!-- Left column -->
-              <div class="model-hub-labels-col model-hub-labels-col--left">
-                <div v-for="comp in hubComponents.filter(c => c.side === 'left')" :key="comp.name" class="model-hub-label">
+              <!-- Left Annotations -->
+              <div class="model-hub-col model-hub-col--left">
+                <div v-for="comp in hubComponents.filter(c => c.side === 'left')" :key="comp.name"
+                  class="model-hub-annotation">
                   <h3 class="model-hub-label-name">{{ comp.name }}</h3>
                   <p class="model-hub-label-description">{{ comp.description }}</p>
                 </div>
               </div>
 
-              <!-- Right column -->
-              <div class="model-hub-labels-col model-hub-labels-col--right">
-                <div v-for="comp in hubComponents.filter(c => c.side === 'right')" :key="comp.name" class="model-hub-label">
+              <!-- Center Image with SVG Callout Lines -->
+              <div class="model-hub-center-image">
+                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80"
+                  alt="Impact Bridge learning hub hardware equipment" class="model-hub-equipment-img" />
+
+                <!-- SVG Callout Pointer Lines with Endpoint Dots -->
+                <svg class="model-hub-pointer-svg" viewBox="0 0 600 350" fill="none" aria-hidden="true">
+                  <!-- Left Pointers -->
+                  <path d="M 50 40 C 180 40, 200 80, 260 90" stroke="#a5b4fc" stroke-width="1.2" />
+                  <circle cx="260" cy="90" r="3" fill="#a5b4fc" />
+
+                  <path d="M 50 140 C 160 140, 190 170, 250 175" stroke="#a5b4fc" stroke-width="1.2" />
+                  <circle cx="250" cy="175" r="3" fill="#a5b4fc" />
+
+                  <path d="M 50 240 C 150 240, 180 230, 240 220" stroke="#a5b4fc" stroke-width="1.2" />
+                  <circle cx="240" cy="220" r="3" fill="#a5b4fc" />
+
+                  <!-- Right Pointers -->
+                  <path d="M 550 40 C 440 40, 410 70, 370 85" stroke="#a5b4fc" stroke-width="1.2" />
+                  <circle cx="370" cy="85" r="3" fill="#a5b4fc" />
+
+                  <path d="M 550 140 C 470 140, 440 180, 420 190" stroke="#a5b4fc" stroke-width="1.2" />
+                  <circle cx="420" cy="190" r="3" fill="#a5b4fc" />
+
+                  <path d="M 550 240 C 460 240, 430 250, 400 245" stroke="#a5b4fc" stroke-width="1.2" />
+                  <circle cx="400" cy="245" r="3" fill="#a5b4fc" />
+                </svg>
+              </div>
+
+              <!-- Right Annotations -->
+              <div class="model-hub-col model-hub-col--right">
+                <div v-for="comp in hubComponents.filter(c => c.side === 'right')" :key="comp.name"
+                  class="model-hub-annotation">
                   <h3 class="model-hub-label-name">{{ comp.name }}</h3>
                   <p class="model-hub-label-description">{{ comp.description }}</p>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        <!-- Hub Features Strip -->
-        <div class="model-hub-features">
-          <div v-for="feature in hubFeatures" :key="feature" class="model-hub-feature">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="model-hub-feature-icon">
-              <polyline points="20 6 9 17 4 12" />
-            </svg>
-            <span class="model-hub-feature-label">{{ feature }}</span>
+            <!-- Integrated Bottom Feature Bar -->
+            <div class="model-hub-feature-bar">
+              <div v-for="(feature, idx) in hubFeatures" :key="idx" class="model-hub-feature-card">
+                <div class="model-hub-feature-icon-box">
+                  <WifiOff v-if="idx === 0" class="w-4 h-4 text-cobalt-400" />
+                  <ServerIcon v-else-if="idx === 1" class="w-4 h-4 text-cobalt-400" />
+                  <ClassroomIcon v-else-if="idx === 2" class="w-4 h-4 text-cobalt-400" />
+                  <SupportIcon v-else-if="idx === 3" class="w-4 h-4 text-cobalt-400" />
+                  <BiometricIcon v-else class="w-4 h-4 text-cobalt-400" />
+                </div>
+                <span class="model-hub-feature-text">{{ feature }}</span>
+              </div>
+            </div>
           </div>
+
+          <!-- Far Right Student Image Layer -->
+          <div class="model-hub-person-wrap" aria-hidden="true">
+            <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=600&q=80"
+              alt="Student looking at learning hub equipment" class="model-hub-person-img" />
+          </div>
+
         </div>
       </LayoutContainer>
     </section>
@@ -525,12 +534,7 @@ const timelineSteps = [
               </div>
               <ClientOnly>
                 <div class="model-content-card-image">
-                  <img
-                    :src="category.image"
-                    :alt="category.alt"
-                    class="model-content-card-img"
-                    loading="lazy"
-                  />
+                  <img :src="category.image" :alt="category.alt" class="model-content-card-img" loading="lazy" />
                 </div>
                 <template #fallback>
                   <div class="model-content-card-image model-content-card-image--placeholder" />
@@ -563,12 +567,8 @@ const timelineSteps = [
           <div class="model-teacher-video">
             <ClientOnly>
               <div class="model-teacher-video-wrap">
-                <img
-                  src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&q=80"
-                  alt="Teacher leading a classroom training session"
-                  class="model-teacher-video-img"
-                  loading="lazy"
-                />
+                <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&q=80"
+                  alt="Teacher leading a classroom training session" class="model-teacher-video-img" loading="lazy" />
                 <button class="model-teacher-play" aria-label="Play teacher training video">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                     <polygon points="5 3 19 12 5 21 5 3" />
@@ -590,7 +590,8 @@ const timelineSteps = [
             </p>
             <ul class="model-teacher-champion-list">
               <li v-for="quality in championQualities" :key="quality" class="model-teacher-champion-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="model-teacher-champion-check">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" class="model-teacher-champion-check">
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
                 <span>{{ quality }}</span>
@@ -643,12 +644,7 @@ const timelineSteps = [
               <p class="model-lesson-step-description">{{ step.description }}</p>
               <ClientOnly>
                 <div class="model-lesson-step-image">
-                  <img
-                    :src="step.image"
-                    :alt="step.alt"
-                    class="model-lesson-step-img"
-                    loading="lazy"
-                  />
+                  <img :src="step.image" :alt="step.alt" class="model-lesson-step-img" loading="lazy" />
                 </div>
                 <template #fallback>
                   <div class="model-lesson-step-image model-lesson-step-image--placeholder" />
@@ -679,11 +675,7 @@ const timelineSteps = [
           <div class="model-timeline-track">
             <!-- Phase Labels -->
             <div class="model-timeline-phases">
-              <div
-                v-for="phase in ['PREPARE', 'BUILD', 'LAUNCH', 'SUSTAIN']"
-                :key="phase"
-                class="model-timeline-phase"
-              >
+              <div v-for="phase in ['PREPARE', 'BUILD', 'LAUNCH', 'SUSTAIN']" :key="phase" class="model-timeline-phase">
                 <span class="model-timeline-phase-label">{{ phase }}</span>
               </div>
             </div>
@@ -935,64 +927,59 @@ const timelineSteps = [
 }
 
 /* Inside the Learning Hub */
+/* Section Container */
 .model-hub {
-  @apply py-16 md:py-24 bg-navy;
+  @apply relative py-16 md:py-24 bg-[#0a2540] overflow-hidden text-white;
 }
 
-.model-hub-layout {
-  @apply grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-12 lg:gap-8 items-start;
+.model-hub-grid {
+  @apply grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-8 items-center relative;
 }
 
+/* Left Header Section */
 .model-hub-header {
-  @apply lg:sticky lg:top-8;
+  @apply flex flex-col items-start z-10;
 }
 
 .model-hub-number {
-  @apply inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/10 text-cobalt-400 font-sans font-bold text-sm;
+  @apply inline-flex items-center justify-center w-9 h-9 rounded-full border border-blue-400/30 text-blue-300 font-sans font-semibold text-xs mb-4;
 }
 
 .model-hub-title {
-  @apply mt-4 text-3xl md:text-4xl font-serif font-bold text-white leading-tight;
+  @apply text-3xl md:text-4xl font-serif font-bold leading-tight text-white;
 }
 
 .model-hub-description {
-  @apply mt-4 text-gray-300;
+  @apply mt-4 text-sm text-blue-100/70 leading-relaxed max-w-xs;
+}
+
+.model-hub-cta-btn {
+  @apply mt-8 inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-cobalt hover:bg-cobalt/90 text-white font-sans font-medium text-sm transition-colors shadow-lg shadow-cobalt/20;
+}
+
+/* Central Diagram & Stage */
+.model-hub-stage {
+  @apply relative z-10 flex flex-col gap-8;
 }
 
 .model-hub-diagram {
-  @apply relative;
+  @apply grid grid-cols-1 md:grid-cols-[200px_1fr_200px] gap-4 items-center relative;
 }
 
-.model-hub-image-wrap {
-  @apply relative;
+.model-hub-col {
+  @apply flex flex-col gap-8 z-20;
 }
 
-.model-hub-image {
-  @apply w-full rounded-xl;
+.model-hub-col--left {
+  @apply text-left;
 }
 
-.model-hub-image--placeholder {
-  @apply bg-navy-700 aspect-[4/3] rounded-xl;
+.model-hub-col--right {
+  @apply text-left md:text-left;
 }
 
-.model-hub-callouts {
-  @apply absolute inset-0 w-full h-full pointer-events-none;
-}
-
-.model-hub-labels {
-  @apply grid grid-cols-2 gap-6 mt-8;
-}
-
-.model-hub-labels-col {
-  @apply flex flex-col gap-6;
-}
-
-.model-hub-labels-col--left {
-  @apply items-start;
-}
-
-.model-hub-labels-col--right {
-  @apply items-end text-right;
+.model-hub-annotation {
+  @apply max-w-[190px];
 }
 
 .model-hub-label-name {
@@ -1000,23 +987,47 @@ const timelineSteps = [
 }
 
 .model-hub-label-description {
-  @apply mt-1 text-sm text-gray-400;
+  @apply mt-1 text-xs text-blue-100/60 leading-relaxed;
 }
 
-.model-hub-features {
-  @apply flex flex-wrap items-center justify-center gap-x-6 gap-y-3 mt-12 pt-8 border-t border-white/10;
+/* Equipment Display Area */
+.model-hub-center-image {
+  @apply relative flex items-center justify-center py-4;
 }
 
-.model-hub-feature {
-  @apply flex items-center gap-2;
+.model-hub-equipment-img {
+  @apply max-w-full h-auto object-contain drop-shadow-2xl z-10;
 }
 
-.model-hub-feature-icon {
-  @apply text-cobalt-400 flex-shrink-0;
+.model-hub-pointer-svg {
+  @apply absolute inset-0 w-full h-full pointer-events-none z-10 hidden md:block;
 }
 
-.model-hub-feature-label {
-  @apply text-sm font-sans text-gray-300;
+/* Integrated Bottom Feature Bar */
+.model-hub-feature-bar {
+  @apply grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 bg-[#071d33]/90 border border-blue-500/20 rounded-xl p-3 gap-2 backdrop-blur-sm;
+}
+
+.model-hub-feature-card {
+  @apply flex items-center gap-2.5 px-3 py-2 border-r border-blue-500/10 last:border-r-0;
+}
+
+.model-hub-feature-icon-box {
+  @apply w-7 h-7 rounded border border-blue-400/20 bg-blue-900/40 flex items-center justify-center flex-shrink-0;
+}
+
+.model-hub-feature-text {
+  @apply text-xs font-sans font-medium text-blue-100/80 leading-snug;
+}
+
+/* Profile Image Anchor (Far Right Overlay) */
+.model-hub-person-wrap {
+  @apply absolute right-0 top-0 bottom-0 w-1/4 pointer-events-none hidden lg:block overflow-hidden;
+}
+
+.model-hub-person-img {
+  @apply h-full w-full object-cover object-left opacity-90 mix-blend-luminosity;
+  mask-image: linear-gradient(to right, transparent 0%, black 40%);
 }
 
 /* Offline Content Library */
