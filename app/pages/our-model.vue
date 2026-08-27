@@ -1,6 +1,20 @@
 <script setup lang="ts">
 
-import { WifiOff, MapPin, ArrowDown, ArrowRight, User2, BookOpen, Handshake, LineChart } from '@lucide/vue'
+import {
+  WifiOff,
+  MapPin,
+  ArrowDown,
+  ArrowRight,
+  User2,
+  BookOpen,
+  Handshake,
+  LineChart,
+  ZapOff,
+  Presentation,
+  Wrench,
+  Lock
+
+} from '@lucide/vue'
 import { svgToVNode } from '~/utils/svg'
 import bookOpenSvg from '~/assets/icons/book-open.svg?raw'
 import barChartSvg from '~/assets/icons/bar-chart.svg?raw'
@@ -127,11 +141,11 @@ const hubComponents = [
 ]
 
 const hubFeatures = [
-  'Works offline without internet',
-  'Built for low power use',
-  'Designed for classroom use',
-  'Easy to service and update',
-  'Secure storage when not in use',
+  { label: 'Works offline without internet', icon: WifiOff },
+  { label: 'Built for low power use', icon: ZapOff },
+  { label: 'Designed for classroom use', icon: Presentation },
+  { label: 'Easy to service and update', icon: Wrench },
+  { label: 'Secure storage when not in use', icon: Lock }
 ]
 
 const contentCategories = [
@@ -446,8 +460,8 @@ const timelineSteps = [
 
               <!-- Center Image with SVG Callout Lines -->
               <div class="model-hub-center-image">
-                <img src="model-hub-equipment-img.png"
-                  alt="Impact Bridge learning hub hardware equipment" class="model-hub-equipment-img" />
+                <img src="model-hub-equipment-img.png" alt="Impact Bridge learning hub hardware equipment"
+                  class="model-hub-equipment-img" />
 
                 <!-- SVG Callout Pointer Lines with Endpoint Dots -->
                 <svg class="model-hub-pointer-svg" viewBox="0 0 600 350" fill="none" aria-hidden="true">
@@ -487,11 +501,7 @@ const timelineSteps = [
             <div class="model-hub-feature-bar">
               <div v-for="(feature, idx) in hubFeatures" :key="idx" class="model-hub-feature-card">
                 <div class="model-hub-feature-icon-box">
-                  <WifiOff v-if="idx === 0" class="w-4 h-4 text-cobalt-400" />
-                  <ServerIcon v-else-if="idx === 1" class="w-4 h-4 text-cobalt-400" />
-                  <ClassroomIcon v-else-if="idx === 2" class="w-4 h-4 text-cobalt-400" />
-                  <SupportIcon v-else-if="idx === 3" class="w-4 h-4 text-cobalt-400" />
-                  <BiometricIcon v-else class="w-4 h-4 text-cobalt-400" />
+                  <component :is="feature.icon" class="w-4 h-4 text-cobalt-400" />
                 </div>
                 <span class="model-hub-feature-text">{{ feature }}</span>
               </div>
