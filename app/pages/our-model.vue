@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { WifiOff, MapPin, ArrowDown, ArrowRight, User2 } from '@lucide/vue'
+import { WifiOff, MapPin, ArrowDown, ArrowRight, User2, BookOpen, Handshake, LineChart } from '@lucide/vue'
 import { svgToVNode } from '~/utils/svg'
 import bookOpenSvg from '~/assets/icons/book-open.svg?raw'
 import barChartSvg from '~/assets/icons/bar-chart.svg?raw'
@@ -44,11 +44,11 @@ const tabs = [
 
 const features = [
   { icon: WifiOff, label: 'Offline-first' },
-  { icon: GroupIcon, label: 'Teacher-led' },
-  { icon: BookOpenIcon, label: 'Curriculum-aligned' },
+  { icon: User2, label: 'Teacher-led' },
+  { icon: BookOpen, label: 'Curriculum-aligned' },
   { icon: MapPin, label: 'Locally implemented' },
-  { icon: SupportIcon, label: 'Continuously supported' },
-  { icon: BarChartIcon, label: 'Transparently measured' },
+  { icon: Handshake, label: 'Continuously supported' },
+  { icon: LineChart, label: 'Transparently measured' },
 ]
 
 const modelSteps = [
