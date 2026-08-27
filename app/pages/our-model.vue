@@ -1,13 +1,22 @@
 <script setup lang="ts">
 
 import { WifiOff, MapPin, ArrowDown, ArrowRight } from '@lucide/vue'
-import BookOpenIcon from '~icons/custom/book-open'
-import BarChartIcon from '~icons/custom/bar-chart'
-import ServerIcon from '~icons/custom/server'
-import SchoolIcon from '~icons/custom/school'
-import GroupIcon from '~icons/custom/group-of-people'
-import HandshakeIcon from '~icons/custom/handshake'
-import SupportIcon from '~icons/custom/support'
+import { svgToVNode } from '~/utils/svg'
+import bookOpenSvg from '~/assets/icons/book-open.svg?raw'
+import barChartSvg from '~/assets/icons/bar-chart.svg?raw'
+import serverSvg from '~/assets/icons/server.svg?raw'
+import schoolSvg from '~/assets/icons/school.svg?raw'
+import groupSvg from '~/assets/icons/group-of-people.svg?raw'
+import handshakeSvg from '~/assets/icons/handshake.svg?raw'
+import supportSvg from '~/assets/icons/support.svg?raw'
+
+const BookOpenIcon = svgToVNode(bookOpenSvg)
+const BarChartIcon = svgToVNode(barChartSvg)
+const ServerIcon = svgToVNode(serverSvg)
+const SchoolIcon = svgToVNode(schoolSvg)
+const GroupIcon = svgToVNode(groupSvg)
+const HandshakeIcon = svgToVNode(handshakeSvg)
+const SupportIcon = svgToVNode(supportSvg)
 
 useHead({
   title: 'Our Model - Impact Bridge',
