@@ -9,6 +9,10 @@ import {
   BookOpen,
   Handshake,
   LineChart,
+  ZapOff,
+  Presentation,
+  Wrench,
+  Lock
 
 } from '@lucide/vue'
 import { svgToVNode } from '~/utils/svg'
@@ -102,6 +106,32 @@ const readinessCards = [
     image: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&q=80',
     alt: 'Community members supporting the learning hub',
   },
+]
+
+const hubComponents = [
+  {
+    name: 'Microcomputer',
+    description: 'Low-power, reliable and easy to maintain.',
+    side: 'left' as const,
+  },
+  {
+    name: 'Offline content storage',
+    description: 'Stores months of curriculum resources.',
+    side: 'left' as const,
+  },
+  {
+    name: 'Protective enclosure',
+    description: 'Shields against dust, heat and damage.',
+    side: 'left' as const,
+  },
+]
+
+const hubFeatures = [
+  { label: 'Works offline without internet', icon: WifiOff },
+  { label: 'Built for low power use', icon: ZapOff },
+  { label: 'Designed for classroom use', icon: Presentation },
+  { label: 'Easy to service and update', icon: Wrench },
+  { label: 'Secure storage when not in use', icon: Lock }
 ]
 
 const contentCategories = [
@@ -383,11 +413,61 @@ const timelineSteps = [
     </section>
 
     <!-- Inside the Learning Hub -->
+    <!-- Inside the Learning Hub -->
     <section id="inside-the-hub" class="model-hub">
       <LayoutContainer class="relative z-10">
-        <div class="model-hub-image-only">
-          <img :src="modelHubEquipmentImage" alt="Impact Bridge learning hub hardware equipment"
-            class="model-hub-equipment-img" />
+        <div class="model-hub-grid">
+
+          <!-- Left Column: Header & Call-to-Action -->
+          <div class="model-hub-header">
+            <span class="model-hub-number">02</span>
+            <h2 class="model-hub-title">Inside the<br />learning hub</h2>
+            <p class="model-hub-description">
+              Every component is chosen for a reason—solving a real classroom constraint.
+            </p>
+            <NuxtLink to="/transparency" class="model-hub-cta-btn">
+              View technical specifications
+              <ArrowRight class="w-4 h-4" />
+            </NuxtLink>
+          </div>
+
+          <!-- Middle Column: Interactive Equipment Display -->
+          <div class="model-hub-stage">
+            <div class="model-hub-diagram">
+
+              <!-- Left Annotations -->
+              <div class="model-hub-col model-hub-col--left">
+                <div v-for="comp in hubComponents.filter(c => c.side === 'left')" :key="comp.name"
+                  class="model-hub-annotation">
+                  <h3 class="model-hub-label-name">{{ comp.name }}</h3>
+                  <p class="model-hub-label-description">{{ comp.description }}</p>
+                </div>
+              </div>
+
+              <!-- Center Image with SVG Callout Lines -->
+              <div class="model-hub-center-image">
+                <img :src="modelHubEquipmentImage" alt="Impact Bridge learning hub hardware equipment"
+                  class="model-hub-equipment-img" />
+              </div>
+            </div>
+
+            <!-- Integrated Bottom Feature Bar -->
+            <div class="model-hub-feature-bar">
+              <div v-for="(feature, idx) in hubFeatures" :key="idx" class="model-hub-feature-card">
+                <div class="model-hub-feature-icon-box">
+                  <component :is="feature.icon" class="w-4 h-4 text-cobalt-400" />
+                </div>
+                <span class="model-hub-feature-text">{{ feature }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Far Right Student Image Layer -->
+          <div class="model-hub-person-wrap" aria-hidden="true">
+            <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=600&q=80"
+              alt="Student looking at learning hub equipment" class="model-hub-person-img" />
+          </div>
+
         </div>
       </LayoutContainer>
     </section>
@@ -858,10 +938,6 @@ const timelineSteps = [
   @apply text-left;
 }
 
-.model-hub-col--right {
-  @apply text-left md:text-left;
-}
-
 .model-hub-annotation {
   @apply max-w-[190px];
 }
@@ -881,10 +957,6 @@ const timelineSteps = [
 
 .model-hub-equipment-img {
   @apply max-w-full h-auto object-contain drop-shadow-2xl z-10;
-}
-
-.model-hub-pointer-svg {
-  @apply absolute inset-0 w-full h-full pointer-events-none z-10 hidden md:block;
 }
 
 /* Integrated Bottom Feature Bar */
