@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { WifiOff, MapPin, ArrowDown, ArrowRight } from '@lucide/vue'
+import { WifiOff, MapPin, ArrowDown, ArrowRight, User2 } from '@lucide/vue'
 import { svgToVNode } from '~/utils/svg'
 import bookOpenSvg from '~/assets/icons/book-open.svg?raw'
 import barChartSvg from '~/assets/icons/bar-chart.svg?raw'
@@ -9,6 +9,10 @@ import schoolSvg from '~/assets/icons/school.svg?raw'
 import groupSvg from '~/assets/icons/group-of-people.svg?raw'
 import handshakeSvg from '~/assets/icons/handshake.svg?raw'
 import supportSvg from '~/assets/icons/support.svg?raw'
+import searchSvg from '~/assets/icons/search.svg?raw'
+import folderSvg from '~/assets/icons/folder.svg?raw'
+import classroomSvg from '~/assets/icons/classroom.svg?raw'
+import biometricSvg from '~/assets/icons/Biometric.svg?raw'
 
 const BookOpenIcon = svgToVNode(bookOpenSvg)
 const BarChartIcon = svgToVNode(barChartSvg)
@@ -17,6 +21,10 @@ const SchoolIcon = svgToVNode(schoolSvg)
 const GroupIcon = svgToVNode(groupSvg)
 const HandshakeIcon = svgToVNode(handshakeSvg)
 const SupportIcon = svgToVNode(supportSvg)
+const SearchIcon = svgToVNode(searchSvg)
+const FolderIcon = svgToVNode(folderSvg)
+const ClassroomIcon = svgToVNode(classroomSvg)
+const BiometricIcon = svgToVNode(biometricSvg)
 
 useHead({
   title: 'Our Model - Impact Bridge',
@@ -46,9 +54,9 @@ const features = [
 const modelSteps = [
   { title: 'Appropriate infrastructure', description: 'Reliable technology built for real classroom conditions.', icon: ServerIcon },
   { title: 'Curated offline content', description: 'Curriculum-relevant resources available without the internet.', icon: BookOpenIcon },
-  { title: 'Prepared teachers', description: 'Teachers trained to integrate technology into lessons.', icon: SchoolIcon },
-  { title: 'Classroom practice', description: 'Interactive teaching that engages and deepens learning.', icon: GroupIcon },
-  { title: 'Local ownership and support', description: 'Champion teachers and school leaders carry it forward.', icon: HandshakeIcon },
+  { title: 'Prepared teachers', description: 'Teachers trained to integrate technology into lessons.', icon: User2 },
+  { title: 'Classroom practice', description: 'Interactive teaching that engages and deepens learning.', icon: ClassroomIcon },
+  { title: 'Local ownership and support', description: 'Champion teachers and school leaders carry it forward.', icon: GroupIcon },
   { title: 'Measurement and improvement', description: 'We monitor, learn and make the model stronger.', icon: BarChartIcon },
 ]
 
@@ -218,6 +226,20 @@ const lessonSteps = [
     image: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400&q=80',
     alt: 'Teacher reflecting with students on lesson outcomes',
   },
+]
+
+const timelineSteps = [
+  { phase: 'PREPARE', title: 'School identified', icon: SchoolIcon },
+  { phase: 'PREPARE', title: 'Readiness assessed', icon: SearchIcon },
+  { phase: 'PREPARE', title: 'Partnership agreed', icon: HandshakeIcon },
+  { phase: 'BUILD', title: 'Hardware inspected', icon: ServerIcon },
+  { phase: 'BUILD', title: 'Content prepared', icon: FolderIcon },
+  { phase: 'LAUNCH', title: 'Teachers trained', icon: ClassroomIcon },
+  { phase: 'LAUNCH', title: 'Hub installed', icon: ServerIcon },
+  { phase: 'LAUNCH', title: 'First lessons supported', icon: BookOpenIcon },
+  { phase: 'SUSTAIN', title: 'Ongoing support', icon: SupportIcon },
+  { phase: 'SUSTAIN', title: 'Monitor & measure', icon: BarChartIcon },
+  { phase: 'SUSTAIN', title: 'Improve & grow', icon: BiometricIcon },
 ]
 </script>
 
@@ -635,6 +657,54 @@ const lessonSteps = [
     </section>
 
     <!-- Our Model sections will be built here -->
+
+    <!-- From Preparation to Long-Term Impact -->
+    <section class="model-timeline">
+      <LayoutContainer>
+        <div class="model-timeline-layout">
+          <!-- Header -->
+          <div class="model-timeline-header">
+            <span class="model-timeline-number">07</span>
+            <h2 class="model-timeline-title">From preparation<br />to long-term<br />impact.</h2>
+            <p class="model-timeline-description">
+              A proven process we follow for every hub.
+            </p>
+          </div>
+
+          <!-- Timeline -->
+          <div class="model-timeline-track">
+            <!-- Phase Labels -->
+            <div class="model-timeline-phases">
+              <div
+                v-for="phase in ['PREPARE', 'BUILD', 'LAUNCH', 'SUSTAIN']"
+                :key="phase"
+                class="model-timeline-phase"
+              >
+                <span class="model-timeline-phase-label">{{ phase }}</span>
+              </div>
+            </div>
+
+            <!-- Timeline Line -->
+            <div class="model-timeline-line" aria-hidden="true">
+              <svg class="model-timeline-line-svg" viewBox="0 0 1000 4" preserveAspectRatio="none">
+                <line x1="0" y1="2" x2="1000" y2="2" stroke="#9fb3c8" stroke-width="2" stroke-dasharray="8 4" />
+              </svg>
+            </div>
+
+            <!-- Steps -->
+            <div class="model-timeline-steps">
+              <div v-for="step in timelineSteps" :key="step.title" class="model-timeline-step">
+                <div class="model-timeline-step-dot" />
+                <div class="model-timeline-step-icon">
+                  <component :is="step.icon" />
+                </div>
+                <span class="model-timeline-step-label">{{ step.title }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </LayoutContainer>
+    </section>
   </div>
 </template>
 
@@ -1172,5 +1242,77 @@ const lessonSteps = [
 
 .model-lesson-step-img {
   @apply w-full h-full object-cover;
+}
+
+/* From Preparation to Long-Term Impact */
+.model-timeline {
+  @apply py-16 md:py-24 bg-white;
+}
+
+.model-timeline-layout {
+  @apply grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-12 lg:gap-8 items-start;
+}
+
+.model-timeline-header {
+  @apply lg:sticky lg:top-8;
+}
+
+.model-timeline-number {
+  @apply inline-flex items-center justify-center w-10 h-10 rounded-full bg-cobalt/10 text-cobalt font-sans font-bold text-sm;
+}
+
+.model-timeline-title {
+  @apply mt-4 text-3xl md:text-4xl font-serif font-bold text-navy leading-tight;
+}
+
+.model-timeline-description {
+  @apply mt-4 text-gray-600;
+}
+
+.model-timeline-track {
+  @apply relative pt-8 pb-12;
+}
+
+/* Phase Labels */
+.model-timeline-phases {
+  @apply grid grid-cols-4 gap-0 mb-8;
+}
+
+.model-timeline-phase {
+  @apply text-center border-l border-gray-200 first:border-l-0;
+}
+
+.model-timeline-phase-label {
+  @apply text-xs font-sans font-bold text-cobalt tracking-wider;
+}
+
+/* Timeline Line */
+.model-timeline-line {
+  @apply relative mb-6;
+}
+
+.model-timeline-line-svg {
+  @apply w-full h-1;
+}
+
+/* Steps */
+.model-timeline-steps {
+  @apply grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-11 gap-4 relative z-10;
+}
+
+.model-timeline-step {
+  @apply flex flex-col items-center text-center;
+}
+
+.model-timeline-step-dot {
+  @apply w-3 h-3 rounded-full bg-cobalt mb-3 flex-shrink-0;
+}
+
+.model-timeline-step-icon {
+  @apply w-14 h-14 rounded-full border-2 border-cobalt/20 bg-white flex items-center justify-center text-cobalt mb-3;
+}
+
+.model-timeline-step-label {
+  @apply text-xs font-sans font-bold text-navy leading-snug;
 }
 </style>
