@@ -27,6 +27,7 @@ import searchSvg from '~/assets/icons/search.svg?raw'
 import folderSvg from '~/assets/icons/folder.svg?raw'
 import classroomSvg from '~/assets/icons/classroom.svg?raw'
 import biometricSvg from '~/assets/icons/Biometric.svg?raw'
+import modelHubEquipmentImage from '~/assets/images/model-hub-equipment-img.png'
 
 const BookOpenIcon = svgToVNode(bookOpenSvg)
 const BarChartIcon = svgToVNode(barChartSvg)
@@ -460,7 +461,7 @@ const timelineSteps = [
 
               <!-- Center Image with SVG Callout Lines -->
               <div class="model-hub-center-image">
-                <img src="model-hub-equipment-img.png" alt="Impact Bridge learning hub hardware equipment"
+                <img :src="modelHubEquipmentImage" alt="Impact Bridge learning hub hardware equipment"
                   class="model-hub-equipment-img" />
 
                 <!-- SVG Callout Pointer Lines with Endpoint Dots -->
