@@ -9,10 +9,6 @@ import {
   BookOpen,
   Handshake,
   LineChart,
-  ZapOff,
-  Presentation,
-  Wrench,
-  Lock
 
 } from '@lucide/vue'
 import { svgToVNode } from '~/utils/svg'
@@ -106,47 +102,6 @@ const readinessCards = [
     image: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&q=80',
     alt: 'Community members supporting the learning hub',
   },
-]
-
-const hubComponents = [
-  {
-    name: 'Microcomputer',
-    description: 'Low-power, reliable and easy to maintain.',
-    side: 'left' as const,
-  },
-  {
-    name: 'Offline content storage',
-    description: 'Stores months of curriculum resources.',
-    side: 'left' as const,
-  },
-  {
-    name: 'Protective enclosure',
-    description: 'Shields against dust, heat and damage.',
-    side: 'left' as const,
-  },
-  {
-    name: 'Teacher laptop',
-    description: 'Easy access to lessons, resources and tools.',
-    side: 'right' as const,
-  },
-  {
-    name: 'Projector / display',
-    description: 'Shares content with the entire class.',
-    side: 'right' as const,
-  },
-  {
-    name: 'Power & accessories',
-    description: 'Reliable power and connectivity components.',
-    side: 'right' as const,
-  },
-]
-
-const hubFeatures = [
-  { label: 'Works offline without internet', icon: WifiOff },
-  { label: 'Built for low power use', icon: ZapOff },
-  { label: 'Designed for classroom use', icon: Presentation },
-  { label: 'Easy to service and update', icon: Wrench },
-  { label: 'Secure storage when not in use', icon: Lock }
 ]
 
 const contentCategories = [
