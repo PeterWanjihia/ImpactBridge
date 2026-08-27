@@ -359,15 +359,23 @@ const timelineSteps = [
               </svg>
             </div>
 
+            <!-- Connecting Lines from first/last step to badge -->
+            <svg class="model-glance-connect-lines" viewBox="0 0 1200 160" preserveAspectRatio="none" aria-hidden="true">
+              <!-- Left line: from first step down and right to badge -->
+              <path d="M 100 0 L 100 100 Q 100 130 130 130 L 430 130" fill="none" stroke="#cbd5e1" stroke-width="2" />
+              <!-- Right line: from last step down and left to badge -->
+              <path d="M 1100 0 L 1100 100 Q 1100 130 1070 130 L 770 130" fill="none" stroke="#cbd5e1" stroke-width="2" />
+            </svg>
+
             <!-- Functioning Classroom Badge -->
             <div class="model-glance-result">
               <div class="model-glance-result-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                  <polyline points="22 4 12 14.01 9 11.01" />
-                </svg>
+                <GroupIcon />
               </div>
               <span class="model-glance-result-label">A functioning classroom.</span>
+              <div class="model-glance-result-fingerprint">
+                <BiometricIcon />
+              </div>
             </div>
           </div>
         </div>
@@ -850,16 +858,24 @@ const timelineSteps = [
   @apply w-full h-5;
 }
 
+.model-glance-connect-lines {
+  @apply w-full h-28 relative z-0;
+}
+
 .model-glance-result {
-  @apply flex items-center justify-center gap-3 mt-8 py-3 px-6 bg-cobalt/5 border border-cobalt/20 rounded-full w-fit mx-auto;
+  @apply relative z-10 flex items-center gap-4 mt-4 py-4 px-8 bg-cobalt/5 border border-cobalt/20 rounded-full w-fit mx-auto;
 }
 
 .model-glance-result-icon {
-  @apply text-cobalt;
+  @apply w-10 h-10 rounded-full border-2 border-cobalt flex items-center justify-center text-cobalt;
 }
 
 .model-glance-result-label {
-  @apply text-sm font-sans font-bold text-cobalt;
+  @apply text-base font-sans font-bold text-cobalt;
+}
+
+.model-glance-result-fingerprint {
+  @apply w-12 h-12 text-cobalt;
 }
 
 /* Readiness Assessment */
