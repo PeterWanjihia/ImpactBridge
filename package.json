@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@flaticon/flaticon-uicons": "^3.3.1",
     "@lucide/vue": "^1.34.0",
     "nuxt": "^4.5.2",
     "vue": "^3.5.41",

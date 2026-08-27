@@ -1,15 +1,13 @@
 <script setup lang="ts">
-import { type VNode, h } from 'vue'
-import {
-  WifiOff,
-  Users,
-  BookOpen,
-  MapPin,
-  Headphones,
-  BarChart3,
-  ArrowDown,
-  ArrowRight,
-} from '@lucide/vue'
+
+import { WifiOff, MapPin, ArrowDown, ArrowRight } from '@lucide/vue'
+import BookOpenIcon from '~icons/custom/book-open'
+import BarChartIcon from '~icons/custom/bar-chart'
+import ServerIcon from '~icons/custom/server'
+import SchoolIcon from '~icons/custom/school'
+import GroupIcon from '~icons/custom/group-of-people'
+import HandshakeIcon from '~icons/custom/handshake'
+import SupportIcon from '~icons/custom/support'
 
 useHead({
   title: 'Our Model - Impact Bridge',
@@ -29,70 +27,20 @@ const tabs = [
 
 const features = [
   { icon: WifiOff, label: 'Offline-first' },
-  { icon: Users, label: 'Teacher-led' },
-  { icon: BookOpen, label: 'Curriculum-aligned' },
+  { icon: GroupIcon, label: 'Teacher-led' },
+  { icon: BookOpenIcon, label: 'Curriculum-aligned' },
   { icon: MapPin, label: 'Locally implemented' },
-  { icon: Headphones, label: 'Continuously supported' },
-  { icon: BarChart3, label: 'Transparently measured' },
+  { icon: SupportIcon, label: 'Continuously supported' },
+  { icon: BarChartIcon, label: 'Transparently measured' },
 ]
 
-// Inline SVG render functions — SSR-safe, no template compiler needed
-function renderServerIcon(): VNode {
-  return h('svg', { width: 24, height: 24, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': 1.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, [
-    h('rect', { x: 2, y: 2, width: 20, height: 8, rx: 2, ry: 2 }),
-    h('rect', { x: 2, y: 14, width: 20, height: 8, rx: 2, ry: 2 }),
-    h('line', { x1: 6, y1: 6, x2: 6.01, y2: 6 }),
-    h('line', { x1: 6, y1: 18, x2: 6.01, y2: 18 }),
-  ])
-}
-
-function renderBookIcon(): VNode {
-  return h('svg', { width: 24, height: 24, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': 1.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, [
-    h('path', { d: 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20' }),
-    h('path', { d: 'M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z' }),
-  ])
-}
-
-function renderTeacherIcon(): VNode {
-  return h('svg', { width: 24, height: 24, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': 1.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, [
-    h('path', { d: 'M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2' }),
-    h('circle', { cx: 12, cy: 7, r: 4 }),
-  ])
-}
-
-function renderGroupIcon(): VNode {
-  return h('svg', { width: 24, height: 24, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': 1.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, [
-    h('path', { d: 'M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2' }),
-    h('circle', { cx: 9, cy: 7, r: 4 }),
-    h('path', { d: 'M23 21v-2a4 4 0 0 0-3-3.87' }),
-    h('path', { d: 'M16 3.13a4 4 0 0 1 0 7.75' }),
-  ])
-}
-
-function renderUsersIcon(): VNode {
-  return h('svg', { width: 24, height: 24, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': 1.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, [
-    h('path', { d: 'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2' }),
-    h('circle', { cx: 9, cy: 7, r: 4 }),
-    h('path', { d: 'M22 21v-2a4 4 0 0 0-3-3.87' }),
-    h('path', { d: 'M16 3.13a4 4 0 0 1 0 7.75' }),
-  ])
-}
-
-function renderChartIcon(): VNode {
-  return h('svg', { width: 24, height: 24, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': 1.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, [
-    h('line', { x1: 18, y1: 20, x2: 18, y2: 10 }),
-    h('line', { x1: 12, y1: 20, x2: 12, y2: 4 }),
-    h('line', { x1: 6, y1: 20, x2: 6, y2: 14 }),
-  ])
-}
-
 const modelSteps = [
-  { title: 'Appropriate infrastructure', description: 'Reliable technology built for real classroom conditions.', icon: renderServerIcon },
-  { title: 'Curated offline content', description: 'Curriculum-relevant resources available without the internet.', icon: renderBookIcon },
-  { title: 'Prepared teachers', description: 'Teachers trained to integrate technology into lessons.', icon: renderTeacherIcon },
-  { title: 'Classroom practice', description: 'Interactive teaching that engages and deepens learning.', icon: renderGroupIcon },
-  { title: 'Local ownership and support', description: 'Champion teachers and school leaders carry it forward.', icon: renderUsersIcon },
-  { title: 'Measurement and improvement', description: 'We monitor, learn and make the model stronger.', icon: renderChartIcon },
+  { title: 'Appropriate infrastructure', description: 'Reliable technology built for real classroom conditions.', icon: ServerIcon },
+  { title: 'Curated offline content', description: 'Curriculum-relevant resources available without the internet.', icon: BookOpenIcon },
+  { title: 'Prepared teachers', description: 'Teachers trained to integrate technology into lessons.', icon: SchoolIcon },
+  { title: 'Classroom practice', description: 'Interactive teaching that engages and deepens learning.', icon: GroupIcon },
+  { title: 'Local ownership and support', description: 'Champion teachers and school leaders carry it forward.', icon: HandshakeIcon },
+  { title: 'Measurement and improvement', description: 'We monitor, learn and make the model stronger.', icon: BarChartIcon },
 ]
 
 const readinessCards = [
