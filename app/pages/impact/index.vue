@@ -13,6 +13,7 @@ useHead({
   <div class="page-impact">
     <!-- Hero Section -->
     <HeroOverlay
+      image-url="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1920&h=800&fit=crop&crop=center"
       overlay="gradient"
       image-alt="Students and teacher in a classroom using offline learning technology"
     >
@@ -85,6 +86,27 @@ useHead({
         </div>
       </template>
     </HeroOverlay>
+
+    <!-- Pilot in Context Section -->
+    <PilotContext
+      school-name="Our Lady Seat of Wisdom"
+      location="Kansanga, Kampala, Uganda"
+      launch-date="April 2025"
+      image-url="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&h=600&fit=crop&crop=center"
+      image-alt="Our Lady Seat of Wisdom school building in Kampala, Uganda"
+      pilot-period="April – June 2025 (initial review)"
+      teachers="2 Champion Teachers"
+      learners="50+ students across primary grades"
+      focus="Offline learning, teacher adoption, learner engagement"
+      subjects="Science, Mathematics, English & Integrated Studies"
+      status="Pilot and refinement"
+    />
+
+    <!-- Early Results Section -->
+    <EarlyResults />
+
+    <!-- Testimonial Quotes Section -->
+    <TestimonialQuotes />
 
     <!-- Impact sections will be built here -->
   </div>

@@ -85,11 +85,11 @@ const props = withDefaults(defineProps<Props>(), {
 }
 
 .hero-overlay-title {
-  @apply text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white;
+  @apply text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-black;
 }
 
 .hero-overlay-subtitle {
-  @apply mt-6 text-lg md:text-xl text-gray-300;
+  @apply mt-6 text-lg md:text-xl text-gray-600;
 }
 
 .hero-overlay-aside {
