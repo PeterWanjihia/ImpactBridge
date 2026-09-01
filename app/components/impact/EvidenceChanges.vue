@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { Wrench, Users, BookOpen, Star, ArrowRight } from '@lucide/vue'
+import { Wrench, User, BookOpen, Star, ArrowRight } from '@lucide/vue'
 
 interface EvidenceItem {
-  icon: 'wrench' | 'users' | 'book'
+  icon: 'wrench' | 'user' | 'book'
+  iconBg: string
+  iconColor: string
   observed: string
   changed: string
 }
@@ -17,16 +19,22 @@ const props = withDefaults(defineProps<Props>(), {
   items: () => [
     {
       icon: 'wrench',
+      iconBg: 'bg-emerald-100',
+      iconColor: 'text-emerald-600',
       observed: 'The original hardware needed greater protection and reliability.',
       changed: 'The hub architecture was refined.'
     },
     {
-      icon: 'users',
+      icon: 'user',
+      iconBg: 'bg-orange-100',
+      iconColor: 'text-orange-500',
       observed: 'Teachers needed more than an initial demonstration.',
       changed: 'Training expanded into guided practice and continued support.'
     },
     {
       icon: 'book',
+      iconBg: 'bg-purple-100',
+      iconColor: 'text-purple-600',
       observed: 'Content needed stronger classroom alignment.',
       changed: 'The content-review and curriculum-alignment process was strengthened.'
     }
@@ -35,7 +43,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const iconMap = {
   wrench: Wrench,
-  users: Users,
+  user: User,
   book: BookOpen
 }
 </script>
@@ -47,47 +55,48 @@ const iconMap = {
         <!-- Section Label -->
         <div class="evidence-changes-label">
           <div class="evidence-changes-label-icon">
-            <span class="text-white text-sm font-bold">{{ sectionNumber }}</span>
+            <span class="text-white text-xs font-bold">{{ sectionNumber }}</span>
           </div>
           <span class="evidence-changes-label-text">EVIDENCE THAT CHANGED OUR PROGRAMME</span>
         </div>
 
         <!-- Evidence Flow -->
         <div class="evidence-changes-flow">
-          <!-- Evidence Cards -->
-          <div class="evidence-changes-cards">
-            <template v-for="(item, index) in items" :key="index">
-              <div class="evidence-card">
-                <div class="evidence-card-icon">
-                  <component :is="iconMap[item.icon]" class="w-6 h-6 text-navy" />
+          <template v-for="(item, index) in items" :key="index">
+            <div class="evidence-card">
+              <div :class="['evidence-card-icon', item.iconBg]">
+                <component :is="iconMap[item.icon]" :class="['w-5 h-5', item.iconColor]" />
+              </div>
+              <div class="evidence-card-content">
+                <div class="evidence-card-section">
+                  <span class="evidence-card-label">We observed</span>
+                  <p class="evidence-card-text">{{ item.observed }}</p>
                 </div>
-                <div class="evidence-card-content">
-                  <div class="evidence-card-section">
-                    <span class="evidence-card-label evidence-card-label--observed">We observed</span>
-                    <p class="evidence-card-text">{{ item.observed }}</p>
-                  </div>
-                  <div class="evidence-card-section">
-                    <span class="evidence-card-label evidence-card-label--changed">We changed</span>
-                    <p class="evidence-card-text">{{ item.changed }}</p>
-                  </div>
+                <div class="evidence-card-section">
+                  <span class="evidence-card-label">We changed</span>
+                  <p class="evidence-card-text">{{ item.changed }}</p>
                 </div>
               </div>
-              <ArrowRight
-                v-if="index < items.length - 1"
-                class="evidence-changes-arrow hidden lg:block w-6 h-6 text-gray-300 flex-shrink-0"
-              />
-            </template>
-          </div>
+            </div>
+
+            <!-- Arrow Divider between cards -->
+            <ArrowRight
+              v-if="index < items.length - 1"
+              class="evidence-changes-arrow hidden lg:block w-5 h-5 text-blue-900 flex-shrink-0"
+            />
+          </template>
 
           <!-- Callout Box -->
           <div class="evidence-changes-callout">
-            <Star class="w-8 h-8 text-cobalt mb-3" />
-            <p class="evidence-changes-callout-text">
-              We do not collect evidence only to report success.
-            </p>
-            <p class="evidence-changes-callout-highlight">
-              We use it to improve the model.
-            </p>
+            <Star class="w-8 h-8 text-blue-600 flex-shrink-0" />
+            <div class="evidence-changes-callout-content">
+              <p class="evidence-changes-callout-text">
+                We do not collect evidence only to report success.
+              </p>
+              <p class="evidence-changes-callout-highlight">
+                We use it to improve the model.
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -97,7 +106,7 @@ const iconMap = {
 
 <style scoped>
 .evidence-changes {
-  @apply space-y-8;
+  @apply space-y-6;
 }
 
 .evidence-changes-label {
@@ -105,66 +114,58 @@ const iconMap = {
 }
 
 .evidence-changes-label-icon {
-  @apply w-8 h-8 rounded-full bg-cobalt flex items-center justify-center;
+  @apply w-6 h-6 rounded-full bg-blue-700 flex items-center justify-center flex-shrink-0;
 }
 
 .evidence-changes-label-text {
-  @apply text-sm font-sans font-bold text-navy tracking-widest uppercase;
+  @apply text-sm font-sans font-extrabold text-blue-700 tracking-wider uppercase;
 }
 
 .evidence-changes-flow {
-  @apply flex flex-col lg:flex-row lg:items-start gap-6;
-}
-
-.evidence-changes-cards {
-  @apply flex flex-col lg:flex-row lg:items-stretch gap-4 lg:gap-2 flex-1;
+  @apply flex flex-col lg:flex-row lg:items-stretch gap-4;
 }
 
 .evidence-card {
-  @apply flex-1 bg-white rounded-xl p-5 border border-gray-100 shadow-sm;
+  @apply flex-1 bg-white rounded-xl p-5 border border-gray-200 flex items-start gap-4 shadow-sm;
 }
 
 .evidence-card-icon {
-  @apply w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center mb-4;
+  @apply w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5;
 }
 
 .evidence-card-content {
-  @apply space-y-4;
+  @apply space-y-3 flex-1;
 }
 
 .evidence-card-section {
-  @apply space-y-1;
+  @apply space-y-0.5;
 }
 
 .evidence-card-label {
-  @apply text-xs font-sans font-bold uppercase tracking-wide;
-}
-
-.evidence-card-label--observed {
-  @apply text-gray-500;
-}
-
-.evidence-card-label--changed {
-  @apply text-cobalt;
+  @apply text-xs font-sans font-extrabold text-blue-900 block;
 }
 
 .evidence-card-text {
-  @apply text-sm font-sans text-gray-700 leading-relaxed;
+  @apply text-xs font-sans text-gray-600 leading-relaxed;
 }
 
 .evidence-changes-arrow {
-  @apply self-center;
+  @apply self-center mx-1;
 }
 
 .evidence-changes-callout {
-  @apply bg-cobalt/5 border border-cobalt/10 rounded-xl p-6 lg:w-64 flex-shrink-0;
+  @apply flex-1 bg-blue-50/50 rounded-xl p-5 flex items-center gap-4;
+}
+
+.evidence-changes-callout-content {
+  @apply space-y-1;
 }
 
 .evidence-changes-callout-text {
-  @apply text-sm font-sans text-gray-700 leading-relaxed mb-2;
+  @apply text-xs font-sans font-bold text-blue-900 leading-snug;
 }
 
 .evidence-changes-callout-highlight {
-  @apply text-sm font-sans font-bold text-cobalt;
+  @apply text-xs font-sans font-bold text-blue-900 leading-snug;
 }
 </style>
