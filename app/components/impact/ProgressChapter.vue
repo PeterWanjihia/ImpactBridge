@@ -29,74 +29,70 @@ const props = withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <LayoutSection background="white">
-    <LayoutContainer>
-      <div class="progress-chapter">
-        <!-- Section Label -->
-        <div class="progress-chapter-label">
-          <div class="progress-chapter-label-icon">
-            <span class="text-white text-sm font-bold">{{ sectionNumber }}</span>
-          </div>
-          <span class="progress-chapter-label-text">PROGRESS TOWARD THE NEXT CHAPTER</span>
-        </div>
-
-        <!-- Progress Layout -->
-        <div class="progress-chapter-content">
-          <!-- Completed Column -->
-          <div class="progress-column progress-column--completed">
-            <div class="progress-column-header">
-              <CheckCircle class="w-6 h-6 text-green-600" />
-              <span class="progress-column-title progress-column-title--completed">Completed</span>
-            </div>
-            <ul class="progress-column-list">
-              <li
-                v-for="(item, index) in completedItems"
-                :key="index"
-                class="progress-column-item"
-              >
-                {{ item.text }}
-              </li>
-            </ul>
-          </div>
-
-          <!-- Arrow -->
-          <div class="progress-arrow">
-            <ArrowRight class="w-8 h-8 text-gray-400" />
-          </div>
-
-          <!-- Next Target Column -->
-          <div class="progress-column progress-column--target">
-            <div class="progress-column-header">
-              <Target class="w-6 h-6 text-cobalt" />
-              <span class="progress-column-title progress-column-title--target">Next target</span>
-            </div>
-            <ul class="progress-column-list">
-              <li
-                v-for="(item, index) in nextTargetItems"
-                :key="index"
-                class="progress-column-item"
-              >
-                {{ item.text }}
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Footer Note -->
-        <div class="progress-chapter-footer">
-          <p class="progress-chapter-footer-text">
-            <strong>Targets are our north star.</strong>
-            We will measure and share our progress.
-          </p>
-        </div>
+  <div class="progress-chapter">
+    <!-- Section Label -->
+    <div class="progress-chapter-label">
+      <div class="progress-chapter-label-icon">
+        <span class="text-white text-sm font-bold">{{ sectionNumber }}</span>
       </div>
-    </LayoutContainer>
-  </LayoutSection>
+      <span class="progress-chapter-label-text">PROGRESS TOWARD THE NEXT CHAPTER</span>
+    </div>
+
+    <!-- Progress Layout -->
+    <div class="progress-chapter-content">
+      <!-- Completed Column -->
+      <div class="progress-column progress-column--completed">
+        <div class="progress-column-header">
+          <CheckCircle class="w-5 h-5 text-green-600" />
+          <span class="progress-column-title progress-column-title--completed">Completed</span>
+        </div>
+        <ul class="progress-column-list">
+          <li
+            v-for="(item, index) in completedItems"
+            :key="index"
+            class="progress-column-item"
+          >
+            {{ item.text }}
+          </li>
+        </ul>
+      </div>
+
+      <!-- Arrow -->
+      <div class="progress-arrow">
+        <ArrowRight class="w-6 h-6 text-gray-400" />
+      </div>
+
+      <!-- Next Target Column -->
+      <div class="progress-column progress-column--target">
+        <div class="progress-column-header">
+          <Target class="w-5 h-5 text-cobalt" />
+          <span class="progress-column-title progress-column-title--target">Next target</span>
+        </div>
+        <ul class="progress-column-list">
+          <li
+            v-for="(item, index) in nextTargetItems"
+            :key="index"
+            class="progress-column-item"
+          >
+            {{ item.text }}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Footer Note -->
+    <div class="progress-chapter-footer">
+      <p class="progress-chapter-footer-text">
+        <strong>Targets are our north star.</strong>
+        We will measure and share our progress.
+      </p>
+    </div>
+  </div>
 </template>
 
 <style scoped>
 .progress-chapter {
-  @apply space-y-8;
+  @apply space-y-6;
 }
 
 .progress-chapter-label {
@@ -104,19 +100,23 @@ const props = withDefaults(defineProps<Props>(), {
 }
 
 .progress-chapter-label-icon {
-  @apply w-8 h-8 rounded-full bg-cobalt flex items-center justify-center;
+  @apply w-7 h-7 rounded-full bg-cobalt flex items-center justify-center;
 }
 
 .progress-chapter-label-text {
-  @apply text-sm font-sans font-bold text-navy tracking-widest uppercase;
+  @apply text-xs font-sans font-bold text-navy tracking-widest uppercase;
 }
 
 .progress-chapter-content {
-  @apply flex flex-col md:flex-row items-stretch gap-6;
+  @apply flex items-stretch gap-4;
 }
 
 .progress-column {
-  @apply flex-1 bg-white rounded-xl p-6 border border-gray-200 shadow-sm;
+  @apply flex-1 bg-white rounded-xl p-4 border border-gray-200 shadow-sm;
+}
+
+.progress-column--completed {
+  @apply border-solid;
 }
 
 .progress-column--target {
@@ -124,11 +124,11 @@ const props = withDefaults(defineProps<Props>(), {
 }
 
 .progress-column-header {
-  @apply flex items-center gap-3 mb-5;
+  @apply flex items-center gap-2 mb-4;
 }
 
 .progress-column-title {
-  @apply text-lg font-sans font-bold;
+  @apply text-base font-sans font-bold;
 }
 
 .progress-column-title--completed {
@@ -140,7 +140,7 @@ const props = withDefaults(defineProps<Props>(), {
 }
 
 .progress-column-list {
-  @apply space-y-3;
+  @apply space-y-2;
 }
 
 .progress-column-item {
@@ -149,7 +149,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 .progress-column-item::before {
   content: '';
-  @apply inline-block w-1.5 h-1.5 rounded-full bg-gray-300 mr-3 align-middle;
+  @apply inline-block w-1.5 h-1.5 rounded-full bg-gray-300 mr-2 align-middle;
 }
 
 .progress-column--completed .progress-column-item::before {
@@ -161,11 +161,11 @@ const props = withDefaults(defineProps<Props>(), {
 }
 
 .progress-arrow {
-  @apply flex items-center justify-center md:mt-16;
+  @apply flex items-center justify-center self-center;
 }
 
 .progress-chapter-footer {
-  @apply pt-4 border-t border-gray-200;
+  @apply pt-3 border-t border-gray-200;
 }
 
 .progress-chapter-footer-text {

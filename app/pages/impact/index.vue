@@ -111,11 +111,19 @@ useHead({
     <!-- Evidence Changes Section -->
     <EvidenceChanges />
 
-    <!-- Still Learning Section -->
-    <StillLearning />
-
-    <!-- Progress Chapter Section -->
-    <ProgressChapter />
+    <!-- Still Learning + Progress Chapter (Side by Side) -->
+    <section class="findings-row">
+      <LayoutContainer>
+        <div class="findings-row-content">
+          <div class="findings-row-left">
+            <StillLearning />
+          </div>
+          <div class="findings-row-right">
+            <ProgressChapter />
+          </div>
+        </div>
+      </LayoutContainer>
+    </section>
 
     <!-- Reports Explore Section -->
     <ReportsExplore />
@@ -185,5 +193,22 @@ useHead({
 
 .impact-hero-card-footer-text {
   @apply text-xs font-sans text-gray-700 leading-tight;
+}
+
+/* Findings Row - Sections 5 & 6 side by side */
+.findings-row {
+  @apply py-12 md:py-16 lg:py-20;
+}
+
+.findings-row-content {
+  @apply flex flex-col lg:flex-row gap-0 overflow-hidden rounded-xl;
+}
+
+.findings-row-left {
+  @apply flex-1 bg-navy p-8 lg:p-10;
+}
+
+.findings-row-right {
+  @apply flex-1 bg-gray-50 p-8 lg:p-10;
 }
 </style>
