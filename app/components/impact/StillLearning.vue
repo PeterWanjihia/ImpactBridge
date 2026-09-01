@@ -97,7 +97,7 @@ const props = withDefaults(defineProps<Props>(), {
 }
 
 .learning-card {
-  @apply bg-navy-light/30 rounded-xl p-6 border border-white/10;
+  @apply bg-white/5 rounded-xl p-6 border border-white/10;
 }
 
 .learning-card-icon {
