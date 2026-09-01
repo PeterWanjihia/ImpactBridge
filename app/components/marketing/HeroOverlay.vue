@@ -1,10 +1,11 @@
 <script setup lang="ts">
 interface Props {
-  title: string
+  title?: string
   subtitle?: string
   imageUrl?: string
   imageAlt?: string
   overlay?: 'dark' | 'light' | 'gradient'
+  tag?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -20,10 +21,18 @@ const props = withDefaults(defineProps<Props>(), {
     </div>
     <div class="hero-overlay-content">
       <LayoutContainer>
-        <div class="hero-overlay-inner">
-          <h1 class="hero-overlay-title">{{ title }}</h1>
-          <p v-if="subtitle" class="hero-overlay-subtitle">{{ subtitle }}</p>
-          <slot name="actions" />
+        <div class="hero-overlay-grid">
+          <div class="hero-overlay-inner">
+            <span v-if="tag" class="hero-overlay-tag">{{ tag }}</span>
+            <slot name="default">
+              <h1 v-if="title" class="hero-overlay-title">{{ title }}</h1>
+              <p v-if="subtitle" class="hero-overlay-subtitle">{{ subtitle }}</p>
+            </slot>
+            <slot name="actions" />
+          </div>
+          <div v-if="$slots.aside" class="hero-overlay-aside">
+            <slot name="aside" />
+          </div>
         </div>
       </LayoutContainer>
     </div>
@@ -56,15 +65,23 @@ const props = withDefaults(defineProps<Props>(), {
 }
 
 .hero-overlay-mask--gradient {
-  @apply bg-gradient-to-r from-navy/80 to-transparent;
+  @apply bg-gradient-to-r from-navy/80 via-navy/50 to-transparent;
 }
 
 .hero-overlay-content {
   @apply relative z-10 w-full py-20 md:py-24 lg:py-32;
 }
 
+.hero-overlay-grid {
+  @apply flex flex-col lg:flex-row lg:items-center lg:justify-between lg:gap-12;
+}
+
 .hero-overlay-inner {
   @apply max-w-2xl;
+}
+
+.hero-overlay-tag {
+  @apply inline-block text-teal font-sans font-semibold text-sm tracking-wide uppercase mb-4;
 }
 
 .hero-overlay-title {
@@ -72,6 +89,10 @@ const props = withDefaults(defineProps<Props>(), {
 }
 
 .hero-overlay-subtitle {
-  @apply mt-6 text-lg md:text-xl text-gray-200;
+  @apply mt-6 text-lg md:text-xl text-gray-300;
+}
+
+.hero-overlay-aside {
+  @apply mt-8 lg:mt-0 flex-shrink-0;
 }
 </style>
