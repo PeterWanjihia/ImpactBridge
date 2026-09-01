@@ -108,6 +108,9 @@ useHead({
     <!-- Testimonial Quotes Section -->
     <TestimonialQuotes />
 
+    <!-- Evidence Changes Section -->
+    <EvidenceChanges />
+
     <!-- Impact sections will be built here -->
   </div>
 </template>
