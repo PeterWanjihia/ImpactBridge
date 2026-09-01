@@ -33,7 +33,7 @@ const props = withDefaults(defineProps<Props>(), {
     <!-- Section Label -->
     <div class="progress-chapter-label">
       <div class="progress-chapter-label-icon">
-        <span class="text-white text-sm font-bold">{{ sectionNumber }}</span>
+        <span class="text-white text-xs font-bold">{{ sectionNumber }}</span>
       </div>
       <span class="progress-chapter-label-text">PROGRESS TOWARD THE NEXT CHAPTER</span>
     </div>
@@ -41,7 +41,7 @@ const props = withDefaults(defineProps<Props>(), {
     <!-- Progress Layout -->
     <div class="progress-chapter-content">
       <!-- Completed Column -->
-      <div class="progress-column progress-column--completed">
+      <div class="progress-column">
         <div class="progress-column-header">
           <CheckCircle class="w-5 h-5 text-green-600" />
           <span class="progress-column-title progress-column-title--completed">Completed</span>
@@ -63,7 +63,7 @@ const props = withDefaults(defineProps<Props>(), {
       </div>
 
       <!-- Next Target Column -->
-      <div class="progress-column progress-column--target">
+      <div class="progress-column">
         <div class="progress-column-header">
           <Target class="w-5 h-5 text-cobalt" />
           <span class="progress-column-title progress-column-title--target">Next target</span>
@@ -92,39 +92,31 @@ const props = withDefaults(defineProps<Props>(), {
 
 <style scoped>
 .progress-chapter {
-  @apply space-y-6;
+  @apply space-y-5;
 }
 
 .progress-chapter-label {
-  @apply flex items-center gap-3;
+  @apply flex items-center gap-2;
 }
 
 .progress-chapter-label-icon {
-  @apply w-7 h-7 rounded-full bg-cobalt flex items-center justify-center;
+  @apply w-6 h-6 rounded-full bg-cobalt flex items-center justify-center;
 }
 
 .progress-chapter-label-text {
-  @apply text-xs font-sans font-bold text-navy tracking-widest uppercase;
+  @apply text-[11px] font-sans font-bold text-navy tracking-widest uppercase;
 }
 
 .progress-chapter-content {
-  @apply flex items-stretch gap-4;
+  @apply flex items-start gap-4;
 }
 
 .progress-column {
-  @apply flex-1 bg-white rounded-xl p-4 border border-gray-200 shadow-sm;
-}
-
-.progress-column--completed {
-  @apply border-solid;
-}
-
-.progress-column--target {
-  @apply border-dashed border-cobalt/30;
+  @apply flex-1;
 }
 
 .progress-column-header {
-  @apply flex items-center gap-2 mb-4;
+  @apply flex items-center gap-2 mb-3;
 }
 
 .progress-column-title {
@@ -140,28 +132,15 @@ const props = withDefaults(defineProps<Props>(), {
 }
 
 .progress-column-list {
-  @apply space-y-2;
+  @apply space-y-1.5;
 }
 
 .progress-column-item {
-  @apply text-sm font-sans text-gray-700 pl-1;
-}
-
-.progress-column-item::before {
-  content: '';
-  @apply inline-block w-1.5 h-1.5 rounded-full bg-gray-300 mr-2 align-middle;
-}
-
-.progress-column--completed .progress-column-item::before {
-  @apply bg-green-500;
-}
-
-.progress-column--target .progress-column-item::before {
-  @apply bg-cobalt/40;
+  @apply text-[13px] font-sans text-gray-700;
 }
 
 .progress-arrow {
-  @apply flex items-center justify-center self-center;
+  @apply flex items-center justify-center pt-6;
 }
 
 .progress-chapter-footer {
@@ -169,6 +148,6 @@ const props = withDefaults(defineProps<Props>(), {
 }
 
 .progress-chapter-footer-text {
-  @apply text-sm font-sans text-gray-600 leading-relaxed;
+  @apply text-[13px] font-sans text-gray-600 leading-snug;
 }
 </style>

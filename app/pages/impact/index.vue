@@ -205,10 +205,10 @@ useHead({
 }
 
 .findings-row-left {
-  @apply flex-1 bg-navy p-8 lg:p-10;
+  @apply flex-[3] bg-navy p-6 lg:p-8;
 }
 
 .findings-row-right {
-  @apply flex-1 bg-gray-50 p-8 lg:p-10;
+  @apply flex-[2] bg-gray-50 p-6 lg:p-8;
 }
 </style>

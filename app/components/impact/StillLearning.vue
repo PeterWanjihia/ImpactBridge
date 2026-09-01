@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { BookOpen } from '@lucide/vue'
+import { Calendar, Users, Shield, GraduationCap } from '@lucide/vue'
 
 interface LearningItem {
   question: string
   description: string
+  icon: 'calendar' | 'users' | 'shield' | 'graduation'
 }
 
 interface Props {
@@ -16,22 +17,33 @@ const props = withDefaults(defineProps<Props>(), {
   items: () => [
     {
       question: 'Will teachers continue using the hub across full terms?',
-      description: 'We are tracking adoption over time.'
+      description: 'We are tracking adoption over time.',
+      icon: 'calendar'
     },
     {
       question: 'Will peer adoption grow as more teachers get involved?',
-      description: 'We are measuring how Champion Teachers influence others.'
+      description: 'We are measuring how Champion Teachers influence others.',
+      icon: 'users'
     },
     {
       question: 'Will the revised hardware remain reliable long-term?',
-      description: 'We are monitoring uptime and support needs.'
+      description: 'We are monitoring uptime and support needs.',
+      icon: 'shield'
     },
     {
       question: 'Will learner gains persist and deepen over time?',
-      description: 'We are introducing assessments to learn more.'
+      description: 'We are introducing assessments to learn more.',
+      icon: 'graduation'
     }
   ]
 })
+
+const iconMap = {
+  calendar: Calendar,
+  users: Users,
+  shield: Shield,
+  graduation: GraduationCap
+}
 </script>
 
 <template>
@@ -39,7 +51,7 @@ const props = withDefaults(defineProps<Props>(), {
     <!-- Section Label -->
     <div class="still-learning-label">
       <div class="still-learning-label-icon">
-        <span class="text-white text-sm font-bold">{{ sectionNumber }}</span>
+        <span class="text-white text-xs font-bold">{{ sectionNumber }}</span>
       </div>
       <span class="still-learning-label-text">WHAT WE ARE STILL LEARNING</span>
     </div>
@@ -51,13 +63,9 @@ const props = withDefaults(defineProps<Props>(), {
         :key="index"
         class="learning-card"
       >
-        <div class="learning-card-icon">
-          <BookOpen class="w-5 h-5 text-teal" />
-        </div>
-        <div class="learning-card-content">
-          <h4 class="learning-card-question">{{ item.question }}</h4>
-          <p class="learning-card-description">{{ item.description }}</p>
-        </div>
+        <component :is="iconMap[item.icon]" class="learning-card-icon" />
+        <h4 class="learning-card-question">{{ item.question }}</h4>
+        <p class="learning-card-description">{{ item.description }}</p>
       </div>
     </div>
 
@@ -73,47 +81,43 @@ const props = withDefaults(defineProps<Props>(), {
 
 <style scoped>
 .still-learning {
-  @apply space-y-6;
+  @apply space-y-5;
 }
 
 .still-learning-label {
-  @apply flex items-center gap-3;
+  @apply flex items-center gap-2;
 }
 
 .still-learning-label-icon {
-  @apply w-7 h-7 rounded-full bg-cobalt flex items-center justify-center;
+  @apply w-6 h-6 rounded-full bg-cobalt flex items-center justify-center;
 }
 
 .still-learning-label-text {
-  @apply text-xs font-sans font-bold text-white tracking-widest uppercase;
+  @apply text-[11px] font-sans font-bold text-white tracking-widest uppercase;
 }
 
 .still-learning-grid {
-  @apply grid grid-cols-2 lg:grid-cols-4 gap-4;
+  @apply grid grid-cols-2 lg:grid-cols-4 gap-3;
 }
 
 .learning-card {
-  @apply bg-white/5 rounded-xl p-4 border border-white/10;
+  @apply flex flex-col;
 }
 
 .learning-card-icon {
-  @apply w-8 h-8 rounded-lg bg-teal/20 flex items-center justify-center mb-3;
-}
-
-.learning-card-content {
-  @apply space-y-2;
+  @apply w-5 h-5 text-teal mb-2;
 }
 
 .learning-card-question {
-  @apply text-sm font-sans font-bold text-white leading-snug;
+  @apply text-[13px] font-sans font-semibold text-white leading-snug mb-1;
 }
 
 .learning-card-description {
-  @apply text-xs font-sans text-gray-300 leading-relaxed;
+  @apply text-[12px] font-sans text-gray-400 leading-snug;
 }
 
 .still-learning-footer {
-  @apply pt-3 border-t border-white/10;
+  @apply pt-3 border-t border-white/10 flex justify-end;
 }
 
 .still-learning-link {
