@@ -8,7 +8,7 @@ const navigation = [
   { label: 'Our Model', to: '/our-model' },
   { label: 'Impact', to: '/impact' },
   { label: 'Stories', to: '/stories' },
-  { label: 'Get Involved', to: '/get-involved' },
+  { label: 'Get Involved', to: '/donate' },
   { label: 'Corporate Partnerships', to: '/corporate-partnerships' },
   { label: 'Transparency', to: '/transparency' },
 ]
