@@ -111,6 +111,12 @@ useHead({
     <!-- Evidence Changes Section -->
     <EvidenceChanges />
 
+    <!-- Still Learning Section -->
+    <StillLearning />
+
+    <!-- Progress Chapter Section -->
+    <ProgressChapter />
+
     <!-- Impact sections will be built here -->
   </div>
 </template>
