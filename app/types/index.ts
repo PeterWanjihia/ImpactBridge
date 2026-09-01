@@ -98,6 +98,8 @@ export interface ImpactOverview {
   metrics: ImpactMetricItem[]
   testimonials: { learner: ImpactTestimonial; teacher: ImpactTestimonial }
   evidence: ImpactEvidenceItem[]
+  stillLearning: ImpactStillLearningItem[]
+  progressChapter: ImpactProgressChapter
   reports: ImpactReportItem[]
   cta?: ImpactCtaData
 }
@@ -174,6 +176,19 @@ export interface ImpactEvidenceItem {
   iconColor: string
   observed: string
   changed: string
+}
+
+/** Open question in the "Still Learning" section */
+export interface ImpactStillLearningItem {
+  question: string
+  description: string
+  icon: 'calendar' | 'users' | 'shield' | 'graduation'
+}
+
+/** Progress chapter — completed milestones and next targets */
+export interface ImpactProgressChapter {
+  completedItems: { text: string }[]
+  nextTargetItems: { text: string }[]
 }
 
 /** Report item for the reports explore section */

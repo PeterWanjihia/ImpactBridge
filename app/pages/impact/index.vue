@@ -115,6 +115,44 @@ const evidenceItems = computed(() => overview.value?.evidence ?? [
   },
 ])
 
+const stillLearningItems = computed(() => overview.value?.stillLearning ?? [
+  {
+    question: 'Will teachers continue using the hub across full terms?',
+    description: 'We are tracking adoption over time.',
+    icon: 'calendar' as const,
+  },
+  {
+    question: 'Will peer adoption grow as more teachers get involved?',
+    description: 'We are measuring how Champion Teachers influence others.',
+    icon: 'users' as const,
+  },
+  {
+    question: 'Will the revised hardware remain reliable long-term?',
+    description: 'We are monitoring uptime and support needs.',
+    icon: 'shield' as const,
+  },
+  {
+    question: 'Will learner gains persist and deepen over time?',
+    description: 'We are introducing assessments to learn more.',
+    icon: 'graduation' as const,
+  },
+])
+
+const progressChapterData = computed(() => overview.value?.progressChapter ?? {
+  completedItems: [
+    { text: '1 pilot hub' },
+    { text: '2 Champion Teachers' },
+    { text: '50+ learners reached' },
+    { text: 'Early data collected' },
+  ],
+  nextTargetItems: [
+    { text: '10 additional hubs' },
+    { text: 'Expanded teacher development' },
+    { text: 'Full impact evaluation' },
+    { text: 'Stronger evidence of learning' },
+  ],
+})
+
 const reportItems = computed(() => overview.value?.reports ?? [
   {
     title: 'Pilot Impact Summary',
@@ -246,10 +284,13 @@ const reportItems = computed(() => overview.value?.reports ?? [
       <LayoutContainer>
         <div class="findings-row-content">
           <div class="findings-row-left">
-            <StillLearning />
+            <StillLearning :items="stillLearningItems" />
           </div>
           <div class="findings-row-right">
-            <ProgressChapter />
+            <ProgressChapter
+              :completed-items="progressChapterData.completedItems"
+              :next-target-items="progressChapterData.nextTargetItems"
+            />
           </div>
         </div>
       </LayoutContainer>
