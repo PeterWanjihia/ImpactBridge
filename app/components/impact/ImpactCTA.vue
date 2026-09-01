@@ -28,26 +28,22 @@ withDefaults(defineProps<Props>(), {
   <section class="impact-cta">
     <LayoutContainer>
       <div class="impact-cta-content">
-        <!-- Text Content -->
+        <!-- Text -->
         <div class="impact-cta-text">
           <h2 class="impact-cta-title">{{ title }}</h2>
           <p class="impact-cta-description">{{ description }}</p>
+        </div>
 
-          <div class="impact-cta-actions">
-            <UiButton variant="primary" size="lg">
-              <NuxtLink :to="primaryButtonTo" class="impact-cta-button-content">
-                <Heart class="w-5 h-5" />
-                <span>{{ primaryButtonText }}</span>
-              </NuxtLink>
-            </UiButton>
-
-            <UiButton variant="outline-white" size="lg">
-              <NuxtLink :to="secondaryButtonTo" class="impact-cta-button-content">
-                <Users class="w-5 h-5" />
-                <span>{{ secondaryButtonText }}</span>
-              </NuxtLink>
-            </UiButton>
-          </div>
+        <!-- Buttons -->
+        <div class="impact-cta-actions">
+          <NuxtLink :to="primaryButtonTo" class="impact-cta-btn impact-cta-btn--primary">
+            <Heart class="w-5 h-5" />
+            <span>{{ primaryButtonText }}</span>
+          </NuxtLink>
+          <NuxtLink :to="secondaryButtonTo" class="impact-cta-btn impact-cta-btn--secondary">
+            <Users class="w-5 h-5" />
+            <span>{{ secondaryButtonText }}</span>
+          </NuxtLink>
         </div>
 
         <!-- Image -->
@@ -65,38 +61,46 @@ withDefaults(defineProps<Props>(), {
 
 <style scoped>
 .impact-cta {
-  @apply py-16 md:py-20 bg-navy;
+  @apply py-14 md:py-16 bg-navy;
 }
 
 .impact-cta-content {
-  @apply flex flex-col lg:flex-row items-center gap-10 lg:gap-16;
+  @apply flex flex-col lg:flex-row items-center gap-8 lg:gap-10;
 }
 
 .impact-cta-text {
-  @apply flex-1 text-white;
+  @apply flex-1;
 }
 
 .impact-cta-title {
-  @apply text-3xl md:text-4xl lg:text-5xl font-serif font-bold leading-tight;
+  @apply text-3xl md:text-4xl font-serif font-bold text-white leading-tight;
 }
 
 .impact-cta-description {
-  @apply mt-5 text-lg text-gray-300 leading-relaxed max-w-lg;
+  @apply mt-4 text-base text-gray-300 leading-relaxed;
 }
 
 .impact-cta-actions {
-  @apply mt-8 flex flex-wrap gap-4;
+  @apply flex flex-row lg:flex-col gap-3 flex-shrink-0;
 }
 
-.impact-cta-button-content {
-  @apply inline-flex items-center gap-2;
+.impact-cta-btn {
+  @apply inline-flex items-center gap-2.5 px-6 py-3 rounded-lg font-sans font-semibold text-sm transition-colors whitespace-nowrap;
+}
+
+.impact-cta-btn--primary {
+  @apply bg-white text-navy hover:bg-gray-100;
+}
+
+.impact-cta-btn--secondary {
+  @apply border border-white/60 text-white hover:bg-white/10;
 }
 
 .impact-cta-media {
-  @apply flex-1 relative;
+  @apply flex-shrink-0;
 }
 
 .impact-cta-image {
-  @apply w-full h-64 lg:h-80 object-cover rounded-xl;
+  @apply w-64 h-48 lg:w-80 lg:h-56 object-cover rounded-xl;
 }
 </style>
