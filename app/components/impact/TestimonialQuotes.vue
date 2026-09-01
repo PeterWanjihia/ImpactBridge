@@ -1,24 +1,11 @@
 <script setup lang="ts">
 import { Quote, Headphones, Play, ArrowRight } from '@lucide/vue'
-
-interface Testimonial {
-  heading: string
-  quote: string
-  description: string
-  attribution: string
-  imageUrl: string
-  imageAlt: string
-  mediaType?: 'audio' | 'video'
-  mediaDuration?: string
-  mediaUrl?: string
-  storyUrl?: string
-  variant?: 'learner' | 'teacher'
-}
+import type { ImpactTestimonial } from '~/types'
 
 interface Props {
   sectionNumber?: number
-  learner?: Testimonial
-  teacher?: Testimonial
+  learner?: ImpactTestimonial
+  teacher?: ImpactTestimonial
 }
 
 const props = withDefaults(defineProps<Props>(), {

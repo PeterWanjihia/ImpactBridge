@@ -1,17 +1,10 @@
 <script setup lang="ts">
 import { Wrench, User, BookOpen, Star, ArrowRight } from '@lucide/vue'
-
-interface EvidenceItem {
-  icon: 'wrench' | 'user' | 'book'
-  iconBg: string
-  iconColor: string
-  observed: string
-  changed: string
-}
+import type { ImpactEvidenceItem } from '~/types'
 
 interface Props {
   sectionNumber?: number
-  items?: EvidenceItem[]
+  items?: ImpactEvidenceItem[]
 }
 
 const props = withDefaults(defineProps<Props>(), {

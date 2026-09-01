@@ -1,16 +1,10 @@
 <script setup lang="ts">
 import { Users, GraduationCap, Heart, TrendingUp, MessageCircle } from '@lucide/vue'
-
-interface Metric {
-  value: string
-  label: string
-  description: string
-  icon: 'users' | 'graduation' | 'heart' | 'trending'
-}
+import type { ImpactMetricItem } from '~/types'
 
 interface Props {
   sectionNumber?: number
-  metrics?: Metric[]
+  metrics?: ImpactMetricItem[]
   surveyNote?: string
 }
 

@@ -1,18 +1,10 @@
 <script setup lang="ts">
 import { FileText, Download, ArrowRight } from '@lucide/vue'
-
-interface ReportItem {
-  title: string
-  description: string
-  pdfSize: string
-  imageUrl: string
-  imageAlt: string
-  pdfUrl: string
-}
+import type { ImpactReportItem } from '~/types'
 
 interface Props {
   sectionNumber?: number
-  reports?: ReportItem[]
+  reports?: ImpactReportItem[]
 }
 
 const props = withDefaults(defineProps<Props>(), {

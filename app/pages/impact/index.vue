@@ -1,5 +1,11 @@
 <script setup lang="ts">
-import { Server, Users, Calendar, Building2 } from '@lucide/vue'
+import { Server, Calendar, Building2 } from '@lucide/vue'
+import type {
+  ImpactOverview,
+  ImpactHeroData,
+  ImpactMetricItem,
+  ProgrammeContext,
+} from '~/types'
 
 useHead({
   title: 'Impact - Impact Bridge',
@@ -7,15 +13,143 @@ useHead({
     { name: 'description', content: 'Measurable evidence of how offline learning hubs transform classrooms.' }
   ]
 })
+
+// ──────────────────────────────────────────────
+// Data fetching
+// ──────────────────────────────────────────────
+
+const { getOverview } = useImpact()
+
+/**
+ * Fetch the full impact page overview from the Go API.
+ * Falls back to null on error so the page still renders with static defaults.
+ */
+const { data: overview } = await useAsyncData<ImpactOverview | null>(
+  'impact-overview',
+  () => getOverview(),
+)
+
+// ──────────────────────────────────────────────
+// Derived data — fall back to sensible static defaults when the backend isn't ready
+// ──────────────────────────────────────────────
+
+const heroData = computed<Partial<ImpactHeroData>>(() => overview.value?.hero ?? {})
+
+const pilotProgramme = computed<Partial<ProgrammeContext>>(() => overview.value?.programme ?? {})
+
+const earlyResultMetrics = computed<ImpactMetricItem[]>(() => overview.value?.metrics ?? [
+  {
+    value: '50+',
+    label: 'Learners reached',
+    description: 'Students are accessing curriculum-aligned content in core subjects.',
+    icon: 'users',
+  },
+  {
+    value: '2',
+    label: 'Teachers prepared',
+    description: 'Champion Teachers trained and using the hub to lead interactive lessons.',
+    icon: 'graduation',
+  },
+  {
+    value: '100%',
+    label: 'Want more digital learning',
+    description: 'Every respondent said they want more technology-enhanced learning in class.',
+    icon: 'heart',
+  },
+  {
+    value: '90%',
+    label: 'Report greater confidence',
+    description: 'Learners felt more confident in their understanding after using digital resources.',
+    icon: 'trending',
+  },
+])
+
+const testimonials = computed(() => overview.value?.testimonials ?? {
+  learner: {
+    heading: 'Behind every number is a learner.',
+    quote: '"I feel like I can now finish my schooling."',
+    description: 'Digital lessons help me understand better because I can see and interact with the learning.',
+    attribution: '- Learner, Grade 6',
+    imageUrl: 'https://images.unsplash.com/photo-1594708767771-a7502209ff7e?w=600&h=700&fit=crop&crop=face',
+    imageAlt: 'Student smiling in classroom',
+    mediaType: 'audio' as const,
+    mediaDuration: '0:20',
+    storyUrl: '/stories/learner-grade-6',
+    variant: 'learner' as const,
+  },
+  teacher: {
+    heading: 'Teachers are leading the change.',
+    quote: '"The hub has changed the way I teach."',
+    description: 'Lessons are more engaging, students participate more, and I now plan with better resources.',
+    attribution: '- Champion Teacher',
+    imageUrl: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?w=600&h=700&fit=crop&crop=face',
+    imageAlt: 'Teacher in classroom',
+    mediaType: 'video' as const,
+    mediaDuration: '0:32',
+    mediaUrl: '#',
+    variant: 'teacher' as const,
+  },
+})
+
+const evidenceItems = computed(() => overview.value?.evidence ?? [
+  {
+    icon: 'wrench',
+    iconBg: 'bg-emerald-100',
+    iconColor: 'text-emerald-600',
+    observed: 'The original hardware needed greater protection and reliability.',
+    changed: 'The hub architecture was refined.',
+  },
+  {
+    icon: 'user',
+    iconBg: 'bg-orange-100',
+    iconColor: 'text-orange-500',
+    observed: 'Teachers needed more than an initial demonstration.',
+    changed: 'Training expanded into guided practice and continued support.',
+  },
+  {
+    icon: 'book',
+    iconBg: 'bg-purple-100',
+    iconColor: 'text-purple-600',
+    observed: 'Content needed stronger classroom alignment.',
+    changed: 'The content-review and curriculum-alignment process was strengthened.',
+  },
+])
+
+const reportItems = computed(() => overview.value?.reports ?? [
+  {
+    title: 'Pilot Impact Summary',
+    description: 'What we observed, what it means and what comes next.',
+    pdfSize: '2.1 MB',
+    imageUrl: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=300&fit=crop&crop=center',
+    imageAlt: 'Students working in classroom',
+    pdfUrl: '/reports/pilot-impact-summary.pdf',
+  },
+  {
+    title: 'Measurement Approach',
+    description: 'How we collect, validate and use data responsibly.',
+    pdfSize: '1.4 MB',
+    imageUrl: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=300&fit=crop&crop=center',
+    imageAlt: 'Document with charts and data',
+    pdfUrl: '/reports/measurement-approach.pdf',
+  },
+  {
+    title: 'Latest Programme Update',
+    description: 'Recent activities, refinements and upcoming milestones.',
+    pdfSize: '1.2 MB',
+    imageUrl: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?w=400&h=300&fit=crop&crop=center',
+    imageAlt: 'Teacher leading a lesson',
+    pdfUrl: '/reports/latest-programme-update.pdf',
+  },
+])
 </script>
 
 <template>
   <div class="page-impact">
     <!-- Hero Section -->
     <HeroOverlay
-      image-url="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1920&h=800&fit=crop&crop=center"
+      :image-url="heroData.imageUrl || 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1920&h=800&fit=crop&crop=center'"
       overlay="gradient"
-      image-alt="Students and teacher in a classroom using offline learning technology"
+      :image-alt="heroData.imageAlt || 'Students and teacher in a classroom using offline learning technology'"
     >
       <template #default>
         <span class="impact-hero-tag">EARLY EVIDENCE</span>
@@ -52,27 +186,19 @@ useHead({
           <h3 class="impact-hero-card-title">FIRST PILOT</h3>
 
           <div class="impact-hero-card-stats">
-            <div class="impact-hero-card-stat">
+            <div
+              v-for="(stat, idx) in heroData.stats ?? [
+                { value: '1', label: 'Pilot hub implemented', icon: 'server' },
+                { value: '2', label: 'Champion Teachers', icon: 'users' },
+                { value: '50+', label: 'Learners reached', icon: 'users' },
+              ]"
+              :key="idx"
+              class="impact-hero-card-stat"
+            >
               <Server class="impact-hero-card-stat-icon" />
               <div class="impact-hero-card-stat-content">
-                <span class="impact-hero-card-stat-value">1</span>
-                <span class="impact-hero-card-stat-label">Pilot hub<br />implemented</span>
-              </div>
-            </div>
-
-            <div class="impact-hero-card-stat">
-              <Users class="impact-hero-card-stat-icon" />
-              <div class="impact-hero-card-stat-content">
-                <span class="impact-hero-card-stat-value">2</span>
-                <span class="impact-hero-card-stat-label">Champion<br />Teachers</span>
-              </div>
-            </div>
-
-            <div class="impact-hero-card-stat">
-              <Users class="impact-hero-card-stat-icon" />
-              <div class="impact-hero-card-stat-content">
-                <span class="impact-hero-card-stat-value">50+</span>
-                <span class="impact-hero-card-stat-label">Learners<br />reached</span>
+                <span class="impact-hero-card-stat-value">{{ stat.value }}</span>
+                <span class="impact-hero-card-stat-label">{{ stat.label }}</span>
               </div>
             </div>
           </div>
@@ -90,27 +216,30 @@ useHead({
 
     <!-- Pilot in Context Section -->
     <PilotContext
-      school-name="Our Lady Seat of Wisdom"
-      location="Kansanga, Kampala, Uganda"
-      launch-date="April 2025"
-      image-url="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&h=600&fit=crop&crop=center"
-      image-alt="Our Lady Seat of Wisdom school building in Kampala, Uganda"
-      pilot-period="April – June 2025 (initial review)"
-      teachers="2 Champion Teachers"
-      learners="50+ students across primary grades"
-      focus="Offline learning, teacher adoption, learner engagement"
-      subjects="Science, Mathematics, English & Integrated Studies"
-      status="Pilot and refinement"
+      :school-name="pilotProgramme.schoolName || 'Our Lady Seat of Wisdom'"
+      :location="pilotProgramme.location || 'Kansanga, Kampala, Uganda'"
+      :launch-date="pilotProgramme.launchDate || 'April 2025'"
+      :image-url="pilotProgramme.imageUrl || 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&h=600&fit=crop&crop=center'"
+      :image-alt="pilotProgramme.imageAlt || 'Our Lady Seat of Wisdom school building in Kampala, Uganda'"
+      :pilot-period="pilotProgramme.pilotPeriod || 'April – June 2025 (initial review)'"
+      :teachers="pilotProgramme.teachers || '2 Champion Teachers'"
+      :learners="pilotProgramme.learners || '50+ students across primary grades'"
+      :focus="pilotProgramme.focus || 'Offline learning, teacher adoption, learner engagement'"
+      :subjects="pilotProgramme.subjects || 'Science, Mathematics, English & Integrated Studies'"
+      :status="pilotProgramme.status || 'Pilot and refinement'"
     />
 
     <!-- Early Results Section -->
-    <EarlyResults />
+    <EarlyResults :metrics="earlyResultMetrics" />
 
     <!-- Testimonial Quotes Section -->
-    <TestimonialQuotes />
+    <TestimonialQuotes
+      :learner="testimonials.learner"
+      :teacher="testimonials.teacher"
+    />
 
     <!-- Evidence Changes Section -->
-    <EvidenceChanges />
+    <EvidenceChanges :items="evidenceItems" />
 
     <!-- Still Learning + Progress Chapter (Side by Side) -->
     <section class="findings-row">
@@ -127,7 +256,7 @@ useHead({
     </section>
 
     <!-- Reports Explore Section -->
-    <ReportsExplore />
+    <ReportsExplore :reports="reportItems" />
 
     <!-- Impact CTA Section -->
     <ImpactCTA />

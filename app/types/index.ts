@@ -86,6 +86,122 @@ export interface ImpactSnapshot {
   totalHubsDeployed: number
 }
 
+// Impact Page
+
+/**
+ * Impact overview returned by GET /v1/impact/overview
+ * Aggregates hero, programme context, metrics, testimonials, evidence, reports
+ */
+export interface ImpactOverview {
+  hero: ImpactHeroData
+  programme: ProgrammeContext
+  metrics: ImpactMetricItem[]
+  testimonials: { learner: ImpactTestimonial; teacher: ImpactTestimonial }
+  evidence: ImpactEvidenceItem[]
+  reports: ImpactReportItem[]
+  cta?: ImpactCtaData
+}
+
+/** Hero section data */
+export interface ImpactHeroData {
+  tag?: string
+  title: string
+  titleAccent?: string
+  description: string
+  imageUrl?: string
+  imageAlt?: string
+  primaryCtaText?: string
+  primaryCtaTo?: string
+  secondaryCtaText?: string
+  secondaryCtaTo?: string
+  stats: ImpactHeroStat[]
+  pilotLabel?: string
+  pilotPeriod?: string
+  pilotPeriodNote?: string
+}
+
+export interface ImpactHeroStat {
+  value: string | number
+  label: string
+  icon?: string
+}
+
+/** Programme / pilot context data */
+export interface ProgrammeContext {
+  programmeId?: string
+  programmeSlug?: string
+  schoolName: string
+  location: string
+  launchDate: string
+  imageUrl?: string
+  imageAlt?: string
+  pilotPeriod: string
+  teachers: string
+  learners: string
+  focus: string
+  subjects: string
+  status: string
+  disclaimer?: string
+}
+
+/** Individual metric shown in the early results section */
+export interface ImpactMetricItem {
+  value: string
+  label: string
+  description: string
+  icon: 'users' | 'graduation' | 'heart' | 'trending'
+}
+
+/** Testimonial quote from a learner or teacher */
+export interface ImpactTestimonial {
+  heading: string
+  quote: string
+  description: string
+  attribution: string
+  imageUrl?: string
+  imageAlt?: string
+  mediaType?: 'audio' | 'video'
+  mediaDuration?: string
+  mediaUrl?: string
+  storyUrl?: string
+  variant: 'learner' | 'teacher'
+}
+
+/** Evidence item showing observation and change */
+export interface ImpactEvidenceItem {
+  icon: 'wrench' | 'user' | 'book'
+  iconBg: string
+  iconColor: string
+  observed: string
+  changed: string
+}
+
+/** Report item for the reports explore section */
+export interface ImpactReportItem {
+  id?: string
+  title: string
+  description: string
+  pdfSize?: string
+  imageUrl?: string
+  imageAlt?: string
+  pdfUrl: string
+  type?: 'pilot' | 'annual' | 'measurement' | 'governance'
+  period?: string
+  publishedAt?: string
+}
+
+/** CTA section data */
+export interface ImpactCtaData {
+  title: string
+  description: string
+  imageUrl?: string
+  imageAlt?: string
+  primaryButtonText?: string
+  primaryButtonTo?: string
+  secondaryButtonText?: string
+  secondaryButtonTo?: string
+}
+
 // Programmes & Schools
 export interface Programme {
   id: string
