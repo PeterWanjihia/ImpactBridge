@@ -120,7 +120,8 @@ useHead({
     <!-- Reports Explore Section -->
     <ReportsExplore />
 
-    <!-- Impact sections will be built here -->
+    <!-- Impact CTA Section -->
+    <ImpactCTA />
   </div>
 </template>
 
