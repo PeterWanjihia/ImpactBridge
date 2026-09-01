@@ -117,6 +117,9 @@ useHead({
     <!-- Progress Chapter Section -->
     <ProgressChapter />
 
+    <!-- Reports Explore Section -->
+    <ReportsExplore />
+
     <!-- Impact sections will be built here -->
   </div>
 </template>
