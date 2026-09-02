@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Server, Calendar, Building2 } from '@lucide/vue'
+import { Server, Users, User, Calendar, Building2 } from '@lucide/vue'
 import type {
   ImpactOverview,
   ImpactHeroData,
@@ -227,13 +227,13 @@ const reportItems = computed(() => overview.value?.reports ?? [
             <div
               v-for="(stat, idx) in heroData.stats ?? [
                 { value: '1', label: 'Pilot hub implemented', icon: 'server' },
-                { value: '2', label: 'Champion Teachers', icon: 'users' },
+                { value: '2', label: 'Champion Teachers', icon: 'user' },
                 { value: '50+', label: 'Learners reached', icon: 'users' },
               ]"
               :key="idx"
               class="impact-hero-card-stat"
             >
-              <Server class="impact-hero-card-stat-icon" />
+              <component :is="stat.icon === 'users' ? Users : stat.icon === 'user' ? User : Server" class="impact-hero-card-stat-icon" />
               <div class="impact-hero-card-stat-content">
                 <span class="impact-hero-card-stat-value">{{ stat.value }}</span>
                 <span class="impact-hero-card-stat-label">{{ stat.label }}</span>
@@ -314,7 +314,7 @@ const reportItems = computed(() => overview.value?.reports ?? [
 }
 
 .impact-hero-title-accent {
-  @apply italic font-serif text-blue-500 not-italic;
+  @apply italic font-serif text-blue-500;
 }
 
 .impact-hero-description {
