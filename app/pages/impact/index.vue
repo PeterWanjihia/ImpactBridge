@@ -4,6 +4,7 @@ import type {
   ImpactOverview,
   ImpactHeroData,
   ImpactMetricItem,
+  ImpactEvidenceItem,
   ProgrammeContext,
 } from '~/types'
 
@@ -91,29 +92,29 @@ const testimonials = computed(() => overview.value?.testimonials ?? {
   },
 })
 
-const evidenceItems = computed(() => overview.value?.evidence ?? [
+const evidenceItems = computed(() => overview.value?.evidence ?? ([
   {
-    icon: 'wrench',
+    icon: 'wrench' as const,
     iconBg: 'bg-emerald-100',
     iconColor: 'text-emerald-600',
     observed: 'The original hardware needed greater protection and reliability.',
     changed: 'The hub architecture was refined.',
   },
   {
-    icon: 'user',
+    icon: 'user' as const,
     iconBg: 'bg-orange-100',
     iconColor: 'text-orange-500',
     observed: 'Teachers needed more than an initial demonstration.',
     changed: 'Training expanded into guided practice and continued support.',
   },
   {
-    icon: 'book',
+    icon: 'book' as const,
     iconBg: 'bg-purple-100',
     iconColor: 'text-purple-600',
     observed: 'Content needed stronger classroom alignment.',
     changed: 'The content-review and curriculum-alignment process was strengthened.',
   },
-])
+] as ImpactEvidenceItem[]))
 
 const stillLearningItems = computed(() => overview.value?.stillLearning ?? [
   {

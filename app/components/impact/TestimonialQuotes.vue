@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<Props>(), {
     quote: '"I feel like I can now finish my schooling."',
     description: 'Digital lessons help me understand better because I can see and interact with the learning.',
     attribution: '- Learner, Grade 6',
-    imageUrl: 'https://images.unsplash.com/photo-1594708767771-a7502209ff7e?w=600&h=700&fit=crop&crop=face',
+    imageUrl: 'https://img.magnific.com/free-photo/african-american-woman-wearing-student-backpack-holding-books-smiling-happy-pointing-with-hand-finger-side_839833-34702.jpg?semt=ais_hybrid&w=740&q=80',
     imageAlt: 'Student smiling in classroom',
     mediaType: 'audio',
     mediaDuration: '0:20',

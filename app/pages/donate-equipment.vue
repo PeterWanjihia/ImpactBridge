@@ -5,6 +5,26 @@ useHead({
     { name: 'description', content: 'Support our mission by donating suitable computers, displays and supporting equipment.' }
   ]
 })
+
+// ---------------------------------------------------------------------------
+// Data layer
+// ---------------------------------------------------------------------------
+const { getEquipmentRequirements } = useEquipmentOffer()
+
+// TODO: When backend is ready, replace with:
+// const { data: requirements } = await useAsyncData('equipment-requirements', () => getEquipmentRequirements())
+
+const loading = ref(true)
+
+onMounted(async () => {
+  try {
+    await getEquipmentRequirements()
+  } catch {
+    // Use defaults
+  } finally {
+    loading.value = false
+  }
+})
 </script>
 
 <template>
@@ -14,6 +34,10 @@ useHead({
       subtitle="Support our mission by donating suitable computers, displays and supporting equipment as part of complete teacher-led learning hubs."
     />
 
-    <!-- Equipment donation workflow will be built here -->
+    <LayoutContainer>
+      <div class="py-12 max-w-2xl mx-auto">
+        <p class="text-gray-500 text-center">Equipment donation workflow coming soon.</p>
+      </div>
+    </LayoutContainer>
   </div>
 </template>

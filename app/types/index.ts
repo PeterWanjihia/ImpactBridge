@@ -378,3 +378,285 @@ export interface Person {
   imageUrl?: string
   displayOrder?: number
 }
+
+// ---------------------------------------------------------------------------
+// Homepage
+// ---------------------------------------------------------------------------
+
+/**
+ * Homepage composite returned by GET /v1/homepage
+ * Aggregates hero, value props, challenge, model, evidence, ways to give, and CTA.
+ */
+export interface HomepageData {
+  hero: HomepageHero
+  valueProps: HomepageValueProp[]
+  challenge: HomepageChallenge
+  modelSteps: HomepageModelStep[]
+  evidence: HomepageEvidence
+  waysToGive: HomepageGiveWays
+  implementationLinks: HomepageImplementationLink[]
+  cta: HomepageCta
+}
+
+/** Hero section with campaign card */
+export interface HomepageHero {
+  eyebrow: string
+  title: string
+  titleAccent?: string
+  subtitle: string
+  imageUrl: string
+  imageAlt: string
+  primaryCta: { text: string; to: string; icon?: string }
+  secondaryCta: { text: string; to: string; icon?: string }
+  note?: string
+  campaign: HomepageCampaignCard
+}
+
+/** Campaign card shown in the hero */
+export interface HomepageCampaignCard {
+  title: string
+  raised: number
+  goal: number
+  currency?: string
+  hubsFunded: number
+  devicesCommitted: number
+  learnersExpected: string
+}
+
+/** Single value proposition item */
+export interface HomepageValueProp {
+  iconKey: string
+  title: string
+  description: string
+}
+
+/** Challenge section */
+export interface HomepageChallenge {
+  eyebrow: string
+  title: string
+  description: string
+  stats: HomepageChallengeStat[]
+  source?: string
+  imageUrl: string
+  imageAlt: string
+}
+
+export interface HomepageChallengeStat {
+  value?: string
+  iconKey?: string
+  label: string
+}
+
+/** Model steps */
+export interface HomepageModelStep {
+  number: number
+  title: string
+  description: string
+  iconKey: string
+}
+
+/** Evidence / early results section */
+export interface HomepageEvidence {
+  title: string
+  pilotLabel: string
+  pilotLocation: string
+  stats: HomepageEvidenceStat[]
+  testimonial: HomepageFeaturedTestimonial
+  impactLink?: { text: string; to: string }
+}
+
+export interface HomepageEvidenceStat {
+  value: string
+  label: string
+}
+
+export interface HomepageFeaturedTestimonial {
+  quote: string
+  author: string
+  story: string
+  imageUrl: string
+  imageAlt: string
+  storyUrl: string
+}
+
+/** Ways to give section */
+export interface HomepageGiveWays {
+  title: string
+  individual: HomepageGiveWayCard
+  corporate: HomepageGiveWayCard
+}
+
+export interface HomepageGiveWayCard {
+  iconKey: string
+  title: string
+  description: string
+  items: string[]
+  note?: string
+  cta: { text: string; to: string }
+  imageUrl: string
+  imageAlt: string
+  color: string
+}
+
+/** Implementation / responsibility links */
+export interface HomepageImplementationLink {
+  iconKey: string
+  title: string
+  description: string
+  to: string
+  linkText: string
+}
+
+/** Bottom CTA */
+export interface HomepageCta {
+  title: string
+  description: string
+  primaryCta: { text: string; to: string; icon?: string }
+  secondaryCta: { text: string; to: string; icon?: string }
+}
+
+// ---------------------------------------------------------------------------
+// Our Model Page
+// ---------------------------------------------------------------------------
+
+export interface OurModelData {
+  hero: OurModelHero
+  overview: OurModelOverview
+  readiness: OurModelReadiness
+  hub: OurModelHub
+  content: OurModelContent
+  teacher: OurModelTeacher
+  lesson: OurModelLesson
+  timeline: OurModelTimeline
+}
+
+export interface OurModelHeroTab {
+  label: string
+  href: string
+  active?: boolean
+}
+
+export interface OurModelHeroFeature {
+  iconKey: string
+  label: string
+}
+
+export interface OurModelHero {
+  title: string
+  titleAccent: string
+  description: string
+  imageUrl: string
+  imageAlt: string
+  tabs: OurModelHeroTab[]
+  features: OurModelHeroFeature[]
+  primaryCta: { text: string; to: string }
+  secondaryCta: { text: string; to: string }
+}
+
+export interface OurModelOverviewStep {
+  title: string
+  description: string
+  iconKey: string
+}
+
+export interface OurModelOverview {
+  number: string
+  title: string
+  description: string
+  steps: OurModelOverviewStep[]
+  resultLabel: string
+}
+
+export interface OurModelReadinessCard {
+  title: string
+  description: string
+  image: string
+  alt: string
+}
+
+export interface OurModelReadiness {
+  number: string
+  title: string
+  description: string
+  linkText: string
+  linkTo: string
+  cards: OurModelReadinessCard[]
+}
+
+export interface OurModelHubFeature {
+  label: string
+  iconKey: string
+}
+
+export interface OurModelHub {
+  number: string
+  title: string
+  description: string
+  ctaText: string
+  ctaTo: string
+  features: OurModelHubFeature[]
+  imageUrl?: string
+  imageAlt?: string
+}
+
+export interface OurModelContentCategory {
+  title: string
+  count: string
+  image: string
+  alt: string
+}
+
+export interface OurModelContent {
+  number: string
+  title: string
+  description: string
+  linkText: string
+  linkTo: string
+  categories: OurModelContentCategory[]
+}
+
+export interface OurModelTeacher {
+  number: string
+  title: string
+  description: string
+  linkText: string
+  linkTo: string
+  championTitle: string
+  championDescription: string
+  championQualities: string[]
+  journeySteps: string[]
+  videoUrl?: string
+  videoAlt?: string
+  videoDuration?: string
+}
+
+export interface OurModelLessonStep {
+  number: number
+  title: string
+  description: string
+  image: string
+  alt: string
+}
+
+export interface OurModelLesson {
+  number: string
+  title: string
+  description: string
+  linkText: string
+  linkTo: string
+  steps: OurModelLessonStep[]
+}
+
+export interface OurModelTimelineStep {
+  phase: string
+  title: string
+  iconKey: string
+}
+
+export interface OurModelTimeline {
+  number: string
+  title: string
+  description: string
+  phases: string[]
+  steps: OurModelTimelineStep[]
+}

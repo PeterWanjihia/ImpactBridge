@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 import {
   WifiOff,
   MapPin,
@@ -12,9 +11,10 @@ import {
   ZapOff,
   Presentation,
   Wrench,
-  Lock
-
+  Lock,
+  Search,
 } from '@lucide/vue'
+import type { Component } from 'vue'
 import { svgToVNode } from '~/utils/svg'
 import bookOpenSvg from '~/assets/icons/book-open.svg?raw'
 import barChartSvg from '~/assets/icons/bar-chart.svg?raw'
@@ -29,17 +29,11 @@ import classroomSvg from '~/assets/icons/classroom.svg?raw'
 import biometricSvg from '~/assets/icons/Biometric.svg?raw'
 import modelHubEquipmentImage from '~/assets/images/model-hub-equipment-img.png'
 
-const BookOpenIcon = svgToVNode(bookOpenSvg)
-const BarChartIcon = svgToVNode(barChartSvg)
-const ServerIcon = svgToVNode(serverSvg)
-const SchoolIcon = svgToVNode(schoolSvg)
-const GroupIcon = svgToVNode(groupSvg)
-const HandshakeIcon = svgToVNode(handshakeSvg)
-const SupportIcon = svgToVNode(supportSvg)
-const SearchIcon = svgToVNode(searchSvg)
-const FolderIcon = svgToVNode(folderSvg)
-const ClassroomIcon = svgToVNode(classroomSvg)
-const BiometricIcon = svgToVNode(biometricSvg)
+// ---------------------------------------------------------------------------
+// Data layer — composable fetches from CMS with fallback defaults
+// ---------------------------------------------------------------------------
+const { data: model, load } = useOurModel()
+callOnce('our-model', () => load())
 
 useHead({
   title: 'Our Model - Impact Bridge',
@@ -48,199 +42,34 @@ useHead({
   ]
 })
 
-const tabs = [
-  { label: 'Overview', href: '#overview', active: true },
-  { label: 'Inside the Hub', href: '#inside-the-hub' },
-  { label: 'Teacher Development', href: '#teacher-development' },
-  { label: 'Deployment', href: '#deployment' },
-  { label: 'Support', href: '#support' },
-  { label: 'Measurement', href: '#measurement' },
-]
-
-const features = [
-  { icon: WifiOff, label: 'Offline-first' },
-  { icon: User2, label: 'Teacher-led' },
-  { icon: BookOpen, label: 'Curriculum-aligned' },
-  { icon: MapPin, label: 'Locally implemented' },
-  { icon: Handshake, label: 'Continuously supported' },
-  { icon: LineChart, label: 'Transparently measured' },
-]
-
-const modelSteps = [
-  { title: 'Appropriate infrastructure', description: 'Reliable technology built for real classroom conditions.', icon: ServerIcon },
-  { title: 'Curated offline content', description: 'Curriculum-relevant resources available without the internet.', icon: BookOpenIcon },
-  { title: 'Prepared teachers', description: 'Teachers trained to integrate technology into lessons.', icon: User2 },
-  { title: 'Classroom practice', description: 'Interactive teaching that engages and deepens learning.', icon: ClassroomIcon },
-  { title: 'Local ownership and support', description: 'Champion teachers and school leaders carry it forward.', icon: GroupIcon },
-  { title: 'Measurement and improvement', description: 'We monitor, learn and make the model stronger.', icon: BarChartIcon },
-]
-
-const readinessCards = [
-  {
-    title: 'Leadership commitment',
-    description: 'School leaders understand and support the vision.',
-    image: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?w=400&q=80',
-    alt: 'School leader discussing partnership plans',
-  },
-  {
-    title: 'Teacher readiness',
-    description: 'Teachers are ready to learn, lead and integrate.',
-    image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&q=80',
-    alt: 'Teacher training session in progress',
-  },
-  {
-    title: 'Classroom suitability',
-    description: 'Space, security and power are assessed and prepared.',
-    image: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400&q=80',
-    alt: 'Classroom space being assessed for hub setup',
-  },
-  {
-    title: 'Curriculum needs',
-    description: 'We understand the subjects and topics that matter most.',
-    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&q=80',
-    alt: 'Students engaged with curriculum materials',
-  },
-  {
-    title: 'Local support capacity',
-    description: 'Communities and partners help sustain the hub.',
-    image: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&q=80',
-    alt: 'Community members supporting the learning hub',
-  },
-]
-
-const hubComponents = [
-  {
-    name: 'Microcomputer',
-    description: 'Low-power, reliable and easy to maintain.',
-    side: 'left' as const,
-  },
-  {
-    name: 'Offline content storage',
-    description: 'Stores months of curriculum resources.',
-    side: 'left' as const,
-  },
-  {
-    name: 'Protective enclosure',
-    description: 'Shields against dust, heat and damage.',
-    side: 'left' as const,
-  },
-]
-
-const hubFeatures = [
-  { label: 'Works offline without internet', icon: WifiOff },
-  { label: 'Built for low power use', icon: ZapOff },
-  { label: 'Designed for classroom use', icon: Presentation },
-  { label: 'Easy to service and update', icon: Wrench },
-  { label: 'Secure storage when not in use', icon: Lock }
-]
-
-const contentCategories = [
-  {
-    title: 'Mathematics',
-    count: '1,300+ resources',
-    image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&q=80',
-    alt: 'Mathematics learning resources with graphs and equations',
-  },
-  {
-    title: 'Science',
-    count: '1,000+ resources',
-    image: 'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=400&q=80',
-    alt: 'Science learning resources with planets and space imagery',
-  },
-  {
-    title: 'English & Literacy',
-    count: '900+ resources',
-    image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80',
-    alt: 'English and literacy learning resources with text documents',
-  },
-  {
-    title: 'Simulations',
-    count: '700+ resources',
-    image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&q=80',
-    alt: 'Interactive science simulations with molecular models',
-  },
-  {
-    title: 'Teacher Guides',
-    count: '300+ resources',
-    image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&q=80',
-    alt: 'Teacher guides with checklists and lesson plans',
-  },
-  {
-    title: 'Local & AlloUg',
-    count: '800+ resources',
-    image: 'https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?w=400&q=80',
-    alt: 'Local cultural and historical learning resources',
-  },
-]
-
-const championQualities = [
-  'Selected for commitment',
-  'Trained deeply and practically',
-  'Supported continuously',
-  'Recognised and connected',
-]
-
-const teacherJourney = [
-  'Orientation',
-  'Demonstration',
-  'Co-planning',
-  'Guided practice',
-  'Feedback & reflection',
-  'Independent use',
-  'Peer support',
-]
-
-const lessonSteps = [
-  {
-    number: 1,
-    title: 'Prepare',
-    description: 'Teacher selects a resource and plans the lesson.',
-    image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&q=80',
-    alt: 'Teacher planning and preparing lesson resources',
-  },
-  {
-    number: 2,
-    title: 'Introduce',
-    description: 'Connects to prior knowledge and set the learning goal.',
-    image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&q=80',
-    alt: 'Teacher introducing the lesson to students',
-  },
-  {
-    number: 3,
-    title: 'Explore',
-    description: 'Learners interact with content and simulations.',
-    image: 'https://images.unsplash.com/photo-1588072432836-e10032774350?w=400&q=80',
-    alt: 'Students exploring interactive content on devices',
-  },
-  {
-    number: 4,
-    title: 'Discuss',
-    description: 'Learners share, ask questions and reflect.',
-    image: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?w=400&q=80',
-    alt: 'Students discussing and sharing their findings',
-  },
-  {
-    number: 5,
-    title: 'Reflect',
-    description: 'Teacher reinforces key concepts and next steps.',
-    image: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400&q=80',
-    alt: 'Teacher reflecting with students on lesson outcomes',
-  },
-]
-
-const timelineSteps = [
-  { phase: 'PREPARE', title: 'School identified', icon: SchoolIcon },
-  { phase: 'PREPARE', title: 'Readiness assessed', icon: SearchIcon },
-  { phase: 'PREPARE', title: 'Partnership agreed', icon: HandshakeIcon },
-  { phase: 'BUILD', title: 'Hardware inspected', icon: ServerIcon },
-  { phase: 'BUILD', title: 'Content prepared', icon: FolderIcon },
-  { phase: 'LAUNCH', title: 'Teachers trained', icon: ClassroomIcon },
-  { phase: 'LAUNCH', title: 'Hub installed', icon: ServerIcon },
-  { phase: 'LAUNCH', title: 'First lessons supported', icon: BookOpenIcon },
-  { phase: 'SUSTAIN', title: 'Ongoing support', icon: SupportIcon },
-  { phase: 'SUSTAIN', title: 'Monitor & measure', icon: BarChartIcon },
-  { phase: 'SUSTAIN', title: 'Improve & grow', icon: BiometricIcon },
-]
+// ---------------------------------------------------------------------------
+// Icon resolver — maps string keys from CMS/API to Vue components
+// Custom SVG icons are converted via svgToVNode; Lucide icons used directly.
+// ---------------------------------------------------------------------------
+const iconMap: Record<string, Component> = {
+  // Lucide icons
+  offline: WifiOff,
+  teacher: User2,
+  book: BookOpen,
+  community: MapPin,
+  handshake: Handshake,
+  chart: LineChart,
+  zap: ZapOff,
+  presentation: Presentation,
+  wrench: Wrench,
+  lock: Lock,
+  search: Search,
+  // Custom SVG icons (converted to renderable components)
+  server: svgToVNode(serverSvg),
+  school: svgToVNode(schoolSvg),
+  group: svgToVNode(groupSvg),
+  support: svgToVNode(supportSvg),
+  folder: svgToVNode(folderSvg),
+  classroom: svgToVNode(classroomSvg),
+  barChart: svgToVNode(barChartSvg),
+  bookOpen: svgToVNode(bookOpenSvg),
+  biometric: svgToVNode(biometricSvg),
+}
 </script>
 
 <template>
@@ -263,7 +92,7 @@ const timelineSteps = [
       <nav class="model-hero-tabs" aria-label="Model sections">
         <LayoutContainer>
           <ul class="model-hero-tab-list">
-            <li v-for="tab in tabs" :key="tab.label">
+            <li v-for="tab in model.hero.tabs" :key="tab.label">
               <a :href="tab.href" :class="['model-hero-tab', { 'model-hero-tab--active': tab.active }]">
                 {{ tab.label }}
               </a>
@@ -311,8 +140,8 @@ const timelineSteps = [
       <div class="model-hero-features">
         <LayoutContainer>
           <ul class="model-hero-feature-list">
-            <li v-for="feature in features" :key="feature.label" class="model-hero-feature-item">
-              <component :is="feature.icon" class="w-4 h-4 text-cobalt-400 flex-shrink-0" />
+            <li v-for="feature in model.hero.features" :key="feature.label" class="model-hero-feature-item">
+              <component :is="iconMap[feature.iconKey]" class="w-4 h-4 text-cobalt-400 flex-shrink-0" />
               <span class="model-hero-feature-label">{{ feature.label }}</span>
             </li>
           </ul>
@@ -339,9 +168,9 @@ const timelineSteps = [
 
             <!-- 6-step horizontal row -->
             <div class="model-glance-steps">
-              <div v-for="step in modelSteps" :key="step.title" class="model-glance-step">
+              <div v-for="step in model.overview.steps" :key="step.title" class="model-glance-step">
                 <div class="model-glance-step-circle">
-                  <component :is="step.icon" class="w-6 h-6" />
+                  <component :is="iconMap[step.iconKey]" class="w-6 h-6" />
                 </div>
                 <h3 class="model-glance-step-title">{{ step.title }}</h3>
                 <p class="model-glance-step-description">{{ step.description }}</p>
@@ -363,11 +192,11 @@ const timelineSteps = [
             <!-- Functioning Classroom Pill Badge -->
             <div class="model-glance-result">
               <div class="model-glance-result-icon">
-                <GroupIcon class="w-5 h-5 text-cobalt" />
+                <component :is="iconMap['group']" class="w-5 h-5 text-cobalt" />
               </div>
               <span class="model-glance-result-label">A functioning classroom.</span>
               <div class="model-glance-result-fingerprint">
-                <BiometricIcon class="w-7 h-7 text-cobalt/70" />
+                <component :is="iconMap['biometric']" class="w-7 h-7 text-cobalt/70" />
               </div>
             </div>
           </div>
@@ -395,7 +224,7 @@ const timelineSteps = [
 
           <!-- Cards -->
           <div class="model-readiness-cards">
-            <div v-for="card in readinessCards" :key="card.title" class="model-readiness-card">
+            <div v-for="card in model.readiness.cards" :key="card.title" class="model-readiness-card">
               <ClientOnly>
                 <div class="model-readiness-card-image">
                   <img :src="card.image" :alt="card.alt" class="model-readiness-card-img" loading="lazy" />
@@ -445,9 +274,9 @@ const timelineSteps = [
 
             <!-- Integrated Bottom Feature Dock -->
             <div class="model-hub-feature-bar">
-              <div v-for="feature in hubFeatures" :key="feature.label" class="model-hub-feature-card">
+              <div v-for="feature in model.hub.features" :key="feature.label" class="model-hub-feature-card">
                 <div class="model-hub-feature-icon-box">
-                  <component :is="feature.icon" class="w-4 h-4 text-cobalt-400" />
+                  <component :is="iconMap[feature.iconKey]" class="w-4 h-4 text-cobalt-400" />
                 </div>
                 <span class="model-hub-feature-text">{{ feature.label }}</span>
               </div>
@@ -477,7 +306,7 @@ const timelineSteps = [
 
           <!-- Content Cards -->
           <div class="model-content-cards">
-            <div v-for="category in contentCategories" :key="category.title" class="model-content-card">
+            <div v-for="category in model.content.categories" :key="category.title" class="model-content-card">
               <div class="model-content-card-info">
                 <h3 class="model-content-card-title">{{ category.title }}</h3>
                 <span class="model-content-card-count">{{ category.count }}</span>
@@ -539,7 +368,7 @@ const timelineSteps = [
               We empower local educators to lead adoption and support their peers—driving lasting change from within.
             </p>
             <ul class="model-teacher-champion-list">
-              <li v-for="quality in championQualities" :key="quality" class="model-teacher-champion-item">
+              <li v-for="quality in model.teacher.championQualities" :key="quality" class="model-teacher-champion-item">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                   stroke-linecap="round" stroke-linejoin="round" class="model-teacher-champion-check">
                   <polyline points="20 6 9 17 4 12" />
@@ -557,7 +386,7 @@ const timelineSteps = [
           <div class="model-teacher-journey">
             <h3 class="model-teacher-journey-title">Teacher journey</h3>
             <ol class="model-teacher-journey-list">
-              <li v-for="step in teacherJourney" :key="step" class="model-teacher-journey-step">
+              <li v-for="step in model.teacher.journeySteps" :key="step" class="model-teacher-journey-step">
                 <span class="model-teacher-journey-dot" />
                 <span class="model-teacher-journey-label">{{ step }}</span>
               </li>
@@ -586,7 +415,7 @@ const timelineSteps = [
 
           <!-- Lesson Steps -->
           <div class="model-lesson-steps">
-            <div v-for="step in lessonSteps" :key="step.number" class="model-lesson-step">
+            <div v-for="step in model.lesson.steps" :key="step.number" class="model-lesson-step">
               <div class="model-lesson-step-badge">
                 <span class="model-lesson-step-num">{{ step.number }}</span>
                 <span class="model-lesson-step-title">{{ step.title }}</span>
@@ -639,10 +468,10 @@ const timelineSteps = [
 
             <!-- Steps -->
             <div class="model-timeline-steps">
-              <div v-for="step in timelineSteps" :key="step.title" class="model-timeline-step">
+              <div v-for="step in model.timeline.steps" :key="step.title" class="model-timeline-step">
                 <div class="model-timeline-step-dot" />
                 <div class="model-timeline-step-icon">
-                  <component :is="step.icon" />
+                  <component :is="iconMap[step.iconKey]" />
                 </div>
                 <span class="model-timeline-step-label">{{ step.title }}</span>
               </div>
