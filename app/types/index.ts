@@ -520,6 +520,7 @@ export interface HomepageCta {
 // ---------------------------------------------------------------------------
 
 export interface OurModelData {
+  seo?: SeoMetadata
   hero: OurModelHero
   overview: OurModelOverview
   readiness: OurModelReadiness

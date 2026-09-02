@@ -30,15 +30,19 @@ import biometricSvg from '~/assets/icons/Biometric.svg?raw'
 import modelHubEquipmentImage from '~/assets/images/model-hub-equipment-img.png'
 
 // ---------------------------------------------------------------------------
-// Data layer — composable fetches from CMS with fallback defaults
+// Data layer — composable fetches from Go API (when ready) with CMS and static defaults
 // ---------------------------------------------------------------------------
 const { data: model, load } = useOurModel()
 callOnce('our-model', () => load())
 
 useHead({
-  title: 'Our Model - Impact Bridge',
+  title: model.value.seo?.title || 'Our Model - Impact Bridge',
   meta: [
-    { name: 'description', content: 'How we combine offline learning technology, curated resources, trained teachers and local ownership into one practical model—designed for schools with limited connectivity.' }
+    { name: 'description', content: model.value.seo?.description || 'How we combine offline learning technology, curated resources, trained teachers and local ownership into one practical model—designed for schools with limited connectivity.' },
+    { property: 'og:title', content: model.value.seo?.title || 'Our Model - Impact Bridge' },
+    { property: 'og:description', content: model.value.seo?.description || '' },
+    ...(model.value.seo?.ogImage ? [{ property: 'og:image', content: model.value.seo.ogImage }] : []),
+    ...(model.value.seo?.noindex ? [{ name: 'robots', content: 'noindex' }] : []),
   ]
 })
 
@@ -78,8 +82,8 @@ const iconMap: Record<string, Component> = {
     <section class="model-hero">
       <div class="model-hero-bg">
         <ClientOnly>
-          <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=1920&q=80"
-            alt="Teacher guiding students in a classroom using digital learning resources" class="model-hero-image"
+          <img :src="model.hero.imageUrl"
+            :alt="model.hero.imageAlt" class="model-hero-image"
             width="1920" height="1080" />
           <template #fallback>
             <div class="model-hero-image model-hero-image--placeholder" />
@@ -106,30 +110,29 @@ const iconMap: Record<string, Component> = {
         <LayoutContainer>
           <div class="model-hero-inner">
             <h1 class="model-hero-title">
-              A computer does not transform a classroom.
-              <span class="model-hero-title-accent">A complete learning system can.</span>
+              {{ model.hero.title }}
+              <span class="model-hero-title-accent">{{ model.hero.titleAccent }}</span>
             </h1>
 
             <p class="model-hero-description">
-              Impact Bridge combines offline learning technology, curated resources, trained teachers
-              and local ownership into one practical model—designed for schools with limited connectivity.
+              {{ model.hero.description }}
             </p>
 
             <div class="model-hero-actions">
               <UiButton variant="primary" size="lg">
-                <NuxtLink to="/donate" class="flex items-center gap-2"
+                <NuxtLink :to="model.hero.primaryCta.to" class="flex items-center gap-2"
                   aria-label="Explore the model — learn how our approach works">
-                  Explore the model
+                  {{ model.hero.primaryCta.text }}
                   <ArrowDown class="w-5 h-5" />
                 </NuxtLink>
               </UiButton>
 
               <UiButton variant="outline-white" size="lg" class="border-1 border-white/90">
-                <a href="#inside-the-hub" class="flex items-center gap-2"
+                <NuxtLink :to="model.hero.secondaryCta.to" class="flex items-center gap-2"
                   aria-label="See a hub in action — view how a learning hub operates">
-                  See a hub in action
+                  {{ model.hero.secondaryCta.text }}
                   <ArrowRight class="w-5 h-5" />
-                </a>
+                </NuxtLink>
               </UiButton>
             </div>
           </div>
@@ -346,14 +349,14 @@ const iconMap: Record<string, Component> = {
           <div class="model-teacher-video">
             <ClientOnly>
               <div class="model-teacher-video-wrap">
-                <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&q=80"
-                  alt="Teacher leading a classroom training session" class="model-teacher-video-img" loading="lazy" />
+                <img :src="model.teacher.videoUrl"
+                  :alt="model.teacher.videoAlt" class="model-teacher-video-img" loading="lazy" />
                 <button class="model-teacher-play" aria-label="Play teacher training video">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                     <polygon points="5 3 19 12 5 21 5 3" />
                   </svg>
                 </button>
-                <span class="model-teacher-duration">0:45</span>
+                <span class="model-teacher-duration">{{ model.teacher.videoDuration }}</span>
               </div>
               <template #fallback>
                 <div class="model-teacher-video-wrap model-teacher-video-wrap--placeholder" />
@@ -434,8 +437,6 @@ const iconMap: Record<string, Component> = {
         </div>
       </LayoutContainer>
     </section>
-
-    <!-- Our Model sections will be built here -->
 
     <!-- From Preparation to Long-Term Impact -->
     <section class="model-timeline">

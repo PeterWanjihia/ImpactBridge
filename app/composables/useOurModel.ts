@@ -5,6 +5,11 @@ import type { OurModelData } from '~/types'
  * Used when the backend / CMS is not yet connected.
  */
 const DEFAULTS: OurModelData = {
+  seo: {
+    title: 'Our Model - Impact Bridge',
+    description:
+      'How we combine offline learning technology, curated resources, trained teachers and local ownership into one practical model—designed for schools with limited connectivity.',
+  },
   hero: {
     title: 'A computer does not transform a classroom.\n',
     titleAccent: 'A complete learning system can.',
@@ -169,15 +174,17 @@ const DEFAULTS: OurModelData = {
 /**
  * Composable for fetching the Our Model page data.
  *
- * Data flow:
+ * Data flow (architecture: "Content pages can load CMS records directly
+ * or through a thin content client"):
  *   1. Start with hardcoded defaults.
- *   2. Attempt to fetch CMS content for editorial sections.
- *   3. Merge live data over defaults where available.
+ *   2. Try Go API aggregate endpoint (GET /v1/public/model) for the full shape.
+ *   3. Fall back to CMS page sections via Directus.
+ *   4. Merge live data over defaults where available.
  *
- * Once the backend is ready, add a dedicated endpoint that returns
- * the full OurModelData shape, or map from CMS page sections.
+ * Once the Go API endpoint is ready, uncomment the api fetch block below.
  */
 export function useOurModel() {
+  const config = useRuntimeConfig()
   const { getPage } = useContent()
 
   const data = ref<OurModelData>({ ...DEFAULTS })
@@ -189,12 +196,35 @@ export function useOurModel() {
     error.value = null
 
     try {
+      // --- Go API aggregate endpoint (architecture: GET /v1/public/model) ---
+      // When the backend is ready, uncomment this block to fetch the full
+      // OurModelData shape from the Go API. The API should return the same
+      // structure as OurModelData, including optional seo fields.
+      //
+      // try {
+      //   const apiData = await $fetch<OurModelData>(
+      //     `${config.public.apiUrl}/v1/public/model`,
+      //   )
+      //   if (apiData) {
+      //     data.value = { ...DEFAULTS, ...apiData }
+      //     return
+      //   }
+      // } catch (apiError) {
+      //   console.warn('Go API unavailable, falling back to CMS:', apiError)
+      // }
+
+      // --- CMS editorial content (Directus page sections) ---
       const cmsPage = await getPage('our-model')
 
       if (cmsPage) {
         const res = cmsPage as any
         const page = Array.isArray(res?.data) ? res.data[0] : res?.data ?? res
         const sections = page?.sections ?? []
+
+        // Merge top-level page metadata (SEO, etc.)
+        if (page?.seo) {
+          data.value.seo = { ...data.value.seo, ...page.seo }
+        }
 
         for (const section of sections) {
           switch (section.type) {
