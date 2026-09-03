@@ -45,12 +45,12 @@ const props = withDefaults(defineProps<Props>(), {
   @apply grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center;
 }
 
-.media-split-grid--reverse {
-  @apply md:direction-rtl;
+.media-split-grid--reverse .media-split-media {
+  @apply md:order-2;
 }
 
-.media-split-grid--reverse > * {
-  @apply md:direction-ltr;
+.media-split-grid--reverse .media-split-content {
+  @apply md:order-1;
 }
 
 .media-split-title {
