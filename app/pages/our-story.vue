@@ -36,6 +36,7 @@ const heroMetrics = [
 <template>
   <div class="page-our-story">
     <HeroOverlay
+      image-url="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=1920&h=900&fit=crop&crop=center"
       image-alt="Teacher explaining a lesson in a classroom"
       overlay="gradient"
       tag="OUR STORY"
