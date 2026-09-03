@@ -21,8 +21,10 @@ const props = withDefaults(defineProps<Props>(), {
           { 'media-split-grid--reverse': imagePosition === 'left' }
         ]"
       >
-        <div v-if="imageUrl" class="media-split-media">
-          <img :src="imageUrl" :alt="imageAlt || title || ''" class="media-split-image" />
+        <div class="media-split-media">
+          <slot name="media">
+            <img v-if="imageUrl" :src="imageUrl" :alt="imageAlt || title || ''" class="media-split-image" />
+          </slot>
         </div>
         <div class="media-split-content">
           <h2 v-if="title" class="media-split-title">{{ title }}</h2>

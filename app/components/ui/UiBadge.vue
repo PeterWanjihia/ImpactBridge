@@ -1,6 +1,6 @@
 <script setup lang="ts">
 interface Props {
-  variant?: 'default' | 'success' | 'warning' | 'error' | 'info'
+  variant?: 'default' | 'success' | 'warning' | 'error' | 'info' | 'teal'
   size?: 'sm' | 'md'
 }
 
@@ -45,6 +45,10 @@ const props = withDefaults(defineProps<Props>(), {
 
 .ui-badge--info {
   @apply bg-blue-100 text-blue-800;
+}
+
+.ui-badge--teal {
+  @apply bg-teal text-white;
 }
 
 .ui-badge--sm {

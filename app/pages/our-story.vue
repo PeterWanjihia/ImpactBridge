@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Play, ArrowRight } from '@lucide/vue'
+import { Play, ArrowRight, WifiOff, GraduationCap } from '@lucide/vue'
 
 useHead({
   title: 'Our Story - Impact Bridge',
@@ -56,6 +56,35 @@ const heroMetrics = [
     </HeroOverlay>
 
     <MetricStrip :metrics="heroMetrics" />
+
+    <!-- Our Reality Section -->
+    <MediaSplit
+      image-position="left"
+      image-url="/images/our-story-video.jpg"
+      image-alt="Teacher explaining a lesson in a classroom"
+    >
+      <template #media>
+        <VideoThumbnail image-url="/images/our-story-video.jpg" />
+      </template>
+
+      <template #default>
+        <UiBadge variant="teal" size="sm" class="mb-4">OUR REALITY</UiBadge>
+        <h2 class="text-2xl md:text-3xl font-serif font-bold text-navy">The desire to learn was never missing</h2>
+        <p class="mt-4 text-gray-600">
+          We have heard the stories. The learners are bright. The teachers are dedicated. But the tools to learn, and opportunities to learn are hard to reach, and exist outside the classroom we see with our own eyes.
+        </p>
+        <div class="flex flex-wrap gap-4 mt-6">
+          <div class="flex items-center gap-2 text-sm text-navy">
+            <WifiOff class="w-4 h-4 text-cobalt" />
+            <span>Limited connectivity</span>
+          </div>
+          <div class="flex items-center gap-2 text-sm text-navy">
+            <GraduationCap class="w-4 h-4 text-cobalt" />
+            <span>Teachers not prepared in technology</span>
+          </div>
+        </div>
+      </template>
+    </MediaSplit>
 
     <LayoutContainer>
       <div class="py-12 max-w-2xl mx-auto">
