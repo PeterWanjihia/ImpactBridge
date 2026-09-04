@@ -79,6 +79,7 @@ onMounted(async () => {
 
     <RealitySection />
     <QuestionSection />
+    <SolutionSection />
   </div>
 </template>
 

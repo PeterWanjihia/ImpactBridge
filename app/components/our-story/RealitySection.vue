@@ -50,7 +50,7 @@ const realityConstraints: Array<{ icon: Component; label: string }> = [
               class="reality-poster" />
 
             <button type="button" aria-label="Play video" @click="handlePlayVideo"
-              class="reality-play-overlay">
+              class="group reality-play-overlay">
               <div class="reality-play-btn">
                 <Play class="w-7 h-7 fill-cobalt text-cobalt translate-x-0.5" />
               </div>
@@ -113,10 +113,13 @@ const realityConstraints: Array<{ icon: Component; label: string }> = [
   @apply w-full h-full object-cover transition-transform duration-300 hover:scale-105;
 }
 .reality-play-overlay {
-  @apply absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition-colors group cursor-pointer;
+  @apply absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition-colors cursor-pointer;
 }
 .reality-play-btn {
-  @apply w-16 h-16 rounded-full bg-white text-cobalt flex items-center justify-center shadow-xl transition-transform group-hover:scale-110;
+  @apply w-16 h-16 rounded-full bg-white text-cobalt flex items-center justify-center shadow-xl transition-transform;
+}
+.group:hover .reality-play-btn {
+  transform: scale(1.1);
 }
 
 /* Content Column */
