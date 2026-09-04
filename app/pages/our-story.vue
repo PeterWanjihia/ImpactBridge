@@ -78,6 +78,7 @@ onMounted(async () => {
     </HeroOverlay>
 
     <RealitySection />
+    <QuestionSection />
   </div>
 </template>
 
