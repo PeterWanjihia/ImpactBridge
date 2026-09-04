@@ -80,6 +80,13 @@ onMounted(async () => {
     <RealitySection />
     <QuestionSection />
     <SolutionSection />
+    <FirstClassroomSection />
+    <PilotSection />
+    <EarlyResultsSection />
+    <JourneyTimeline />
+    <PeopleSection />
+    <SupportSection />
+    <FinalCTA />
   </div>
 </template>
 
