@@ -23,7 +23,7 @@ const typeColors: Record<string, string> = {
   school: 'text-indigo-900',
   classroom: 'text-indigo-900',
   community: 'text-indigo-900',
-  partner: 'text-indigo-900',
+  partner: 'text-blue-700',
 }
 
 const mediaIcons: Record<string, any> = {
@@ -65,55 +65,99 @@ function getMediaLabel(type?: string): string {
           :key="story.id"
           :class="[
             'stories-grid-card',
-            `stories-grid-card--${story.id}`
+            `stories-grid-card--${story.id}`,
+            story.type === 'partner' ? 'stories-grid-card--banner' : ''
           ]"
         >
-          <!-- Text Content Section -->
-          <div class="stories-grid-card-content">
-            <div class="space-y-2">
-              <span 
-                class="text-[11px] font-extrabold tracking-wider uppercase inline-block"
-                :class="typeColors[story.type] || 'text-indigo-900'"
-              >
-                {{ typeLabels[story.type] || story.type }}
-              </span>
+          <!-- Full-bleed background image for Banner/Partner style -->
+          <template v-if="story.type === 'partner'">
+            <div class="stories-banner-image-wrapper">
+              <img :src="story.imageUrl" :alt="story.imageAlt" class="stories-banner-img" />
+              <!-- Soft gradient blend overlay on the left -->
+              <div class="stories-banner-gradient-overlay" />
+            </div>
+
+            <!-- Overlaid Content -->
+            <div class="stories-banner-content">
+              <div class="space-y-2 max-w-sm">
+                <span class="text-[11px] font-black tracking-wider uppercase text-blue-700 inline-block">
+                  {{ typeLabels[story.type] || story.type }}
+                </span>
+                
+                <h3 class="text-2xl font-serif font-extrabold text-slate-900 leading-tight">
+                  {{ story.title }}
+                </h3>
+                <p class="text-xs text-slate-600 font-medium leading-relaxed">
+                  {{ story.summary }}
+                </p>
+              </div>
+
+              <!-- Floating Metadata & Action Pill Bar -->
+              <div class="mt-6 inline-flex items-center gap-4 bg-white/95 backdrop-blur-md px-4 py-2 rounded-full shadow-sm border border-slate-100 max-w-max">
+                <div class="flex items-center gap-3 text-xs text-slate-600 font-semibold">
+                  <span v-if="story.mediaType" class="flex items-center gap-1.5">
+                    <component :is="mediaIcons[story.mediaType] || FileText" class="w-3.5 h-3.5 text-slate-700" />
+                    {{ getMediaLabel(story.mediaType) }}
+                  </span>
+                  <span v-if="story.mediaDuration" class="flex items-center gap-1">
+                    <Clock class="w-3.5 h-3.5 text-slate-500" />
+                    {{ story.mediaDuration }}
+                  </span>
+                </div>
+
+                <NuxtLink :to="`/stories/${story.slug}`" class="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-700 transition-colors pl-2 border-l border-gray-200">
+                  Read the story <ArrowRight class="w-3.5 h-3.5" />
+                </NuxtLink>
+              </div>
+            </div>
+          </template>
+
+          <!-- Standard Card Layout -->
+          <template v-else>
+            <div class="stories-grid-card-content">
+              <div class="space-y-2">
+                <span 
+                  class="text-[11px] font-extrabold tracking-wider uppercase inline-block"
+                  :class="typeColors[story.type] || 'text-indigo-900'"
+                >
+                  {{ typeLabels[story.type] || story.type }}
+                </span>
+                
+                <h3 class="stories-grid-card-title">{{ story.title }}</h3>
+                <p class="stories-grid-card-summary">{{ story.summary }}</p>
+              </div>
+
+              <div class="mt-6 space-y-3">
+                <div class="stories-grid-card-meta">
+                  <span v-if="story.mediaType" class="stories-grid-card-meta-item">
+                    <component :is="mediaIcons[story.mediaType] || FileText" class="w-3.5 h-3.5" />
+                    {{ getMediaLabel(story.mediaType) }}
+                  </span>
+                  <span v-if="story.mediaDuration" class="stories-grid-card-meta-item">
+                    <Clock class="w-3.5 h-3.5" />
+                    {{ story.mediaDuration }}
+                  </span>
+                  <span v-if="story.readTime" class="stories-grid-card-meta-item">
+                    {{ story.readTime }}
+                  </span>
+                </div>
+
+                <NuxtLink :to="`/stories/${story.slug}`" class="stories-grid-card-link">
+                  Read the story <ArrowRight class="w-3.5 h-3.5" />
+                </NuxtLink>
+              </div>
+            </div>
+
+            <div class="stories-grid-card-image">
+              <img :src="story.imageUrl" :alt="story.imageAlt" class="stories-grid-card-img" />
               
-              <h3 class="stories-grid-card-title">{{ story.title }}</h3>
-              <p class="stories-grid-card-summary">{{ story.summary }}</p>
-            </div>
-
-            <div class="mt-6 space-y-3">
-              <div class="stories-grid-card-meta">
-                <span v-if="story.mediaType" class="stories-grid-card-meta-item">
-                  <component :is="mediaIcons[story.mediaType] || FileText" class="w-3.5 h-3.5" />
-                  {{ getMediaLabel(story.mediaType) }}
-                </span>
-                <span v-if="story.mediaDuration" class="stories-grid-card-meta-item">
-                  <Clock class="w-3.5 h-3.5" />
-                  {{ story.mediaDuration }}
-                </span>
-                <span v-if="story.readTime" class="stories-grid-card-meta-item">
-                  {{ story.readTime }}
-                </span>
-              </div>
-
-              <NuxtLink :to="`/stories/${story.slug}`" class="stories-grid-card-link">
-                Read the story <ArrowRight class="w-3.5 h-3.5" />
-              </NuxtLink>
-            </div>
-          </div>
-
-          <!-- Image Section -->
-          <div class="stories-grid-card-image">
-            <img :src="story.imageUrl" :alt="story.imageAlt" class="stories-grid-card-img" />
-            
-            <!-- Floating play icon button matching mockup -->
-            <div v-if="story.mediaType === 'video'" class="stories-grid-card-play">
-              <div class="w-12 h-12 rounded-full border-2 border-white/80 bg-black/30 backdrop-blur-xs flex items-center justify-center">
-                <Play class="w-5 h-5 text-white fill-white translate-x-0.5" />
+              <div v-if="story.mediaType === 'video'" class="stories-grid-card-play">
+                <div class="w-12 h-12 rounded-full border-2 border-white/80 bg-black/30 backdrop-blur-xs flex items-center justify-center">
+                  <Play class="w-5 h-5 text-white fill-white translate-x-0.5" />
+                </div>
               </div>
             </div>
-          </div>
+          </template>
         </div>
       </TransitionGroup>
     </LayoutContainer>
@@ -125,16 +169,36 @@ function getMediaLabel(type?: string): string {
   @apply py-8 md:py-12;
 }
 
-/* 12-column Grid Layout setup matching design */
 .stories-grid {
   @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-5;
 }
 
 .stories-grid-card {
-  @apply bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-200/80 flex flex-col sm:flex-row h-full;
+  @apply bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-200/80 flex flex-col sm:flex-row h-full relative;
 }
 
-/* Row 1 layout */
+/* Banner / Partner Card Specific Styles */
+.stories-grid-card--banner {
+  @apply lg:col-span-12 min-h-[300px] sm:min-h-[340px] flex-col justify-center;
+}
+
+.stories-banner-image-wrapper {
+  @apply absolute inset-0 w-full h-full z-0;
+}
+
+.stories-banner-img {
+  @apply w-full h-full object-cover object-center;
+}
+
+.stories-banner-gradient-overlay {
+  @apply absolute inset-0 bg-gradient-to-r from-white via-white/90 via-40% to-transparent;
+}
+
+.stories-banner-content {
+  @apply relative z-10 p-8 sm:p-10 flex flex-col justify-between h-full max-w-lg;
+}
+
+/* Standard Layout Spans */
 .stories-grid-card--1 {
   @apply lg:col-span-7;
 }
@@ -142,7 +206,6 @@ function getMediaLabel(type?: string): string {
   @apply lg:col-span-5;
 }
 
-/* Row 2 layout */
 .stories-grid-card--3 {
   @apply lg:col-span-4;
 }
@@ -151,11 +214,6 @@ function getMediaLabel(type?: string): string {
 }
 .stories-grid-card--5 {
   @apply lg:col-span-4;
-}
-
-/* Row 3 layout */
-.stories-grid-card--6 {
-  @apply lg:col-span-12;
 }
 
 .stories-grid-card-content {
