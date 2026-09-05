@@ -14,12 +14,12 @@ const props = withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <section class="hero-overlay">
+  <section class="hero-overlay" :class="{ 'hero-overlay--slim': !imageUrl }">
     <div v-if="imageUrl" class="hero-overlay-bg">
       <img :src="imageUrl" :alt="imageAlt || title" class="hero-overlay-image" />
       <div :class="['hero-overlay-mask', `hero-overlay-mask--${overlay}`]" />
     </div>
-    <div class="hero-overlay-content">
+    <div class="hero-overlay-content" :class="{ 'hero-overlay-content--slim': !imageUrl }">
       <LayoutContainer>
         <div class="hero-overlay-grid">
           <div class="hero-overlay-inner">
@@ -43,6 +43,10 @@ const props = withDefaults(defineProps<Props>(), {
 <style scoped>
 .hero-overlay {
   @apply relative min-h-[60vh] flex items-center;
+}
+
+.hero-overlay--slim {
+  @apply min-h-0;
 }
 
 .hero-overlay-bg {
@@ -71,6 +75,10 @@ const props = withDefaults(defineProps<Props>(), {
 
 .hero-overlay-content {
   @apply relative z-10 w-full py-20 md:py-24 lg:py-32;
+}
+
+.hero-overlay-content--slim {
+  @apply py-12 md:py-16;
 }
 
 .hero-overlay-grid {
