@@ -1,63 +1,91 @@
 <script setup lang="ts">
-import { ref, nextTick } from 'vue'
-import { CirclePlay } from '@lucide/vue'
+import { Play } from '@lucide/vue'
 
-const isPlaying = ref(false)
-const videoRef = ref<HTMLVideoElement | null>(null)
-
-const videoUrl = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4'
-const posterUrl = 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&h=600&fit=crop&crop=center'
-
-function handlePlay() {
-  isPlaying.value = true
-  nextTick(() => {
-    videoRef.value?.play()
-  })
+interface PhotoItem {
+  src: string
+  alt: string
+  class?: string
 }
+
+const photos: PhotoItem[] = [
+  {
+    src: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&h=600&fit=crop',
+    alt: 'Teachers examining hardware hub'
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?w=400&h=300&fit=crop',
+    alt: 'Teacher presenting to classroom',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&h=300&fit=crop',
+    alt: 'Students collaborating around table',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop',
+    alt: 'Teacher interacting with tech',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400&h=300&fit=crop',
+    alt: 'Student looking at digital screen display',
+  }
+]
 </script>
 
 <template>
-  <section class="first-classroom-section">
+  <section class="py-16 md:py-24 bg-slate-50/50">
     <LayoutContainer>
-      <div class="first-classroom-grid">
-
-        <!-- Media Column -->
-        <div class="first-classroom-media">
-          <video v-if="isPlaying" ref="videoRef" :src="videoUrl" controls autoplay class="first-classroom-video">
-            Your browser does not support the video tag.
-          </video>
-          <template v-else>
-            <img :src="posterUrl" alt="First classroom installation" class="first-classroom-poster" />
-            <button type="button" aria-label="Play video" @click="handlePlay" class="group first-classroom-play-overlay">
-              <div class="first-classroom-play-btn">
-                <CirclePlay class="w-8 h-8 text-cobalt" />
-              </div>
-            </button>
-          </template>
-        </div>
-
-        <!-- Content Column -->
-        <div class="first-classroom-content">
-          <div class="first-classroom-eyebrow">
-            <span class="first-classroom-eyebrow-number">04</span>
-            <span class="first-classroom-eyebrow-label">THE FIRST CLASSROOM</span>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        
+        <!-- Left Content Column -->
+        <div class="lg:col-span-5 flex flex-col justify-center">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="w-6 h-6 rounded-full border border-cobalt/30 text-cobalt text-xs font-semibold flex items-center justify-center">
+              04
+            </span>
+            <span class="text-xs font-bold tracking-wider text-cobalt uppercase">
+              THE FIRST CLASSROOM
+            </span>
           </div>
 
-          <h2 class="first-classroom-title">
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-slate-900 leading-[1.15]">
             Then the idea entered a real classroom.
           </h2>
 
-          <p class="first-classroom-description">
-            In April 2025, the first hub was installed at Our Lady Seat of Wisdom in Kansanga.
-            A teacher explored the content, led a lesson, and a two-day CPS program introduced
-            the concept to the entire staff.
+          <p class="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed">
+            In April 2025, the first hub was installed at Our Lady Seat of Wisdom in Kansanga. 
+            Two Champion Teachers were trained, and a two-day CPD program introduced the 
+            system to teachers and learners.
           </p>
 
-          <div class="first-classroom-cta">
-            <UiButton variant="primary" size="lg">
-              <CirclePlay class="w-5 h-5" />
-              Watch the first installation
+          <div class="mt-8">
+            <UiButton 
+              variant="primary" 
+              class="inline-flex items-center gap-2 bg-cobalt hover:bg-cobalt/90 text-white font-medium rounded-lg px-5 py-3 shadow-sm transition-colors text-sm"
+            >
+              <div class="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center">
+                <Play class="w-3 h-3 fill-white text-white translate-x-0.5" />
+              </div>
+              <span>Watch the first installation</span>
             </UiButton>
+          </div>
+        </div>
+
+        <!-- Right Photo Gallery Bento Grid -->
+        <div class="lg:col-span-7 grid grid-cols-4 grid-rows-2 gap-3 aspect-[16/9] sm:aspect-[2/1] lg:aspect-[16/9]">
+          <div
+            v-for="(photo, index) in photos"
+            :key="index"
+            :class="[
+              'relative overflow-hidden rounded-lg group',
+              index === 0 ? 'col-span-2 row-span-2' : 'col-span-1 row-span-1'
+            ]"
+          >
+            <img
+              :src="photo.src"
+              :alt="photo.alt"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
           </div>
         </div>
 
@@ -65,52 +93,3 @@ function handlePlay() {
     </LayoutContainer>
   </section>
 </template>
-
-<style scoped>
-.first-classroom-section {
-  @apply py-16 md:py-24 bg-slate-50/50;
-}
-.first-classroom-grid {
-  @apply grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center;
-}
-.first-classroom-media {
-  @apply lg:col-span-5 relative overflow-hidden rounded-2xl shadow-md bg-slate-900 aspect-[4/3];
-}
-.first-classroom-video {
-  @apply w-full h-full object-cover;
-}
-.first-classroom-poster {
-  @apply w-full h-full object-cover transition-transform duration-300 hover:scale-105;
-}
-.first-classroom-play-overlay {
-  @apply absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition-colors cursor-pointer;
-}
-.first-classroom-play-btn {
-  @apply w-16 h-16 rounded-full bg-white text-cobalt flex items-center justify-center shadow-xl transition-transform;
-}
-.group:hover .first-classroom-play-btn {
-  transform: scale(1.1);
-}
-
-.first-classroom-content {
-  @apply lg:col-span-7 flex flex-col justify-center;
-}
-.first-classroom-eyebrow {
-  @apply flex items-center gap-2 mb-3;
-}
-.first-classroom-eyebrow-number {
-  @apply w-6 h-6 rounded-full border border-cobalt/30 text-cobalt text-xs font-semibold flex items-center justify-center;
-}
-.first-classroom-eyebrow-label {
-  @apply text-xs font-bold tracking-wider text-cobalt uppercase;
-}
-.first-classroom-title {
-  @apply text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-slate-900 leading-tight;
-}
-.first-classroom-description {
-  @apply mt-4 text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl;
-}
-.first-classroom-cta {
-  @apply mt-8;
-}
-</style>
