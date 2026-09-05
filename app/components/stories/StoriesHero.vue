@@ -57,6 +57,16 @@ defineProps<Props>()
                 {{ featuredStory.mediaDuration }}
               </span>
             </div>
+            <a
+              v-if="featuredStory.mediaUrl"
+              :href="featuredStory.mediaUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="stories-hero-watch-link"
+            >
+              <Play class="w-4 h-4 fill-current" />
+              Watch video
+            </a>
             <NuxtLink :to="`/stories/${featuredStory.slug}`" class="stories-hero-card-link">
               Read the story
               <ArrowRight class="w-4 h-4" />
@@ -132,6 +142,10 @@ defineProps<Props>()
 
 .stories-hero-card-meta-item {
   @apply flex items-center gap-1.5;
+}
+
+.stories-hero-watch-link {
+  @apply mt-5 inline-flex items-center gap-2 rounded-full bg-cobalt px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-cobalt/80;
 }
 
 .stories-hero-card-link {

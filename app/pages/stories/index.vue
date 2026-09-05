@@ -97,7 +97,7 @@ const mockStories: StoriesStoryItem[] = [
     imageAlt: 'Student in classroom',
     mediaType: 'video',
     mediaDuration: '03:12',
-    mediaUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+    mediaUrl: 'https://www.youtube.com/watch?v=YO-XQGDqxJc',
   },
   {
     id: '2',

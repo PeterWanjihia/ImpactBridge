@@ -149,13 +149,24 @@ function getMediaLabel(type?: string): string {
             </div>
 
             <div class="stories-grid-card-image">
-              <img :src="story.imageUrl" :alt="story.imageAlt" class="stories-grid-card-img" />
-              
-              <div v-if="story.mediaType === 'video'" class="stories-grid-card-play">
-                <div class="w-12 h-12 rounded-full border-2 border-white/80 bg-black/30 backdrop-blur-xs flex items-center justify-center">
-                  <Play class="w-5 h-5 text-white fill-white translate-x-0.5" />
+              <a
+                v-if="story.mediaType === 'video' && story.mediaUrl"
+                :href="story.mediaUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="stories-grid-card-video-link"
+                :aria-label="`Play video: ${story.title}`"
+              >
+                <img :src="story.imageUrl" :alt="story.imageAlt" class="stories-grid-card-img" />
+                <div class="stories-grid-card-play">
+                  <div class="w-12 h-12 rounded-full border-2 border-white/80 bg-black/30 backdrop-blur-xs flex items-center justify-center">
+                    <Play class="w-5 h-5 text-white fill-white translate-x-0.5" />
+                  </div>
                 </div>
-              </div>
+              </a>
+              <template v-else>
+                <img :src="story.imageUrl" :alt="story.imageAlt" class="stories-grid-card-img" />
+              </template>
             </div>
           </template>
         </div>
@@ -246,6 +257,10 @@ function getMediaLabel(type?: string): string {
 
 .stories-grid-card-img {
   @apply w-full h-full object-cover;
+}
+
+.stories-grid-card-video-link {
+  @apply relative block w-full h-full;
 }
 
 .stories-grid-card-play {
