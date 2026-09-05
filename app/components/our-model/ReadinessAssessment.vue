@@ -53,7 +53,7 @@ defineProps<{
 
 <style scoped>
 .model-readiness {
-  @apply py-16 md:py-24 bg-white;
+  @apply py-12 md:py-16 bg-white;
 }
 .model-readiness-layout {
   @apply grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-12 lg:gap-16 items-start;

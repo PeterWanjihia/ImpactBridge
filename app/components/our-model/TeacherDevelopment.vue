@@ -86,7 +86,7 @@ defineProps<{
 
 <style scoped>
 .model-teacher {
-  @apply py-16 md:py-24 bg-gray-50;
+  @apply py-12 md:py-16 bg-gray-50;
 }
 .model-teacher-layout {
   @apply grid grid-cols-1 lg:grid-cols-[220px_1fr_280px_220px] gap-8 items-start;

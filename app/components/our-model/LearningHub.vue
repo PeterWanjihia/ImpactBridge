@@ -63,7 +63,7 @@ defineProps<{
 
 <style scoped>
 .model-hub {
-  @apply relative py-16 md:py-24 bg-[#0a2540] overflow-hidden text-white;
+  @apply relative py-12 md:py-16 bg-[#0a2540] overflow-hidden text-white;
 }
 .model-hub-grid {
   @apply grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-10 items-center;
