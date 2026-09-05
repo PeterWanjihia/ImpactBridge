@@ -12,6 +12,7 @@ const typeLabels: Record<string, string> = {
   learner: 'LEARNER STORY',
   teacher: 'TEACHER STORY',
   school: 'SCHOOL STORY',
+  community: 'COMMUNITY STORY',
   partner: 'PARTNERSHIP STORY',
 }
 
@@ -19,6 +20,7 @@ const typeColors: Record<string, string> = {
   learner: 'bg-cobalt/10 text-cobalt',
   teacher: 'bg-teal/10 text-teal',
   school: 'bg-green-100 text-green-700',
+  community: 'bg-orange-100 text-orange-700',
   partner: 'bg-purple-100 text-purple-700',
 }
 

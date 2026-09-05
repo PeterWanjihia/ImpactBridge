@@ -41,6 +41,18 @@ onMounted(async () => {
 })
 
 // ---------------------------------------------------------------------------
+// Filtered stories list
+// ---------------------------------------------------------------------------
+const allStories = computed<StoriesStoryItem[]>(() => {
+  return stories.value.length ? stories.value : mockStories
+})
+
+const filteredStories = computed<StoriesStoryItem[]>(() => {
+  if (activeFilter.value === 'all') return allStories.value
+  return allStories.value.filter(s => s.type === activeFilter.value)
+})
+
+// ---------------------------------------------------------------------------
 // Static / mock data for development — will be replaced by API responses
 // ---------------------------------------------------------------------------
 const heroData: StoriesHeroData = {
@@ -122,7 +134,7 @@ const mockStories: StoriesStoryItem[] = [
     slug: 'when-the-whole-community-shows-up',
     title: 'When the whole community shows up',
     summary: 'Parents and leaders are proud of what their children are learning.',
-    type: 'school',
+    type: 'community',
     imageUrl: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=600&q=80',
     imageAlt: 'Community gathering',
     mediaType: 'article',
@@ -211,7 +223,7 @@ const ctaData: StoriesCtaData = {
 
     <!-- Stories Grid -->
     <StoriesGrid
-      :stories="stories.length ? stories : mockStories"
+      :stories="filteredStories"
     />
 
     <!-- Hear it in their own words -->

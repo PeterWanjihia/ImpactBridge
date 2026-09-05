@@ -42,7 +42,7 @@ export interface PageSection {
 }
 
 // Stories
-export type StoryType = 'learner' | 'teacher' | 'school' | 'partner'
+export type StoryType = 'learner' | 'teacher' | 'school' | 'community' | 'partner'
 
 export interface Story {
   id: string
