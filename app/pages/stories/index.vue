@@ -222,9 +222,13 @@ const ctaData: StoriesCtaData = {
     />
 
     <!-- Stories Grid -->
-    <StoriesGrid
-      :stories="filteredStories"
-    />
+    <StoriesGrid :stories="filteredStories">
+      <template v-if="activeFilter !== 'all'" #empty-action>
+        <UiButton variant="outline" size="sm" class="mt-4" @click="activeFilter = 'all'">
+          Show all stories
+        </UiButton>
+      </template>
+    </StoriesGrid>
 
     <!-- Hear it in their own words -->
     <StoriesVoices :voices="voices" />

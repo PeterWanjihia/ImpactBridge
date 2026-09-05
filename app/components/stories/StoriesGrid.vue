@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Play, ArrowRight, Clock, FileText, Camera } from '@lucide/vue'
+import { Play, ArrowRight, Clock, FileText, Camera, SearchX } from '@lucide/vue'
 import type { StoriesStoryItem } from '~/types'
 
 interface Props {
@@ -41,7 +41,23 @@ function getMediaLabel(type?: string): string {
 <template>
   <section class="stories-grid-section">
     <LayoutContainer>
-      <div class="stories-grid">
+      <!-- Empty state -->
+      <div v-if="!stories.length" class="stories-grid-empty">
+        <SearchX class="w-12 h-12 text-gray-300 mb-4" />
+        <h3 class="stories-grid-empty-title">No stories found</h3>
+        <p class="stories-grid-empty-desc">
+          There are no stories matching this filter yet. Try selecting a different category.
+        </p>
+        <slot name="empty-action" />
+      </div>
+
+      <!-- Story cards -->
+      <TransitionGroup
+        v-else
+        tag="div"
+        name="stories-grid"
+        class="stories-grid"
+      >
         <div
           v-for="story in stories"
           :key="story.id"
@@ -80,7 +96,7 @@ function getMediaLabel(type?: string): string {
             </NuxtLink>
           </div>
         </div>
-      </div>
+      </TransitionGroup>
     </LayoutContainer>
   </section>
 </template>
@@ -96,6 +112,27 @@ function getMediaLabel(type?: string): string {
 
 .stories-grid-card {
   @apply bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow border border-gray-100;
+}
+
+/* TransitionGroup animations */
+.stories-grid-enter-active {
+  @apply transition-all duration-300 ease-out;
+}
+
+.stories-grid-leave-active {
+  @apply transition-all duration-200 ease-in absolute;
+}
+
+.stories-grid-enter-from {
+  @apply opacity-0 scale-95;
+}
+
+.stories-grid-leave-to {
+  @apply opacity-0 scale-95;
+}
+
+.stories-grid-move {
+  @apply transition-transform duration-300 ease-out;
 }
 
 .stories-grid-card-image {
@@ -132,5 +169,17 @@ function getMediaLabel(type?: string): string {
 
 .stories-grid-card-link {
   @apply mt-3 inline-flex items-center gap-1.5 text-sm font-sans font-semibold text-cobalt hover:text-cobalt/80 transition-colors;
+}
+
+.stories-grid-empty {
+  @apply col-span-full flex flex-col items-center justify-center py-16 text-center;
+}
+
+.stories-grid-empty-title {
+  @apply text-xl font-serif font-bold text-navy;
+}
+
+.stories-grid-empty-desc {
+  @apply mt-2 text-sm text-gray-500 max-w-sm;
 }
 </style>
