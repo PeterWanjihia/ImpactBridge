@@ -31,7 +31,7 @@ const props = withDefaults(defineProps<Props>(), {
 }
 
 .layout-section--padded {
-  @apply py-12 md:py-16 lg:py-20;
+  @apply py-12 md:py-16;
 }
 
 .layout-section--white {

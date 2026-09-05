@@ -48,7 +48,7 @@ defineProps<{
 
 <style scoped>
 .model-section {
-  @apply relative bg-white py-16 lg:py-24;
+  @apply relative bg-white py-12 lg:py-16;
 }
 .model-header {
   @apply text-center mb-16;

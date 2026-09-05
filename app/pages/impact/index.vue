@@ -370,7 +370,7 @@ const reportItems = computed(() => overview.value?.reports ?? [
 
 /* Findings Row - Sections 5 & 6 side by side */
 .findings-row {
-  @apply py-12 md:py-16 lg:py-20;
+  @apply py-12 md:py-16;
 }
 
 .findings-row-content {
