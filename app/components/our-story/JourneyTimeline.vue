@@ -1,92 +1,83 @@
 <script setup lang="ts">
-const milestones = [
+interface JourneyMilestone {
+  date: string
+  title: string
+  description: string
+}
+
+const milestones: JourneyMilestone[] = [
   {
-    date: 'Aug 2023 — Jan 2025',
+    date: 'Aug 2023 – Jan 2025',
     title: 'The vision',
-    description: 'We identified the gap, designed the offline hub concept and built early partnerships.'
+    description: 'We identified the gap, designed the offline microcomputer hub concept and built early partnerships.'
   },
   {
     date: 'April 2025',
     title: 'Pilot launch',
-    description: 'The first hub was installed at Our Lady Seat of Wisdom in Kansanga. Teachers and students encountered offline digital learning for the first time.'
+    description: 'The first hub was installed at Our Lady Seat of Wisdom in Kansanga. Teachers and students experienced digital learning for the first time.'
   },
   {
     date: 'June 2025',
     title: 'Pilot review',
-    description: 'We collected feedback, refined the hub\'s content, improved user experience and strengthened teacher support.'
+    description: 'We collected feedback, refined the hardware, improved content and strengthened teacher support.'
   },
   {
-    date: 'July 2025 — Beyond',
+    date: 'July 2025 – Beyond',
     title: 'The next chapter',
-    description: 'Expanding subjects, launching new hubs, deepening teacher training and publishing an impact report.'
+    description: 'Expanding subjects, launching 10 more hubs by 2026, scaling teacher training and publishing an impact report.'
   }
 ]
 </script>
 
 <template>
-  <section class="journey-section">
+  <section class="py-16 md:py-24 bg-white border-t border-slate-100">
     <LayoutContainer>
-      <div class="journey-header">
-        <div class="journey-eyebrow">
-          <span class="journey-eyebrow-number">07</span>
-          <span class="journey-eyebrow-label">OUR JOURNEY SO FAR</span>
+      <!-- Section Header with Continuous Timeline Track Bar -->
+      <div class="relative mb-12">
+        <!-- Header Eyebrow -->
+        <div class="flex items-center gap-2 mb-8">
+          <span
+            class="w-6 h-6 rounded-full border border-cobalt/30 text-cobalt text-xs font-bold flex items-center justify-center bg-white">
+            07
+          </span>
+          <span class="text-xs font-bold tracking-wider text-cobalt uppercase">
+            OUR JOURNEY SO FAR
+          </span>
+        </div>
+
+        <!-- Horizontal Timeline Bar (Desktop Grid Aligned) -->
+        <div class="hidden lg:block relative w-full pt-4">
+          <!-- Continuous Blue Line -->
+          <div class="absolute top-1/2 left-0 right-0 h-[2px] bg-cobalt -translate-y-1/2" />
+
+          <!-- Timeline Node Dots Grid -->
+          <div class="grid grid-cols-4 gap-8 relative z-10">
+            <div v-for="(_, index) in milestones" :key="index" class="flex items-center">
+              <div class="w-5 h-5 rounded-full bg-white border-4 border-cobalt shadow-sm ring-4 ring-white" />
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="journey-timeline">
-        <div class="journey-timeline-line" />
-        <div v-for="(milestone, index) in milestones" :key="index" class="journey-milestone">
-          <div class="journey-milestone-dot" />
-          <div class="journey-milestone-content">
-            <span class="journey-milestone-date">{{ milestone.date }}</span>
-            <h3 class="journey-milestone-title">{{ milestone.title }}</h3>
-            <p class="journey-milestone-description">{{ milestone.description }}</p>
-          </div>
+      <!-- Timeline Content Columns -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 lg:divide-x lg:divide-slate-200/80">
+        <div v-for="(item, index) in milestones" :key="index" class="flex flex-col lg:px-6 first:lg:pl-0 last:lg:pr-0">
+          <!-- Date Range Tag -->
+          <span class="text-xs font-bold text-slate-800 mb-2">
+            {{ item.date }}
+          </span>
+
+          <!-- Milestone Title -->
+          <h3 class="text-lg font-bold text-slate-900 mb-3">
+            {{ item.title }}
+          </h3>
+
+          <!-- Milestone Description -->
+          <p class="text-xs text-slate-600 leading-relaxed font-sans">
+            {{ item.description }}
+          </p>
         </div>
       </div>
     </LayoutContainer>
   </section>
 </template>
-
-<style scoped>
-.journey-section {
-  @apply py-16 md:py-24 bg-white;
-}
-.journey-header {
-  @apply max-w-3xl mb-12;
-}
-.journey-eyebrow {
-  @apply flex items-center gap-2 mb-4;
-}
-.journey-eyebrow-number {
-  @apply w-6 h-6 rounded-full border border-cobalt/30 text-cobalt text-xs font-semibold flex items-center justify-center;
-}
-.journey-eyebrow-label {
-  @apply text-xs font-bold tracking-wider text-cobalt uppercase;
-}
-
-.journey-timeline {
-  @apply relative;
-}
-.journey-timeline-line {
-  @apply absolute top-4 left-0 right-0 h-[2px] bg-slate-200;
-}
-.journey-milestone {
-  @apply relative flex flex-col md:flex-row gap-4 md:gap-8 pb-12 last:pb-0;
-}
-.journey-milestone-dot {
-  @apply w-3 h-3 rounded-full bg-cobalt border-2 border-white ring-2 ring-cobalt/20 relative z-10 mt-1.5 shrink-0;
-}
-.journey-milestone-content {
-  @apply flex-1;
-}
-.journey-milestone-date {
-  @apply text-sm font-bold text-cobalt;
-}
-.journey-milestone-title {
-  @apply text-xl font-bold text-slate-900 mt-2;
-}
-.journey-milestone-description {
-  @apply text-sm text-slate-600 leading-relaxed mt-2;
-}
-</style>

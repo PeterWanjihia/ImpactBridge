@@ -84,7 +84,6 @@ onMounted(async () => {
     <PilotSection />
     <EarlyResultsSection />
     <JourneyTimeline />
-    <PeopleSection />
     <SupportSection />
     <FinalCTA />
   </div>
