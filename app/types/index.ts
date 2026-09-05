@@ -421,6 +421,7 @@ export interface StoriesFeaturedStory {
   slug: string
   mediaType: 'video' | 'photo' | 'article'
   mediaDuration?: string
+  mediaUrl?: string
   imageUrl: string
   imageAlt: string
 }
@@ -436,6 +437,7 @@ export interface StoriesStoryItem {
   imageAlt: string
   mediaType?: 'video' | 'photo' | 'article'
   mediaDuration?: string
+  mediaUrl?: string
   readTime?: string
 }
 
