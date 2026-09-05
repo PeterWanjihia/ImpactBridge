@@ -131,7 +131,7 @@ function getMediaLabel(type?: string): string {
 }
 
 .stories-grid-card {
-  @apply bg-white rounded-2xl overflow-hidden shadow-xs border border-gray-200/80 flex flex-col sm:flex-row h-full;
+  @apply bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-200/80 flex flex-col sm:flex-row h-full;
 }
 
 /* Row 1 layout */
