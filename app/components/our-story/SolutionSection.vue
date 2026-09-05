@@ -58,7 +58,7 @@ const steps: StepItem[] = [
 </script>
 
 <template>
-  <section class="py-16 md:py-24 bg-white">
+  <section class="py-12 md:py-16 bg-white">
     <LayoutContainer>
       <!-- Section Header -->
       <div class="max-w-3xl mb-12 md:mb-16">

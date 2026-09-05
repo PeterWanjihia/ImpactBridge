@@ -111,7 +111,7 @@ function toggleAudio(id: string) {
 
 <style scoped>
 .early-results-section {
-  @apply py-16 md:py-24 bg-gray-50;
+  @apply py-12 md:py-16 bg-gray-50;
 }
 .early-results-header {
   @apply max-w-3xl mb-12;

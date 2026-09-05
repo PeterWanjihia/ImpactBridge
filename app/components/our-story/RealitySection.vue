@@ -96,7 +96,7 @@ const realityConstraints: Array<{ icon: Component; label: string }> = [
 
 <style scoped>
 .reality-section {
-  @apply py-16 md:py-24 bg-slate-50/50;
+  @apply py-12 md:py-16 bg-slate-50/50;
 }
 .reality-grid {
   @apply grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center;

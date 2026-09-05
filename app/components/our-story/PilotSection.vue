@@ -42,7 +42,7 @@ const evidenceList: EvidenceItem[] = [
 </script>
 
 <template>
-  <section class="py-16 md:py-24 bg-blue-50/60">
+  <section class="py-12 md:py-16 bg-blue-50/60">
     <LayoutContainer>
       <!-- Section Header (Centered) -->
       <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">

@@ -30,7 +30,7 @@ const milestones: JourneyMilestone[] = [
 </script>
 
 <template>
-  <section class="py-16 md:py-24 bg-white border-t border-slate-100">
+  <section class="py-12 md:py-16 bg-white border-t border-slate-100">
     <LayoutContainer>
       <!-- Section Header with Continuous Timeline Track Bar -->
       <div class="relative mb-12">

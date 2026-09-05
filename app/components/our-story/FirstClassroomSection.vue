@@ -32,7 +32,7 @@ const photos: PhotoItem[] = [
 </script>
 
 <template>
-  <section class="py-16 md:py-24 bg-slate-50/50">
+  <section class="py-12 md:py-16 bg-slate-50/50">
     <LayoutContainer>
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
         

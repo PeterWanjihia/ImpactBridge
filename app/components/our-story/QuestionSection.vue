@@ -37,7 +37,7 @@
 
 <style scoped>
 .question-section {
-  @apply py-16 md:py-24 bg-navy text-white;
+  @apply py-12 md:py-16 bg-navy text-white;
 }
 .question-grid {
   @apply grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center;
