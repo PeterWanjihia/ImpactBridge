@@ -3,156 +3,165 @@ import { ArrowRight } from '@lucide/vue'
 </script>
 
 <template>
-  <div class="insight-banner">
-    <!-- Background Faded Watermark Icon (Left) -->
-    <div class="watermark-bg">
-      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5">
-        <path d="M50,15 C30,15 15,30 15,50 C15,70 30,85 50,85 C70,85 85,70 85,50" stroke-dasharray="3 3"/>
-        <path d="M50,25 C36,25 25,36 25,50 C25,64 36,75 50,75 C64,75 75,64 75,50"/>
-        <path d="M50,35 C42,35 35,42 35,50 C35,58 42,65 50,65"/>
-        <path d="M50,45 C47,45 45,47 45,50 C45,53 47,55 50,55"/>
+  <div class="stories-banner">
+    <!-- Left Faded Fingerprint Watermark -->
+    <div class="watermark-container" aria-hidden="true">
+      <svg viewBox="0 0 100 120" class="watermark-svg" fill="none" stroke="currentColor" stroke-width="1.2">
+        <path d="M50 10 C25 10 10 30 10 60 C10 90 25 110 50 110 C75 110 90 90 90 60" stroke-dasharray="2 2" />
+        <path d="M50 20 C30 20 18 35 18 60 C18 85 30 100 50 100 C70 100 82 85 82 60" />
+        <path d="M50 30 C35 30 26 42 26 60 C26 78 35 90 50 90 C65 90 74 78 74 60" />
+        <path d="M50 40 C41 40 34 48 34 60 C34 72 41 80 50 80 C59 80 66 72 66 60" />
+        <path d="M50 50 C46 50 42 54 42 60 C42 66 46 70 50 70 C54 70 58 66 58 60" />
       </svg>
     </div>
 
     <div class="banner-content">
-      <!-- Left Section: Text -->
-      <div class="section-text">
-        <h2 class="title">Stories show<br />experience.</h2>
-        <p class="description">
+      <!-- Section 1: Left Text -->
+      <div class="text-block">
+        <h3 class="banner-title">
+          Stories show<br />experience.
+        </h3>
+        <p class="banner-desc">
           Each story reflects a real person's journey and perspective.
         </p>
       </div>
 
-      <!-- Center Visual Group: Avatar + Dashed Line + Fingerprint + Dashed Line -->
-      <div class="visual-center">
-        <!-- Profile Image Avatar -->
-        <div class="avatar-wrapper">
+      <!-- Section 2: Avatar & Center Visual Connector -->
+      <div class="connector-group">
+        <div class="avatar-ring">
           <img
             src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&q=80&w=250"
-            alt="Person profile"
+            alt="Student portrait"
             class="avatar-img"
           />
         </div>
 
-        <!-- Left Dashed Connector Line -->
-        <div class="connector-line">
-          <span class="dot"></span>
-          <div class="dash-line"></div>
+        <div class="dash-connector">
+          <span class="dot" />
+          <span class="line" />
         </div>
 
-        <!-- Main Blue Fingerprint Icon -->
-        <div class="fingerprint-icon">
-          <svg viewBox="0 0 64 64" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round">
-            <path d="M32 8c-13.25 0-24 10.75-24 24 0 10 5 18 12 22" />
-            <path d="M32 14c-9.94 0-18 8.06-18 18 0 8 4 14 9 17" />
-            <path d="M32 20c-6.63 0-12 5.37-12 12 0 6 3 10 7 12" />
-            <path d="M32 26c-3.31 0-6 2.69-6 6 0 4 2 7 5 8" />
-            <path d="M32 32v2" />
-            <path d="M38 52c4-3 6-7.5 6-12 0-3.31-1.34-6.31-3.5-8.5" />
-            <path d="M44 47c3.5-3.5 5-8.5 5-15 0-9.94-8.06-18-18-18" />
-            <path d="M50 40c2-2.5 3-5.5 3-8 0-13.25-10.75-24-24-24" />
+        <!-- Center Detailed Fingerprint SVG -->
+        <div class="fingerprint-wrapper">
+          <svg viewBox="0 0 64 80" class="fingerprint-svg" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round">
+            <path d="M32 6 C16 6 6 18 6 38 C6 58 16 70 32 70 C48 70 58 58 58 38" />
+            <path d="M32 14 C20 14 12 24 12 38 C12 52 20 62 32 62 C44 62 52 52 52 38" />
+            <path d="M32 22 C24 22 18 29 18 38 C18 47 24 54 32 54 C40 54 46 47 46 38" />
+            <path d="M32 30 C27 30 24 33 24 38 C24 43 27 46 32 46 C37 46 40 43 40 38" />
+            <path d="M32 36 v4" />
           </svg>
         </div>
 
-        <!-- Right Dashed Connector Line -->
-        <div class="connector-line">
-          <div class="dash-line"></div>
-          <span class="dot"></span>
+        <div class="dash-connector">
+          <span class="line" />
+          <span class="dot" />
         </div>
       </div>
 
-      <!-- Right Section: Text & CTA Link -->
-      <div class="section-text">
-        <h2 class="title">Evidence shows pattern.</h2>
-        <p class="description">
+      <!-- Section 3: Right Text & Link -->
+      <div class="text-block">
+        <h3 class="banner-title">
+          Evidence shows pattern.
+        </h3>
+        <p class="banner-desc">
           Our Impact page brings together the data that many stories help explain.
         </p>
-        <NuxtLink to="/impact" class="cta-link">
+        <NuxtLink to="/impact" class="action-link">
           See the evidence <ArrowRight class="w-4 h-4" />
         </NuxtLink>
       </div>
 
-      <!-- Right Analytics Graph Badge -->
-      <div class="analytics-badge">
-        <svg viewBox="0 0 64 64" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <!-- Bar Chart Lines -->
-          <line x1="20" y1="44" x2="20" y2="38" />
-          <line x1="28" y1="44" x2="28" y2="30" />
-          <line x1="36" y1="44" x2="36" y2="24" />
-          <line x1="44" y1="44" x2="44" y2="20" />
-          <!-- Trend Line & Point -->
-          <path d="M18 36l8-8 8 4 10-12" />
-          <circle cx="44" cy="20" r="2" fill="#2563eb" />
-          <!-- Base Line -->
-          <line x1="16" y1="44" x2="48" y2="44" />
-        </svg>
+      <!-- Section 4: Analytics Circle Badge -->
+      <div class="badge-wrapper">
+        <div class="badge-circle">
+          <svg viewBox="0 0 48 48" class="chart-svg" fill="none" stroke="#2563eb" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="14" y1="34" x2="14" y2="28" />
+            <line x1="22" y1="34" x2="22" y2="22" />
+            <line x1="30" y1="34" x2="30" y2="16" />
+            <path d="M12 26 L20 18 L28 22 L36 12" />
+            <circle cx="36" cy="12" r="1.8" fill="#2563eb" />
+            <line x1="10" y1="34" x2="38" y2="34" />
+          </svg>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.insight-banner {
-  @apply relative w-full rounded-2xl bg-[#f0f5ff] p-6 lg:p-8 overflow-hidden border border-blue-50/50 shadow-sm;
+.stories-banner {
+  @apply relative w-full bg-[#f4f7fc] rounded-2xl p-6 md:p-8 overflow-hidden;
 }
 
-.watermark-bg {
-  @apply absolute -left-10 -top-6 w-56 h-56 text-blue-300/25 pointer-events-none select-none;
+.watermark-container {
+  @apply absolute -left-6 -top-4 w-48 h-48 text-blue-200/50 pointer-events-none select-none;
+}
+
+.watermark-svg {
+  @apply w-full h-full;
 }
 
 .banner-content {
-  @apply relative z-10 grid grid-cols-1 md:grid-cols-[1fr_auto_1fr_auto] gap-6 lg:gap-8 items-center;
+  @apply relative z-10 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8;
 }
 
-.section-text {
-  @apply space-y-2;
+.text-block {
+  @apply space-y-1.5 max-w-xs;
 }
 
-.title {
-  @apply text-xl lg:text-2xl font-bold text-[#0f172a] leading-tight tracking-tight;
+.banner-title {
+  @apply text-xl md:text-2xl font-sans font-bold text-[#0c1a30] leading-snug tracking-tight;
 }
 
-.description {
-  @apply text-xs lg:text-sm text-slate-600 leading-relaxed max-w-xs;
+.banner-desc {
+  @apply text-xs md:text-sm text-gray-600 leading-relaxed;
 }
 
-.visual-center {
-  @apply flex items-center gap-3 justify-center my-4 md:my-0;
+.connector-group {
+  @apply flex items-center gap-3 shrink-0;
 }
 
-.avatar-wrapper {
-  @apply w-16 h-16 lg:w-20 lg:h-20 rounded-full overflow-hidden shrink-0 border-2 border-white shadow-sm;
+.avatar-ring {
+  @apply w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden shrink-0 border-2 border-white shadow-sm;
 }
 
 .avatar-img {
   @apply w-full h-full object-cover;
 }
 
-.connector-line {
-  @apply hidden lg:flex items-center gap-1.5 w-16 shrink-0;
+.dash-connector {
+  @apply hidden sm:flex items-center gap-1 w-12 md:w-16;
 }
 
-.dash-line {
-  @apply flex-1 border-b-2 border-dashed border-blue-300 h-0;
+.dash-connector .line {
+  @apply flex-1 border-b-2 border-dashed border-blue-300;
 }
 
-.dot {
+.dash-connector .dot {
   @apply w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0;
 }
 
-.fingerprint-icon {
-  @apply w-12 h-12 lg:w-16 lg:h-16 shrink-0 flex items-center justify-center;
+.fingerprint-wrapper {
+  @apply w-12 h-16 md:w-14 md:h-16 shrink-0 flex items-center justify-center;
 }
 
-.cta-link {
-  @apply mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors;
+.fingerprint-svg {
+  @apply w-full h-full;
 }
 
-.analytics-badge {
-  @apply flex items-center justify-center w-16 h-16 lg:w-20 lg:h-20 rounded-full bg-blue-100/60 border border-blue-200/50 shrink-0 mx-auto md:mx-0;
+.action-link {
+  @apply mt-2 inline-flex items-center gap-1.5 text-sm font-sans font-semibold text-blue-600 hover:text-blue-700 transition-colors;
 }
 
-.analytics-badge svg {
-  @apply w-10 h-10 lg:w-12 lg:h-12;
+.badge-wrapper {
+  @apply shrink-0;
+}
+
+.badge-circle {
+  @apply w-16 h-16 md:w-20 md:h-20 rounded-full bg-blue-100/70 border border-blue-200/60 flex items-center justify-center;
+}
+
+.chart-svg {
+  @apply w-10 h-10;
 }
 </style>
