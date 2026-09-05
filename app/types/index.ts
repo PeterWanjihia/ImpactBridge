@@ -380,6 +380,116 @@ export interface Person {
 }
 
 // ---------------------------------------------------------------------------
+// Stories Page
+// ---------------------------------------------------------------------------
+
+/** Stories page composite returned by backend */
+export interface StoriesPageData {
+  hero: StoriesHeroData
+  filters: StoriesFilterItem[]
+  featuredStory: StoriesFeaturedStory
+  stories: StoriesStoryItem[]
+  voices: StoriesVoiceItem[]
+  photoEssay: StoriesPhotoEssay
+  latestUpdates: StoriesUpdateItem[]
+  cta: StoriesCtaData
+}
+
+/** Hero section data */
+export interface StoriesHeroData {
+  title: string
+  titleAccent: string
+  description: string
+  imageUrl: string
+  imageAlt: string
+  primaryCta: { text: string; to: string }
+  secondaryCta: { text: string; to: string }
+}
+
+/** Filter tab item */
+export interface StoriesFilterItem {
+  label: string
+  value: string
+  icon?: string
+}
+
+/** Featured story shown in hero card */
+export interface StoriesFeaturedStory {
+  eyebrow: string
+  title: string
+  summary: string
+  slug: string
+  mediaType: 'video' | 'photo' | 'article'
+  mediaDuration?: string
+  imageUrl: string
+  imageAlt: string
+}
+
+/** Individual story card item */
+export interface StoriesStoryItem {
+  id: string
+  slug: string
+  title: string
+  summary: string
+  type: StoryType
+  imageUrl: string
+  imageAlt: string
+  mediaType?: 'video' | 'photo' | 'article'
+  mediaDuration?: string
+  readTime?: string
+}
+
+/** Voice / testimonial quote */
+export interface StoriesVoiceItem {
+  id: string
+  quote: string
+  author: string
+  role: string
+  description: string
+  imageUrl: string
+  imageAlt: string
+  audioUrl?: string
+  audioDuration?: string
+  storyUrl?: string
+  variant: 'learner' | 'teacher'
+}
+
+/** Photo essay section */
+export interface StoriesPhotoEssay {
+  title: string
+  ctaText: string
+  ctaTo: string
+  steps: StoriesPhotoEssayStep[]
+}
+
+export interface StoriesPhotoEssayStep {
+  number: number
+  title: string
+  description: string
+  imageUrl: string
+  imageAlt: string
+}
+
+/** Latest update item */
+export interface StoriesUpdateItem {
+  id: string
+  title: string
+  date: string
+  readTime: string
+  imageUrl: string
+  imageAlt: string
+  slug: string
+}
+
+/** CTA section data */
+export interface StoriesCtaData {
+  title: string
+  description: string
+  primaryCta: { text: string; to: string; icon?: string }
+  secondaryCta: { text: string; to: string; icon?: string }
+}
+
+// ---------------------------------------------------------------------------
 // Homepage
 // ---------------------------------------------------------------------------
 
