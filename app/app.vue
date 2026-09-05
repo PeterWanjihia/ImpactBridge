@@ -34,8 +34,8 @@ useHead({
     --color-teal: #0d9488;
     
     /* Typography */
-    --font-serif: Georgia, 'Times New Roman', serif;
-    --font-sans: Arial, 'Helvetica Neue', sans-serif;
+    --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    --font-sans: Inter, Arial, 'Helvetica Neue', sans-serif;
   }
 
   body {

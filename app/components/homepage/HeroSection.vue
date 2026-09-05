@@ -198,10 +198,10 @@ defineProps<{
   @apply text-2xl font-serif font-bold text-gray-900 leading-tight tracking-tight;
 }
 .hero-card-amount {
-  @apply text-3xl font-serif font-bold text-gray-900 mt-4 leading-none;
+  @apply text-3xl font-sans font-bold text-gray-900 mt-4 leading-none;
 }
 .hero-card-currency {
-  @apply font-serif;
+  @apply font-sans;
 }
 .hero-card-goal {
   @apply text-xs font-sans text-gray-600 mt-1.5 font-medium;
@@ -219,7 +219,7 @@ defineProps<{
   @apply flex flex-col justify-center;
 }
 .hero-card-stat-value {
-  @apply text-xl font-serif font-bold text-gray-900 leading-tight;
+  @apply text-xl font-sans font-bold text-gray-900 leading-tight;
 }
 .hero-card-stat-label {
   @apply text-[12px] font-sans text-gray-600 leading-snug mt-0.5;

@@ -52,10 +52,8 @@ export default {
         },
       },
       fontFamily: {
-        serif: ['Georgia', 'Times New Roman', 'serif'],
+        serif: ['"Playfair Display"', 'Georgia', 'Times New Roman', 'serif'],
         sans: ['Inter', 'Arial', 'Helvetica Neue', 'sans-serif'],
-        display: ['Cinzel', 'serif'],
-        body: ['Lora', 'serif'],
       },
       spacing: {
         '18': '4.5rem',
