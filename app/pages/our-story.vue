@@ -5,11 +5,15 @@ import {
   CirclePlay,
 } from '@lucide/vue'
 
-useHead({
-  title: 'Our Story - Impact Bridge',
-  meta: [
-    { name: 'description', content: 'Learn about our mission to bring offline digital learning to schools without reliable connectivity.' }
-  ]
+// ---------------------------------------------------------------------------
+// SEO — shared composable (canonical, OG/Twitter cards, robots)
+// TODO: Source from the CMS `pages` collection when the backend is live.
+// ---------------------------------------------------------------------------
+usePageSeo({
+  title: 'Our Story',
+  description: 'Learn about our mission to bring offline digital learning to schools without reliable connectivity.',
+  path: '/our-story',
+  type: 'website',
 })
 
 // ---------------------------------------------------------------------------

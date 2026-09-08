@@ -8,11 +8,16 @@ import type {
   ProgrammeContext,
 } from '~/types'
 
-useHead({
-  title: 'Impact - Impact Bridge',
-  meta: [
-    { name: 'description', content: 'Measurable evidence of how offline learning hubs transform classrooms.' }
-  ]
+// ---------------------------------------------------------------------------
+// SEO — shared composable (canonical, OG/Twitter cards, robots)
+// TODO: Source from the CMS `pages` collection when the backend is live.
+// ---------------------------------------------------------------------------
+usePageSeo({
+  title: 'Impact',
+  description: 'Measurable evidence of how offline learning hubs transform classrooms.',
+  path: '/impact',
+  image: () => overview.value?.hero?.imageUrl,
+  type: 'website',
 })
 
 // ──────────────────────────────────────────────

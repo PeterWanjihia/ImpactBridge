@@ -26,6 +26,15 @@ export default defineNuxtConfig({
     },
   ],
 
+  // Route caching per architecture spec route map:
+  // /stories -> "ISR / cached SSR", /stories/:slug -> "ISR".
+  // swr = cached SSR with background revalidation; works on every Nitro
+  // deployment target listed in the spec (Vercel, Render, Fly, Railway, containers).
+  routeRules: {
+    '/stories': { swr: 600 },
+    '/stories/**': { swr: 600 },
+  },
+
   // Image optimization setup (R2/S3 CDN domain)
   image: {
     domains: ['cdn.impactbridge.org'],
@@ -59,6 +68,8 @@ export default defineNuxtConfig({
       apiUrl: process.env.NUXT_PUBLIC_API_URL || 'http://localhost:8080',
       cmsUrl: process.env.NUXT_PUBLIC_CMS_URL || 'http://localhost:8055',
       stripePublicKey: process.env.NUXT_PUBLIC_STRIPE_KEY || '',
+      // Absolute site origin used to build canonical URLs and social cards
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://www.impactbridge.org',
     },
   },
 

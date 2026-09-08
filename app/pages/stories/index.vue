@@ -10,11 +10,16 @@ import type {
   StoriesCtaData,
 } from '~/types'
 
-useHead({
-  title: 'Stories - Impact Bridge',
-  meta: [
-    { name: 'description', content: 'Meet the learners, teachers, schools and partners shaping Impact Bridge.' }
-  ]
+// ---------------------------------------------------------------------------
+// SEO — shared composable (canonical, OG/Twitter cards, robots)
+// TODO: Source from the CMS `pages` collection when the backend is live.
+// ---------------------------------------------------------------------------
+usePageSeo({
+  title: 'Stories',
+  description: 'Meet the learners, teachers, schools and partners shaping Impact Bridge.',
+  path: '/stories',
+  image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1200&q=80',
+  type: 'website',
 })
 
 // ---------------------------------------------------------------------------

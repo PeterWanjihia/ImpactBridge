@@ -34,15 +34,16 @@ import biometricSvg from '~/assets/icons/Biometric.svg?raw'
 const { data: model, load } = useOurModel()
 callOnce('our-model', () => load())
 
-useHead({
-  title: model.value.seo?.title || 'Our Model - Impact Bridge',
-  meta: [
-    { name: 'description', content: model.value.seo?.description || 'How we combine offline learning technology, curated resources, trained teachers and local ownership into one practical model—designed for schools with limited connectivity.' },
-    { property: 'og:title', content: model.value.seo?.title || 'Our Model - Impact Bridge' },
-    { property: 'og:description', content: model.value.seo?.description || '' },
-    ...(model.value.seo?.ogImage ? [{ property: 'og:image', content: model.value.seo.ogImage }] : []),
-    ...(model.value.seo?.noindex ? [{ name: 'robots', content: 'noindex' }] : []),
-  ],
+// ---------------------------------------------------------------------------
+// SEO — shared composable (canonical, OG/Twitter cards, robots); reactive to CMS data
+// ---------------------------------------------------------------------------
+usePageSeo({
+  title: () => model.value.seo?.title || 'Our Model',
+  description: () => model.value.seo?.description || 'How we combine offline learning technology, curated resources, trained teachers and local ownership into one practical model—designed for schools with limited connectivity.',
+  path: '/our-model',
+  image: () => model.value.seo?.ogImage,
+  type: 'website',
+  noindex: () => model.value.seo?.noindex ?? false,
 })
 
 // ---------------------------------------------------------------------------

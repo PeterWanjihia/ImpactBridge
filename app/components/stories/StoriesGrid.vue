@@ -72,7 +72,7 @@ function getMediaLabel(type?: string): string {
           <!-- Full-bleed background image for Banner/Partner style -->
           <template v-if="story.type === 'partner'">
             <div class="stories-banner-image-wrapper">
-              <img :src="story.imageUrl" :alt="story.imageAlt" class="stories-banner-img" />
+              <img :src="story.imageUrl" :alt="story.imageAlt" loading="lazy" decoding="async" class="stories-banner-img" />
               <!-- Soft gradient blend overlay on the left -->
               <div class="stories-banner-gradient-overlay" />
             </div>
@@ -157,7 +157,7 @@ function getMediaLabel(type?: string): string {
                 class="stories-grid-card-video-link"
                 :aria-label="`Play video: ${story.title}`"
               >
-                <img :src="story.imageUrl" :alt="story.imageAlt" class="stories-grid-card-img" />
+                <img :src="story.imageUrl" :alt="story.imageAlt" loading="lazy" decoding="async" class="stories-grid-card-img" />
                 <div class="stories-grid-card-play">
                   <div class="w-12 h-12 rounded-full border-2 border-white/80 bg-black/30 backdrop-blur-xs flex items-center justify-center">
                     <Play class="w-5 h-5 text-white fill-white translate-x-0.5" />
@@ -165,7 +165,7 @@ function getMediaLabel(type?: string): string {
                 </div>
               </a>
               <template v-else>
-                <img :src="story.imageUrl" :alt="story.imageAlt" class="stories-grid-card-img" />
+                <img :src="story.imageUrl" :alt="story.imageAlt" loading="lazy" decoding="async" class="stories-grid-card-img" />
               </template>
             </div>
           </template>

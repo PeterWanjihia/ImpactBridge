@@ -1,9 +1,13 @@
 <script setup lang="ts">
-useHead({
-  title: 'Transparency - Impact Bridge',
-  meta: [
-    { name: 'description', content: 'Clear about what we do. Accountable about how we do it. Trust is earned through honesty.' }
-  ]
+// ---------------------------------------------------------------------------
+// SEO — shared composable (canonical, OG/Twitter cards, robots)
+// TODO: Source from the CMS `pages` collection when the backend is live.
+// ---------------------------------------------------------------------------
+usePageSeo({
+  title: 'Transparency',
+  description: 'Clear about what we do. Accountable about how we do it. Trust is earned through honesty.',
+  path: '/transparency',
+  type: 'website',
 })
 
 // ---------------------------------------------------------------------------

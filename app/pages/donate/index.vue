@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import type { Campaign, Fund } from '~/types'
 
-useHead({
-  title: 'Donate - Impact Bridge',
-  meta: [
-    { name: 'description', content: 'Help teachers bring offline learning resources to schools where connectivity should not limit opportunity.' }
-  ]
+// ---------------------------------------------------------------------------
+// SEO — shared composable (canonical, OG/Twitter cards, robots)
+// ---------------------------------------------------------------------------
+usePageSeo({
+  title: 'Donate',
+  description: 'Help teachers bring offline learning resources to schools where connectivity should not limit opportunity.',
+  path: '/donate',
+  type: 'website',
 })
 
 // ---------------------------------------------------------------------------

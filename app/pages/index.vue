@@ -33,15 +33,15 @@ const { data: homepage, loading, load } = useHomepage()
 // Fetch homepage data once during SSR (cached), skip on client navigation.
 callOnce('homepage', () => load())
 
-useHead({
-  title: 'Impact Bridge - Offline Learning Hubs for Schools Without Connectivity',
-  meta: [
-    {
-      name: 'description',
-      content:
-        'We bring offline digital learning hubs, teacher training and resources to schools without reliable connectivity—so every child can learn, no matter where they are.',
-    },
-  ],
+// ---------------------------------------------------------------------------
+// SEO — shared composable (canonical, OG/Twitter cards, robots)
+// ---------------------------------------------------------------------------
+usePageSeo({
+  title: 'Offline Learning Hubs for Schools Without Connectivity',
+  description: 'We bring offline digital learning hubs, teacher training and resources to schools without reliable connectivity—so every child can learn, no matter where they are.',
+  path: '/',
+  image: () => homepage.value?.hero?.imageUrl,
+  type: 'website',
 })
 
 // ---------------------------------------------------------------------------

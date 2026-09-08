@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import type { Donation } from '~/types'
 
-useHead({
-  title: 'Donation Complete - Impact Bridge',
-  meta: [
-    { name: 'robots', content: 'noindex, nofollow' }
-  ]
+// ---------------------------------------------------------------------------
+// SEO — shared composable; spec: completion/operational routes must not be indexed
+// ---------------------------------------------------------------------------
+usePageSeo({
+  title: 'Donation Complete',
+  description: 'Thank you for supporting offline digital learning.',
+  path: '/donate/complete',
+  type: 'website',
+  noindex: true,
 })
 
 // ---------------------------------------------------------------------------

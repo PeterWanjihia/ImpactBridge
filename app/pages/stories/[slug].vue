@@ -7,7 +7,6 @@ import type { Story } from '~/types'
 // Story content lives in the CMS; slugs are the stable public URLs.
 // ---------------------------------------------------------------------------
 const route = useRoute()
-const SITE_URL = 'https://www.impactbridge.org'
 
 const slug = computed(() => route.params.slug as string)
 const { getStory } = useStories()
@@ -77,9 +76,6 @@ const isAudio = computed(() => media.value.type === 'audio' && !!media.value.url
 // SEO — structured article metadata + social cards generated from the story
 // record (spec: CMS-managed title/description/canonical/OG, optional noindex)
 // ---------------------------------------------------------------------------
-const canonicalUrl = computed(() =>
-  story.value ? `${SITE_URL}/stories/${story.value.slug}` : `${SITE_URL}${route.path}`,
-)
 const seoTitle = computed(() => story.value?.seo?.title ?? story.value?.title ?? 'Story')
 const seoDescription = computed(() =>
   story.value?.seo?.description
@@ -87,24 +83,15 @@ const seoDescription = computed(() =>
   ?? 'Stories from Impact Bridge classrooms, teachers and partners.',
 )
 const ogImage = computed(() => story.value?.seo?.ogImage ?? story.value?.imageUrl)
-const robots = computed(() => (story.value?.seo?.noindex ? 'noindex, nofollow' : undefined))
 
-useSeoMeta({
+const { canonicalUrl, siteUrl } = usePageSeo({
   title: seoTitle,
   description: seoDescription,
-  robots,
-  ogType: 'article',
-  ogUrl: canonicalUrl,
-  ogTitle: seoTitle,
-  ogDescription: seoDescription,
-  ogImage,
-  ogImageWidth: '1200',
-  ogImageHeight: '630',
-  twitterCard: 'summary_large_image',
-  twitterTitle: seoTitle,
-  twitterDescription: seoDescription,
-  twitterImage: ogImage,
-  articlePublishedTime: computed(() => story.value?.publishedAt),
+  path: computed(() => (story.value ? `/stories/${story.value.slug}` : route.path)),
+  image: ogImage,
+  type: 'article',
+  noindex: computed(() => story.value?.seo?.noindex ?? false),
+  publishedTime: computed(() => story.value?.publishedAt),
 })
 
 // Structured article + breadcrumb metadata for search engines
@@ -131,15 +118,15 @@ const breadcrumbsJsonLd = computed(() => {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
-      { '@type': 'ListItem', position: 2, name: 'Stories', item: `${SITE_URL}/stories` },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+      { '@type': 'ListItem', position: 2, name: 'Stories', item: `${siteUrl}/stories` },
       { '@type': 'ListItem', position: 3, name: story.value.title, item: canonicalUrl.value },
     ],
   }).replace(/</g, '\\u003c')
 })
 
+// Title + canonical link are rendered by usePageSeo
 useHead({
-  link: [{ rel: 'canonical', href: canonicalUrl }],
   script: [
     { type: 'application/ld+json', innerHTML: () => articleJsonLd.value ?? '' },
     { type: 'application/ld+json', innerHTML: () => breadcrumbsJsonLd.value ?? '' },

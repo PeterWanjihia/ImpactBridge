@@ -1,9 +1,12 @@
 <script setup lang="ts">
-useHead({
-  title: 'Donate Equipment - Impact Bridge',
-  meta: [
-    { name: 'description', content: 'Support our mission by donating suitable computers, displays and supporting equipment.' }
-  ]
+// ---------------------------------------------------------------------------
+// SEO — shared composable (canonical, OG/Twitter cards, robots)
+// ---------------------------------------------------------------------------
+usePageSeo({
+  title: 'Donate Equipment',
+  description: 'Support our mission by donating suitable computers, displays and supporting equipment.',
+  path: '/donate-equipment',
+  type: 'website',
 })
 
 // ---------------------------------------------------------------------------

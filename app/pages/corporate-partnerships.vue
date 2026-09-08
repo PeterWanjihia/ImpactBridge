@@ -1,9 +1,13 @@
 <script setup lang="ts">
-useHead({
-  title: 'Corporate Partnerships - Impact Bridge',
-  meta: [
-    { name: 'description', content: 'Partner with us to bring appropriate technology, teacher development and support to schools.' }
-  ]
+// ---------------------------------------------------------------------------
+// SEO — shared composable (canonical, OG/Twitter cards, robots)
+// TODO: Source from the CMS `pages` collection when the backend is live.
+// ---------------------------------------------------------------------------
+usePageSeo({
+  title: 'Corporate Partnerships',
+  description: 'Partner with us to bring appropriate technology, teacher development and support to schools.',
+  path: '/corporate-partnerships',
+  type: 'website',
 })
 
 // ---------------------------------------------------------------------------
