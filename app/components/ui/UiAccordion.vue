@@ -82,16 +82,8 @@ function isOpen(id: string) {
   @apply flex flex-col divide-y divide-gray-200 border border-gray-200 rounded-lg;
 }
 
-.ui-accordion-item {
-  @apply;
-}
-
 .ui-accordion-trigger {
   @apply flex items-center justify-between w-full px-4 py-3 text-left font-sans font-medium text-navy hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cobalt disabled:opacity-50 disabled:cursor-not-allowed;
-}
-
-.ui-accordion-title {
-  @apply;
 }
 
 .ui-accordion-icon {
