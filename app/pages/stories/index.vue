@@ -18,39 +18,62 @@ useHead({
 })
 
 // ---------------------------------------------------------------------------
-// Data layer
+// Data layer — SSR initial load + API-backed filter queries
+// GET /v1/stories supports type/cursor filters (architecture spec, Appendix A)
 // ---------------------------------------------------------------------------
 const { getStories } = useStories()
 
-const stories = ref<StoriesStoryItem[]>([])
-const loading = ref(true)
 const activeFilter = ref('all')
 
-// TODO: When backend is ready, replace with real API calls
-// const { data } = await useAsyncData('stories', () => getStories({ limit: 20 }))
+/** Initial load of all stories — runs on the server (cached SSR per spec). */
+const { data: initialResult, status: initialStatus } = await useAsyncData(
+  'stories-index',
+  () => getStories({ limit: 20 }),
+)
 
-onMounted(async () => {
-  try {
-    const result = await getStories({ limit: 20 })
-    stories.value = (result as any)?.stories ?? []
-  } catch {
-    // Defaults to empty — page renders with mock data
-  } finally {
-    loading.value = false
-  }
+/**
+ * Filtered fetch — runs client-side when a filter tab is selected.
+ * `immediate: false` avoids re-fetching 'all', which the initial load covers.
+ */
+const {
+  data: filteredResult,
+  status: filteredStatus,
+  refresh: refreshFiltered,
+} = useAsyncData(
+  'stories-index-filtered',
+  () => getStories({
+    type: activeFilter.value === 'all' ? undefined : activeFilter.value,
+    limit: 20,
+  }),
+  { immediate: false, server: false },
+)
+
+watch(activeFilter, (filter) => {
+  if (filter !== 'all') refreshFiltered()
 })
 
 // ---------------------------------------------------------------------------
-// Filtered stories list
+// Derived stories list
 // ---------------------------------------------------------------------------
-const allStories = computed<StoriesStoryItem[]>(() => {
-  return stories.value.length ? stories.value : mockStories
-})
+const initialStories = computed<StoriesStoryItem[]>(() => (initialResult.value as any)?.stories ?? [])
+const filterStories = computed<StoriesStoryItem[]>(() => (filteredResult.value as any)?.stories ?? [])
+
+/** True once the API has served a real list; mock fallback is dev-only. */
+const isApiLive = computed(() => initialStatus.value !== 'error' && initialStories.value.length > 0)
 
 const filteredStories = computed<StoriesStoryItem[]>(() => {
-  if (activeFilter.value === 'all') return allStories.value
-  return allStories.value.filter(s => s.type === activeFilter.value)
+  // Backend not ready — filter the mock list client-side so every tab shows content
+  if (!isApiLive.value) {
+    return mockStories.filter(s => activeFilter.value === 'all' || s.type === activeFilter.value)
+  }
+  // API results arrive pre-filtered by the `type` query param
+  if (activeFilter.value === 'all') return initialStories.value
+  return filterStories.value
 })
+
+const isFiltering = computed(() =>
+  isApiLive.value && activeFilter.value !== 'all' && filteredStatus.value === 'pending'
+)
 
 // ---------------------------------------------------------------------------
 // Static / mock data for development — will be replaced by API responses
@@ -226,7 +249,10 @@ const ctaData: StoriesCtaData = {
     />
 
     <!-- Stories Grid -->
-    <StoriesGrid :stories="filteredStories">
+    <div v-if="isFiltering" class="py-16 text-center font-sans text-gray-500">
+      Loading stories…
+    </div>
+    <StoriesGrid v-else :stories="filteredStories">
       <template v-if="activeFilter !== 'all'" #empty-action>
         <UiButton variant="outline" size="sm" class="mt-4" @click="activeFilter = 'all'">
           Show all stories

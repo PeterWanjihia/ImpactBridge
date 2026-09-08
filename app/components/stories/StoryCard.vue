@@ -5,7 +5,7 @@ interface Props {
   summary?: string
   imageUrl?: string
   imageAlt?: string
-  type?: 'learner' | 'teacher' | 'school' | 'partner'
+  type?: 'learner' | 'teacher' | 'school' | 'community' | 'partner'
   date?: string
 }
 

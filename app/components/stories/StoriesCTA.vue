@@ -43,7 +43,7 @@ import { Users, Landmark, ArrowRight } from '@lucide/vue'
                 Give today and help more learners access meaningful learning.
               </p>
               <NuxtLink 
-                to="/fund" 
+                to="/donate" 
                 class="inline-flex items-center gap-2 text-xs font-bold text-white hover:text-blue-200 transition-colors pt-1"
               >
                 Fund now <ArrowRight class="w-3.5 h-3.5" />
@@ -65,7 +65,7 @@ import { Users, Landmark, ArrowRight } from '@lucide/vue'
                 Work with us to equip schools, strengthen systems and document impact.
               </p>
               <NuxtLink 
-                to="/partner" 
+                to="/corporate-partnerships" 
                 class="inline-flex items-center gap-2 text-xs font-bold text-white hover:text-blue-200 transition-colors pt-1"
               >
                 Partner with us <ArrowRight class="w-3.5 h-3.5" />

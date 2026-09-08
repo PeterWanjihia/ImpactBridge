@@ -58,6 +58,11 @@ export interface Story {
   publishedAt?: string
   programme?: Programme
   school?: School
+  mediaType?: 'video' | 'audio' | 'photo' | 'article'
+  mediaUrl?: string
+  mediaDuration?: string
+  readTime?: string
+  seo?: SeoMetadata
 }
 
 // Impact

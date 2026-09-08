@@ -13,6 +13,7 @@ export default defineNuxtConfig({
   ],
 
   // 2. Configure unplugin-icons
+  // @ts-expect-error unplugin-icons adds this Nuxt configuration option at runtime.
   icons: {
     compiler: 'vue3',
     autoInstall: true, // Automatically fetches icon sets if missing
@@ -34,7 +35,7 @@ export default defineNuxtConfig({
   app: {
     head: {
       titleTemplate: '%s | Impact Bridge',
-      defaultTitle: 'Impact Bridge - Offline Digital Learning Hubs',
+      title: 'Impact Bridge - Offline Digital Learning Hubs',
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'description', content: 'Bridging the educational digital divide with offline-first learning hubs.' },
