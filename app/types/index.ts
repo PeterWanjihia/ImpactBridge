@@ -44,6 +44,12 @@ export interface PageSection {
 // Stories
 export type StoryType = 'learner' | 'teacher' | 'school' | 'community' | 'partner'
 
+/** Response shape of GET /v1/stories (story index with type/cursor filters). */
+export interface StoriesIndexResponse {
+  stories: StoriesStoryItem[]
+  nextCursor?: string | null
+}
+
 export interface Story {
   id: string
   slug: string

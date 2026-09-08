@@ -18,61 +18,136 @@ useHead({
 })
 
 // ---------------------------------------------------------------------------
-// Data layer — SSR initial load + API-backed filter queries
+// Data layer — SSR initial load + API-backed filter/cursor queries
 // GET /v1/stories supports type/cursor filters (architecture spec, Appendix A)
 // ---------------------------------------------------------------------------
 const { getStories } = useStories()
 
+const PAGE_SIZE = 20
 const activeFilter = ref('all')
 
 /** Initial load of all stories — runs on the server (cached SSR per spec). */
-const { data: initialResult, status: initialStatus } = await useAsyncData(
+const { data: initialResult } = await useAsyncData(
   'stories-index',
-  () => getStories({ limit: 20 }),
+  () => getStories({ limit: PAGE_SIZE }),
 )
 
 /**
- * Filtered fetch — runs client-side when a filter tab is selected.
- * `immediate: false` avoids re-fetching 'all', which the initial load covers.
+ * Cursor-paginated state per filter ('all', 'learner', ...).
+ * The 'all' bucket is seeded from the SSR response; each category accumulates
+ * its own list and cursor so "Load more" appends pages independently.
  */
-const {
-  data: filteredResult,
-  status: filteredStatus,
-  refresh: refreshFiltered,
-} = useAsyncData(
-  'stories-index-filtered',
-  () => getStories({
-    type: activeFilter.value === 'all' ? undefined : activeFilter.value,
-    limit: 20,
-  }),
-  { immediate: false, server: false },
-)
+interface PagedState {
+  stories: StoriesStoryItem[]
+  cursor: string | null
+  pending: boolean
+}
 
-watch(activeFilter, (filter) => {
-  if (filter !== 'all') refreshFiltered()
+const pagedState = reactive<Record<string, PagedState>>({
+  all: {
+    stories: [...(initialResult.value?.stories ?? [])],
+    cursor: initialResult.value?.nextCursor ?? null,
+    pending: false,
+  },
 })
+
+/** Fetches one page for a filter; replaces the list on page 1, appends after. */
+async function fetchPage(type: string, cursor?: string) {
+  const state = pagedState[type] ?? (pagedState[type] = { stories: [], cursor: null, pending: false })
+  if (state.pending) return
+  state.pending = true
+  try {
+    const result = await getStories({
+      type: type === 'all' ? undefined : type,
+      cursor,
+      limit: PAGE_SIZE,
+    })
+    if (cursor) {
+      state.stories.push(...result.stories)
+    } else {
+      state.stories = result.stories
+    }
+    // Empty page means the list is exhausted — drop the cursor to stop loading
+    state.cursor = result.stories.length ? (result.nextCursor ?? null) : null
+  } catch {
+    // Keep the current list and cursor so the visitor can retry "Load more"
+  } finally {
+    state.pending = false
+  }
+}
+
+// Load a category's first page when its tab is first selected
+watch(activeFilter, (filter) => {
+  if (filter !== 'all' && !pagedState[filter]) fetchPage(filter)
+})
+
+function loadMore() {
+  const state = pagedState[activeFilter.value]
+  if (state?.cursor) fetchPage(activeFilter.value, state.cursor)
+}
 
 // ---------------------------------------------------------------------------
 // Derived stories list
 // ---------------------------------------------------------------------------
-const initialStories = computed<StoriesStoryItem[]>(() => (initialResult.value as any)?.stories ?? [])
-const filterStories = computed<StoriesStoryItem[]>(() => (filteredResult.value as any)?.stories ?? [])
-
 /** True once the API has served a real list; mock fallback is dev-only. */
-const isApiLive = computed(() => initialStatus.value !== 'error' && initialStories.value.length > 0)
+const isApiLive = computed(() => (initialResult.value?.stories?.length ?? 0) > 0)
 
-const filteredStories = computed<StoriesStoryItem[]>(() => {
+const activeState = computed(() => (isApiLive.value ? pagedState[activeFilter.value] : undefined))
+
+const visibleStories = computed<StoriesStoryItem[]>(() => {
   // Backend not ready — filter the mock list client-side so every tab shows content
   if (!isApiLive.value) {
     return mockStories.filter(s => activeFilter.value === 'all' || s.type === activeFilter.value)
   }
-  // API results arrive pre-filtered by the `type` query param
-  if (activeFilter.value === 'all') return initialStories.value
-  return filterStories.value
+  return activeState.value?.stories ?? []
 })
 
-const isFiltering = computed(() =>
-  isApiLive.value && activeFilter.value !== 'all' && filteredStatus.value === 'pending'
+const nextCursor = computed(() => activeState.value?.cursor ?? null)
+const isFiltering = computed(() => !!activeState.value?.pending && visibleStories.value.length === 0)
+const isLoadingMore = computed(() => !!activeState.value?.pending && visibleStories.value.length > 0)
+
+// ---------------------------------------------------------------------------
+// Infinite scroll — loads the next page as the visitor approaches the end.
+// A sentinel div below the grid is watched with IntersectionObserver;
+// the "Load more" button remains as a fallback where observers are unavailable.
+// ---------------------------------------------------------------------------
+const sentinelEl = ref<HTMLElement | null>(null)
+const isSentinelVisible = ref(false)
+const supportsInfiniteScroll = ref(true)
+let observer: IntersectionObserver | null = null
+
+onMounted(() => {
+  if (!('IntersectionObserver' in window)) {
+    supportsInfiniteScroll.value = false
+    return
+  }
+  observer = new IntersectionObserver(
+    (entries) => {
+      isSentinelVisible.value = entries.some(entry => entry.isIntersecting)
+    },
+    // Start fetching before the visitor actually reaches the bottom
+    { rootMargin: '400px 0px' },
+  )
+  if (sentinelEl.value) observer.observe(sentinelEl.value)
+})
+
+onBeforeUnmount(() => observer?.disconnect())
+
+// Re-observe whenever the sentinel mounts/unmounts (it is hidden when exhausted)
+watch(sentinelEl, (el) => {
+  isSentinelVisible.value = false
+  if (el && observer) {
+    observer.disconnect()
+    observer.observe(el)
+  }
+})
+
+// Chain-load while the sentinel stays in view (short pages, fast scrollers)
+watch(
+  [isSentinelVisible, nextCursor],
+  ([visible, cursor]) => {
+    if (visible && cursor && !isLoadingMore.value) loadMore()
+  },
 )
 
 // ---------------------------------------------------------------------------
@@ -252,13 +327,31 @@ const ctaData: StoriesCtaData = {
     <div v-if="isFiltering" class="py-16 text-center font-sans text-gray-500">
       Loading stories…
     </div>
-    <StoriesGrid v-else :stories="filteredStories">
-      <template v-if="activeFilter !== 'all'" #empty-action>
-        <UiButton variant="outline" size="sm" class="mt-4" @click="activeFilter = 'all'">
-          Show all stories
-        </UiButton>
-      </template>
-    </StoriesGrid>
+    <template v-else>
+      <StoriesGrid :stories="visibleStories">
+        <template v-if="activeFilter !== 'all'" #empty-action>
+          <UiButton variant="outline" size="sm" class="mt-4" @click="activeFilter = 'all'">
+            Show all stories
+          </UiButton>
+        </template>
+      </StoriesGrid>
+
+      <!-- Infinite scroll sentinel (cursor pagination via the API's nextCursor) -->
+      <div v-if="nextCursor" ref="sentinelEl" class="h-px w-full" aria-hidden="true">
+        <span v-if="isLoadingMore" class="block py-8 text-center font-sans text-sm text-gray-500">
+          Loading more stories…
+        </span>
+      </div>
+
+      <!-- Fallback for browsers without IntersectionObserver -->
+      <LayoutContainer v-if="nextCursor && !supportsInfiniteScroll">
+        <div class="flex justify-center pb-8">
+          <UiButton variant="outline" :loading="isLoadingMore" @click="loadMore">
+            Load more stories
+          </UiButton>
+        </div>
+      </LayoutContainer>
+    </template>
 
     <!-- Hear it in their own words -->
     <StoriesVoices :voices="voices" />
