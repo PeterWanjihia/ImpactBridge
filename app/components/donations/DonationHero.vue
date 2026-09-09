@@ -71,7 +71,7 @@ const trustIcons: Record<DonateHeroData['trustItems'][number]['icon'], Component
               :key="item.label"
               class="donate-hero__trust-item"
             >
-              <component :is="trustIcons[item.icon]" class="w-5 h-5" />
+              <component :is="trustIcons[item.icon]" class="w-5 h-5 shrink-0 text-slate-300" />
               <span>{{ item.label }}</span>
             </li>
           </ul>
@@ -109,35 +109,35 @@ const trustIcons: Record<DonateHeroData['trustItems'][number]['icon'], Component
 }
 
 .donate-hero__container {
-  @apply relative z-10 py-12 lg:py-20;
+  @apply relative z-10 py-10 lg:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
 }
 
 .donate-hero__grid {
-  @apply grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(380px,460px)] gap-10 lg:gap-16 items-stretch;
+  @apply grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center;
 }
 
 .donate-hero__copy {
-  @apply flex max-w-[30rem] flex-col justify-center;
+  @apply lg:col-span-7 flex flex-col justify-center pr-0 lg:pr-6;
 }
 
 .donate-hero__eyebrow {
-  @apply text-cobalt-300 text-[11px] font-sans font-semibold tracking-[0.14em] uppercase mb-4;
+  @apply text-blue-400 text-xs font-sans font-bold tracking-widest uppercase mb-4;
 }
 
 .donate-hero__title {
-  @apply text-4xl md:text-5xl font-serif font-bold text-white leading-[1.06] tracking-tight;
+  @apply text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-white leading-[1.1] tracking-tight;
 }
 
 .donate-hero__subtitle {
-  @apply mt-5 max-w-[28rem] text-sm md:text-base text-slate-300 leading-[1.5];
+  @apply mt-6 text-base sm:text-lg text-slate-200 leading-relaxed max-w-xl;
 }
 
 .donate-hero__video {
-  @apply mt-7 inline-flex items-center gap-3 text-white;
+  @apply mt-8 inline-flex items-center gap-3.5 text-white hover:text-slate-200 transition-colors w-max;
 }
 
 .donate-hero__play {
-  @apply flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-navy-900 hover:bg-white/90 transition-colors;
+  @apply flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white text-navy-900 hover:bg-slate-100 transition-all shadow-md;
 }
 
 .donate-hero__video-label {
@@ -149,23 +149,19 @@ const trustIcons: Record<DonateHeroData['trustItems'][number]['icon'], Component
 }
 
 .donate-hero__trust {
-  @apply mt-14 grid grid-cols-3 list-none border-t border-white/15 pt-5 p-0;
+  @apply mt-12 grid grid-cols-3 list-none border-t border-white/20 pt-6 p-0 gap-2;
 }
 
 .donate-hero__trust-item {
-  @apply flex min-w-0 items-center gap-2 px-3 text-[11px] font-sans leading-[1.3] text-slate-300;
+  @apply flex items-center gap-2.5 text-xs font-sans leading-snug text-slate-300 pr-2;
 }
 
 .donate-hero__trust-item + .donate-hero__trust-item {
-  @apply border-l border-white/20;
+  @apply border-l border-white/20 pl-4;
 }
 
-.donate-hero__trust-item :deep(svg) {
-  @apply h-5 w-5 shrink-0;
-}
-
-/* Widget card */
+/* Widget Card Container */
 .donate-hero__widget {
-  @apply rounded-xl bg-white shadow-2xl p-5 md:p-6 lg:p-7;
+  @apply lg:col-span-5 rounded-2xl bg-white shadow-2xl p-6 sm:p-8;
 }
 </style>
