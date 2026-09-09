@@ -100,7 +100,7 @@ const trustIcons: Record<DonateHeroData['trustItems'][number]['icon'], Component
 }
 
 .donate-hero__overlay {
-  @apply absolute inset-0 bg-gradient-to-r from-navy-950/90 via-navy-900/80 to-transparent;
+  @apply absolute inset-0 bg-gradient-to-r from-navy-900/90 via-navy-900/80 to-transparent;
 }
 
 .donate-hero__container {
