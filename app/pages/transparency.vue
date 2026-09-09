@@ -1,45 +1,42 @@
 <script setup lang="ts">
 // ---------------------------------------------------------------------------
-// SEO — shared composable (canonical, OG/Twitter cards, robots)
-// TODO: Source from the CMS `pages` collection when the backend is live.
+// Data layer — composable fetches the transparency aggregate:
+//   1. Go API: GET /v1/transparency/summary (governance module — published
+//      financial summaries, trustees/policy references, approved metrics)
+//   2. CMS editorial sections (hero copy, trustee bios, newsletter text)
+//   3. Static defaults when neither is available yet
+// ---------------------------------------------------------------------------
+const { data: page, load } = useTransparency()
+callOnce('transparency', () => load())
+
+// ---------------------------------------------------------------------------
+// SEO — shared composable (canonical, OG/Twitter cards, robots); reactive to
+// CMS-managed metadata per the architecture spec.
 // ---------------------------------------------------------------------------
 usePageSeo({
-  title: 'Transparency',
-  description: 'Clear about what we do. Accountable about how we do it. Trust is earned through honesty.',
+  title: () => page.value.seo?.title || 'Accountability',
+  description: () =>
+    page.value.seo?.description ||
+    'Clear about what we do. Accountable in how we do it. See how Impact Bridge is governed, how funds are used and how we stay accountable.',
   path: '/transparency',
+  image: () => page.value.seo?.ogImage,
   type: 'website',
-})
-
-// ---------------------------------------------------------------------------
-// Data layer — fetch transparency content from CMS + Go API
-// ---------------------------------------------------------------------------
-const { getPage } = useContent()
-
-// TODO: When backend is ready, replace with:
-// const { data: page } = await useAsyncData('transparency', () => getPage('transparency'))
-// const { data: summary } = await useAsyncData('transparency-summary', () => $fetch(`${config.public.apiUrl}/v1/transparency`))
-const pageData = ref<any>(null)
-
-onMounted(async () => {
-  try {
-    pageData.value = await getPage('transparency')
-  } catch {
-    // Use defaults
-  }
+  noindex: () => page.value.seo?.noindex ?? false,
 })
 </script>
 
 <template>
   <div class="page-transparency">
-    <HeroOverlay
-      title="Transparency & Accountability"
-      subtitle="Clear about what we do. Accountable about how we do it. Trust is earned through honesty, accountability and consistent action."
-    />
+    <AccountabilityHero :hero="page.hero" />
 
-    <LayoutContainer>
-      <div class="py-12 max-w-2xl mx-auto">
-        <p class="text-gray-500 text-center">Transparency content coming soon.</p>
-      </div>
-    </LayoutContainer>
+    <FinancialSummary :financials="page.financials" />
+
+    <TrusteesSection :trustees="page.trustees" />
+
+    <GovernanceSection :governance="page.governance" />
+
+    <ImpactGlance :impact="page.impact" />
+
+    <StayInformedBand :newsletter="page.newsletter" />
   </div>
 </template>

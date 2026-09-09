@@ -27,12 +27,15 @@ export default defineNuxtConfig({
   ],
 
   // Route caching per architecture spec route map:
-  // /stories -> "ISR / cached SSR", /stories/:slug -> "ISR".
+  // /stories -> "ISR / cached SSR", /stories/:slug -> "ISR",
+  // /impact -> "ISR / cached SSR", /transparency -> "ISR / cached SSR".
   // swr = cached SSR with background revalidation; works on every Nitro
   // deployment target listed in the spec (Vercel, Render, Fly, Railway, containers).
   routeRules: {
     '/stories': { swr: 600 },
     '/stories/**': { swr: 600 },
+    '/impact': { swr: 600 },
+    '/transparency': { swr: 600 },
   },
 
   // Image optimization setup (R2/S3 CDN domain)

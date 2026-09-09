@@ -357,15 +357,115 @@ export interface PartnershipEnquiry {
   createdAt: string
 }
 
-// Transparency
-export interface TransparencySummary {
-  financials: {
-    totalReceived: number
-    totalSpent: number
-    programmePercentage: number
+// Transparency / Accountability
+
+/**
+ * Full transparency page composite.
+ * Editorial content is CMS-owned (pages/people/policies collections);
+ * financials and the impact snapshot come from the Go governance/impact
+ * modules via GET /v1/transparency/summary (approved data only).
+ */
+export interface TransparencyData {
+  seo?: SeoMetadata
+  hero: TransparencyHero
+  financials: TransparencyFinancials
+  trustees: TransparencyTrustees
+  governance: TransparencyGovernance
+  impact: TransparencyImpact
+  newsletter: TransparencyNewsletter
+}
+
+export interface TransparencyHero {
+  tag: string
+  title: string
+  description: string
+  imageUrl: string
+  imageAlt: string
+  ctaText: string
+  ctaTo: string
+  commitments: TransparencyCommitment[]
+}
+
+export interface TransparencyCommitment {
+  icon: 'shield' | 'scale' | 'eye' | 'heart'
+  title: string
+  description: string
+}
+
+/** One spending slice of the donut chart */
+export interface TransparencySpendSlice {
+  label: string
+  /** Whole-number share; percentages must total 100 */
+  percentage: number
+  /** Tailwind-ish colour token used by the donut component */
+  color: 'cobalt' | 'teal' | 'purple' | 'amber'
+}
+
+export interface TransparencyFinancials {
+  year: number
+  expenditureNote: string
+  disclaimer: string
+  reportsLinkText: string
+  reportsLinkTo: string
+  /** Spending slices — must sum to 100 for the donut to render correctly */
+  spend: TransparencySpendSlice[]
+  headline: {
+    totalIncome: number
+    totalExpenditure: number
+    surplus: number
   }
-  trustees: Trustee[]
-  reports: Report[]
+  currency: string
+}
+
+export interface TransparencyTrustees {
+  title: string
+  description: string
+  ctaText: string
+  ctaTo: string
+  /** Awaited when rendered server-side for SSR portraits */
+  members: Awaited<ReturnType<typeof Promise.all>> extends never ? never : TransparencyTrustee[]
+}
+
+export interface TransparencyTrustee {
+  name: string
+  role: string
+  bio: string
+  imageUrl: string
+  imageAlt: string
+}
+
+export interface TransparencyGovernanceCard {
+  icon: 'building' | 'shield' | 'scale'
+  title: string
+  description: string
+  items: string[]
+}
+
+export interface TransparencyGovernance {
+  cards: TransparencyGovernanceCard[]
+}
+
+export interface TransparencyImpactMetric {
+  icon: 'building' | 'server' | 'school' | 'laptop' | 'graduation' | 'users'
+  value: string
+  label: string
+}
+
+export interface TransparencyImpact {
+  title: string
+  asOf: string
+  metrics: TransparencyImpactMetric[]
+}
+
+export interface TransparencyNewsletter {
+  title: string
+  description: string
+  placeholder: string
+  buttonText: string
+  successText: string
+  privacyNote: string
+  imageUrl: string
+  imageAlt: string
 }
 
 export interface Trustee {

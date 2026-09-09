@@ -62,7 +62,6 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
       <svg class="equipment-hero__svg-overlay" viewBox="0 0 1000 600" preserveAspectRatio="none">
         <defs>
           <clipPath id="right-image-clip">
-            <!-- Moved start point to 650 (65%) and adjusted control point -->
             <path d="M 680 0 Q 560 300 1000 600 L 1000 0 Z" />
           </clipPath>
         </defs>
@@ -171,7 +170,8 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
 }
 
 .equipment-hero__image {
-  @apply w-full h-full object-cover object-center;
+  @apply w-full h-full object-cover;
+  object-position: 55% center;
 }
 
 /* Replace .equipment-hero__right-bg and .equipment-hero__divider-stroke with this: */

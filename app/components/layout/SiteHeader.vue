@@ -10,7 +10,7 @@ const navigation = [
   { label: 'Stories', to: '/stories' },
   { label: 'Get Involved', to: '/donate' },
   { label: 'Corporate Partnerships', to: '/corporate-partnerships' },
-  { label: 'Transparency', to: '/transparency' },
+  { label: 'Accountability', to: '/transparency' },
 ]
 
 const isMenuOpen = ref(false)
