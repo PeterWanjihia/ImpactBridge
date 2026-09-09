@@ -1,46 +1,38 @@
 <script setup lang="ts">
 // ---------------------------------------------------------------------------
 // SEO — shared composable (canonical, OG/Twitter cards, robots)
+// TODO: Source from the CMS `pages` collection when the backend is live.
 // ---------------------------------------------------------------------------
 usePageSeo({
   title: 'Donate Equipment',
-  description: 'Support our mission by donating suitable computers, displays and supporting equipment.',
+  description:
+    'Turn suitable technology into supported learning. We assess, prepare and deploy suitable computers, displays and supporting equipment as part of complete teacher-led learning hubs.',
   path: '/donate-equipment',
   type: 'website',
 })
 
 // ---------------------------------------------------------------------------
-// Data layer
+// Data layer — equipment requirements (Go API when ready, static defaults now)
 // ---------------------------------------------------------------------------
 const { getEquipmentRequirements } = useEquipmentOffer()
-
-// TODO: When backend is ready, replace with:
-// const { data: requirements } = await useAsyncData('equipment-requirements', () => getEquipmentRequirements())
-
-const loading = ref(true)
 
 onMounted(async () => {
   try {
     await getEquipmentRequirements()
   } catch {
-    // Use defaults
-  } finally {
-    loading.value = false
+    // Use static defaults defined in the section components
   }
 })
 </script>
 
 <template>
   <div class="page-donate-equipment">
-    <HeroOverlay
-      title="Donate Equipment"
-      subtitle="Support our mission by donating suitable computers, displays and supporting equipment as part of complete teacher-led learning hubs."
-    />
-
-    <LayoutContainer>
-      <div class="py-12 max-w-2xl mx-auto">
-        <p class="text-gray-500 text-center">Equipment donation workflow coming soon.</p>
-      </div>
-    </LayoutContainer>
+    <EquipmentHero />
+    <EquipmentNeedsSection />
+    <EquipmentProcessSection />
+    <EquipmentSuitabilitySection />
+    <EquipmentDonorReceive />
+    <EquipmentOfferForm />
+    <EquipmentQuestionsBand />
   </div>
 </template>

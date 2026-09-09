@@ -1,14 +1,26 @@
 /**
- * Composable for the equipment offer workflow
+ * Composable for the equipment offer workflow.
+ *
+ * Routes per the architecture spec (Appendix A — Public API inventory):
+ * - GET   /v1/equipment-requirements      Published equipment needs/criteria
+ * - POST  /v1/equipment-offers            Create equipment offer draft
+ * - PATCH /v1/equipment-offers/:id        Update draft
+ * - POST  /v1/equipment-offers/:id/submit Submit offer
+ *
+ * Transactional writes always go through the Go API — the CMS never owns
+ * equipment workflow state.
  */
 export function useEquipmentOffer() {
   const config = useRuntimeConfig()
 
-  interface EquipmentOffer {
+  /** Draft offer payload sent to POST /v1/equipment-offers. */
+  interface EquipmentOfferPayload {
     organisation: string
     contactName: string
     contactEmail: string
     contactPhone?: string
+    country?: string
+    jobTitle?: string
     items: Array<{
       category: string
       manufacturer?: string
@@ -18,6 +30,14 @@ export function useEquipmentOffer() {
       specifications?: string
     }>
     logisticsNotes?: string
+    ownershipConfirmed?: boolean
+    dataErasureConfirmed?: boolean
+  }
+
+  /** Record returned after creating an offer draft. */
+  interface EquipmentOfferRecord {
+    id: string
+    status: string
   }
 
   /**
@@ -25,7 +45,9 @@ export function useEquipmentOffer() {
    */
   async function getEquipmentRequirements() {
     try {
-      const data = await $fetch(`${config.public.apiUrl}/v1/equipment-requirements`)
+      const data = await $fetch(
+        `${config.public.apiUrl}/v1/equipment-requirements`
+      )
       return data
     } catch (error) {
       console.error('Failed to fetch equipment requirements:', error)
@@ -36,12 +58,17 @@ export function useEquipmentOffer() {
   /**
    * Create an equipment offer draft
    */
-  async function createOffer(offer: EquipmentOffer) {
+  async function createOffer(
+    offer: EquipmentOfferPayload
+  ): Promise<EquipmentOfferRecord | null> {
     try {
-      const data = await $fetch(`${config.public.apiUrl}/v1/equipment-offers`, {
-        method: 'POST',
-        body: offer
-      })
+      const data = await $fetch<EquipmentOfferRecord>(
+        `${config.public.apiUrl}/v1/equipment-offers`,
+        {
+          method: 'POST',
+          body: offer
+        }
+      )
       return data
     } catch (error) {
       console.error('Failed to create equipment offer:', error)
@@ -52,12 +79,18 @@ export function useEquipmentOffer() {
   /**
    * Update an equipment offer draft
    */
-  async function updateOffer(offerId: string, updates: Partial<EquipmentOffer>) {
+  async function updateOffer(
+    offerId: string,
+    updates: Partial<EquipmentOfferPayload>
+  ): Promise<EquipmentOfferRecord | null> {
     try {
-      const data = await $fetch(`${config.public.apiUrl}/v1/equipment-offers/${offerId}`, {
-        method: 'PATCH',
-        body: updates
-      })
+      const data = await $fetch<EquipmentOfferRecord>(
+        `${config.public.apiUrl}/v1/equipment-offers/${offerId}`,
+        {
+          method: 'PATCH',
+          body: updates
+        }
+      )
       return data
     } catch (error) {
       console.error('Failed to update equipment offer:', error)
@@ -68,11 +101,16 @@ export function useEquipmentOffer() {
   /**
    * Submit an equipment offer
    */
-  async function submitOffer(offerId: string) {
+  async function submitOffer(
+    offerId: string
+  ): Promise<EquipmentOfferRecord | null> {
     try {
-      const data = await $fetch(`${config.public.apiUrl}/v1/equipment-offers/${offerId}/submit`, {
-        method: 'POST'
-      })
+      const data = await $fetch<EquipmentOfferRecord>(
+        `${config.public.apiUrl}/v1/equipment-offers/${offerId}/submit`,
+        {
+          method: 'POST'
+        }
+      )
       return data
     } catch (error) {
       console.error('Failed to submit equipment offer:', error)

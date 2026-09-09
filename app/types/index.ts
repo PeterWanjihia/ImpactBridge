@@ -313,8 +313,14 @@ export interface EquipmentOffer {
   organisation: string
   contactName: string
   contactEmail: string
+  contactPhone?: string
+  country?: string
+  jobTitle?: string
   status: EquipmentStatus
   items: EquipmentItem[]
+  logisticsNotes?: string
+  ownershipConfirmed?: boolean
+  dataErasureConfirmed?: boolean
   createdAt: string
 }
 
