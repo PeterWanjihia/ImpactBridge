@@ -65,7 +65,6 @@ const steps: PartnershipStep[] = [
   },
 ]
 </script>
-
 <template>
   <section class="process-section">
     <LayoutContainer>
@@ -75,37 +74,44 @@ const steps: PartnershipStep[] = [
       <div class="process-section__timeline hidden lg:block">
         <div class="flex items-start">
           <template v-for="(step, index) in steps" :key="step.title">
-            <div class="process-step flex-1 min-w-0">
-              <div class="process-step__icon">
-                <component :is="step.icon" class="w-6 h-6" />
+            <div class="process-step">
+              <!-- Stacked Icon + Overlapping Badge -->
+              <div class="process-step__icon-wrapper">
+                <div class="process-step__icon">
+                  <component :is="step.icon" class="w-6 h-6 stroke-[1.75]" />
+                </div>
+                <span class="process-step__number">{{ index + 1 }}</span>
               </div>
-              <span class="process-step__number">{{ index + 1 }}</span>
+
+              <!-- Content -->
               <h3 class="process-step__title">{{ step.title }}</h3>
               <p class="process-step__description">{{ step.description }}</p>
             </div>
 
+            <!-- Connector Arrow -->
             <div
               v-if="index < steps.length - 1"
               class="process-connector"
               aria-hidden="true"
-            />
+            >
+              <div class="process-connector__line"></div>
+              <span class="process-connector__arrow">›</span>
+            </div>
           </template>
         </div>
       </div>
 
       <!-- Mobile / tablet: simple grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-10 lg:hidden">
-        <div v-for="(step, index) in steps" :key="step.title" class="flex gap-4">
-          <div class="flex flex-col items-center">
+        <div v-for="(step, index) in steps" :key="step.title" class="flex flex-col items-center text-center">
+          <div class="process-step__icon-wrapper">
             <div class="process-step__icon">
-              <component :is="step.icon" class="w-6 h-6" />
+              <component :is="step.icon" class="w-6 h-6 stroke-[1.75]" />
             </div>
-            <span class="process-step__number mt-2">{{ index + 1 }}</span>
+            <span class="process-step__number">{{ index + 1 }}</span>
           </div>
-          <div>
-            <h3 class="process-step__title">{{ step.title }}</h3>
-            <p class="process-step__description mt-1">{{ step.description }}</p>
-          </div>
+          <h3 class="process-step__title">{{ step.title }}</h3>
+          <p class="process-step__description">{{ step.description }}</p>
         </div>
       </div>
     </LayoutContainer>
@@ -114,39 +120,46 @@ const steps: PartnershipStep[] = [
 
 <style scoped>
 .process-section {
-  @apply bg-white py-14 md:py-16 border-t border-slate-100;
+  @apply bg-white py-14 md:py-16;
 }
 
 .process-section__title {
-  @apply text-2xl md:text-3xl font-serif font-bold text-slate-900 mb-10;
+  @apply text-2xl md:text-3xl font-serif font-bold text-[#1a2b4c] mb-12;
 }
 
 .process-step {
-  @apply flex flex-col;
+  @apply flex-1 flex flex-col items-center text-center px-1 min-w-0;
+}
+
+.process-step__icon-wrapper {
+  @apply relative inline-flex flex-col items-center mb-3;
 }
 
 .process-step__icon {
-  @apply w-14 h-14 rounded-full bg-white border border-slate-200 text-cobalt-600 flex items-center justify-center shadow-sm flex-shrink-0;
+  @apply w-16 h-16 rounded-full bg-[#f0f4ff] text-[#1d4ed8] flex items-center justify-center flex-shrink-0;
 }
 
 .process-step__number {
-  @apply mt-3 w-6 h-6 rounded-full bg-cobalt-600 text-white text-xs font-bold flex items-center justify-center;
+  @apply absolute -bottom-2 w-5 h-5 rounded-full bg-[#0042e6] text-white text-[11px] font-bold flex items-center justify-center z-10 shadow-sm;
 }
 
 .process-step__title {
-  @apply mt-3 text-[15px] font-sans font-bold text-slate-900 leading-snug;
+  @apply mt-2 text-[14px] font-sans font-bold text-[#0f172a] leading-tight;
 }
 
 .process-step__description {
-  @apply mt-2 text-xs font-sans leading-relaxed text-slate-500;
+  @apply mt-2 text-[12px] font-sans leading-snug text-slate-500 max-w-[140px];
 }
 
 .process-connector {
-  @apply flex-1 border-t-2 border-dashed border-slate-300 relative top-7 min-w-[24px] max-w-[56px];
+  @apply flex items-center justify-center gap-1 mt-7 flex-shrink-0 min-w-[32px];
 }
 
-.process-connector::after {
-  content: '';
-  @apply absolute right-0 -top-[5px] border-t-2 border-r-2 border-slate-300 w-2 h-2 rotate-45;
+.process-connector__line {
+  @apply w-full border-t border-dashed border-blue-300;
+}
+
+.process-connector__arrow {
+  @apply text-blue-400 text-xs font-bold -ml-1 -mt-[1px];
 }
 </style>
