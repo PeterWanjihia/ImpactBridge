@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { Calendar, Users, Shield, GraduationCap, CircleHelp } from '@lucide/vue'
+import type { Component } from 'vue'
 
 interface LearningItem {
   question: string
   description: string
-  icon: 'calendar' | 'users' | 'shield' | 'graduation'
+  icon: string
 }
 
 interface Props {
@@ -38,11 +39,16 @@ const props = withDefaults(defineProps<Props>(), {
   ]
 })
 
-const iconMap = {
+const iconMap: Record<string, Component> = {
   calendar: Calendar,
   users: Users,
   shield: Shield,
   graduation: GraduationCap
+}
+
+function resolveIcon(iconName?: string): Component {
+  if (!iconName) return CircleHelp
+  return iconMap[iconName] ?? CircleHelp
 }
 </script>
 
@@ -63,7 +69,7 @@ const iconMap = {
         :key="index"
         class="learning-card"
       >
-        <component :is="iconMap[item.icon] ?? CircleHelp" class="learning-card-icon" />
+        <component :is="resolveIcon(item.icon)" class="learning-card-icon" />
         <h4 class="learning-card-question">{{ item.question }}</h4>
         <p class="learning-card-description">{{ item.description }}</p>
       </div>
@@ -71,7 +77,7 @@ const iconMap = {
 
     <!-- Methodology Link -->
     <div class="still-learning-footer">
-      <NuxtLink to="/impact/methodology" class="still-learning-link">
+      <NuxtLink to="/transparency" class="still-learning-link">
         Read our methodology and limitations
         <span class="ml-1">→</span>
       </NuxtLink>

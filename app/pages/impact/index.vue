@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { Server, Users, User, Calendar, Building2 } from '@lucide/vue'
+import { Server, Users, User, Calendar, Building2, CircleHelp } from '@lucide/vue'
+import type { Component } from 'vue'
 import type {
   ImpactOverview,
   ImpactHeroData,
@@ -7,6 +8,19 @@ import type {
   ImpactEvidenceItem,
   ProgrammeContext,
 } from '~/types'
+
+const heroIconMap: Record<string, Component> = {
+  server: Server,
+  users: Users,
+  user: User,
+  calendar: Calendar,
+  building: Building2,
+}
+
+function resolveHeroIcon(iconName?: string): Component {
+  if (!iconName) return CircleHelp
+  return heroIconMap[iconName] ?? CircleHelp
+}
 
 // ---------------------------------------------------------------------------
 // SEO — shared composable (canonical, OG/Twitter cards, robots)
@@ -210,13 +224,13 @@ const reportItems = computed(() => overview.value?.reports ?? [
         </p>
         <div class="impact-hero-actions">
           <UiButton variant="primary" size="lg" class="bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-6 py-3 font-semibold">
-            <NuxtLink to="/impact/reach" class="flex items-center gap-2">
+            <NuxtLink to="#early-results" class="flex items-center gap-2">
               <span>Explore the results</span>
               <span>→</span>
             </NuxtLink>
           </UiButton>
           <UiButton variant="outline-white" size="lg" class="border border-white/80 text-white hover:bg-white/10 rounded-lg px-6 py-3 font-semibold">
-            <NuxtLink to="/impact/reports" class="flex items-center gap-2">
+            <NuxtLink to="#reports" class="flex items-center gap-2">
               <span>Read the pilot report</span>
               <Building2 class="w-4 h-4" />
             </NuxtLink>
@@ -239,7 +253,7 @@ const reportItems = computed(() => overview.value?.reports ?? [
               :key="idx"
               class="impact-hero-card-stat"
             >
-              <component :is="stat.icon === 'users' ? Users : stat.icon === 'user' ? User : Server" class="impact-hero-card-stat-icon" />
+              <component :is="resolveHeroIcon(stat.icon)" class="impact-hero-card-stat-icon" />
               <div class="impact-hero-card-stat-content">
                 <span class="impact-hero-card-stat-value">{{ stat.value }}</span>
                 <span class="impact-hero-card-stat-label">{{ stat.label }}</span>
@@ -274,7 +288,7 @@ const reportItems = computed(() => overview.value?.reports ?? [
     />
 
     <!-- Early Results Section -->
-    <EarlyResults :metrics="earlyResultMetrics" />
+    <EarlyResults id="early-results" :metrics="earlyResultMetrics" />
 
     <!-- Testimonial Quotes Section -->
     <TestimonialQuotes
@@ -303,7 +317,7 @@ const reportItems = computed(() => overview.value?.reports ?? [
     </section>
 
     <!-- Reports Explore Section -->
-    <ReportsExplore :reports="reportItems" />
+    <ReportsExplore id="reports" :reports="reportItems" />
 
     <!-- Impact CTA Section -->
     <ImpactCTA />

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Wrench, User, BookOpen, Star, ArrowRight, CircleHelp } from '@lucide/vue'
+import type { Component } from 'vue'
 import type { ImpactEvidenceItem } from '~/types'
 
 interface Props {
@@ -34,10 +35,15 @@ const props = withDefaults(defineProps<Props>(), {
   ]
 })
 
-const iconMap = {
+const iconMap: Record<string, Component> = {
   wrench: Wrench,
   user: User,
   book: BookOpen
+}
+
+function resolveIcon(iconName?: string): Component {
+  if (!iconName) return CircleHelp
+  return iconMap[iconName] ?? CircleHelp
 }
 </script>
 
@@ -58,7 +64,7 @@ const iconMap = {
           <template v-for="(item, index) in items" :key="index">
             <div class="evidence-card">
               <div :class="['evidence-card-icon', item.iconBg]">
-                <component :is="iconMap[item.icon] ?? CircleHelp" :class="['w-5 h-5', item.iconColor]" />
+                <component :is="resolveIcon(item.icon)" :class="['w-5 h-5', item.iconColor]" />
               </div>
               <div class="evidence-card-content">
                 <div class="evidence-card-section">

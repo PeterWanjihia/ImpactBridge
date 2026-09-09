@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Users, GraduationCap, Heart, TrendingUp, MessageCircle, CircleHelp } from '@lucide/vue'
+import type { Component } from 'vue'
 import type { ImpactMetricItem } from '~/types'
 
 interface Props {
@@ -39,18 +40,28 @@ const props = withDefaults(defineProps<Props>(), {
   ]
 })
 
-const iconMap = {
+const iconMap: Record<string, Component> = {
   users: Users,
   graduation: GraduationCap,
   heart: Heart,
   trending: TrendingUp
 }
 
-const iconColorMap = {
+function resolveIcon(iconName?: string): Component {
+  if (!iconName) return CircleHelp
+  return iconMap[iconName] ?? CircleHelp
+}
+
+const iconColorMap: Record<string, string> = {
   users: 'text-green-600 bg-green-50',
   graduation: 'text-orange-500 bg-orange-50',
   heart: 'text-cobalt bg-cobalt/10',
   trending: 'text-navy bg-navy/10'
+}
+
+function resolveIconColor(iconName?: string): string {
+  if (!iconName) return 'text-navy bg-navy/10'
+  return iconColorMap[iconName] ?? 'text-navy bg-navy/10'
 }
 </script>
 
@@ -73,8 +84,8 @@ const iconColorMap = {
             :key="index"
             class="early-results-card"
           >
-            <div :class="['early-results-card-icon', iconColorMap[metric.icon]]">
-              <component :is="iconMap[metric.icon] ?? CircleHelp" class="w-6 h-6" />
+            <div :class="['early-results-card-icon', resolveIconColor(metric.icon)]">
+              <component :is="resolveIcon(metric.icon)" class="w-6 h-6" />
             </div>
             <div class="early-results-card-content">
               <div class="early-results-card-value">{{ metric.value }}</div>
@@ -89,7 +100,7 @@ const iconColorMap = {
           <MessageCircle class="w-5 h-5 text-cobalt flex-shrink-0" />
           <span class="early-results-survey-text">
             {{ surveyNote }}
-            <NuxtLink to="/impact/methodology" class="early-results-survey-link">
+            <NuxtLink to="/transparency" class="early-results-survey-link">
               See sample questions and methodology →
             </NuxtLink>
           </span>
