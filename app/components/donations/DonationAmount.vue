@@ -3,25 +3,40 @@ interface Props {
   modelValue?: number
   currency?: string
   presets?: number[]
+  /** Preset grid columns at sm+ (2 or 3 — the donate widget uses 3) */
+  columns?: 2 | 3
 }
 
 const props = withDefaults(defineProps<Props>(), {
   modelValue: 0,
   currency: 'GBP',
-  presets: () => [25, 50, 100, 250]
+  presets: () => [25, 50, 100, 250],
+  columns: 2,
 })
 
 const emit = defineEmits<{
   'update:modelValue': [value: number]
+  /** Emitted when the donor switches between presets and a custom amount */
+  'update:custom': [value: boolean]
 }>()
 
 const customAmount = ref('')
 const showCustom = ref(false)
 
 function selectPreset(amount: number) {
-  showCustom.value = false
+  if (showCustom.value) {
+    showCustom.value = false
+    emit('update:custom', false)
+  }
   customAmount.value = ''
   emit('update:modelValue', amount)
+}
+
+function selectCustom() {
+  if (!showCustom.value) {
+    showCustom.value = true
+    emit('update:custom', true)
+  }
 }
 
 function setCustomAmount() {
@@ -38,7 +53,7 @@ function handleCustomInput() {
 
 <template>
   <div class="donation-amount">
-    <div class="donation-amount-presets">
+    <div :class="['donation-amount-presets', `donation-amount-presets--cols-${columns}`]">
       <button
         v-for="preset in presets"
         :key="preset"
@@ -57,7 +72,7 @@ function handleCustomInput() {
           'donation-amount-preset',
           { 'donation-amount-preset--active': showCustom }
         ]"
-        @click="showCustom = true"
+        @click="selectCustom"
       >
         Custom
       </button>
@@ -80,7 +95,15 @@ function handleCustomInput() {
 }
 
 .donation-amount-presets {
-  @apply grid grid-cols-2 sm:grid-cols-4 gap-3;
+  @apply grid grid-cols-2 gap-3;
+}
+
+.donation-amount-presets--cols-3 {
+  @apply sm:grid-cols-3;
+}
+
+.donation-amount-presets--cols-2 {
+  @apply sm:grid-cols-4;
 }
 
 .donation-amount-preset {

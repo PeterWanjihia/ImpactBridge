@@ -1,57 +1,77 @@
 <script setup lang="ts">
-import type { Campaign, Fund } from '~/types'
-
 // ---------------------------------------------------------------------------
 // SEO — shared composable (canonical, OG/Twitter cards, robots)
+// Spec: /donate is SSR (transactional flow), metadata CMS-managed when live.
 // ---------------------------------------------------------------------------
 usePageSeo({
   title: 'Donate',
-  description: 'Help teachers bring offline learning resources to schools where connectivity should not limit opportunity.',
+  description:
+    'Fund the next classroom. Help bring offline learning resources, prepared teachers and ongoing support to schools where connectivity should not limit opportunity.',
   path: '/donate',
   type: 'website',
 })
 
 // ---------------------------------------------------------------------------
-// Data layer
+// Data layer — page composite composable
+//   GET /v1/campaigns/active  → campaign panel (Go API)
+//   GET /v1/donation-options  → funds/methods/presets/crypto (Go API)
+//   CMS faqs (category=donate) → FAQ content
 // ---------------------------------------------------------------------------
-const { getDonationOptions } = useDonation()
+const { data, funds, paymentMethods, currency, presets, load } = useDonatePage()
 
-// TODO: When backend is ready, replace with:
-// const { data: options } = await useAsyncData('donation-options', () => getDonationOptions())
-const funds = ref<Fund[]>([
-  { id: 'default', name: 'General Fund', description: 'Where the need is greatest' },
-])
-const paymentMethods = ref<string[]>(['card'])
-
-const loading = ref(true)
-
-onMounted(async () => {
-  try {
-    const options = await getDonationOptions()
-    if (options) {
-      funds.value = (options as any).funds ?? funds.value
-      paymentMethods.value = (options as any).paymentMethods ?? paymentMethods.value
-    }
-  } catch {
-    // Use defaults
-  } finally {
-    loading.value = false
-  }
-})
+// The widget owns its own step state; the page only arranges sections.
+callOnce('donate-page', () => load())
 </script>
 
 <template>
-  <div class="page-donate">
-    <HeroOverlay
-      title="Fund the Next Classroom"
-      subtitle="Help teachers bring offline learning resources to schools where connectivity should not limit opportunity."
+  <div id="top" class="page-donate">
+    <!-- Hero + donation widget (Choose / Details / Payment) -->
+    <DonationHero
+      :hero="data.hero"
+      :funds="funds"
+      :payment-methods="paymentMethods"
+      :currency="currency"
+      :presets="presets"
     />
 
-    <LayoutContainer>
-      <div class="py-12 max-w-2xl mx-auto">
-        <!-- Donation form will be built here -->
-        <p class="text-gray-500 text-center">Donation workflow coming soon.</p>
-      </div>
-    </LayoutContainer>
+    <!-- Reassurance strip -->
+    <DonationAssuranceStrip :items="data.assurances" />
+
+    <!-- Crypto giving -->
+    <DonationCryptoSection :data="data.crypto" />
+
+    <!-- Campaign progress + other ways to give -->
+    <section class="page-donate__campaign-row">
+      <LayoutContainer>
+        <div class="page-donate__campaign-grid">
+          <CampaignPanel :campaign="data.campaign" />
+          <DonationOtherWays title="Other ways to give" :items="data.otherWays" />
+        </div>
+      </LayoutContainer>
+    </section>
+
+    <!-- FAQ -->
+    <DonateFaq :faqs="data.faqs" />
+
+    <!-- Closing CTA band -->
+    <DonateCTA
+      :title="data.cta.title"
+      :title-accent="data.cta.titleAccent"
+      :description="data.cta.description"
+      :primary-text="data.cta.primaryText"
+      :primary-to="data.cta.primaryTo"
+      :secondary-text="data.cta.secondaryText"
+      :secondary-to="data.cta.secondaryTo"
+    />
   </div>
 </template>
+
+<style scoped>
+.page-donate__campaign-row {
+  @apply py-10 bg-gray-50/60;
+}
+
+.page-donate__campaign-grid {
+  @apply grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch;
+}
+</style>

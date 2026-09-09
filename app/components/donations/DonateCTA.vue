@@ -1,0 +1,114 @@
+<script setup lang="ts">
+import { Heart, ChartColumn } from '@lucide/vue'
+
+/**
+ * Closing CTA band — navy card with classroom photo, matching the design's
+ * "Every gift becomes part of a bigger change." Links route to the donation
+ * widget (top of page) and the impact evidence page.
+ */
+interface Props {
+  title: string
+  titleAccent: string
+  description: string
+  imageUrl?: string
+  imageAlt?: string
+  primaryText: string
+  primaryTo: string
+  secondaryText: string
+  secondaryTo: string
+}
+
+withDefaults(defineProps<Props>(), {
+  imageUrl:
+    'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&h=800&fit=crop&crop=center',
+  imageAlt: 'Student smiling in a classroom',
+})
+</script>
+
+<template>
+  <section class="donate-cta">
+    <LayoutContainer>
+      <div class="donate-cta__card">
+        <div class="donate-cta__copy">
+          <h2 class="donate-cta__title">
+            {{ title }}
+            <span class="donate-cta__title-accent">{{ titleAccent }}</span>
+          </h2>
+          <p class="donate-cta__description">{{ description }}</p>
+
+          <div class="donate-cta__actions">
+            <a href="#top" class="donate-cta__btn donate-cta__btn--primary">
+              <Heart class="w-4 h-4" />
+              {{ primaryText }}
+            </a>
+            <NuxtLink :to="secondaryTo" class="donate-cta__btn donate-cta__btn--secondary">
+              {{ secondaryText }}
+              <ChartColumn class="w-4 h-4" />
+            </NuxtLink>
+          </div>
+        </div>
+
+        <div class="donate-cta__media">
+          <img
+            :src="imageUrl"
+            :alt="imageAlt"
+            class="donate-cta__image"
+            loading="lazy"
+            width="640"
+            height="480"
+          />
+        </div>
+      </div>
+    </LayoutContainer>
+  </section>
+</template>
+
+<style scoped>
+.donate-cta {
+  @apply py-10 md:py-14 bg-white;
+}
+
+.donate-cta__card {
+  @apply grid grid-cols-1 lg:grid-cols-2 rounded-2xl overflow-hidden bg-navy-900;
+}
+
+.donate-cta__copy {
+  @apply p-8 md:p-12 lg:p-14 flex flex-col justify-center;
+}
+
+.donate-cta__title {
+  @apply text-3xl md:text-4xl font-serif font-bold text-white leading-tight;
+}
+
+.donate-cta__title-accent {
+  @apply block;
+}
+
+.donate-cta__description {
+  @apply mt-4 text-sm md:text-base text-slate-300 leading-relaxed max-w-md;
+}
+
+.donate-cta__actions {
+  @apply mt-8 flex flex-wrap gap-3;
+}
+
+.donate-cta__btn {
+  @apply inline-flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-sans font-semibold transition-colors;
+}
+
+.donate-cta__btn--primary {
+  @apply bg-cobalt text-white hover:bg-cobalt-700;
+}
+
+.donate-cta__btn--secondary {
+  @apply border border-white/40 text-white hover:bg-white/10;
+}
+
+.donate-cta__media {
+  @apply relative min-h-[240px] lg:min-h-0;
+}
+
+.donate-cta__image {
+  @apply absolute inset-0 w-full h-full object-cover;
+}
+</style>

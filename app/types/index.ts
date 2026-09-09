@@ -280,6 +280,10 @@ export interface Fund {
 export interface DonationOptions {
   funds: Fund[]
   paymentMethods: PaymentMethod[]
+  currency?: string
+  presets?: number[]
+  /** Crypto asset/network pairs offered on the donate page */
+  cryptoAssets?: CryptoAssetOption[]
 }
 
 // Campaign
@@ -291,6 +295,157 @@ export interface Campaign {
   current: number
   status: 'active' | 'completed' | 'paused'
   programme?: Programme
+  /** Small badge next to the campaign title (e.g. "Active campaign") */
+  label?: string
+  /** Verified delivery stats shown under the progress bar */
+  stats?: CampaignStat[]
+  detailsText?: string
+  detailsTo?: string
+}
+
+/** One verified delivery stat under the campaign progress bar */
+export interface CampaignStat {
+  icon: 'hubs' | 'devices' | 'schools' | 'deployed'
+  value: number | string
+  label: string
+}
+
+// ---------------------------------------------------------------------------
+// Donate Page
+// ---------------------------------------------------------------------------
+
+/**
+ * Donate page composite.
+ * Campaign + funds + payment configuration come from the Go API
+ * (GET /v1/campaigns/active, GET /v1/donation-options); editorial copy and
+ * FAQs are CMS-owned (architecture spec: content vs. transactional data).
+ */
+export interface DonatePageData {
+  hero: DonateHeroData
+  assurances: DonationAssurance[]
+  crypto: DonateCryptoSection
+  campaign: Campaign
+  otherWays: OtherWayToGive[]
+  faqs: FaqItem[]
+  cta: DonateCtaData
+}
+
+export interface DonateHeroData {
+  eyebrow: string
+  title: string
+  subtitle: string
+  videoDuration: string
+  trustItems: DonateHeroTrustItem[]
+}
+
+export interface DonateHeroTrustItem {
+  icon: 'shield' | 'receipt' | 'lock'
+  label: string
+}
+
+/** Reassurance strip under the hero */
+export interface DonationAssurance {
+  icon: 'shield' | 'receipt' | 'chart' | 'lock'
+  title: string
+  description: string
+}
+
+/** Crypto asset + network option (GET /v1/donation-options) */
+export interface CryptoAssetOption {
+  symbol: string
+  name: string
+  network: string
+  /** Icon key resolved by the section component */
+  icon: 'usdt' | 'eth' | 'usdc' | 'btc' | 'trx' | 'matic'
+  /** Tailwind-ish token for the icon disc */
+  color: 'teal' | 'navy' | 'cobalt' | 'amber' | 'red' | 'purple'
+}
+
+export interface DonateCryptoSection {
+  title: string
+  titleAccent: string
+  description: string
+  linkText: string
+  linkTo: string
+  panelLabel: string
+  assets: CryptoAssetOption[]
+  viewAllText: string
+}
+
+/** "Other ways to give" cards next to the campaign panel */
+export interface OtherWayToGive {
+  icon: 'building' | 'laptop'
+  title: string
+  description: string
+  linkText: string
+  linkTo: string
+}
+
+/** Single FAQ item (CMS `faqs` collection, page/category = donate) */
+export interface FaqItem {
+  id: string
+  question: string
+  answer: string
+}
+
+export interface DonateCtaData {
+  title: string
+  titleAccent: string
+  description: string
+  imageUrl?: string
+  imageAlt?: string
+  primaryText: string
+  primaryTo: string
+  secondaryText: string
+  secondaryTo: string
+}
+
+// Donation workflow state (multi-step form on /donate)
+
+/** Step 1 method tabs */
+export type PaymentMethodTab = PaymentMethod
+
+/** Give once vs give monthly (Stripe Checkout + Billing) */
+export type DonationFrequency = 'once' | 'monthly'
+
+export type DonationStep = 'choose' | 'details' | 'payment'
+
+/** Step 2 payload collected from the donor */
+export interface DonorDetails {
+  email: string
+  name: string
+  note?: string
+}
+
+/**
+ * Donation intent created via POST /v1/donations.
+ * fundId references a Fund from GET /v1/donation-options.
+ */
+export interface DonationIntent {
+  fundId: string
+  amount: number
+  currency: string
+  recurring: boolean
+  donor?: {
+    email: string
+    name?: string
+  }
+}
+
+/** Response of POST /v1/donations — exposes only the donor-facing public ID */
+export interface CreateDonationResponse {
+  /** Opaque donor-facing reference (never a sequential DB id, per spec) */
+  publicId: string
+  /** Opaque id used for POST /v1/donations/:id/checkout */
+  donationId?: string
+  status: DonationStatus
+}
+
+/** Response of POST /v1/donations/:id/checkout — Stripe-hosted checkout */
+export interface CheckoutSession {
+  id: string
+  /** Redirect target for the browser (Stripe-hosted page, per security spec) */
+  url: string
 }
 
 // Equipment

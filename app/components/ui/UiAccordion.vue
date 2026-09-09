@@ -7,10 +7,13 @@ interface Props {
     disabled?: boolean
   }>
   multiple?: boolean
+  /** Start with every item open (donate FAQ renders expanded by default) */
+  forceOpen?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  multiple: false
+  multiple: true,
+  forceOpen: false
 })
 
 const openItems = ref<Set<string>>(new Set())
@@ -33,7 +36,7 @@ function toggleItem(id: string) {
 }
 
 function isOpen(id: string) {
-  return openItems.value.has(id)
+  return props.forceOpen || openItems.value.has(id)
 }
 </script>
 
