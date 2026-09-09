@@ -89,7 +89,7 @@ const props = withDefaults(defineProps<Props>(), {
               <FileText class="w-8 h-8 text-cobalt" />
             </div>
             <h4 class="reports-cta-title">View all reports and documents</h4>
-            <NuxtLink to="/impact/reports" class="reports-cta-link">
+            <NuxtLink to="/transparency#reports" class="reports-cta-link">
               Go to reports library
               <ArrowRight class="w-4 h-4" />
             </NuxtLink>
