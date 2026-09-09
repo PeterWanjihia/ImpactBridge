@@ -48,7 +48,6 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
   },
 ]
 </script>
-
 <template>
   <section class="equipment-hero">
     <!-- Two-image split background layer -->
@@ -64,27 +63,31 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
         <div class="equipment-hero__left-overlay" />
       </div>
 
-      <!-- Right Curved Background Image (Clipping Path) -->
-      <div class="equipment-hero__right-bg">
-        <img
-          :src="rightImage"
-          alt=""
-          class="equipment-hero__image"
-          :loading="preload ? 'eager' : 'lazy'"
-        />
-      </div>
+      <!-- Right Curved Background Image + Stroke via SVG Mask/Clip -->
+      <svg class="equipment-hero__svg-overlay" viewBox="0 0 1000 600" preserveAspectRatio="none">
+        <defs>
+          <clipPath id="right-image-clip">
+            <!-- Smooth responsive quadratic bezier curve -->
+            <path d="M 300 0 Q 150 300 450 600 L 1000 600 L 1000 0 Z" />
+          </clipPath>
+        </defs>
 
-      <!-- Curved White Divider Border -->
-      <svg
-        class="equipment-hero__divider-stroke"
-        viewBox="0 0 100 100"
-        preserveAspectRatio="none"
-      >
+        <!-- Dynamic image clipped by the exact path -->
+        <image
+          :href="rightImage"
+          width="1000"
+          height="600"
+          preserveAspectRatio="xMidYMid slice"
+          clip-path="url(#right-image-clip)"
+        />
+
+        <!-- White border stroke following the exact same path -->
         <path
-          d="M 68,0 Q 62,50 100,100"
+          d="M 300 0 Q 150 300 450 600"
           fill="none"
           stroke="white"
-          stroke-width="0.8"
+          stroke-width="3"
+          vector-effect="non-scaling-stroke"
         />
       </svg>
     </div>
@@ -195,18 +198,12 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
   );
 }
 
-/* Right Curved Image Panel using CSS clip-path */
-.equipment-hero__right-bg {
-  @apply hidden lg:block absolute top-0 right-0 w-[42%] h-full;
-  clip-path: path('M 60 0 Q 0 250 160 500 L 600 500 L 600 0 Z');
-}
-
 .equipment-hero__image {
   @apply w-full h-full object-cover object-center;
 }
+/* Replace .equipment-hero__right-bg and .equipment-hero__divider-stroke with this: */
 
-/* Curved White Border Line between images */
-.equipment-hero__divider-stroke {
+.equipment-hero__svg-overlay {
   @apply hidden lg:block absolute inset-0 w-full h-full pointer-events-none z-10;
 }
 
