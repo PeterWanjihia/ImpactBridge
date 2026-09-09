@@ -18,10 +18,10 @@ import { Mail, ArrowRight } from '@lucide/vue'
           </div>
         </div>
 
-        <a href="/contact" class="questions-band__cta">
+        <NuxtLink to="/corporate-partnerships#begin-the-conversation" class="questions-band__cta">
           Contact our team
           <ArrowRight class="w-4 h-4" />
-        </a>
+        </NuxtLink>
       </div>
     </LayoutContainer>
   </section>

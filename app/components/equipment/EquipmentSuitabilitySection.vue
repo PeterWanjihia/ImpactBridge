@@ -42,10 +42,10 @@ const cannotAcceptItems = [
               <span>{{ item }}</span>
             </li>
           </ul>
-          <a href="#requirements-detail" class="suitability-card__link">
+          <NuxtLink to="#requirements" class="suitability-card__link">
             See detailed requirements
             <ArrowRight class="w-4 h-4" />
-          </a>
+          </NuxtLink>
         </div>
 
         <!-- What we cannot accept -->
@@ -57,10 +57,10 @@ const cannotAcceptItems = [
               <span>{{ item }}</span>
             </li>
           </ul>
-          <a href="#requirements-detail" class="suitability-card__link">
+          <NuxtLink to="#requirements" class="suitability-card__link">
             Full exclusion list
             <ArrowRight class="w-4 h-4" />
-          </a>
+          </NuxtLink>
         </div>
 
         <!-- Data security & environment -->
@@ -89,10 +89,10 @@ const cannotAcceptItems = [
               We do not accept equipment for disposal. We prioritise meaningful
               reuse and responsible end-of-life management.
             </p>
-            <a href="/transparency" class="assurance-card__link">
+            <NuxtLink to="/transparency" class="assurance-card__link">
               Our commitment
               <ArrowRight class="w-4 h-4" />
-            </a>
+            </NuxtLink>
           </div>
         </div>
       </div>

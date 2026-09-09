@@ -103,10 +103,10 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
               <p class="equipment-hero__warning-text">
                 Please get written approval before sending any equipment.
               </p>
-              <a href="#why-this-matters" class="equipment-hero__warning-link">
+              <NuxtLink to="#requirements" class="equipment-hero__warning-link">
                 Why this matters
                 <ArrowRight class="w-3.5 h-3.5" />
-              </a>
+              </NuxtLink>
             </div>
           </div>
         </div>

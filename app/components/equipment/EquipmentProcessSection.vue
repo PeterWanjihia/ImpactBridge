@@ -3,7 +3,6 @@ import {
   ClipboardList,
   Search,
   BadgeCheck,
-  FileText,
   Truck,
   ArrowDownToLine,
   ClipboardCheck,
@@ -64,13 +63,13 @@ const phases: ProcessPhase[] = [
     steps: [
       {
         title: 'Prepare transfer',
-        description: 'Dates eased, ownership confirmed, logistics agreed.',
-        icon: FileText,
+        description: 'Dates agreed, ownership confirmed, logistics agreed.',
+        icon: Truck,
       },
       {
         title: 'Equipment received',
-        description: "Arrives at our inspection and preparation facility.",
-        icon: Truck,
+        description: 'Arrives at our inspection and preparation facility.',
+        icon: ArrowDownToLine,
       },
     ],
   },
@@ -234,9 +233,5 @@ const timelineSteps = phases.flatMap((phase) =>
 
 .process-step__connector {
   @apply flex-1 min-w-[16px] max-w-[44px] border-t-2 border-dotted border-slate-300 relative top-7 flex-shrink;
-}
-
-.process-phase__line + .process-phase__line {
-  @apply mt-0;
 }
 </style>

@@ -116,7 +116,7 @@ onMounted(() => {
 })
 
 watch(
-  form,
+  () => ({ ...form, items: form.items.map((item) => ({ ...item })) }),
   (value) => {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(value))
@@ -143,7 +143,6 @@ function validateStep1(): boolean {
   errors.email = validateEmail(form.email).error ?? ''
   errors.country = validateRequired(form.country, 'Country').error ?? ''
   errors.contactName = validateRequired(form.contactName, 'Your name').error ?? ''
-  errors.jobTitle = form.jobTitle.trim() ? '' : '' // optional
   errors.phone = validatePhone(form.phone).error ?? ''
   return !errors.organisation && !errors.email && !errors.country && !errors.contactName && !errors.phone
 }

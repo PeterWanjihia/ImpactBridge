@@ -43,10 +43,10 @@ const quoteImage =
             </li>
           </ul>
 
-          <a href="/stories" class="receive-section__link">
+          <NuxtLink to="/stories" class="receive-section__link">
             See reporting examples
             <ArrowRight class="w-4 h-4" />
-          </a>
+          </NuxtLink>
         </div>
 
         <!-- Right: classroom photo + quote panel -->
