@@ -4,8 +4,7 @@ import type { FaqItem } from '~/types'
 
 /**
  * Donate FAQ — two-column accordion fed by the CMS `faqs` collection
- * (page/category = donate). Answers render expanded by default per design;
- * visitors can collapse individual items.
+ * (page/category = donate). Answers remain collapsed until visitors open them.
  */
 interface Props {
   title?: string
@@ -47,7 +46,6 @@ withDefaults(defineProps<Props>(), {
               title: faq.question,
               content: faq.answer,
             }))"
-            force-open
             class="donate-faq__accordion"
           />
         </div>
@@ -58,15 +56,15 @@ withDefaults(defineProps<Props>(), {
 
 <style scoped>
 .donate-faq {
-  @apply py-14 md:py-16 bg-white;
+  @apply py-10 md:py-12 bg-white;
 }
 
 .donate-faq__header {
-  @apply flex items-center justify-between gap-4 mb-8;
+  @apply flex items-center justify-between gap-4 mb-5;
 }
 
 .donate-faq__title {
-  @apply text-2xl md:text-3xl font-serif font-bold text-navy;
+  @apply text-xl md:text-2xl font-serif font-bold text-navy;
 }
 
 .donate-faq__link {
@@ -74,19 +72,26 @@ withDefaults(defineProps<Props>(), {
 }
 
 .donate-faq__grid {
-  @apply grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-0 items-start;
+  @apply grid grid-cols-1 lg:grid-cols-2 gap-x-5 gap-y-2 items-start;
 }
 
-/* Keep the two columns visually independent */
 .donate-faq__accordion {
-  @apply border-0 divide-y divide-gray-200 rounded-none;
+  @apply border-0 divide-y-0 rounded-none gap-1.5;
+}
+
+.donate-faq__accordion :deep(.ui-accordion-item) {
+  @apply border border-gray-200 rounded-md overflow-hidden;
 }
 
 .donate-faq__accordion :deep(.ui-accordion-trigger) {
-  @apply px-0 py-4 text-[15px];
+  @apply px-3 py-2 text-xs md:text-[13px] text-gray-700;
 }
 
 .donate-faq__accordion :deep(.ui-accordion-content) {
-  @apply px-0 pb-4 text-sm leading-relaxed;
+  @apply px-3 pb-3 text-sm leading-relaxed;
+}
+
+.donate-faq__accordion :deep(.ui-accordion-icon) {
+  @apply w-4 h-4 text-gray-500;
 }
 </style>

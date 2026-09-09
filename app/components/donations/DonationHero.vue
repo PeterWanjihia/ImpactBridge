@@ -121,39 +121,39 @@ const trustIcons: Record<DonateHeroData['trustItems'][number]['icon'], Component
 }
 
 .donate-hero__eyebrow {
-  @apply text-cobalt-300 text-[9px] font-sans font-semibold tracking-[0.14em] uppercase mb-3;
+  @apply text-cobalt-300 text-[11px] font-sans font-semibold tracking-[0.14em] uppercase mb-4;
 }
 
 .donate-hero__title {
-  @apply text-3xl md:text-[2.65rem] font-serif font-bold text-white leading-[1.04] tracking-tight;
+  @apply text-4xl md:text-5xl font-serif font-bold text-white leading-[1.06] tracking-tight;
 }
 
 .donate-hero__subtitle {
-  @apply mt-4 max-w-[23rem] text-[11px] md:text-xs text-slate-300 leading-[1.5];
+  @apply mt-5 max-w-[28rem] text-sm md:text-base text-slate-300 leading-[1.5];
 }
 
 .donate-hero__video {
-  @apply mt-5 inline-flex items-center gap-2.5 text-white;
+  @apply mt-7 inline-flex items-center gap-3 text-white;
 }
 
 .donate-hero__play {
-  @apply flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white text-navy-900 hover:bg-white/90 transition-colors;
+  @apply flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-navy-900 hover:bg-white/90 transition-colors;
 }
 
 .donate-hero__video-label {
-  @apply block text-[10px] font-sans font-semibold leading-tight;
+  @apply block text-sm font-sans font-semibold leading-tight;
 }
 
 .donate-hero__video-duration {
-  @apply block text-[9px] font-sans text-slate-400 leading-tight mt-0.5;
+  @apply block text-xs font-sans text-slate-400 leading-tight mt-0.5;
 }
 
 .donate-hero__trust {
-  @apply mt-12 grid grid-cols-3 list-none border-t border-white/15 pt-4 p-0;
+  @apply mt-14 grid grid-cols-3 list-none border-t border-white/15 pt-5 p-0;
 }
 
 .donate-hero__trust-item {
-  @apply flex min-w-0 items-center gap-2 px-3 text-[9px] font-sans leading-[1.25] text-slate-300;
+  @apply flex min-w-0 items-center gap-2 px-3 text-[11px] font-sans leading-[1.3] text-slate-300;
 }
 
 .donate-hero__trust-item + .donate-hero__trust-item {
@@ -161,7 +161,7 @@ const trustIcons: Record<DonateHeroData['trustItems'][number]['icon'], Component
 }
 
 .donate-hero__trust-item :deep(svg) {
-  @apply h-4 w-4 shrink-0;
+  @apply h-5 w-5 shrink-0;
 }
 
 /* Widget card */
