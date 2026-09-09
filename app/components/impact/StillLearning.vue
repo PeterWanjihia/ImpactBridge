@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Calendar, Users, Shield, GraduationCap } from '@lucide/vue'
+import { Calendar, Users, Shield, GraduationCap, CircleHelp } from '@lucide/vue'
 
 interface LearningItem {
   question: string
@@ -63,7 +63,7 @@ const iconMap = {
         :key="index"
         class="learning-card"
       >
-        <component :is="iconMap[item.icon]" class="learning-card-icon" />
+        <component :is="iconMap[item.icon] ?? CircleHelp" class="learning-card-icon" />
         <h4 class="learning-card-question">{{ item.question }}</h4>
         <p class="learning-card-description">{{ item.description }}</p>
       </div>

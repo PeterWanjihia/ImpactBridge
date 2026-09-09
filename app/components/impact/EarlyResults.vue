@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Users, GraduationCap, Heart, TrendingUp, MessageCircle } from '@lucide/vue'
+import { Users, GraduationCap, Heart, TrendingUp, MessageCircle, CircleHelp } from '@lucide/vue'
 import type { ImpactMetricItem } from '~/types'
 
 interface Props {
@@ -74,7 +74,7 @@ const iconColorMap = {
             class="early-results-card"
           >
             <div :class="['early-results-card-icon', iconColorMap[metric.icon]]">
-              <component :is="iconMap[metric.icon]" class="w-6 h-6" />
+              <component :is="iconMap[metric.icon] ?? CircleHelp" class="w-6 h-6" />
             </div>
             <div class="early-results-card-content">
               <div class="early-results-card-value">{{ metric.value }}</div>

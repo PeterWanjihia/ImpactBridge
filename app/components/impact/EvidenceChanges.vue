@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Wrench, User, BookOpen, Star, ArrowRight } from '@lucide/vue'
+import { Wrench, User, BookOpen, Star, ArrowRight, CircleHelp } from '@lucide/vue'
 import type { ImpactEvidenceItem } from '~/types'
 
 interface Props {
@@ -58,7 +58,7 @@ const iconMap = {
           <template v-for="(item, index) in items" :key="index">
             <div class="evidence-card">
               <div :class="['evidence-card-icon', item.iconBg]">
-                <component :is="iconMap[item.icon]" :class="['w-5 h-5', item.iconColor]" />
+                <component :is="iconMap[item.icon] ?? CircleHelp" :class="['w-5 h-5', item.iconColor]" />
               </div>
               <div class="evidence-card-content">
                 <div class="evidence-card-section">
