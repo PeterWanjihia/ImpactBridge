@@ -54,12 +54,7 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
     <div class="equipment-hero__bg-wrapper" aria-hidden="true">
       <!-- Left Background Image -->
       <div class="equipment-hero__left-bg">
-        <img
-          :src="leftImage"
-          alt=""
-          class="equipment-hero__image"
-          :loading="preload ? 'eager' : 'lazy'"
-        />
+        <img :src="leftImage" alt="" class="equipment-hero__image" :loading="preload ? 'eager' : 'lazy'" />
         <div class="equipment-hero__left-overlay" />
       </div>
 
@@ -67,29 +62,18 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
       <svg class="equipment-hero__svg-overlay" viewBox="0 0 1000 600" preserveAspectRatio="none">
         <defs>
           <clipPath id="right-image-clip">
-            <!-- Smooth responsive quadratic bezier curve -->
-            <path d="M 300 0 Q 150 300 450 600 L 1000 600 L 1000 0 Z" />
+            <!-- Moved start point to 650 (65%) and adjusted control point -->
+            <path d="M 680 0 Q 560 300 1000 600 L 1000 0 Z" />
           </clipPath>
         </defs>
 
-        <!-- Dynamic image clipped by the exact path -->
-        <image
-          :href="rightImage"
-          width="1000"
-          height="600"
-          preserveAspectRatio="xMidYMid slice"
-          clip-path="url(#right-image-clip)"
-        />
+        <image :href="rightImage" width="1000" height="600" preserveAspectRatio="xMidYMid slice"
+          clip-path="url(#right-image-clip)" />
 
-        <!-- White border stroke following the exact same path -->
-        <path
-          d="M 300 0 Q 150 300 450 600"
-          fill="none"
-          stroke="white"
-          stroke-width="3"
-          vector-effect="non-scaling-stroke"
-        />
+        <path d="M 680 0 Q 560 300 1000 600" fill="none" stroke="white" stroke-width="3"
+          vector-effect="non-scaling-stroke" />
       </svg>
+
     </div>
 
     <LayoutContainer class="equipment-hero__container">
@@ -108,17 +92,11 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
           </p>
 
           <div class="equipment-hero__actions">
-            <NuxtLink
-              to="#offer-equipment"
-              class="equipment-hero__cta equipment-hero__cta--primary"
-            >
+            <NuxtLink to="#offer-equipment" class="equipment-hero__cta equipment-hero__cta--primary">
               Offer equipment
               <ArrowRight class="w-4 h-4" />
             </NuxtLink>
-            <NuxtLink
-              to="#requirements"
-              class="equipment-hero__cta equipment-hero__cta--secondary"
-            >
+            <NuxtLink to="#requirements" class="equipment-hero__cta equipment-hero__cta--secondary">
               View requirements
               <Download class="w-4 h-4" />
             </NuxtLink>
@@ -153,12 +131,8 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
       <!-- Bottom Floating Trust Bar -->
       <div class="equipment-hero__trust-card">
         <div class="equipment-hero__trust-grid">
-          <div
-            v-for="(item, index) in trustItems"
-            :key="item.title"
-            class="equipment-hero__trust-item"
-            :class="{ 'lg:border-r lg:border-white/10': index < trustItems.length - 1 }"
-          >
+          <div v-for="(item, index) in trustItems" :key="item.title" class="equipment-hero__trust-item"
+            :class="{ 'lg:border-r lg:border-white/10': index < trustItems.length - 1 }">
             <span class="equipment-hero__trust-icon">
               <component :is="item.icon" class="w-5 h-5" />
             </span>
@@ -189,18 +163,17 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
 
 .equipment-hero__left-overlay {
   @apply absolute inset-0;
-  background: linear-gradient(
-    to right,
-    rgba(7, 19, 36, 0.98) 0%,
-    rgba(8, 22, 42, 0.92) 35%,
-    rgba(10, 26, 50, 0.65) 55%,
-    rgba(10, 26, 50, 0.1) 100%
-  );
+  background: linear-gradient(to right,
+      rgba(7, 19, 36, 0.98) 0%,
+      rgba(8, 22, 42, 0.92) 35%,
+      rgba(10, 26, 50, 0.65) 55%,
+      rgba(10, 26, 50, 0.1) 100%);
 }
 
 .equipment-hero__image {
   @apply w-full h-full object-cover object-center;
 }
+
 /* Replace .equipment-hero__right-bg and .equipment-hero__divider-stroke with this: */
 
 .equipment-hero__svg-overlay {
