@@ -22,18 +22,6 @@ function resolveHeroIcon(iconName?: string): Component {
   return heroIconMap[iconName] ?? CircleHelp
 }
 
-// ---------------------------------------------------------------------------
-// SEO — shared composable (canonical, OG/Twitter cards, robots)
-// TODO: Source from the CMS `pages` collection when the backend is live.
-// ---------------------------------------------------------------------------
-usePageSeo({
-  title: 'Impact',
-  description: 'Measurable evidence of how offline learning hubs transform classrooms.',
-  path: '/impact',
-  image: () => overview.value?.hero?.imageUrl,
-  type: 'website',
-})
-
 // ──────────────────────────────────────────────
 // Data fetching
 // ──────────────────────────────────────────────
@@ -48,6 +36,20 @@ const { data: overview } = await useAsyncData<ImpactOverview | null>(
   'impact-overview',
   () => getOverview(),
 )
+
+// ---------------------------------------------------------------------------
+// SEO — shared composable (canonical, OG/Twitter cards, robots)
+// TODO: Source from the CMS `pages` collection when the backend is live.
+// NOTE: must run AFTER `overview` is declared — the image getter below reads
+// it, and useHead resolves getters synchronously on the client during setup.
+// ---------------------------------------------------------------------------
+usePageSeo({
+  title: 'Impact',
+  description: 'Measurable evidence of how offline learning hubs transform classrooms.',
+  path: '/impact',
+  image: () => overview.value?.hero?.imageUrl,
+  type: 'website',
+})
 
 // ──────────────────────────────────────────────
 // Derived data — fall back to sensible static defaults when the backend isn't ready
