@@ -172,15 +172,14 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
   @apply absolute inset-0 w-full h-full;
 }
 
-/* Lightened Overlay Gradient so left image remains sharp & clear */
+/* Lightened gradient overlay to reveal the left technician image clearly while preserving text contrast */
 .equipment-hero__left-overlay {
   @apply absolute inset-0;
   background: linear-gradient(
     to right,
     rgba(7, 19, 36, 0.88) 0%,
-    rgba(8, 22, 42, 0.65) 40%,
-    rgba(10, 26, 50, 0.2) 75%,
-    transparent 100%
+    rgba(7, 19, 36, 0.65) 45%,
+    rgba(7, 19, 36, 0.25) 100%
   );
 }
 
@@ -265,9 +264,9 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
   @apply mt-2.5 inline-flex items-center gap-1 text-xs font-sans font-bold text-blue-600 hover:text-blue-700;
 }
 
-/* Center Badge aligned precisely over the white border line */
+/* Updated positioning to keep the laptop badge centered directly on the border curve seam */
 .equipment-hero__center-badge {
-  @apply hidden lg:flex absolute top-[38%] right-[31%] translate-x-1/2 -translate-y-1/2 w-[3.25rem] h-[3.25rem] rounded-full bg-[#00a896];
+  @apply hidden lg:flex absolute top-1/2 -translate-y-1/2 right-[40.5%] w-[3.25rem] h-[3.25rem] rounded-full bg-[#00a896];
   @apply items-center justify-center shadow-xl ring-4 ring-white/30 z-20;
 }
 
