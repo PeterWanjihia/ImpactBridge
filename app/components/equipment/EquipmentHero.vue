@@ -130,7 +130,7 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
         </div>
       </div>
 
-      <!-- Center Floating Icon Badge on Seam -->
+      <!-- Center Floating Icon Badge Centered directly on border line -->
       <div class="equipment-hero__center-badge" aria-hidden="true">
         <Monitor class="w-6 h-6 text-white" />
       </div>
@@ -167,26 +167,27 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
   @apply absolute inset-0 z-0 pointer-events-none;
 }
 
-/* Left Image Panel & Dark Gradient Overlay */
+/* Left Image Panel */
 .equipment-hero__left-bg {
   @apply absolute inset-0 w-full h-full;
 }
 
+/* Lightened Overlay Gradient so left image remains sharp & clear */
 .equipment-hero__left-overlay {
   @apply absolute inset-0;
   background: linear-gradient(
     to right,
-    rgba(7, 19, 36, 0.98) 0%,
-    rgba(8, 22, 42, 0.92) 35%,
-    rgba(10, 26, 50, 0.65) 55%,
-    rgba(10, 26, 50, 0.1) 100%
+    rgba(7, 19, 36, 0.88) 0%,
+    rgba(8, 22, 42, 0.65) 40%,
+    rgba(10, 26, 50, 0.2) 75%,
+    transparent 100%
   );
 }
 
 /* Right Curved Image Panel Wrapper */
 .equipment-hero__right-wrapper {
   @apply hidden lg:block absolute top-0 right-0 w-[42%] h-full pointer-events-none;
-  /* Applies a white border line precisely along the clipped image curve */
+  /* Applies crisp white border line precisely along the clipped edge */
   filter: drop-shadow(-2px 0 0 white);
 }
 
@@ -264,9 +265,9 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
   @apply mt-2.5 inline-flex items-center gap-1 text-xs font-sans font-bold text-blue-600 hover:text-blue-700;
 }
 
-/* Center Badge over the curve seam */
+/* Center Badge aligned precisely over the white border line */
 .equipment-hero__center-badge {
-  @apply hidden lg:flex absolute top-[38%] right-[38%] w-[3.25rem] h-[3.25rem] rounded-full bg-[#00a896];
+  @apply hidden lg:flex absolute top-[38%] right-[31%] translate-x-1/2 -translate-y-1/2 w-[3.25rem] h-[3.25rem] rounded-full bg-[#00a896];
   @apply items-center justify-center shadow-xl ring-4 ring-white/30 z-20;
 }
 
