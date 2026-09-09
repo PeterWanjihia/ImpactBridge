@@ -12,14 +12,18 @@ import {
 import type { Component } from 'vue'
 
 interface Props {
-  /** Preload the hero image (it is the largest contentful element on this page) */
   preload?: boolean
 }
 
-const props = withDefaults(defineProps<Props>(), { preload: true })
+withDefaults(defineProps<Props>(), { preload: true })
 
-const heroImage =
-  'https://images.unsplash.com/photo-1591522810850-0f4716e37a56?w=1920&h=1080&fit=crop&crop=center'
+// Left image (Technician repairing hardware)
+const leftImage =
+  'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1200&h=900&fit=crop&crop=center'
+
+// Right image (Teacher and students using laptops in classroom)
+const rightImage =
+  'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1200&h=900&fit=crop&crop=center'
 
 const trustItems: { icon: Component; title: string; description: string }[] = [
   {
@@ -44,23 +48,50 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
   },
 ]
 </script>
+
 <template>
   <section class="equipment-hero">
-    <!-- Split background: navy copy panel + photo -->
-    <div class="equipment-hero__bg" aria-hidden="true">
-      <img
-        :src="heroImage"
-        alt=""
-        class="equipment-hero__image"
-        :loading="preload ? 'eager' : 'lazy'"
-        fetchpriority="high"
-      />
-      <div class="equipment-hero__mask" />
+    <!-- Two-image split background layer -->
+    <div class="equipment-hero__bg-wrapper" aria-hidden="true">
+      <!-- Left Background Image -->
+      <div class="equipment-hero__left-bg">
+        <img
+          :src="leftImage"
+          alt=""
+          class="equipment-hero__image"
+          :loading="preload ? 'eager' : 'lazy'"
+        />
+        <div class="equipment-hero__left-overlay" />
+      </div>
+
+      <!-- Right Curved Background Image (Clipping Path) -->
+      <div class="equipment-hero__right-bg">
+        <img
+          :src="rightImage"
+          alt=""
+          class="equipment-hero__image"
+          :loading="preload ? 'eager' : 'lazy'"
+        />
+      </div>
+
+      <!-- Curved White Divider Border -->
+      <svg
+        class="equipment-hero__divider-stroke"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M 68,0 Q 62,50 100,100"
+          fill="none"
+          stroke="white"
+          stroke-width="0.8"
+        />
+      </svg>
     </div>
 
     <LayoutContainer class="equipment-hero__container">
       <div class="equipment-hero__grid">
-        <!-- Left: copy + CTAs -->
+        <!-- Left Column: Copy + Buttons -->
         <div class="equipment-hero__copy">
           <span class="equipment-hero__eyebrow">Donate Equipment</span>
 
@@ -91,7 +122,7 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
           </div>
         </div>
 
-        <!-- Right: approval warning card -->
+        <!-- Right Column: Shipping Warning Floating Card -->
         <div class="equipment-hero__aside">
           <div class="equipment-hero__warning">
             <Truck class="equipment-hero__warning-icon" />
@@ -111,14 +142,19 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
         </div>
       </div>
 
-      <!-- Floating dark card trust bar -->
+      <!-- Center Floating Icon Badge on Seam -->
+      <div class="equipment-hero__center-badge" aria-hidden="true">
+        <Monitor class="w-6 h-6 text-white" />
+      </div>
+
+      <!-- Bottom Floating Trust Bar -->
       <div class="equipment-hero__trust-card">
         <div class="equipment-hero__trust-grid">
           <div
             v-for="(item, index) in trustItems"
             :key="item.title"
             class="equipment-hero__trust-item"
-            :class="{ 'border-r border-white/10': index < trustItems.length - 1 }"
+            :class="{ 'lg:border-r lg:border-white/10': index < trustItems.length - 1 }"
           >
             <span class="equipment-hero__trust-icon">
               <component :is="item.icon" class="w-5 h-5" />
@@ -131,44 +167,55 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
         </div>
       </div>
     </LayoutContainer>
-
-    <!-- Floating teal icon badge over center image seam -->
-    <div class="equipment-hero__badge" aria-hidden="true">
-      <Monitor class="w-6 h-6 text-white" />
-    </div>
   </section>
 </template>
 
 <style scoped>
 .equipment-hero {
-  @apply relative bg-navy-900 overflow-hidden;
+  @apply relative bg-[#071324] overflow-hidden;
 }
 
-.equipment-hero__bg {
+.equipment-hero__bg-wrapper {
+  @apply absolute inset-0 z-0 pointer-events-none;
+}
+
+/* Left Image Panel & Dark Gradient Overlay */
+.equipment-hero__left-bg {
+  @apply absolute inset-0 w-full h-full;
+}
+
+.equipment-hero__left-overlay {
   @apply absolute inset-0;
+  background: linear-gradient(
+    to right,
+    rgba(7, 19, 36, 0.98) 0%,
+    rgba(8, 22, 42, 0.92) 35%,
+    rgba(10, 26, 50, 0.65) 55%,
+    rgba(10, 26, 50, 0.1) 100%
+  );
+}
+
+/* Right Curved Image Panel using CSS clip-path */
+.equipment-hero__right-bg {
+  @apply hidden lg:block absolute top-0 right-0 w-[42%] h-full;
+  clip-path: path('M 60 0 Q 0 250 160 500 L 600 500 L 600 0 Z');
 }
 
 .equipment-hero__image {
   @apply w-full h-full object-cover object-center;
 }
 
-.equipment-hero__mask {
-  @apply absolute inset-0;
-  background: linear-gradient(
-    to right,
-    rgba(8, 20, 38, 0.98) 0%,
-    rgba(10, 24, 46, 0.95) 42%,
-    rgba(12, 30, 56, 0.75) 65%,
-    rgba(12, 30, 56, 0.25) 100%
-  );
+/* Curved White Border Line between images */
+.equipment-hero__divider-stroke {
+  @apply hidden lg:block absolute inset-0 w-full h-full pointer-events-none z-10;
 }
 
 .equipment-hero__container {
-  @apply relative z-10 pt-12 pb-10 md:pt-16;
+  @apply relative z-10 pt-12 pb-8 lg:pt-16;
 }
 
 .equipment-hero__grid {
-  @apply flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10 lg:gap-12 mb-12 lg:mb-16;
+  @apply flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10 lg:gap-12 mb-10 lg:mb-14;
 }
 
 .equipment-hero__copy {
@@ -176,7 +223,7 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
 }
 
 .equipment-hero__eyebrow {
-  @apply inline-block text-teal-300 font-sans font-semibold text-xs tracking-[0.14em] uppercase mb-4;
+  @apply inline-block text-[#00a896] font-sans font-semibold text-xs tracking-[0.14em] uppercase mb-4;
 }
 
 .equipment-hero__title {
@@ -209,11 +256,11 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
 }
 
 .equipment-hero__warning {
-  @apply flex items-start gap-3.5 rounded-xl bg-white p-4 md:p-5 shadow-xl;
+  @apply flex items-start gap-3.5 rounded-xl bg-white p-4 md:p-5 shadow-2xl;
 }
 
 .equipment-hero__warning-icon {
-  @apply w-6 h-6 text-navy-800 flex-shrink-0 mt-0.5;
+  @apply w-6 h-6 text-[#0d213a] flex-shrink-0 mt-0.5;
 }
 
 .equipment-hero__warning-title {
@@ -228,15 +275,15 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
   @apply mt-2.5 inline-flex items-center gap-1 text-xs font-sans font-bold text-blue-600 hover:text-blue-700;
 }
 
-/* Floating badge positioned on seam */
-.equipment-hero__badge {
-  @apply hidden lg:flex absolute z-20 top-[42%] right-[32%] w-14 h-14 rounded-full bg-[#00a896];
-  @apply items-center justify-center shadow-lg ring-4 ring-white/30;
+/* Center Badge over the curve seam */
+.equipment-hero__center-badge {
+  @apply hidden lg:flex absolute top-[38%] right-[38%] w-13 h-13 rounded-full bg-[#00a896];
+  @apply items-center justify-center shadow-xl ring-4 ring-white/30 z-20;
 }
 
-/* Trust Card Container */
+/* Bottom Trust Bar Card */
 .equipment-hero__trust-card {
-  @apply rounded-xl border border-white/15 bg-[#081526]/90 backdrop-blur-md p-4 lg:p-5 shadow-2xl;
+  @apply rounded-xl border border-white/15 bg-[#061121]/90 backdrop-blur-md p-4 lg:p-5 shadow-2xl;
 }
 
 .equipment-hero__trust-grid {
