@@ -277,7 +277,7 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
 
 /* Center Badge over the curve seam */
 .equipment-hero__center-badge {
-  @apply hidden lg:flex absolute top-[38%] right-[38%] w-13 h-13 rounded-full bg-[#00a896];
+  @apply hidden lg:flex absolute top-[38%] right-[38%] w-[3.25rem] h-[3.25rem] rounded-full bg-[#00a896];
   @apply items-center justify-center shadow-xl ring-4 ring-white/30 z-20;
 }
 

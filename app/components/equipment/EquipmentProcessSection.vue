@@ -9,17 +9,10 @@ import {
   Settings,
   Landmark,
   ChartLine,
+  ArrowRight
 } from '@lucide/vue'
 import type { Component } from 'vue'
 
-/**
- * The four public phases of the equipment offer lifecycle, mirroring the
- * equipment state machine in the architecture spec (SUBMITTED → … → DEPLOYED)
- * without exposing internal states like NEEDS_INFORMATION or REJECTED.
- *
- * TODO(backend): Phase copy and step counts are CMS content; the state machine
- * itself lives in the Go equipment module.
- */
 interface ProcessStep {
   title: string
   description: string
@@ -30,14 +23,16 @@ interface ProcessPhase {
   number: number
   name: string
   colorClass: string
+  borderClass: string
   steps: ProcessStep[]
 }
 
 const phases: ProcessPhase[] = [
   {
     number: 1,
-    name: 'Qualify & approve',
-    colorClass: 'text-teal-600',
+    name: 'QUALIFY & APPROVE',
+    colorClass: 'text-emerald-600',
+    borderClass: 'border-emerald-500',
     steps: [
       {
         title: 'Offer submitted',
@@ -58,12 +53,13 @@ const phases: ProcessPhase[] = [
   },
   {
     number: 2,
-    name: 'Transfer & receive',
-    colorClass: 'text-cobalt-600',
+    name: 'TRANSFER & RECEIVE',
+    colorClass: 'text-blue-600',
+    borderClass: 'border-blue-600',
     steps: [
       {
         title: 'Prepare transfer',
-        description: 'Dates agreed, ownership confirmed, logistics agreed.',
+        description: 'Data erased, ownership confirmed, logistics agreed.',
         icon: Truck,
       },
       {
@@ -75,8 +71,9 @@ const phases: ProcessPhase[] = [
   },
   {
     number: 3,
-    name: 'Inspect & prepare',
-    colorClass: 'text-violet-600',
+    name: 'INSPECT & PREPARE',
+    colorClass: 'text-purple-600',
+    borderClass: 'border-purple-600',
     steps: [
       {
         title: 'Inspect & assess',
@@ -92,8 +89,9 @@ const phases: ProcessPhase[] = [
   },
   {
     number: 4,
-    name: 'Deploy & report',
-    colorClass: 'text-teal-600',
+    name: 'DEPLOY & REPORT',
+    colorClass: 'text-emerald-600',
+    borderClass: 'border-emerald-500',
     steps: [
       {
         title: 'Deploy to school',
@@ -109,129 +107,90 @@ const phases: ProcessPhase[] = [
   },
 ]
 
-// Flatten steps for a single 9-node timeline with connectors between them.
-const timelineSteps = phases.flatMap((phase) =>
-  phase.steps.map((step) => ({ ...step, phase })),
-)
+// Flatten steps into 9 items with indicator if it's the last step
+const allSteps = phases.flatMap((phase) => phase.steps)
 </script>
 
 <template>
-  <section class="process-section">
-    <LayoutContainer>
-      <h2 class="process-section__title">From offer to classroom</h2>
-      <p class="process-section__subtitle">
-        A responsible journey from your organisation to a classroom where
-        learners thrive.
-      </p>
+  <section class="py-12 px-6 max-w-7xl mx-auto bg-white">
+    <h2 class="text-3xl font-serif font-bold text-slate-900 tracking-tight">
+      From offer to classroom
+    </h2>
+    <p class="mt-2 text-sm text-slate-600">
+      A responsible journey from your organisation to a classroom where learners thrive.
+    </p>
 
-      <!-- Phase headings with underlines -->
-      <div class="process-section__phases hidden lg:grid">
-        <template v-for="(phase, index) in phases" :key="phase.number">
-          <div class="process-phase">
-            <span class="process-phase__name" :class="phase.colorClass">
+    <!-- Desktop View: 9-column grid layout -->
+    <div class="hidden lg:block mt-12">
+      <!-- Top Phase Headers Span Across Step Columns -->
+      <div class="grid grid-cols-9 gap-x-4 mb-8">
+        <div 
+          v-for="phase in phases" 
+          :key="phase.number"
+          :class="[
+            phase.steps.length === 3 ? 'col-span-3' : 'col-span-2',
+            'px-2'
+          ]"
+        >
+          <div class="text-center pb-2 border-b-2" :class="[phase.borderClass, phase.colorClass]">
+            <span class="text-xs font-bold uppercase tracking-wider">
               {{ phase.number }}. {{ phase.name }}
             </span>
-            <span
-              class="process-phase__line"
-              :class="phase.colorClass"
-              aria-hidden="true"
-            />
           </div>
-          <span v-if="index < phases.length - 1" class="process-phase__gap" />
-        </template>
+        </div>
       </div>
 
-      <!-- Desktop: connected 9-step timeline -->
-      <div class="process-section__timeline hidden lg:flex">
-        <template v-for="(step, index) in timelineSteps" :key="step.title">
-          <div class="process-step">
-            <span class="process-step__icon">
-              <component :is="step.icon" class="w-6 h-6" />
-            </span>
-            <h3 class="process-step__title">{{ step.title }}</h3>
-            <p class="process-step__description">{{ step.description }}</p>
+      <!-- 9 Timeline Steps -->
+      <div class="grid grid-cols-9 gap-x-2 items-start text-center">
+        <template v-for="(step, index) in allSteps" :key="step.title">
+          <div class="flex flex-col items-center">
+            <div class="relative flex items-center justify-center w-full">
+              <!-- Step Icon Circle -->
+              <div class="w-16 h-16 rounded-full border border-slate-200 bg-white flex items-center justify-center shadow-sm text-indigo-950">
+                <component :is="step.icon" class="w-7 h-7 stroke-[1.5]" />
+              </div>
+
+              <!-- Arrow Connector to Next Step -->
+              <div 
+                v-if="index < allSteps.length - 1" 
+                class="absolute left-[calc(50%+2rem)] right-[-50%] flex items-center justify-center text-slate-400"
+              >
+                <ArrowRight class="w-4 h-4 stroke-[1.5]" />
+              </div>
+            </div>
+
+            <!-- Title & Description -->
+            <h3 class="mt-5 text-sm font-bold text-slate-900 leading-snug">
+              {{ step.title }}
+            </h3>
+            <p class="mt-2 text-[12px] text-slate-500 leading-relaxed max-w-[130px]">
+              {{ step.description }}
+            </p>
           </div>
-          <span v-if="index < timelineSteps.length - 1" class="process-step__connector" aria-hidden="true" />
         </template>
       </div>
+    </div>
 
-      <!-- Mobile / tablet: phases as cards -->
-      <div class="mt-10 flex flex-col gap-10 lg:hidden">
-        <div v-for="phase in phases" :key="phase.number">
-          <span class="process-phase__name" :class="phase.colorClass">
+    <!-- Mobile/Tablet Layout -->
+    <div class="lg:hidden mt-10 space-y-10">
+      <div v-for="phase in phases" :key="phase.number">
+        <div class="pb-2 border-b-2 mb-6" :class="[phase.borderClass, phase.colorClass]">
+          <span class="text-xs font-bold uppercase tracking-wider">
             {{ phase.number }}. {{ phase.name }}
           </span>
-          <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div v-for="step in phase.steps" :key="step.title" class="flex gap-4">
-              <span class="process-step__icon flex-shrink-0">
-                <component :is="step.icon" class="w-6 h-6" />
-              </span>
-              <div>
-                <h3 class="process-step__title">{{ step.title }}</h3>
-                <p class="process-step__description mt-1">{{ step.description }}</p>
-              </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div v-for="step in phase.steps" :key="step.title" class="flex gap-4 items-start">
+            <div class="w-12 h-12 rounded-full border border-slate-200 bg-white flex-shrink-0 flex items-center justify-center text-indigo-950">
+              <component :is="step.icon" class="w-5 h-5 stroke-[1.5]" />
+            </div>
+            <div>
+              <h3 class="text-sm font-bold text-slate-900">{{ step.title }}</h3>
+              <p class="text-xs text-slate-500 mt-1">{{ step.description }}</p>
             </div>
           </div>
         </div>
       </div>
-    </LayoutContainer>
+    </div>
   </section>
 </template>
-
-<style scoped>
-.process-section {
-  @apply bg-white py-14 md:py-16 border-t border-slate-100;
-}
-
-.process-section__title {
-  @apply text-2xl md:text-3xl font-serif font-bold text-slate-900;
-}
-
-.process-section__subtitle {
-  @apply mt-2 text-sm font-sans text-slate-500;
-}
-
-.process-section__phases {
-  @apply mt-10 grid-cols-4 items-end gap-0;
-}
-
-.process-phase {
-  @apply flex flex-col items-center;
-}
-
-.process-phase__name {
-  @apply text-[13px] font-sans font-bold tracking-wide uppercase whitespace-nowrap;
-}
-
-.process-phase__line {
-  @apply mt-2 h-0.5 w-full max-w-[220px] bg-current opacity-60 rounded-full;
-}
-
-.process-phase__gap {
-  @apply w-0;
-}
-
-.process-section__timeline {
-  @apply mt-6 items-start;
-}
-
-.process-step {
-  @apply flex-1 min-w-0 flex flex-col items-center text-center;
-}
-
-.process-step__icon {
-  @apply w-14 h-14 rounded-full bg-white border border-slate-200 text-navy-600 flex items-center justify-center shadow-sm flex-shrink-0;
-}
-
-.process-step__title {
-  @apply mt-3 text-[13px] font-sans font-bold text-slate-900 leading-snug;
-}
-
-.process-step__description {
-  @apply mt-1.5 text-[11px] font-sans leading-snug text-slate-500;
-}
-
-.process-step__connector {
-  @apply flex-1 min-w-[16px] max-w-[44px] border-t-2 border-dotted border-slate-300 relative top-7 flex-shrink;
-}
-</style>
