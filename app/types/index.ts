@@ -422,8 +422,8 @@ export interface TransparencyTrustees {
   description: string
   ctaText: string
   ctaTo: string
-  /** Awaited when rendered server-side for SSR portraits */
-  members: Awaited<ReturnType<typeof Promise.all>> extends never ? never : TransparencyTrustee[]
+  /** Trustee portrait cards, in display order */
+  members: TransparencyTrustee[]
 }
 
 export interface TransparencyTrustee {

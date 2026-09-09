@@ -7,6 +7,8 @@ const props = defineProps<{
   newsletter: TransparencyNewsletter
 }>()
 
+const config = useRuntimeConfig()
+
 const email = ref('')
 const error = ref('')
 const submitting = ref(false)
@@ -24,7 +26,6 @@ async function handleSubscribe() {
 
   submitting.value = true
   try {
-    const config = useRuntimeConfig()
     await $fetch(`${config.public.apiUrl}/v1/newsletter/subscriptions`, {
       method: 'POST',
       body: { email: email.value.trim() },
