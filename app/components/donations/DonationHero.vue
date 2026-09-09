@@ -3,11 +3,6 @@ import { Play, ShieldCheck, ReceiptText, Lock } from '@lucide/vue'
 import type { Component } from 'vue'
 import type { DonateHeroData, Fund, PaymentMethod } from '~/types'
 
-/**
- * Donate hero: full-bleed classroom photo with the donation widget floating
- * as a white card (per design). The widget is the transactional heart —
- * everything else on the page supports it.
- */
 interface Props {
   hero: DonateHeroData
   funds?: Fund[]
@@ -57,7 +52,7 @@ const trustIcons: Record<DonateHeroData['trustItems'][number]['icon'], Component
 
           <a href="#how-it-works" class="donate-hero__video">
             <span class="donate-hero__play">
-              <Play class="w-4 h-4 ml-0.5" fill="currentColor" />
+              <Play class="w-3.5 h-3.5 ml-0.5 fill-current" />
             </span>
             <span>
               <span class="donate-hero__video-label">See how your support changes lives</span>
@@ -71,7 +66,7 @@ const trustIcons: Record<DonateHeroData['trustItems'][number]['icon'], Component
               :key="item.label"
               class="donate-hero__trust-item"
             >
-              <component :is="trustIcons[item.icon]" class="w-5 h-5 shrink-0 text-slate-300" />
+              <component :is="trustIcons[item.icon]" class="w-5 h-5 shrink-0" />
               <span>{{ item.label }}</span>
             </li>
           </ul>
@@ -105,63 +100,63 @@ const trustIcons: Record<DonateHeroData['trustItems'][number]['icon'], Component
 }
 
 .donate-hero__overlay {
-  @apply absolute inset-0 bg-gradient-to-r from-navy-900/95 via-navy-800/80 to-navy-700/40;
+  @apply absolute inset-0 bg-gradient-to-r from-navy-950/90 via-navy-900/80 to-transparent;
 }
 
 .donate-hero__container {
-  @apply relative z-10 py-10 lg:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  @apply relative z-10 py-8 lg:py-10;
 }
 
 .donate-hero__grid {
-  @apply grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center;
+  @apply grid grid-cols-1 lg:grid-cols-[minmax(0,420px)_1fr] gap-8 lg:gap-12 items-end;
 }
 
 .donate-hero__copy {
-  @apply lg:col-span-7 flex flex-col justify-center pr-0 lg:pr-6;
+  @apply flex flex-col justify-end pb-2;
 }
 
 .donate-hero__eyebrow {
-  @apply text-blue-400 text-xs font-sans font-bold tracking-widest uppercase mb-4;
+  @apply text-blue-400 text-[10px] font-sans font-bold tracking-widest uppercase mb-2.5;
 }
 
 .donate-hero__title {
-  @apply text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-white leading-[1.1] tracking-tight;
+  @apply text-3xl sm:text-4xl lg:text-[42px] font-serif font-bold text-white leading-[1.08] tracking-tight;
 }
 
 .donate-hero__subtitle {
-  @apply mt-6 text-base sm:text-lg text-slate-200 leading-relaxed max-w-xl;
+  @apply mt-3 text-xs sm:text-sm text-slate-300 leading-normal max-w-[340px];
 }
 
 .donate-hero__video {
-  @apply mt-8 inline-flex items-center gap-3.5 text-white hover:text-slate-200 transition-colors w-max;
+  @apply mt-5 inline-flex items-center gap-3 text-white hover:text-slate-200 transition-colors w-max;
 }
 
 .donate-hero__play {
-  @apply flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white text-navy-900 hover:bg-slate-100 transition-all shadow-md;
+  @apply flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-slate-950 hover:bg-slate-100 transition-all;
 }
 
 .donate-hero__video-label {
-  @apply block text-sm font-sans font-semibold leading-tight;
+  @apply block text-xs font-sans font-semibold leading-tight;
 }
 
 .donate-hero__video-duration {
-  @apply block text-xs font-sans text-slate-400 leading-tight mt-0.5;
+  @apply block text-[11px] font-sans text-slate-400 leading-tight mt-0.5;
 }
 
 .donate-hero__trust {
-  @apply mt-12 grid grid-cols-3 list-none border-t border-white/20 pt-6 p-0 gap-2;
+  @apply mt-8 grid grid-cols-3 list-none border-t border-white/15 pt-4 p-0 gap-1;
 }
 
 .donate-hero__trust-item {
-  @apply flex items-center gap-2.5 text-xs font-sans leading-snug text-slate-300 pr-2;
+  @apply flex items-center gap-2 text-[11px] font-sans leading-tight text-slate-300 pr-2;
 }
 
 .donate-hero__trust-item + .donate-hero__trust-item {
-  @apply border-l border-white/20 pl-4;
+  @apply border-l border-white/15 pl-3;
 }
 
 /* Widget Card Container */
 .donate-hero__widget {
-  @apply lg:col-span-5 rounded-2xl bg-white shadow-2xl p-6 sm:p-8;
+  @apply flex justify-end;
 }
 </style>
