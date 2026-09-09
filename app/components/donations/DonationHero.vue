@@ -113,47 +113,55 @@ const trustIcons: Record<DonateHeroData['trustItems'][number]['icon'], Component
 }
 
 .donate-hero__grid {
-  @apply grid grid-cols-1 lg:grid-cols-[1fr_minmax(380px,460px)] gap-10 lg:gap-16 items-center;
+  @apply grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(380px,460px)] gap-10 lg:gap-16 items-stretch;
 }
 
 .donate-hero__copy {
-  @apply max-w-xl;
+  @apply flex max-w-[30rem] flex-col justify-center;
 }
 
 .donate-hero__eyebrow {
-  @apply text-cobalt-300 text-xs font-sans font-semibold tracking-[0.16em] uppercase mb-4;
+  @apply text-cobalt-300 text-[9px] font-sans font-semibold tracking-[0.14em] uppercase mb-3;
 }
 
 .donate-hero__title {
-  @apply text-4xl md:text-5xl font-serif font-bold text-white leading-[1.1];
+  @apply text-3xl md:text-[2.65rem] font-serif font-bold text-white leading-[1.04] tracking-tight;
 }
 
 .donate-hero__subtitle {
-  @apply mt-5 text-base md:text-lg text-slate-300 leading-relaxed;
+  @apply mt-4 max-w-[23rem] text-[11px] md:text-xs text-slate-300 leading-[1.5];
 }
 
 .donate-hero__video {
-  @apply mt-7 inline-flex items-center gap-3 text-white;
+  @apply mt-5 inline-flex items-center gap-2.5 text-white;
 }
 
 .donate-hero__play {
-  @apply flex items-center justify-center w-9 h-9 rounded-full bg-white/15 border border-white/30 hover:bg-white/25 transition-colors;
+  @apply flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white text-navy-900 hover:bg-white/90 transition-colors;
 }
 
 .donate-hero__video-label {
-  @apply block text-sm font-sans font-semibold;
+  @apply block text-[10px] font-sans font-semibold leading-tight;
 }
 
 .donate-hero__video-duration {
-  @apply block text-xs font-sans text-slate-400;
+  @apply block text-[9px] font-sans text-slate-400 leading-tight mt-0.5;
 }
 
 .donate-hero__trust {
-  @apply mt-12 pt-6 border-t border-white/15 flex flex-wrap gap-x-8 gap-y-3 list-none p-0;
+  @apply mt-12 grid grid-cols-3 list-none border-t border-white/15 pt-4 p-0;
 }
 
 .donate-hero__trust-item {
-  @apply flex items-center gap-2 text-xs font-sans text-slate-300;
+  @apply flex min-w-0 items-center gap-2 px-3 text-[9px] font-sans leading-[1.25] text-slate-300;
+}
+
+.donate-hero__trust-item + .donate-hero__trust-item {
+  @apply border-l border-white/20;
+}
+
+.donate-hero__trust-item :deep(svg) {
+  @apply h-4 w-4 shrink-0;
 }
 
 /* Widget card */
