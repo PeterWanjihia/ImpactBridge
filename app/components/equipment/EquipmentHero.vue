@@ -44,7 +44,6 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
   },
 ]
 </script>
-
 <template>
   <section class="equipment-hero">
     <!-- Split background: navy copy panel + photo -->
@@ -111,21 +110,15 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
           </div>
         </div>
       </div>
-    </LayoutContainer>
 
-    <!-- Floating teal icon badge over the image seam -->
-    <div class="equipment-hero__badge" aria-hidden="true">
-      <Monitor class="w-6 h-6" />
-    </div>
-
-    <!-- Trust strip along the bottom -->
-    <div class="equipment-hero__trust">
-      <LayoutContainer>
+      <!-- Floating dark card trust bar -->
+      <div class="equipment-hero__trust-card">
         <div class="equipment-hero__trust-grid">
           <div
-            v-for="item in trustItems"
+            v-for="(item, index) in trustItems"
             :key="item.title"
             class="equipment-hero__trust-item"
+            :class="{ 'border-r border-white/10': index < trustItems.length - 1 }"
           >
             <span class="equipment-hero__trust-icon">
               <component :is="item.icon" class="w-5 h-5" />
@@ -136,14 +129,19 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
             </div>
           </div>
         </div>
-      </LayoutContainer>
+      </div>
+    </LayoutContainer>
+
+    <!-- Floating teal icon badge over center image seam -->
+    <div class="equipment-hero__badge" aria-hidden="true">
+      <Monitor class="w-6 h-6 text-white" />
     </div>
   </section>
 </template>
 
 <style scoped>
 .equipment-hero {
-  @apply relative bg-navy-900;
+  @apply relative bg-navy-900 overflow-hidden;
 }
 
 .equipment-hero__bg {
@@ -158,19 +156,19 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
   @apply absolute inset-0;
   background: linear-gradient(
     to right,
-    rgba(10, 26, 48, 0.98) 0%,
-    rgba(12, 30, 55, 0.94) 38%,
-    rgba(15, 38, 66, 0.72) 62%,
-    rgba(15, 38, 66, 0.3) 100%
+    rgba(8, 20, 38, 0.98) 0%,
+    rgba(10, 24, 46, 0.95) 42%,
+    rgba(12, 30, 56, 0.75) 65%,
+    rgba(12, 30, 56, 0.25) 100%
   );
 }
 
 .equipment-hero__container {
-  @apply relative z-10 pt-14 pb-40 md:pt-16 md:pb-44;
+  @apply relative z-10 pt-12 pb-10 md:pt-16;
 }
 
 .equipment-hero__grid {
-  @apply flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10 lg:gap-12;
+  @apply flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10 lg:gap-12 mb-12 lg:mb-16;
 }
 
 .equipment-hero__copy {
@@ -178,32 +176,32 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
 }
 
 .equipment-hero__eyebrow {
-  @apply inline-block text-teal-300 font-sans font-semibold text-xs tracking-[0.14em] uppercase mb-5;
+  @apply inline-block text-teal-300 font-sans font-semibold text-xs tracking-[0.14em] uppercase mb-4;
 }
 
 .equipment-hero__title {
-  @apply text-4xl md:text-[44px] lg:text-5xl font-serif font-bold text-white leading-[1.15];
+  @apply text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white leading-[1.15];
 }
 
 .equipment-hero__subtitle {
-  @apply mt-6 text-base md:text-[17px] leading-relaxed text-slate-200 max-w-lg;
+  @apply mt-5 text-sm md:text-base leading-relaxed text-slate-300 max-w-lg;
 }
 
 .equipment-hero__actions {
-  @apply mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3;
+  @apply mt-7 flex flex-col sm:flex-row items-stretch sm:items-center gap-3;
 }
 
 .equipment-hero__cta {
-  @apply inline-flex items-center justify-between gap-3 px-5 py-2.5 rounded-lg text-sm font-sans font-medium whitespace-nowrap;
+  @apply inline-flex items-center justify-between gap-3 px-5 py-2.5 rounded-lg text-xs md:text-sm font-sans font-medium whitespace-nowrap;
   @apply transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-400 focus:ring-offset-navy-900;
 }
 
 .equipment-hero__cta--primary {
-  @apply bg-teal-600 hover:bg-teal-500 text-white;
+  @apply bg-[#00a896] hover:bg-[#009182] text-white;
 }
 
 .equipment-hero__cta--secondary {
-  @apply bg-white/10 border border-white/25 hover:bg-white/20 text-white;
+  @apply bg-white/10 border border-white/20 hover:bg-white/20 text-white;
 }
 
 .equipment-hero__aside {
@@ -211,51 +209,53 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
 }
 
 .equipment-hero__warning {
-  @apply flex items-start gap-4 rounded-xl bg-white p-5 shadow-lg;
+  @apply flex items-start gap-3.5 rounded-xl bg-white p-4 md:p-5 shadow-xl;
 }
 
 .equipment-hero__warning-icon {
-  @apply w-7 h-7 text-navy-700 flex-shrink-0;
+  @apply w-6 h-6 text-navy-800 flex-shrink-0 mt-0.5;
 }
 
 .equipment-hero__warning-title {
-  @apply text-[15px] font-sans font-bold text-slate-900;
+  @apply text-sm font-sans font-bold text-slate-900;
 }
 
 .equipment-hero__warning-text {
-  @apply mt-1 text-[13px] font-sans leading-snug text-slate-500;
+  @apply mt-1 text-xs font-sans leading-snug text-slate-600;
 }
 
 .equipment-hero__warning-link {
-  @apply mt-3 inline-flex items-center gap-1.5 text-[13px] font-sans font-semibold text-cobalt-600 hover:text-cobalt-700;
+  @apply mt-2.5 inline-flex items-center gap-1 text-xs font-sans font-bold text-blue-600 hover:text-blue-700;
 }
 
+/* Floating badge positioned on seam */
 .equipment-hero__badge {
-  @apply hidden lg:flex absolute z-20 top-[248px] right-[352px] w-14 h-14 rounded-full bg-teal-600;
-  @apply items-center justify-center text-white shadow-lg ring-4 ring-white/20;
+  @apply hidden lg:flex absolute z-20 top-[42%] right-[32%] w-14 h-14 rounded-full bg-[#00a896];
+  @apply items-center justify-center shadow-lg ring-4 ring-white/30;
 }
 
-.equipment-hero__trust {
-  @apply relative z-10 pb-10;
+/* Trust Card Container */
+.equipment-hero__trust-card {
+  @apply rounded-xl border border-white/15 bg-[#081526]/90 backdrop-blur-md p-4 lg:p-5 shadow-2xl;
 }
 
 .equipment-hero__trust-grid {
-  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-6;
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-0;
 }
 
 .equipment-hero__trust-item {
-  @apply flex items-start gap-3.5;
+  @apply flex items-start gap-3 lg:px-4;
 }
 
 .equipment-hero__trust-icon {
-  @apply w-11 h-11 rounded-full border border-white/20 flex items-center justify-center text-white flex-shrink-0;
+  @apply w-9 h-9 rounded-lg border border-white/20 flex items-center justify-center text-white flex-shrink-0 bg-white/5;
 }
 
 .equipment-hero__trust-title {
-  @apply text-sm font-sans font-bold text-white;
+  @apply text-xs md:text-sm font-sans font-bold text-white;
 }
 
 .equipment-hero__trust-description {
-  @apply mt-1 text-xs font-sans leading-snug text-slate-300 max-w-[220px];
+  @apply mt-0.5 text-[11px] font-sans leading-tight text-slate-300 max-w-[210px];
 }
 </style>
