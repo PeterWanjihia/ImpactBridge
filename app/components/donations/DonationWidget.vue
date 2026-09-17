@@ -48,6 +48,9 @@ const props = withDefaults(defineProps<Props>(), {
   presets: () => [25, 50, 100, 250, 500],
 })
 
+const selectedCurrency = ref(props.currency)
+const availablePresets = ref([...props.presets])
+
 const { donate, getDonationOptions } = useDonation()
 
 // ---------------------------------------------------------------------------
@@ -77,9 +80,9 @@ onMounted(async () => {
       ? fundId.value
       : options.funds[0]!.id
   }
-  if (options.currency) currency.value = options.currency
+  if (options.currency) selectedCurrency.value = options.currency
   if (options.presets?.length) {
-    presets.value = options.presets
+    availablePresets.value = options.presets
     if (!isCustom.value) amount.value = options.presets[1] ?? options.presets[0]!
   }
 })
@@ -143,6 +146,11 @@ async function submitDonation() {
       frequency: frequency.value,
       amount: isCustom.value ? parseFloat(customAmount.value) : amount.value,
       fundId: fundId.value,
+        currency: selectedCurrency.value,
+        donor: {
+          email: details.value.email.trim(),
+          name: details.value.name.trim(),
+        },
     })
     // Success = redirect to Stripe-hosted checkout (handled in startCheckout).
   } catch (error: any) {
@@ -165,7 +173,7 @@ const methodTabs = computed(() => {
   return all.filter((m) => enabled.has(m.id))
 })
 
-const currencySymbol = computed(() => (props.currency === 'GBP' ? '£' : '$'))
+const currencySymbol = computed(() => (selectedCurrency.value === 'GBP' ? '£' : '$'))
 
 const fundName = computed(
   () => props.funds.find((f) => f.id === fundId.value)?.name ?? 'Where it is needed most',
@@ -222,30 +230,10 @@ const summary = computed(
       <!-- Amounts -->
       <DonationAmount
         v-model="amount"
-        :currency="currency"
-        :presets="presets"
+        :currency="selectedCurrency"
+        :presets="availablePresets"
         :columns="3"
         @update:custom="(v: boolean) => (isCustom = v)"
-      />
-
-      <!-- Custom amount input (shown when "Custom" is selected) -->
-      <UiInput
-        v-if="isCustom"
-        v-model="customAmount"
-        type="number"
-        :min="1"
-        :placeholder="`Enter amount in ${currency}`"
-        label="Custom amount"
-      />
-
-      <input
-        v-if="isCustom"
-        v-model="customAmount"
-        type="number"
-        min="1"
-        :placeholder="`Enter amount in ${currency}`"
-        class="donation-widget__custom-input"
-        aria-label="Custom amount"
       />
 
       <!-- Allocation -->

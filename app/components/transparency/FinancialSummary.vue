@@ -144,7 +144,7 @@ const headlineItems = computed(() => [
 
 /* Card */
 .fin-card {
-  @apply flex flex-col lg:flex-row gap-8 lg:gap-12 rounded-2xl border border-gray-200 bg-gray-50/60 p-6 md:p-8;
+  @apply flex flex-col lg:flex-row gap-8 lg:gap-12 rounded-card border border-gray-200 bg-gray-50/60 p-card md:p-card-lg;
 }
 
 .fin-card__main {
@@ -203,7 +203,7 @@ const headlineItems = computed(() => [
 }
 
 .fin-headline {
-  @apply flex items-center gap-4 rounded-xl border border-gray-200 bg-white p-4;
+  @apply flex items-center gap-4 rounded-card border border-gray-200 bg-white p-card-sm;
 }
 
 .fin-headline__icon {

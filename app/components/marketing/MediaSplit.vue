@@ -23,7 +23,7 @@ const props = withDefaults(defineProps<Props>(), {
       >
         <div class="media-split-media">
           <slot name="media">
-            <img v-if="imageUrl" :src="imageUrl" :alt="imageAlt || title || ''" class="media-split-image" />
+            <NuxtImg v-if="imageUrl" :src="imageUrl" :alt="imageAlt || title || ''" class="media-split-image" width="1200" height="900" sizes="sm:100vw md:50vw" loading="lazy" />
           </slot>
         </div>
         <div class="media-split-content">

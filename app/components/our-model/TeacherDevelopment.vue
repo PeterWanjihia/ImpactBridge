@@ -33,8 +33,8 @@ defineProps<{
         <div class="model-teacher-video">
           <ClientOnly>
             <div class="model-teacher-video-wrap">
-              <img :src="teacher.videoUrl"
-                :alt="teacher.videoAlt" class="model-teacher-video-img" loading="lazy" />
+              <NuxtImg :src="teacher.videoUrl"
+                :alt="teacher.videoAlt" class="model-teacher-video-img" width="800" height="600" sizes="sm:100vw lg:50vw" loading="lazy" />
               <button class="model-teacher-play" aria-label="Play teacher training video">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                   <polygon points="5 3 19 12 5 21 5 3" />

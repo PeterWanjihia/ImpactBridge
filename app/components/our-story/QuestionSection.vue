@@ -23,11 +23,14 @@
 
         <!-- Media Column -->
         <div class="question-media">
-          <img
+          <NuxtImg
             src="~/assets/images/model-hub-equipment-img.png"
             alt="Impact Bridge device held in hands"
             class="question-image"
             loading="lazy"
+            width="800"
+            height="600"
+            sizes="sm:100vw lg:50vw"
           />
         </div>
       </div>

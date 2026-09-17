@@ -288,7 +288,9 @@ const publishedDate = computed(() => {
 
             <div class="story-aside-card story-aside-card--navy">
               <p class="story-aside-cta-title">Help create the next story of change.</p>
-              <NuxtLink to="/donate" class="story-aside-cta-btn">Fund now</NuxtLink>
+              <UiButton to="/donate" variant="outline-white" size="sm" class="story-aside-cta-btn">
+                Fund now
+              </UiButton>
             </div>
           </aside>
         </div>
@@ -337,7 +339,7 @@ const publishedDate = computed(() => {
 
 /* Audio */
 .story-audio {
-  @apply mb-8 rounded-lg border border-gray-200 bg-gray-50 p-4;
+  @apply mb-8 rounded-card border border-gray-200 bg-gray-50 p-card-sm;
 }
 
 .story-audio-label {
@@ -350,7 +352,7 @@ const publishedDate = computed(() => {
 
 /* Pull quote */
 .story-quote {
-  @apply mb-8 rounded-lg bg-navy-50 border-l-4 border-cobalt p-6;
+  @apply mb-8 rounded-card bg-navy-50 border-l-4 border-cobalt p-card;
 }
 
 .story-quote-text {
@@ -418,7 +420,7 @@ const publishedDate = computed(() => {
 }
 
 .story-aside-card {
-  @apply rounded-lg border border-gray-200 bg-white p-6;
+  @apply rounded-card border border-gray-200 bg-white p-card;
 }
 
 .story-aside-card--navy {
@@ -454,6 +456,6 @@ const publishedDate = computed(() => {
 }
 
 .story-aside-cta-btn {
-  @apply inline-block mt-3 px-4 py-2 rounded-md border border-white font-sans text-sm font-medium text-white hover:bg-white hover:text-navy transition-colors;
+  @apply mt-3 border-white;
 }
 </style>

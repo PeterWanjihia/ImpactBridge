@@ -83,7 +83,7 @@ function handleCustomInput() {
         type="number"
         :placeholder="`Enter amount in ${currency}`"
         :min="1"
-        @input="handleCustomInput"
+        @update:modelValue="handleCustomInput"
       />
     </div>
   </div>

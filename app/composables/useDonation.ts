@@ -36,6 +36,11 @@ export function useDonation() {
     frequency: 'once' | 'monthly'
     amount: number
     fundId: string
+    currency: string
+    donor: {
+      email: string
+      name: string
+    }
   }
 
   /**
@@ -91,14 +96,16 @@ export function useDonation() {
    * Per spec, payment truth lives with the provider + webhooks — the browser
    * is only ever redirected to the hosted page.
    */
-  async function startCheckout(donationId: string): Promise<void> {
+  async function startCheckout(donationId: string, publicId: string): Promise<void> {
     try {
       const session = await $fetch<CheckoutSession>(
         `${config.public.apiUrl}/v1/donations/${donationId}/checkout`,
         { method: 'POST' },
       )
       if (session?.url) {
-        window.location.assign(session.url)
+        const checkoutUrl = new URL(session.url, window.location.origin)
+        checkoutUrl.searchParams.set('donation_public_id', publicId)
+        window.location.assign(checkoutUrl.toString())
       }
     } catch (error) {
       console.error('Failed to start checkout:', error)
@@ -131,14 +138,16 @@ export function useDonation() {
     const donation = await createDonation({
       fundId: choice.fundId,
       amount: choice.amount,
-      currency: 'GBP',
+      currency: choice.currency,
       recurring: choice.frequency === 'monthly',
+      paymentMethod: choice.method,
+      donor: choice.donor,
     })
     if (!donation) {
       throw new Error('Could not start your donation. Please try again.')
     }
     const id = donation.donationId ?? donation.publicId
-    await startCheckout(id)
+    await startCheckout(id, donation.publicId)
   }
 
   /**

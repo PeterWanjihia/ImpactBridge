@@ -85,7 +85,7 @@ const statIcons: Record<CampaignStat['icon'], Component> = {
 
 <style scoped>
 .campaign-panel {
-  @apply rounded-xl border border-gray-200 bg-white p-6 md:p-7 shadow-elevation-1 h-full flex flex-col;
+  @apply rounded-card border border-gray-200 bg-white p-card md:p-card-lg shadow-elevation-1 h-full flex flex-col;
 }
 
 .campaign-panel__header {

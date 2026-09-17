@@ -87,11 +87,14 @@ const evidenceList: EvidenceItem[] = [
 
           <!-- Bottom Image Card -->
           <div class="mt-auto rounded-card overflow-hidden bg-gray-200 aspect-[4/3] shadow-elevation-1">
-            <img
+            <NuxtImg
               :src="item.image"
               :alt="item.alt"
               class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               loading="lazy"
+              width="800"
+              height="600"
+              sizes="sm:50vw md:33vw lg:25vw"
             />
           </div>
         </div>

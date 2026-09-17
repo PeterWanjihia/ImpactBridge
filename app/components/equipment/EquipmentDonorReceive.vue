@@ -52,11 +52,14 @@ const quoteImage =
         <!-- Right: classroom photo + quote panel -->
         <div class="receive-section__media">
           <div class="receive-section__photo">
-            <img
+            <NuxtImg
               :src="quoteImage"
               alt="Teacher presenting to learners in a classroom"
               class="receive-section__image"
               loading="lazy"
+              width="800"
+              height="600"
+              sizes="sm:100vw md:50vw"
             />
           </div>
 

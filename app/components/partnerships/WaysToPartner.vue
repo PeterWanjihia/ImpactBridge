@@ -56,7 +56,7 @@ const ways: PartnershipWay[] = [
 </script>
 
 <template>
-  <section class="ways-section">
+  <section id="ways-to-partner" class="ways-section">
     <LayoutContainer>
       <h2 class="ways-section__title">Ways to partner</h2>
       <p class="ways-section__subtitle">
@@ -107,7 +107,7 @@ const ways: PartnershipWay[] = [
 }
 
 .ways-card {
-  @apply flex flex-col items-center text-center bg-white border border-gray-200 rounded-xl p-6;
+  @apply flex flex-col items-center text-center bg-white border border-gray-200 rounded-card p-card;
   @apply transition-shadow hover:shadow-elevation-1 focus:outline-none focus:ring-2 focus:ring-cobalt-500;
 }
 

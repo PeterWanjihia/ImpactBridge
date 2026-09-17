@@ -28,7 +28,7 @@ function closeMenu() {
   <header class="site-header">
     <div class="site-header-container">
       <NuxtLink to="/" class="site-header-logo" @click="closeMenu">
-        <img src="/logo.png" alt="Impact Bridge logo" class="site-header-logo-icon" />
+        <NuxtImg src="/logo.png" alt="Impact Bridge logo" class="site-header-logo-icon" width="36" height="36" />
         <div class="site-header-logo-text">
           <span>IMPACT</span>
           <span>BRIDGE</span>

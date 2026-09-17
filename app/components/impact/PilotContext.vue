@@ -33,10 +33,14 @@ const props = defineProps<Props>()
         <div class="pilot-context-grid">
           <!-- School Image -->
           <div class="pilot-context-media">
-            <img
+            <NuxtImg
               :src="imageUrl"
               :alt="imageAlt || schoolName"
               class="pilot-context-image"
+              width="800"
+              height="600"
+              loading="lazy"
+              sizes="sm:100vw lg:50vw"
             />
           </div>
 

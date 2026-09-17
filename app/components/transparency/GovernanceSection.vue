@@ -55,7 +55,7 @@ const iconMap: Record<string, Component> = {
 
 /* Card */
 .gov-card {
-  @apply rounded-xl border border-gray-200 bg-gray-50/60 p-6;
+  @apply rounded-card border border-gray-200 bg-gray-50/60 p-card;
 }
 
 .gov-card__header {

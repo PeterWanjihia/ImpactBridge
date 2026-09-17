@@ -37,25 +37,26 @@ withDefaults(defineProps<Props>(), {
           <p class="donate-cta__description">{{ description }}</p>
 
           <div class="donate-cta__actions">
-            <a href="#top" class="donate-cta__btn donate-cta__btn--primary">
+            <UiButton to="#top" variant="primary" size="md" class="donate-cta__btn">
               <Heart class="w-4 h-4" />
               {{ primaryText }}
-            </a>
-            <NuxtLink :to="secondaryTo" class="donate-cta__btn donate-cta__btn--secondary">
+            </UiButton>
+            <UiButton :to="secondaryTo" variant="outline-white" size="md" class="donate-cta__btn">
               {{ secondaryText }}
               <ChartColumn class="w-4 h-4" />
-            </NuxtLink>
+            </UiButton>
           </div>
         </div>
 
         <div class="donate-cta__media">
-          <img
+          <NuxtImg
             :src="imageUrl"
             :alt="imageAlt"
             class="donate-cta__image"
             loading="lazy"
             width="640"
             height="480"
+            sizes="sm:100vw lg:50vw"
           />
         </div>
       </div>
@@ -69,7 +70,7 @@ withDefaults(defineProps<Props>(), {
 }
 
 .donate-cta__card {
-  @apply grid grid-cols-1 lg:grid-cols-2 rounded-2xl overflow-hidden bg-navy-900;
+  @apply grid grid-cols-1 lg:grid-cols-2 rounded-card overflow-hidden bg-navy-900;
 }
 
 .donate-cta__copy {
@@ -93,15 +94,7 @@ withDefaults(defineProps<Props>(), {
 }
 
 .donate-cta__btn {
-  @apply inline-flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-sans font-semibold transition-colors;
-}
-
-.donate-cta__btn--primary {
-  @apply bg-cobalt text-white hover:bg-cobalt-700;
-}
-
-.donate-cta__btn--secondary {
-  @apply border border-white/40 text-white hover:bg-white/10;
+  @apply font-semibold;
 }
 
 .donate-cta__media {

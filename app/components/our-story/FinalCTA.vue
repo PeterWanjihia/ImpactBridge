@@ -12,10 +12,14 @@ import { Heart, Building2 } from '@lucide/vue'
         
         <!-- Background Photo (Left Aligned Student Profile) -->
         <div class="absolute left-0 top-0 bottom-0 w-full sm:w-1/2 z-0 opacity-40 sm:opacity-60">
-          <img 
+          <NuxtImg
             src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=800&h=600&fit=crop" 
             alt="Student looking forward" 
             class="w-full h-full object-cover object-left-top"
+            width="800"
+            height="600"
+            loading="lazy"
+            sizes="sm:100vw lg:50vw"
           />
         </div>
 

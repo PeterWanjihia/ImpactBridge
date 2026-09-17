@@ -81,11 +81,14 @@ const photos: PhotoItem[] = [
               index === 0 ? 'col-span-2 row-span-2' : 'col-span-1 row-span-1'
             ]"
           >
-            <img
+            <NuxtImg
               :src="photo.src"
               :alt="photo.alt"
               class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               loading="lazy"
+              width="800"
+              height="600"
+              sizes="sm:50vw lg:25vw"
             />
           </div>
         </div>

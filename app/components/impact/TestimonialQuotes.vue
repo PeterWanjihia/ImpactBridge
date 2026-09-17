@@ -71,10 +71,14 @@ const props = withDefaults(defineProps<Props>(), {
               </div>
             </div>
             <div class="testimonial-card-media">
-              <img
+              <NuxtImg
                 :src="learner.imageUrl"
                 :alt="learner.imageAlt"
                 class="testimonial-card-image"
+                width="640"
+                height="480"
+                loading="lazy"
+                sizes="sm:50vw lg:320px"
               />
             </div>
           </div>
@@ -96,10 +100,14 @@ const props = withDefaults(defineProps<Props>(), {
               </div>
             </div>
             <div class="testimonial-card-media">
-              <img
+              <NuxtImg
                 :src="teacher.imageUrl"
                 :alt="teacher.imageAlt"
                 class="testimonial-card-image"
+                width="640"
+                height="480"
+                loading="lazy"
+                sizes="sm:50vw lg:320px"
               />
             </div>
           </div>

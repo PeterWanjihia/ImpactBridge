@@ -20,6 +20,15 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits<{
   click: [event: MouseEvent]
 }>()
+
+function handleClick(event: MouseEvent) {
+  if (props.disabled || props.loading) {
+    event.preventDefault()
+    event.stopPropagation()
+    return
+  }
+  emit('click', event)
+}
 </script>
 
 <template>
@@ -28,13 +37,15 @@ const emit = defineEmits<{
     :type="type"
     :to="to"
     :disabled="disabled || loading"
+    :aria-disabled="disabled || loading ? 'true' : undefined"
+    :tabindex="disabled || loading ? -1 : undefined"
     :class="[
       'ui-button',
       `ui-button--${variant}`,
       `ui-button--${size}`,
       { 'ui-button--loading': loading }
     ]"
-    @click="emit('click', $event)"
+    @click="handleClick"
   >
     <span v-if="loading" class="ui-button__spinner" />
     <slot />

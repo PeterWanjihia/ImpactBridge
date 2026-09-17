@@ -46,11 +46,13 @@ const cryptoIcons: Record<string, string> = {
               class="crypto-section__asset"
             >
               <span class="crypto-section__asset-icon">
-                <img
+                <NuxtImg
                   v-if="cryptoIcons[asset.symbol]"
                   :src="cryptoIcons[asset.symbol]"
                   :alt="asset.symbol"
                   class="w-8 h-8 object-contain"
+                  width="32"
+                  height="32"
                 />
               </span>
               <span class="crypto-section__asset-copy">
@@ -109,7 +111,7 @@ const cryptoIcons: Record<string, string> = {
 
 /* Panel Column */
 .crypto-section__panel {
-  @apply rounded-2xl border border-cobalt-100/80 bg-cobalt-50/20 p-6 sm:p-8;
+  @apply rounded-card border border-cobalt-100/80 bg-cobalt-50/20 p-card sm:p-card-lg;
 }
 
 .crypto-section__panel-label {

@@ -17,7 +17,7 @@ const props = defineProps<Props>()
           "{{ quote }}"
         </blockquote>
         <div v-if="author" class="quote-panel-attribution">
-          <img v-if="imageUrl" :src="imageUrl" :alt="author" class="quote-panel-avatar" />
+          <NuxtImg v-if="imageUrl" :src="imageUrl" :alt="author" class="quote-panel-avatar" width="160" height="160" sizes="160px" loading="lazy" />
           <div>
             <div class="quote-panel-author">{{ author }}</div>
             <div v-if="role" class="quote-panel-role">{{ role }}</div>

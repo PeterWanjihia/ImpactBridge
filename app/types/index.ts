@@ -426,6 +426,7 @@ export interface DonationIntent {
   amount: number
   currency: string
   recurring: boolean
+  paymentMethod: PaymentMethod
   donor?: {
     email: string
     name?: string

@@ -27,6 +27,7 @@ const emit = defineEmits<{
 }>()
 
 const selectId = computed(() => `select-${useId()}`)
+const errorId = computed(() => `${selectId.value}-error`)
 </script>
 
 <template>
@@ -44,6 +45,8 @@ const selectId = computed(() => `select-${useId()}`)
       :value="modelValue"
       :disabled="disabled"
       :required="required"
+      :aria-invalid="error ? 'true' : undefined"
+      :aria-describedby="error ? errorId : undefined"
       :class="[
         'ui-select',
         { 'ui-select--error': error }
@@ -60,7 +63,7 @@ const selectId = computed(() => `select-${useId()}`)
         {{ option.label }}
       </option>
     </select>
-    <p v-if="error" class="ui-select-error">{{ error }}</p>
+    <p v-if="error" :id="errorId" class="ui-select-error">{{ error }}</p>
   </div>
 </template>
 

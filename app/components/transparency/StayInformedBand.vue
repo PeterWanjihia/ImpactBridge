@@ -101,11 +101,14 @@ async function handleSubscribe() {
 
         <!-- Right image -->
         <div class="band__media">
-          <img
+          <NuxtImg
             :src="newsletter.imageUrl"
             :alt="newsletter.imageAlt"
             class="band__image"
             loading="lazy"
+            width="600"
+            height="500"
+            sizes="lg:300px"
           />
         </div>
       </div>
@@ -119,7 +122,7 @@ async function handleSubscribe() {
 }
 
 .band__card {
-  @apply flex flex-col lg:flex-row items-stretch rounded-2xl overflow-hidden bg-ink-soft shadow-elevation-3;
+  @apply flex flex-col lg:flex-row items-stretch rounded-card overflow-hidden bg-ink-soft shadow-elevation-3;
 }
 
 /* Content */

@@ -39,7 +39,7 @@ defineProps<{
             </div>
             <ClientOnly>
               <div class="model-content-card-image">
-                <img :src="category.image" :alt="category.alt" class="model-content-card-img" loading="lazy" />
+                <NuxtImg :src="category.image" :alt="category.alt" class="model-content-card-img" width="480" height="360" sizes="sm:50vw md:33vw lg:240px" loading="lazy" />
               </div>
               <template #fallback>
                 <div class="model-content-card-image model-content-card-image--placeholder" />

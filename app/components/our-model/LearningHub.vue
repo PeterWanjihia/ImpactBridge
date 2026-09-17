@@ -37,8 +37,8 @@ defineProps<{
           <!-- Composite Graphic Container -->
           <div class="model-hub-graphic-wrap">
             <ClientOnly>
-              <img :src="modelHubEquipmentImage" alt="Impact Bridge learning hub hardware equipment"
-                class="model-hub-graphic-img" loading="lazy" />
+              <NuxtImg :src="modelHubEquipmentImage" alt="Impact Bridge learning hub hardware equipment"
+                class="model-hub-graphic-img" width="1200" height="800" sizes="sm:100vw lg:70vw" loading="lazy" />
               <template #fallback>
                 <div class="model-hub-graphic-placeholder" />
               </template>

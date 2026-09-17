@@ -22,6 +22,28 @@ const activeTab = computed({
   get: () => props.modelValue || props.tabs[0]?.id,
   set: (value) => emit('update:modelValue', value)
 })
+
+function moveTab(currentId: string, direction: 1 | -1) {
+  const enabledTabs = props.tabs.filter(tab => !tab.disabled)
+  const currentIndex = enabledTabs.findIndex(tab => tab.id === currentId)
+  if (currentIndex < 0) return
+  const nextIndex = (currentIndex + direction + enabledTabs.length) % enabledTabs.length
+  activeTab.value = enabledTabs[nextIndex]!.id
+}
+
+function handleTabKeydown(event: KeyboardEvent, tabId: string) {
+  if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+    event.preventDefault()
+    moveTab(tabId, 1)
+  } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+    event.preventDefault()
+    moveTab(tabId, -1)
+  } else if (event.key === 'Home' || event.key === 'End') {
+    event.preventDefault()
+    const enabledTabs = props.tabs.filter(tab => !tab.disabled)
+    activeTab.value = event.key === 'Home' ? enabledTabs[0]!.id : enabledTabs[enabledTabs.length - 1]!.id
+  }
+}
 </script>
 
 <template>
@@ -32,6 +54,9 @@ const activeTab = computed({
         :key="tab.id"
         type="button"
         role="tab"
+        :id="`tab-${tab.id}`"
+        :aria-controls="`tabpanel-${tab.id}`"
+        :tabindex="activeTab === tab.id ? 0 : -1"
         :aria-selected="activeTab === tab.id"
         :disabled="tab.disabled"
         :class="[
@@ -39,11 +64,12 @@ const activeTab = computed({
           { 'ui-tab--active': activeTab === tab.id }
         ]"
         @click="activeTab = tab.id"
+        @keydown="handleTabKeydown($event, tab.id)"
       >
         {{ tab.label }}
       </button>
     </div>
-    <div class="ui-tabs-content">
+    <div :id="`tabpanel-${activeTab}`" class="ui-tabs-content" role="tabpanel" :aria-labelledby="`tab-${activeTab}`" tabindex="0">
       <slot :active-tab="activeTab" />
     </div>
   </div>

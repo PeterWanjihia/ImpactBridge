@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ArrowRight, Download, Users, CircleCheck } from '@lucide/vue'
+import { ArrowRight, Users, CircleCheck } from '@lucide/vue'
 
 interface Props {
   imageUrl?: string
@@ -21,10 +21,14 @@ const impactPoints = [
 <template>
   <section class="partnership-hero">
     <div v-if="imageUrl" class="partnership-hero__bg">
-      <img
+      <NuxtImg
         :src="imageUrl"
         alt="Teacher leading a lesson in a connected classroom"
         class="partnership-hero__image"
+        width="1920"
+        height="1080"
+        sizes="100vw"
+        preload
       />
       <div class="partnership-hero__mask" />
     </div>
@@ -48,17 +52,18 @@ const impactPoints = [
           </p>
 
           <div class="partnership-hero__actions">
-            <NuxtLink to="#begin-the-conversation" class="partnership-hero__cta">
+            <UiButton to="#begin-the-conversation" variant="primary" size="lg" class="partnership-hero__cta">
               Start a partnership conversation
               <ArrowRight class="w-4 h-4" />
-            </NuxtLink>
+            </UiButton>
             <UiButton
+              to="#ways-to-partner"
               variant="outline-white"
               size="lg"
               class="partnership-hero__cta-secondary"
             >
-              Download partnership overview
-              <Download class="w-4 h-4" />
+              Explore partnership options
+              <ArrowRight class="w-4 h-4" />
             </UiButton>
           </div>
         </div>
@@ -142,14 +147,11 @@ const impactPoints = [
 }
 
 .partnership-hero__cta {
-  @apply inline-flex items-center justify-between gap-2.5 px-6 py-3 rounded-lg;
-  @apply bg-cobalt-600 hover:bg-cobalt-700 text-white text-sm font-sans font-medium whitespace-nowrap;
-  @apply transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cobalt-500 focus:ring-offset-navy-900;
+  @apply whitespace-nowrap;
 }
 
 .partnership-hero__cta-secondary {
-  @apply inline-flex items-center justify-between gap-3 px-5 py-2.5 rounded-lg;
-  @apply bg-white/10 border border-white/25 hover:bg-white/20 text-white text-sm font-sans font-medium whitespace-nowrap;
+  @apply border-white/25 bg-white/10 hover:bg-white/20 whitespace-nowrap;
 }
 
 .partnership-hero__aside {
@@ -157,7 +159,7 @@ const impactPoints = [
 }
 
 .partnership-hero__card {
-  @apply rounded-xl border border-white/10 bg-ink-soft/80 backdrop-blur-sm p-6 lg:p-7;
+  @apply rounded-card border border-white/10 bg-ink-soft/80 backdrop-blur-sm p-card lg:p-card-lg;
 }
 
 .partnership-hero__card-icon {

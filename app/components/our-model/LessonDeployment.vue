@@ -41,7 +41,7 @@ defineProps<{
             <p class="model-lesson-step-description">{{ step.description }}</p>
             <ClientOnly>
               <div class="model-lesson-step-image">
-                <img :src="step.image" :alt="step.alt" class="model-lesson-step-img" loading="lazy" />
+                <NuxtImg :src="step.image" :alt="step.alt" class="model-lesson-step-img" width="480" height="360" sizes="sm:50vw md:33vw lg:240px" loading="lazy" />
               </div>
               <template #fallback>
                 <div class="model-lesson-step-image model-lesson-step-image--placeholder" />

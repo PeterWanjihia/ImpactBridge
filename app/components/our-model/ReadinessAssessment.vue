@@ -36,7 +36,7 @@ defineProps<{
           <div v-for="card in readiness.cards" :key="card.title" class="model-readiness-card">
             <ClientOnly>
               <div class="model-readiness-card-image">
-                <img :src="card.image" :alt="card.alt" class="model-readiness-card-img" loading="lazy" />
+                <NuxtImg :src="card.image" :alt="card.alt" class="model-readiness-card-img" width="480" height="360" sizes="sm:100vw md:50vw lg:240px" loading="lazy" />
               </div>
               <template #fallback>
                 <div class="model-readiness-card-image model-readiness-card-image--placeholder" />

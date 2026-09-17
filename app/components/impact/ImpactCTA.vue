@@ -48,10 +48,14 @@ withDefaults(defineProps<Props>(), {
 
         <!-- Image -->
         <div class="impact-cta-media">
-          <img
+          <NuxtImg
             :src="imageUrl"
             :alt="imageAlt"
             class="impact-cta-image"
+            width="640"
+            height="480"
+            loading="lazy"
+            sizes="sm:100vw lg:320px"
           />
         </div>
       </div>

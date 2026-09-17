@@ -46,8 +46,8 @@ const realityConstraints: Array<{ icon: Component; label: string }> = [
 
           <!-- Video Thumbnail & Play Overlay Button -->
           <template v-else>
-            <img :src="posterUrl" alt="Classroom learning environment"
-              class="reality-poster" />
+            <NuxtImg :src="posterUrl" alt="Classroom learning environment"
+              class="reality-poster" width="800" height="600" sizes="sm:100vw lg:42vw" loading="lazy" />
 
             <button type="button" aria-label="Play video" @click="handlePlayVideo"
               class="group reality-play-overlay">

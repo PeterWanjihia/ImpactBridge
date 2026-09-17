@@ -65,10 +65,14 @@ defineProps<{
 
         <!-- Right: Featured Testimonial -->
         <div class="evidence-testimonial">
-          <img
+          <NuxtImg
             :src="evidence.testimonial.imageUrl"
             :alt="evidence.testimonial.imageAlt"
             class="evidence-testimonial-bg"
+            width="1200"
+            height="700"
+            loading="lazy"
+            sizes="sm:100vw lg:50vw"
           />
           <div class="evidence-testimonial-overlay" />
 

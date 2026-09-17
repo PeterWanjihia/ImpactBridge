@@ -27,7 +27,7 @@ const props = withDefaults(defineProps<Props>(), {
           <slot name="actions" />
         </div>
         <div v-if="imageUrl" class="hero-split-media">
-          <img :src="imageUrl" :alt="imageAlt || title" class="hero-split-image" />
+          <NuxtImg :src="imageUrl" :alt="imageAlt || title" class="hero-split-image" width="1200" height="900" sizes="sm:100vw md:50vw" loading="lazy" />
         </div>
       </div>
     </LayoutContainer>

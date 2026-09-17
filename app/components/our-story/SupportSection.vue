@@ -37,10 +37,14 @@ const beliefs = [
 
             <!-- Team Image Preview -->
             <div class="rounded-2xl overflow-hidden bg-gray-100 aspect-[16/9] mb-4 shadow-elevation-1">
-              <img 
+              <NuxtImg
                 src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=350&fit=crop" 
                 alt="Impact Bridge team members and school partners"
                 class="w-full h-full object-cover"
+                width="600"
+                height="350"
+                loading="lazy"
+                sizes="sm:100vw lg:33vw"
               />
             </div>
 

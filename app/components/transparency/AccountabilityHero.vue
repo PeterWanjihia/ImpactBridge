@@ -19,10 +19,14 @@ const iconMap: Record<string, Component> = {
   <section class="account-hero">
     <!-- Background image + navy gradient -->
     <div class="account-hero__bg">
-      <img
+      <NuxtImg
         :src="hero.imageUrl"
         :alt="hero.imageAlt"
         class="account-hero__image"
+        width="1920"
+        height="1080"
+        sizes="100vw"
+        preload
       />
       <div class="account-hero__overlay" />
     </div>
@@ -39,10 +43,10 @@ const iconMap: Record<string, Component> = {
 
           <div class="account-hero__cta-row">
             <span class="account-hero__cta-label">{{ hero.ctaText }}</span>
-            <NuxtLink :to="hero.ctaTo" class="account-hero__cta">
+            <UiButton :to="hero.ctaTo" variant="light" size="sm" class="account-hero__cta">
               Contact our team
               <ArrowRight class="w-4 h-4" />
-            </NuxtLink>
+            </UiButton>
           </div>
         </div>
 
@@ -128,12 +132,12 @@ const iconMap: Record<string, Component> = {
 }
 
 .account-hero__cta {
-  @apply inline-flex items-center gap-2 px-4 py-2 rounded-md bg-white text-sm font-sans font-bold text-ink hover:bg-gray-100 transition-colors;
+  @apply font-bold text-ink;
 }
 
 /* Commitment panel */
 .account-hero__panel {
-  @apply w-full lg:w-[320px] flex-shrink-0 bg-white rounded-xl p-6 shadow-elevation-1;
+  @apply w-full lg:w-[320px] flex-shrink-0 bg-white rounded-card p-card shadow-elevation-1;
 }
 
 .account-hero__panel-title {

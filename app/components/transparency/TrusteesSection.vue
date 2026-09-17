@@ -28,13 +28,14 @@ const props = defineProps<{
           class="trustee-card"
         >
           <div class="trustee-card__media">
-            <img
+            <NuxtImg
               :src="member.imageUrl"
               :alt="member.imageAlt"
               class="trustee-card__image"
               loading="lazy"
               width="400"
               height="400"
+              sizes="sm:100vw md:50vw lg:25vw"
             />
           </div>
 
@@ -89,7 +90,7 @@ const props = defineProps<{
 
 /* Card */
 .trustee-card {
-  @apply flex flex-col rounded-xl border border-gray-200 bg-white overflow-hidden shadow-elevation-1;
+  @apply flex flex-col rounded-card border border-gray-200 bg-white overflow-hidden shadow-elevation-1;
 }
 
 .trustee-card__media {

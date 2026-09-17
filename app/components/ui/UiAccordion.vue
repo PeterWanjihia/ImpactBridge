@@ -49,12 +49,14 @@ function isOpen(id: string) {
     >
       <button
         type="button"
+        :id="`accordion-trigger-${item.id}`"
         :disabled="item.disabled"
         :class="[
           'ui-accordion-trigger',
           { 'ui-accordion-trigger--open': isOpen(item.id) }
         ]"
         :aria-expanded="isOpen(item.id)"
+        :aria-controls="`accordion-panel-${item.id}`"
         @click="toggleItem(item.id)"
       >
         <span class="ui-accordion-title">{{ item.title }}</span>
@@ -68,9 +70,11 @@ function isOpen(id: string) {
         </svg>
       </button>
       <div
+        :id="`accordion-panel-${item.id}`"
         v-show="isOpen(item.id)"
         class="ui-accordion-content"
         role="region"
+        :aria-labelledby="`accordion-trigger-${item.id}`"
       >
         <slot :name="item.id" :item="item">
           <p>{{ item.content }}</p>

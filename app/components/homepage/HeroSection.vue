@@ -36,13 +36,14 @@ defineProps<{
 <template>
   <section class="hero">
     <div class="hero-bg">
-      <img
+      <NuxtImg
         :src="hero.imageUrl"
         :alt="hero.imageAlt"
         class="hero-bg-image"
         width="1920"
         height="1080"
         fetchpriority="high"
+        preload
       />
       <div class="hero-bg-overlay" />
     </div>

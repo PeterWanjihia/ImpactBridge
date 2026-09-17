@@ -36,13 +36,14 @@ const trustIcons: Record<DonateHeroData['trustItems'][number]['icon'], Component
 <template>
   <section class="donate-hero">
     <div class="donate-hero__bg" aria-hidden="true">
-      <img
+      <NuxtImg
         :src="heroImage"
         alt=""
         class="donate-hero__image"
         width="1920"
         height="1080"
-        fetchpriority="high"
+        sizes="100vw"
+        preload
       />
       <div class="donate-hero__overlay" />
     </div>
@@ -162,6 +163,6 @@ const trustIcons: Record<DonateHeroData['trustItems'][number]['icon'], Component
 
 /* Widget Card Container */
 .donate-hero__widget {
-  @apply lg:col-span-5 rounded-2xl bg-white shadow-elevation-3 p-6 sm:p-8;
+  @apply lg:col-span-5 rounded-card bg-white shadow-elevation-3 p-card sm:p-card-lg;
 }
 </style>

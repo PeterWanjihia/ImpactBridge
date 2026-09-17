@@ -215,10 +215,9 @@ async function handleSubmit() {
     // POST creates the offer draft, PATCH stores details, POST submits it.
     const created = (await createOffer(payload as never)) as { id?: string } | null
     const offerId = created?.id
-    if (offerId) {
-      await updateOffer(offerId, payload as never)
-      await submitOffer(offerId)
-    }
+    if (!offerId) throw new Error('The equipment offer could not be created.')
+    await updateOffer(offerId, payload as never)
+    await submitOffer(offerId)
 
     submitted.value = true
     clearDraft()
@@ -619,7 +618,7 @@ const reassurances = [
 }
 
 .offer-section__card {
-  @apply lg:col-span-8 bg-gray-50 border border-gray-200 rounded-xl p-6 md:p-8;
+  @apply lg:col-span-8 bg-gray-50 border border-gray-200 rounded-card p-card md:p-card-lg;
 }
 
 /* Stepper */

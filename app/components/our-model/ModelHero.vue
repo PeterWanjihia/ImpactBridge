@@ -29,9 +29,9 @@ defineProps<{
   <section class="model-hero">
     <div class="model-hero-bg">
       <ClientOnly>
-        <img :src="hero.imageUrl"
+        <NuxtImg :src="hero.imageUrl"
           :alt="hero.imageAlt" class="model-hero-image"
-          width="1920" height="1080" />
+          width="1920" height="1080" sizes="100vw" preload />
         <template #fallback>
           <div class="model-hero-image model-hero-image--placeholder" />
         </template>

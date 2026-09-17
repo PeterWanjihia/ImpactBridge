@@ -121,11 +121,14 @@ const steps: StepItem[] = [
           <!-- Bottom Media Image & Link (Aligned at bottom) -->
           <div class="mt-auto">
             <div class="rounded-2xl overflow-hidden shadow-elevation-1 aspect-[4/3] bg-gray-100 mb-4">
-              <img
+              <NuxtImg
                 :src="step.image"
                 :alt="step.alt"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
+                width="600"
+                height="400"
+                sizes="sm:100vw md:50vw lg:20vw"
               />
             </div>
 

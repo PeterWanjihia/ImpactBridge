@@ -60,10 +60,14 @@ const props = withDefaults(defineProps<Props>(), {
               class="report-card"
             >
               <div class="report-card-media">
-                <img
+                <NuxtImg
                   :src="report.imageUrl"
                   :alt="report.imageAlt"
                   class="report-card-image"
+                  width="400"
+                  height="300"
+                  loading="lazy"
+                  sizes="sm:100vw md:33vw"
                 />
               </div>
               <div class="report-card-content">

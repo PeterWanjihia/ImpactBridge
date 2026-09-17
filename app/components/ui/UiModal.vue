@@ -14,6 +14,40 @@ const emit = defineEmits<{
 }>()
 
 const modalId = computed(() => `modal-${useId()}`)
+const modalRef = ref<HTMLElement | null>(null)
+const previouslyFocused = ref<HTMLElement | null>(null)
+
+function focusableElements() {
+  return Array.from(modalRef.value?.querySelectorAll<HTMLElement>(
+    'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])',
+  ) ?? [])
+}
+
+function trapFocus(event: KeyboardEvent) {
+  if (event.key !== 'Tab') return
+  const focusable = focusableElements()
+  if (!focusable.length) return
+  const first = focusable[0]!
+  const last = focusable[focusable.length - 1]!
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault()
+    last.focus()
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault()
+    first.focus()
+  }
+}
+
+watch(() => props.open, async (open) => {
+  if (open) {
+    previouslyFocused.value = document.activeElement as HTMLElement
+    await nextTick()
+    focusableElements()[0]?.focus()
+  } else {
+    previouslyFocused.value?.focus()
+    previouslyFocused.value = null
+  }
+})
 
 function handleBackdropClick(event: MouseEvent) {
   if (event.target === event.currentTarget) {
@@ -40,7 +74,7 @@ function handleKeydown(event: KeyboardEvent) {
       @click="handleBackdropClick"
       @keydown="handleKeydown"
     >
-      <div :class="['ui-modal', `ui-modal--${size}`]">
+      <div ref="modalRef" :class="['ui-modal', `ui-modal--${size}`]" tabindex="-1" @keydown="trapFocus">
         <div v-if="title || $slots.header" class="ui-modal-header">
           <slot name="header">
             <h2 :id="`${modalId}-title`" class="ui-modal-title">{{ title }}</h2>

@@ -54,7 +54,7 @@ const iconMap: Record<string, Component> = {
 
 /* Panel */
 .glance__panel {
-  @apply rounded-2xl border border-gray-200 bg-gray-50/60 p-6 md:p-8;
+  @apply rounded-card border border-gray-200 bg-gray-50/60 p-card md:p-card-lg;
 }
 
 .glance__grid {

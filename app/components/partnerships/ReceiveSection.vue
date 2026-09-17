@@ -73,11 +73,14 @@ const benefits: Benefit[] = [
 
         <!-- Photo -->
         <div class="receive-photo">
-          <img
+          <NuxtImg
             src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=900&fit=crop&crop=center"
             alt="Two professionals discussing a partnership over documents"
             class="receive-photo__image"
             loading="lazy"
+            width="800"
+            height="900"
+            sizes="sm:100vw lg:25vw"
           />
         </div>
       </div>
@@ -119,7 +122,7 @@ const benefits: Benefit[] = [
 }
 
 .receive-quote {
-  @apply lg:col-span-4 relative rounded-2xl bg-cobalt-50 p-8 flex flex-col;
+  @apply lg:col-span-4 relative rounded-card bg-cobalt-50 p-card-lg flex flex-col;
 }
 
 .receive-quote__mark {
@@ -147,7 +150,7 @@ const benefits: Benefit[] = [
 }
 
 .receive-photo {
-  @apply lg:col-span-3 rounded-2xl overflow-hidden bg-gray-100 min-h-[280px];
+  @apply lg:col-span-3 rounded-card overflow-hidden bg-gray-100 min-h-[280px];
 }
 
 .receive-photo__image {

@@ -55,11 +55,15 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
     <div class="equipment-hero__bg-wrapper" aria-hidden="true">
       <!-- Left Background Image -->
       <div class="equipment-hero__left-bg">
-        <img
+        <NuxtImg
           :src="leftImage"
           alt=""
           class="equipment-hero__image"
           :loading="preload ? 'eager' : 'lazy'"
+          width="1200"
+          height="900"
+          sizes="100vw lg:58vw"
+          :preload="preload"
         />
         <div class="equipment-hero__left-overlay" />
       </div>
@@ -67,11 +71,15 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
       <!-- Right Curved Background Wrapper with Border Filter -->
       <div class="equipment-hero__right-wrapper">
         <div class="equipment-hero__right-bg">
-          <img
+          <NuxtImg
             :src="rightImage"
             alt=""
             class="equipment-hero__image"
             :loading="preload ? 'eager' : 'lazy'"
+            width="1200"
+            height="900"
+            sizes="lg:42vw"
+            :preload="preload"
           />
         </div>
       </div>
@@ -93,20 +101,24 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
           </p>
 
           <div class="equipment-hero__actions">
-            <NuxtLink
+            <UiButton
               to="#offer-equipment"
-              class="equipment-hero__cta equipment-hero__cta--primary"
+              variant="primary"
+              size="md"
+              class="equipment-hero__cta"
             >
               Offer equipment
               <ArrowRight class="w-4 h-4" />
-            </NuxtLink>
-            <NuxtLink
+            </UiButton>
+            <UiButton
               to="#requirements"
+              variant="outline-white"
+              size="md"
               class="equipment-hero__cta equipment-hero__cta--secondary"
             >
               View requirements
               <Download class="w-4 h-4" />
-            </NuxtLink>
+            </UiButton>
           </div>
         </div>
 
@@ -228,16 +240,11 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
 }
 
 .equipment-hero__cta {
-  @apply inline-flex items-center justify-between gap-3 px-5 py-2.5 rounded-lg text-xs md:text-sm font-sans font-medium whitespace-nowrap;
-  @apply transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-400 focus:ring-offset-navy-900;
-}
-
-.equipment-hero__cta--primary {
-  @apply bg-aqua-deep hover:bg-aqua-darker text-white;
+  @apply whitespace-nowrap;
 }
 
 .equipment-hero__cta--secondary {
-  @apply bg-white/10 border border-white/20 hover:bg-white/20 text-white;
+  @apply border-white/20 bg-white/10 hover:bg-white/20;
 }
 
 .equipment-hero__aside {
@@ -245,7 +252,7 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
 }
 
 .equipment-hero__warning {
-  @apply flex items-start gap-3.5 rounded-xl bg-white p-4 md:p-5 shadow-elevation-1;
+  @apply flex items-start gap-3.5 rounded-card bg-white p-card-sm md:p-card shadow-elevation-1;
 }
 
 .equipment-hero__warning-icon {
@@ -272,7 +279,7 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
 
 /* Bottom Trust Bar Card */
 .equipment-hero__trust-card {
-  @apply rounded-xl border border-white/15 bg-ink-deep/90 backdrop-blur-md p-4 lg:p-5 shadow-elevation-1;
+  @apply rounded-card border border-white/15 bg-ink-deep/90 backdrop-blur-md p-card-sm lg:p-card shadow-elevation-1;
 }
 
 .equipment-hero__trust-grid {

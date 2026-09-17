@@ -3,6 +3,7 @@ interface Props {
   modelValue?: string
   type?: 'text' | 'email' | 'tel' | 'url' | 'number' | 'password'
   placeholder?: string
+  min?: number | string
   disabled?: boolean
   error?: string
   label?: string
@@ -22,6 +23,7 @@ const emit = defineEmits<{
 }>()
 
 const inputId = computed(() => `input-${useId()}`)
+const errorId = computed(() => `${inputId.value}-error`)
 </script>
 
 <template>
@@ -39,15 +41,18 @@ const inputId = computed(() => `input-${useId()}`)
       :type="type"
       :value="modelValue"
       :placeholder="placeholder"
+      :min="min"
       :disabled="disabled"
       :required="required"
+      :aria-invalid="error ? 'true' : undefined"
+      :aria-describedby="error ? errorId : undefined"
       :class="[
         'ui-input',
         { 'ui-input--error': error }
       ]"
       @input="emit('update:modelValue', ($event.target as HTMLInputElement).value)"
     />
-    <p v-if="error" class="ui-input-error">{{ error }}</p>
+    <p v-if="error" :id="errorId" class="ui-input-error">{{ error }}</p>
   </div>
 </template>
 

@@ -18,6 +18,7 @@ const emit = defineEmits<{
 }>()
 
 const checkboxId = computed(() => `checkbox-${useId()}`)
+const errorId = computed(() => `${checkboxId.value}-error`)
 </script>
 
 <template>
@@ -29,6 +30,8 @@ const checkboxId = computed(() => `checkbox-${useId()}`)
         :checked="modelValue"
         :disabled="disabled"
         :required="required"
+        :aria-invalid="error ? 'true' : undefined"
+        :aria-describedby="error ? errorId : undefined"
         class="ui-checkbox-input"
         @change="emit('update:modelValue', ($event.target as HTMLInputElement).checked)"
       />
@@ -41,7 +44,7 @@ const checkboxId = computed(() => `checkbox-${useId()}`)
         <span v-if="required" class="text-danger-500">*</span>
       </label>
     </div>
-    <p v-if="error" class="ui-checkbox-error">{{ error }}</p>
+    <p v-if="error" :id="errorId" class="ui-checkbox-error">{{ error }}</p>
   </div>
 </template>
 

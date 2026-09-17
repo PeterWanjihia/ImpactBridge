@@ -41,13 +41,14 @@ defineProps<{
           </p>
         </div>
         <div class="challenge-media">
-          <img
+          <NuxtImg
             :src="challenge.imageUrl"
             :alt="challenge.imageAlt"
             class="challenge-image"
-            loading="lazy"
             width="800"
             height="600"
+            loading="lazy"
+            sizes="sm:100vw md:50vw"
           />
         </div>
       </div>

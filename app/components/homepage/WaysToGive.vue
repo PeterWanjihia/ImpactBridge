@@ -68,10 +68,14 @@ defineProps<{
           </div>
           <div class="ways-card-image-wrap">
             <div class="ways-card-fade" />
-            <img
+            <NuxtImg
               :src="waysToGive.individual.imageUrl"
               :alt="waysToGive.individual.imageAlt"
               class="ways-card-img"
+              width="800"
+              height="600"
+              loading="lazy"
+              sizes="sm:100vw md:50vw"
             />
           </div>
         </div>
@@ -111,10 +115,14 @@ defineProps<{
           </div>
           <div class="ways-card-image-wrap">
             <div class="ways-card-fade" />
-            <img
+            <NuxtImg
               :src="waysToGive.corporate.imageUrl"
               :alt="waysToGive.corporate.imageAlt"
               class="ways-card-img"
+              width="800"
+              height="600"
+              loading="lazy"
+              sizes="sm:100vw md:50vw"
             />
           </div>
         </div>

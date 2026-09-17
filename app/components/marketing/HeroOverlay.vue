@@ -16,7 +16,14 @@ const props = withDefaults(defineProps<Props>(), {
 <template>
   <section class="hero-overlay" :class="{ 'hero-overlay--slim': !imageUrl }">
     <div v-if="imageUrl" class="hero-overlay-bg">
-      <img :src="imageUrl" :alt="imageAlt || title" class="hero-overlay-image" />
+      <NuxtImg
+        :src="imageUrl"
+        :alt="imageAlt || title"
+        class="hero-overlay-image"
+        width="1920"
+        height="1080"
+        sizes="100vw"
+      />
       <div :class="['hero-overlay-mask', `hero-overlay-mask--${overlay}`]" />
     </div>
     <div class="hero-overlay-content" :class="{ 'hero-overlay-content--slim': !imageUrl }">

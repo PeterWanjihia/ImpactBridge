@@ -4,8 +4,35 @@ import FacebookIcon from '~icons/fa6-brands/facebook'
 import InstagramIcon from '~icons/fa6-brands/instagram'
 import LinkedinIcon from '~icons/fa6-brands/linkedin'
 import YoutubeIcon from '~icons/fa6-brands/youtube'
+import { validateEmail } from '~/utils/validation'
+
+const config = useRuntimeConfig()
 
 const currentYear = new Date().getFullYear()
+const newsletterEmail = ref('')
+const newsletterError = ref('')
+const newsletterSubmitting = ref(false)
+const newsletterSubscribed = ref(false)
+
+async function subscribeToNewsletter() {
+  const result = validateEmail(newsletterEmail.value)
+  newsletterError.value = result.error ?? ''
+  if (!result.valid) return
+
+  newsletterSubmitting.value = true
+  try {
+    await $fetch(`${config.public.apiUrl}/v1/newsletter/subscriptions`, {
+      method: 'POST',
+      body: { email: newsletterEmail.value.trim() },
+    })
+    newsletterSubscribed.value = true
+    newsletterEmail.value = ''
+  } catch {
+    newsletterError.value = 'Subscription failed. Please try again.'
+  } finally {
+    newsletterSubmitting.value = false
+  }
+}
 
 const exploreLinks = [
   { label: 'About', to: '/our-story' },
@@ -42,7 +69,7 @@ const socialLinks = [
         <!-- Brand Column -->
         <div class="site-footer-brand">
           <NuxtLink to="/" class="site-footer-logo">
-            <img src="/logo.png" alt="Impact Bridge logo" class="site-footer-logo-icon" />
+            <NuxtImg src="/logo.png" alt="Impact Bridge logo" class="site-footer-logo-icon" width="36" height="36" />
             <div class="site-footer-logo-text">
               <span>IMPACT</span>
               <span>BRIDGE</span>
@@ -103,13 +130,19 @@ const socialLinks = [
             Sign up for our newsletter to receive impact stories and updates.
           </p>
 
-          <form class="site-footer-newsletter-form" @submit.prevent>
-            <input type="email" placeholder="Your email address" class="site-footer-newsletter-input"
-              aria-label="Email address for newsletter" />
-            <button type="submit" class="site-footer-newsletter-btn">
-              Subscribe
+          <p v-if="newsletterSubscribed" class="site-footer-newsletter-success" role="status">
+            You are subscribed. Thank you.
+          </p>
+          <form v-else class="site-footer-newsletter-form" @submit.prevent="subscribeToNewsletter">
+            <input v-model="newsletterEmail" type="email" placeholder="Your email address" class="site-footer-newsletter-input"
+              aria-label="Email address for newsletter" :aria-invalid="!!newsletterError || undefined" aria-describedby="footer-newsletter-error" />
+            <button type="submit" class="site-footer-newsletter-btn" :disabled="newsletterSubmitting">
+              {{ newsletterSubmitting ? 'Sending...' : 'Subscribe' }}
             </button>
           </form>
+          <p v-if="newsletterError" id="footer-newsletter-error" class="site-footer-newsletter-error" role="alert">
+            {{ newsletterError }}
+          </p>
 
           <div class="site-footer-legal">
             <NuxtLink to="/privacy" class="site-footer-legal-link">Privacy Policy</NuxtLink>
@@ -196,6 +229,18 @@ const socialLinks = [
 
 .site-footer-newsletter-btn {
   @apply px-4 py-1.5 text-xs font-sans font-semibold text-white bg-bridge hover:bg-cobalt-600 rounded-md transition-colors whitespace-nowrap;
+}
+
+.site-footer-newsletter-btn:disabled {
+  @apply opacity-60 cursor-not-allowed;
+}
+
+.site-footer-newsletter-error {
+  @apply mt-2 text-2xs font-sans text-danger-300;
+}
+
+.site-footer-newsletter-success {
+  @apply text-sm font-sans text-success-300;
 }
 
 .site-footer-legal {
