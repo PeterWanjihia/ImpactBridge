@@ -112,7 +112,7 @@ defineProps<{
   @apply lg:col-span-1;
 }
 .model-teacher-video-wrap {
-  @apply relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-navy-800;
+  @apply relative w-full aspect-[4/3] rounded-card overflow-hidden bg-navy-800;
 }
 .model-teacher-video-wrap--placeholder {
   @apply bg-gray-300;
@@ -132,7 +132,7 @@ defineProps<{
 
 /* Champion Teacher */
 .model-teacher-champion {
-  @apply bg-white rounded-xl p-6 shadow-elevation-1 border border-gray-100;
+  @apply bg-white rounded-card p-card shadow-elevation-1 border border-gray-100;
 }
 .model-teacher-champion-title {
   @apply text-lg font-sans font-bold text-navy;

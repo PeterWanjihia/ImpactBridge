@@ -26,7 +26,7 @@ defineProps<Props>()
           class="stories-voice-card"
         >
           <div class="stories-voice-image">
-            <img :src="voice.imageUrl" :alt="voice.imageAlt" class="stories-voice-img" />
+            <NuxtImg :src="voice.imageUrl" :alt="voice.imageAlt" class="stories-voice-img" width="160" height="160" loading="lazy" sizes="160px" />
           </div>
           <div class="stories-voice-content">
             <blockquote class="stories-voice-quote">

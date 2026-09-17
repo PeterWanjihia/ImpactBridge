@@ -54,19 +54,13 @@ import { Heart, Building2 } from '@lucide/vue'
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
               
               <!-- Primary CTA: Fund a classroom -->
-              <NuxtLink 
-                to="/donate" 
-                class="w-full sm:w-auto px-6 py-3 bg-cobalt hover:bg-cobalt/90 text-white font-bold text-xs rounded-xl shadow-elevation-2 transition-all flex items-center justify-center gap-2 group"
-              >
+              <UiButton to="/donate" variant="primary" size="md" class="w-full sm:w-auto shadow-elevation-2">
                 <Heart class="w-4 h-4 fill-white" />
                 <span>Fund a classroom</span>
-              </NuxtLink>
+              </UiButton>
 
               <!-- Secondary CTA: Partner with us -->
-              <NuxtLink 
-                to="/partnerships" 
-                class="w-full sm:w-auto px-6 py-2.5 bg-ink/80 hover:bg-ink-soft border border-aqua/40 text-aqua font-bold text-xs rounded-xl transition-all flex flex-col items-center justify-center gap-0.5 group"
-              >
+              <UiButton to="/partnerships" variant="outline-white" size="md" class="w-full sm:w-auto !h-auto flex-col border-aqua/40 bg-ink/80 text-aqua hover:bg-ink-soft">
                 <div class="flex items-center gap-2">
                   <Building2 class="w-4 h-4 text-aqua" />
                   <span>Partner with us</span>
@@ -74,7 +68,7 @@ import { Heart, Building2 } from '@lucide/vue'
                 <span class="text-2xs text-gray-400 font-normal">
                   Funding, suitable technology, logistics or expertise.
                 </span>
-              </NuxtLink>
+              </UiButton>
 
             </div>
 

@@ -25,22 +25,22 @@ defineProps<{
       </svg>
     </div>
 
-    <div class="bridge-cta-inner">
+    <LayoutContainer class="bridge-cta-inner">
       <div class="bridge-cta-content">
         <h2 class="bridge-cta-title">{{ cta.title }}</h2>
         <p class="bridge-cta-description">{{ cta.description }}</p>
       </div>
       <div class="bridge-cta-actions">
-        <NuxtLink :to="cta.primaryCta.to" class="bridge-btn bridge-btn-primary">
+        <UiButton :to="cta.primaryCta.to" variant="primary" size="lg" class="bridge-btn-primary shadow-elevation-2">
           <Heart class="w-5 h-5 text-white stroke-[2]" />
           <span>{{ cta.primaryCta.text }}</span>
-        </NuxtLink>
-        <NuxtLink :to="cta.secondaryCta.to" class="bridge-btn bridge-btn-outline">
+        </UiButton>
+        <UiButton :to="cta.secondaryCta.to" variant="outline-white" size="lg" class="bridge-btn-outline shadow-elevation-2">
           <Building2 class="w-5 h-5 text-white" />
           <span>{{ cta.secondaryCta.text }}</span>
-        </NuxtLink>
+        </UiButton>
       </div>
-    </div>
+    </LayoutContainer>
   </section>
 </template>
 
@@ -49,10 +49,10 @@ defineProps<{
   @apply relative overflow-hidden bg-gradient-to-r from-ink via-ink-soft to-ink text-white py-section-sm md:py-section;
 }
 .bridge-cta-graphic {
-  @apply absolute left-0 top-0 bottom-0 w-[45%] pointer-events-none z-0 mix-blend-screen;
+  @apply absolute left-0 top-0 bottom-0 w-2/5 pointer-events-none z-0 mix-blend-screen;
 }
 .bridge-cta-inner {
-  @apply max-w-container mx-auto px-gutter-sm sm:px-gutter lg:px-gutter-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-8 relative z-10;
+  @apply flex flex-col md:flex-row items-start md:items-center justify-between gap-8 relative z-10;
 }
 .bridge-cta-content {
   @apply text-left max-w-xl;
@@ -65,9 +65,6 @@ defineProps<{
 }
 .bridge-cta-actions {
   @apply flex flex-wrap items-center gap-4;
-}
-.bridge-btn {
-  @apply inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl font-sans text-sm font-semibold transition-all duration-200 shadow-elevation-2;
 }
 .bridge-btn-primary {
   @apply bg-bridge hover:bg-bridge-deep text-white border border-transparent;

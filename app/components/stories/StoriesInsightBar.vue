@@ -29,10 +29,14 @@ import { ArrowRight } from '@lucide/vue'
       <!-- Section 2: Avatar & Center Visual Connector -->
       <div class="connector-group">
         <div class="avatar-ring">
-          <img
+          <NuxtImg
             src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&q=80&w=250"
             alt="Student portrait"
             class="avatar-img"
+            width="160"
+            height="160"
+            loading="lazy"
+            sizes="160px"
           />
         </div>
 

@@ -29,7 +29,7 @@ defineProps<Props>()
             {{ step.number }}
           </div>
           <div class="stories-photo-essay-step-image">
-            <img :src="step.imageUrl" :alt="step.imageAlt" class="stories-photo-essay-step-img" />
+            <NuxtImg :src="step.imageUrl" :alt="step.imageAlt" class="stories-photo-essay-step-img" width="320" height="220" loading="lazy" sizes="sm:50vw md:33vw lg:320px" />
           </div>
           <h4 class="stories-photo-essay-step-title">{{ step.title }}</h4>
           <p class="stories-photo-essay-step-desc">{{ step.description }}</p>

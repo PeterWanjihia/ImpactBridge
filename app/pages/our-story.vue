@@ -53,11 +53,11 @@ onMounted(async () => {
 
       <template #actions>
         <div class="hero-actions">
-          <UiButton variant="primary" size="lg">
+          <UiButton to="#reality" variant="primary" size="lg">
             <CirclePlay class="w-5 h-5" />
             Watch the 90-second story
           </UiButton>
-          <UiButton variant="ghost" size="lg" class="text-white hover:text-white hover:bg-white/10">
+          <UiButton to="#question" variant="ghost" size="lg" class="text-white hover:text-white hover:bg-white/10">
             Read our story
             <ArrowRight class="w-4 h-4" />
           </UiButton>
@@ -81,8 +81,8 @@ onMounted(async () => {
       </template>
     </HeroOverlay>
 
-    <RealitySection />
-    <QuestionSection />
+    <RealitySection id="reality" />
+    <QuestionSection id="question" />
     <SolutionSection />
     <FirstClassroomSection />
     <PilotSection />

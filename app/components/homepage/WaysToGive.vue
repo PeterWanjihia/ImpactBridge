@@ -131,10 +131,10 @@ defineProps<{
   @apply grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch;
 }
 .ways-card {
-  @apply relative bg-white border border-gray-200/80 rounded-2xl overflow-hidden flex flex-col md:flex-row shadow-elevation-1 min-h-[380px];
+  @apply relative bg-white border border-gray-200/80 rounded-card overflow-hidden flex flex-col md:flex-row shadow-elevation-1 min-h-[380px];
 }
 .ways-card-content {
-  @apply relative z-20 flex-1 p-6 md:p-8 flex flex-col justify-between max-w-full md:max-w-[62%];
+  @apply relative z-20 flex-1 p-card md:p-card-lg flex flex-col justify-between max-w-full md:max-w-[62%];
 }
 .ways-card-header {
   @apply flex items-center gap-2.5 mb-2;

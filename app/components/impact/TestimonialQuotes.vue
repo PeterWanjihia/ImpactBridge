@@ -64,11 +64,9 @@ const props = withDefaults(defineProps<Props>(), {
                   <Headphones class="w-4 h-4" />
                   <span>Listen ({{ learner.mediaDuration }})</span>
                 </UiButton>
-                <UiButton variant="ghost" size="sm">
-                  <NuxtLink :to="learner.storyUrl" class="flex items-center gap-1">
-                    Read the full story
-                    <ArrowRight class="w-4 h-4" />
-                  </NuxtLink>
+                <UiButton :to="learner.storyUrl" variant="ghost" size="sm">
+                  Read the full story
+                  <ArrowRight class="w-4 h-4" />
                 </UiButton>
               </div>
             </div>

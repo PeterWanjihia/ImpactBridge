@@ -26,7 +26,7 @@ defineProps<Props>()
           class="stories-update-card"
         >
           <div class="stories-update-image">
-            <img :src="update.imageUrl" :alt="update.imageAlt" class="stories-update-img" />
+            <NuxtImg :src="update.imageUrl" :alt="update.imageAlt" class="stories-update-img" width="400" height="240" loading="lazy" sizes="sm:100vw md:33vw lg:400px" />
           </div>
           <div class="stories-update-content">
             <p class="stories-update-date">{{ update.date }}</p>

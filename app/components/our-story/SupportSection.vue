@@ -91,13 +91,10 @@ const beliefs = [
                   </p>
                 </div>
                 
-                <NuxtLink 
-                  to="/get-involved" 
-                  class="w-full py-2.5 px-3 bg-cobalt hover:bg-cobalt/90 text-white rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 shadow-elevation-1 transition-colors"
-                >
+                <UiButton to="/get-involved" variant="primary" size="sm" class="w-full shadow-elevation-1">
                   <MapPin class="w-3.5 h-3.5" />
                   <span>Fund the next classroom</span>
-                </NuxtLink>
+                </UiButton>
               </div>
 
               <!-- For Organisations Card -->
@@ -114,12 +111,9 @@ const beliefs = [
                   </p>
                 </div>
 
-                <NuxtLink 
-                  to="/partnerships" 
-                  class="w-full py-2.5 px-3 border border-success-600/80 text-success-700 hover:bg-success-50/50 bg-white rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 transition-colors"
-                >
+                <UiButton to="/partnerships" variant="outline" size="sm" class="w-full border-success-600/80 bg-white text-success-700 hover:bg-success-50/50">
                   <span>Start a corporate partnership</span>
-                </NuxtLink>
+                </UiButton>
               </div>
             </div>
           </div>

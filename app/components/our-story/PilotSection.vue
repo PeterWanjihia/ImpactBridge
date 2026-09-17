@@ -86,7 +86,7 @@ const evidenceList: EvidenceItem[] = [
           </div>
 
           <!-- Bottom Image Card -->
-          <div class="mt-auto rounded-2xl overflow-hidden bg-gray-200 aspect-[4/3] shadow-elevation-1">
+          <div class="mt-auto rounded-card overflow-hidden bg-gray-200 aspect-[4/3] shadow-elevation-1">
             <img
               :src="item.image"
               :alt="item.alt"

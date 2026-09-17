@@ -32,7 +32,7 @@ const realityConstraints: Array<{ icon: Component; label: string }> = [
 </script>
 
 <template>
-  <section class="reality-section">
+  <section id="reality" class="reality-section">
     <LayoutContainer>
       <div class="reality-grid">
 
@@ -104,7 +104,7 @@ const realityConstraints: Array<{ icon: Component; label: string }> = [
 
 /* Interactive Media Column */
 .reality-media {
-  @apply lg:col-span-5 relative overflow-hidden rounded-2xl shadow-elevation-1 bg-ink aspect-[4/3];
+  @apply lg:col-span-5 relative overflow-hidden rounded-card shadow-elevation-1 bg-ink aspect-[4/3];
 }
 .reality-video {
   @apply w-full h-full object-cover;

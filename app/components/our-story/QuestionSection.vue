@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <section class="question-section">
+  <section id="question" class="question-section">
     <LayoutContainer>
       <div class="question-grid">
         <!-- Content Column -->
@@ -64,6 +64,6 @@
   @apply lg:col-span-6 relative;
 }
 .question-image {
-  @apply w-full h-auto rounded-2xl shadow-elevation-1 object-cover;
+  @apply w-full h-auto rounded-card shadow-elevation-1 object-cover;
 }
 </style>

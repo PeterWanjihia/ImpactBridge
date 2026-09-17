@@ -51,7 +51,7 @@ function toggleAudio(id: string) {
             </div>
           </div>
           <div class="early-results-findings-cta">
-            <UiButton variant="ghost" class="text-cobalt hover:bg-cobalt/5">
+            <UiButton to="/transparency" variant="ghost" class="text-cobalt hover:bg-cobalt/5">
               See our methodology →
             </UiButton>
           </div>
@@ -75,7 +75,7 @@ function toggleAudio(id: string) {
             </button>
           </div>
           <div class="early-results-testimonial-cta">
-            <UiButton variant="ghost" class="text-cobalt hover:bg-cobalt/5">
+            <UiButton to="/stories/learner-grade-6" variant="ghost" class="text-cobalt hover:bg-cobalt/5">
               Read full story →
             </UiButton>
           </div>
@@ -99,7 +99,7 @@ function toggleAudio(id: string) {
             </button>
           </div>
           <div class="early-results-testimonial-cta">
-            <UiButton variant="ghost" class="text-cobalt hover:bg-cobalt/5">
+            <UiButton to="/stories" variant="ghost" class="text-cobalt hover:bg-cobalt/5">
               Read full story →
             </UiButton>
           </div>
@@ -132,7 +132,7 @@ function toggleAudio(id: string) {
 
 /* Findings Card */
 .early-results-findings {
-  @apply bg-white rounded-xl p-6 border border-gray-200 shadow-elevation-1;
+  @apply bg-white rounded-card p-card border border-gray-200 shadow-elevation-1;
 }
 .early-results-findings-title {
   @apply text-xl font-bold text-ink mb-1;
@@ -161,7 +161,7 @@ function toggleAudio(id: string) {
 
 /* Testimonial Cards */
 .early-results-testimonial {
-  @apply bg-white rounded-xl p-6 border border-gray-200 shadow-elevation-1 flex flex-col;
+  @apply bg-white rounded-card p-card border border-gray-200 shadow-elevation-1 flex flex-col;
 }
 .early-results-testimonial-title {
   @apply text-lg font-bold text-ink mb-4;

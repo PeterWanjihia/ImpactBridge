@@ -66,20 +66,25 @@ defineProps<{
           </p>
 
           <div class="model-hero-actions">
-            <UiButton variant="primary" size="lg">
-              <NuxtLink :to="hero.primaryCta.to" class="flex items-center gap-2"
-                aria-label="Explore the model — learn how our approach works">
-                {{ hero.primaryCta.text }}
-                <ArrowDown class="w-5 h-5" />
-              </NuxtLink>
+            <UiButton
+              :to="hero.primaryCta.to"
+              variant="primary"
+              size="lg"
+              aria-label="Explore the model — learn how our approach works"
+            >
+              {{ hero.primaryCta.text }}
+              <ArrowDown class="w-5 h-5" />
             </UiButton>
 
-            <UiButton variant="outline-white" size="lg" class="border-white/90">
-              <NuxtLink :to="hero.secondaryCta.to" class="flex items-center gap-2"
-                aria-label="See a hub in action — view how a learning hub operates">
-                {{ hero.secondaryCta.text }}
-                <ArrowRight class="w-5 h-5" />
-              </NuxtLink>
+            <UiButton
+              :to="hero.secondaryCta.to"
+              variant="outline-white"
+              size="lg"
+              class="border-white/90"
+              aria-label="See a hub in action — view how a learning hub operates"
+            >
+              {{ hero.secondaryCta.text }}
+              <ArrowRight class="w-5 h-5" />
             </UiButton>
           </div>
         </div>

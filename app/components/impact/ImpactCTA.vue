@@ -36,14 +36,14 @@ withDefaults(defineProps<Props>(), {
 
         <!-- Buttons -->
         <div class="impact-cta-actions">
-          <NuxtLink :to="primaryButtonTo" class="impact-cta-btn impact-cta-btn--primary">
+          <UiButton :to="primaryButtonTo" variant="light" size="lg" class="impact-cta-btn">
             <Heart class="w-5 h-5" />
             <span>{{ primaryButtonText }}</span>
-          </NuxtLink>
-          <NuxtLink :to="secondaryButtonTo" class="impact-cta-btn impact-cta-btn--secondary">
+          </UiButton>
+          <UiButton :to="secondaryButtonTo" variant="outline-white" size="lg" class="impact-cta-btn border-white/60">
             <Users class="w-5 h-5" />
             <span>{{ secondaryButtonText }}</span>
-          </NuxtLink>
+          </UiButton>
         </div>
 
         <!-- Image -->
@@ -85,15 +85,7 @@ withDefaults(defineProps<Props>(), {
 }
 
 .impact-cta-btn {
-  @apply inline-flex items-center gap-2.5 px-6 py-3 rounded-lg font-sans font-semibold text-sm transition-colors whitespace-nowrap;
-}
-
-.impact-cta-btn--primary {
-  @apply bg-white text-navy hover:bg-gray-100;
-}
-
-.impact-cta-btn--secondary {
-  @apply border border-white/60 text-white hover:bg-white/10;
+  @apply whitespace-nowrap;
 }
 
 .impact-cta-media {

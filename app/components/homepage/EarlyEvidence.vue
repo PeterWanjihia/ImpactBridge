@@ -102,7 +102,7 @@ defineProps<{
   @apply grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch;
 }
 .evidence-stats-card {
-  @apply bg-cobalt-50 rounded-2xl p-6 md:p-8 flex flex-col justify-between h-full;
+  @apply bg-cobalt-50 rounded-card p-card md:p-card-lg flex flex-col justify-between h-full;
 }
 .evidence-pilot-label {
   @apply flex items-center gap-2 text-2xs font-sans font-bold text-cobalt-500 tracking-eyebrow uppercase mb-6;
@@ -126,7 +126,7 @@ defineProps<{
   @apply mt-6 inline-flex items-center text-label font-sans font-bold text-cobalt-600 hover:text-cobalt-800 transition-colors;
 }
 .evidence-testimonial {
-  @apply relative rounded-2xl overflow-hidden min-h-[360px] flex items-center p-6 md:p-8 bg-ink text-white;
+  @apply relative rounded-card overflow-hidden min-h-[360px] flex items-center p-card md:p-card-lg bg-ink text-white;
 }
 .evidence-testimonial-bg {
   @apply absolute inset-0 w-full h-full object-cover object-right z-0;

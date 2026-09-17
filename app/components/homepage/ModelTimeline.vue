@@ -5,7 +5,7 @@ import type { Component } from 'vue'
 defineProps<{
   steps: Array<{
     iconKey: string
-    number: string
+    number: number
     title: string
     description: string
   }>

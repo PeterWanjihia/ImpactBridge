@@ -16,7 +16,7 @@ defineProps<{
     imageAlt: string
     eyebrow: string
     title: string
-    titleAccent: string
+    titleAccent?: string
     subtitle: string
     note?: string
     primaryCta: { text: string; to: string }
@@ -56,23 +56,22 @@ defineProps<{
             </h1>
             <p class="hero-subtitle">{{ hero.subtitle }}</p>
             <div class="hero-actions">
-              <UiButton variant="primary" size="lg">
-                <NuxtLink
-                  :to="hero.primaryCta.to"
-                  class="flex items-center gap-2"
-                >
-                  <Heart class="w-5 h-5" />
-                  {{ hero.primaryCta.text }}
-                </NuxtLink>
+              <UiButton
+                :to="hero.primaryCta.to"
+                variant="primary"
+                size="lg"
+              >
+                <Heart class="w-5 h-5" />
+                {{ hero.primaryCta.text }}
               </UiButton>
-              <UiButton variant="outline-white" class="border-white/80" size="lg">
-                <NuxtLink
-                  :to="hero.secondaryCta.to"
-                  class="flex items-center gap-2"
-                >
-                  <Building2 class="w-5 h-5" />
-                  {{ hero.secondaryCta.text }}
-                </NuxtLink>
+              <UiButton
+                :to="hero.secondaryCta.to"
+                variant="outline-white"
+                class="border-white/80"
+                size="lg"
+              >
+                <Building2 class="w-5 h-5" />
+                {{ hero.secondaryCta.text }}
               </UiButton>
             </div>
             <p v-if="hero.note" class="hero-note">{{ hero.note }}</p>
@@ -192,7 +191,7 @@ defineProps<{
   @apply hidden justify-self-end ml-auto lg:block max-w-[300px];
 }
 .hero-card-inner {
-  @apply bg-white rounded-2xl p-6 shadow-elevation-3 border border-gray-100;
+  @apply bg-white rounded-card p-card shadow-elevation-3 border border-gray-100;
 }
 .hero-card-title {
   @apply text-2xl font-display font-bold text-ink leading-tight tracking-tight;
@@ -213,7 +212,7 @@ defineProps<{
   @apply flex items-center gap-4 py-3 border-t border-gray-100/80;
 }
 .hero-card-stat-icon {
-  @apply w-12 h-12 flex items-center justify-center bg-cobalt-50/80 rounded-2xl flex-shrink-0;
+  @apply w-12 h-12 flex items-center justify-center bg-cobalt-50/80 rounded-card flex-shrink-0;
 }
 .hero-card-stat-content {
   @apply flex flex-col justify-center;

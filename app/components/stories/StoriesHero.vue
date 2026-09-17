@@ -13,7 +13,15 @@ defineProps<Props>()
 <template>
   <section class="stories-hero">
     <div class="stories-hero-bg">
-      <img :src="hero.imageUrl" :alt="hero.imageAlt" class="stories-hero-image" />
+      <NuxtImg
+        :src="hero.imageUrl"
+        :alt="hero.imageAlt"
+        class="stories-hero-image"
+        width="1920"
+        height="1080"
+        sizes="100vw lg:1920px"
+        preload
+      />
       <div class="stories-hero-overlay" />
     </div>
     <div class="stories-hero-content">
@@ -25,17 +33,13 @@ defineProps<Props>()
             </h1>
             <p class="stories-hero-description">{{ hero.description }}</p>
             <div class="stories-hero-actions">
-              <UiButton variant="primary" size="lg">
-                <NuxtLink :to="hero.primaryCta.to" class="flex items-center gap-2">
-                  {{ hero.primaryCta.text }}
-                  <Play class="w-4 h-4" />
-                </NuxtLink>
+              <UiButton :to="hero.primaryCta.to" variant="primary" size="lg">
+                {{ hero.primaryCta.text }}
+                <Play class="w-4 h-4" />
               </UiButton>
-              <UiButton variant="outline-white" size="lg">
-                <NuxtLink :to="hero.secondaryCta.to" class="flex items-center gap-2">
-                  {{ hero.secondaryCta.text }}
-                  <ArrowRight class="w-4 h-4" />
-                </NuxtLink>
+              <UiButton :to="hero.secondaryCta.to" variant="outline-white" size="lg">
+                {{ hero.secondaryCta.text }}
+                <ArrowRight class="w-4 h-4" />
               </UiButton>
             </div>
           </div>
@@ -125,7 +129,7 @@ defineProps<Props>()
 }
 
 .stories-hero-card {
-  @apply bg-white rounded-xl p-6 shadow-elevation-1 max-w-sm justify-self-end;
+  @apply bg-white rounded-card p-card shadow-elevation-1 max-w-sm justify-self-end;
 }
 
 .stories-hero-card-title {

@@ -91,7 +91,7 @@ defineProps<{
   @apply flex flex-col gap-6 w-full;
 }
 .model-hub-graphic-wrap {
-  @apply relative w-full flex items-center justify-center overflow-hidden rounded-xl;
+  @apply relative w-full flex items-center justify-center overflow-hidden rounded-card;
 }
 .model-hub-graphic-img {
   @apply w-full h-auto object-contain max-h-[480px] drop-shadow-elevation-2;
@@ -102,7 +102,7 @@ defineProps<{
 
 /* Bottom Feature Dock */
 .model-hub-feature-bar {
-  @apply grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 bg-ink-soft/90 border border-cobalt-500/20 rounded-xl p-3 gap-2 backdrop-blur-sm;
+  @apply grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 bg-ink-soft/90 border border-cobalt-500/20 rounded-card p-card-sm gap-2 backdrop-blur-sm;
 }
 .model-hub-feature-card {
   @apply flex items-center gap-2.5 px-3 py-2 border-r border-cobalt-500/10 last:border-r-0;

@@ -22,7 +22,7 @@ const typeColors: Record<string, string> = {
 <template>
   <NuxtLink :to="`/stories/${slug}`" class="story-card">
     <div v-if="imageUrl" class="story-card-image">
-      <img :src="imageUrl" :alt="imageAlt || title" class="story-card-img" />
+      <NuxtImg :src="imageUrl" :alt="imageAlt || title" class="story-card-img" width="640" height="360" sizes="sm:100vw md:50vw lg:33vw" loading="lazy" />
     </div>
     <div class="story-card-content">
       <div v-if="type" class="story-card-type">
@@ -37,7 +37,7 @@ const typeColors: Record<string, string> = {
 
 <style scoped>
 .story-card {
-  @apply block bg-white rounded-lg shadow-elevation-1 overflow-hidden hover:shadow-elevation-2 transition-shadow;
+  @apply block bg-white rounded-card shadow-elevation-1 overflow-hidden hover:shadow-elevation-2 transition-shadow;
 }
 
 .story-card-image {

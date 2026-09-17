@@ -72,7 +72,7 @@ function getMediaLabel(type?: string): string {
           <!-- Full-bleed background image for Banner/Partner style -->
           <template v-if="story.type === 'partner'">
             <div class="stories-banner-image-wrapper">
-              <img :src="story.imageUrl" :alt="story.imageAlt" loading="lazy" decoding="async" class="stories-banner-img" />
+              <NuxtImg :src="story.imageUrl" :alt="story.imageAlt" loading="lazy" decoding="async" class="stories-banner-img" width="1200" height="700" sizes="100vw lg:1200px" />
               <!-- Soft gradient blend overlay on the left -->
               <div class="stories-banner-gradient-overlay" />
             </div>
@@ -157,7 +157,7 @@ function getMediaLabel(type?: string): string {
                 class="stories-grid-card-video-link"
                 :aria-label="`Play video: ${story.title}`"
               >
-                <img :src="story.imageUrl" :alt="story.imageAlt" loading="lazy" decoding="async" class="stories-grid-card-img" />
+                <NuxtImg :src="story.imageUrl" :alt="story.imageAlt" loading="lazy" decoding="async" class="stories-grid-card-img" width="800" height="520" sizes="sm:100vw md:50vw lg:800px" />
                 <div class="stories-grid-card-play">
                   <div class="w-12 h-12 rounded-full border-2 border-white/80 bg-black/30 backdrop-blur-xs flex items-center justify-center">
                     <Play class="w-5 h-5 text-white fill-white translate-x-0.5" />
@@ -165,7 +165,7 @@ function getMediaLabel(type?: string): string {
                 </div>
               </a>
               <template v-else>
-                <img :src="story.imageUrl" :alt="story.imageAlt" loading="lazy" decoding="async" class="stories-grid-card-img" />
+                <NuxtImg :src="story.imageUrl" :alt="story.imageAlt" loading="lazy" decoding="async" class="stories-grid-card-img" width="800" height="520" sizes="sm:100vw md:50vw lg:800px" />
               </template>
             </div>
           </template>
@@ -185,7 +185,7 @@ function getMediaLabel(type?: string): string {
 }
 
 .stories-grid-card {
-  @apply bg-white rounded-2xl overflow-hidden shadow-elevation-1 border border-gray-200/80 flex flex-col sm:flex-row h-full relative;
+  @apply bg-white rounded-card overflow-hidden shadow-elevation-1 border border-gray-200/80 flex flex-col sm:flex-row h-full relative;
 }
 
 /* Banner / Partner Card Specific Styles */

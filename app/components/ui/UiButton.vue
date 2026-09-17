@@ -1,7 +1,8 @@
 <script setup lang="ts">
 interface Props {
-  variant?: 'primary' | 'secondary' | 'outline' | 'outline-white' | 'ghost'
+  variant?: 'primary' | 'secondary' | 'outline' | 'outline-white' | 'light' | 'ghost'
   size?: 'sm' | 'md' | 'lg'
+  to?: string
   disabled?: boolean
   loading?: boolean
   type?: 'button' | 'submit' | 'reset'
@@ -10,6 +11,7 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   variant: 'primary',
   size: 'md',
+  to: undefined,
   disabled: false,
   loading: false,
   type: 'button'
@@ -21,8 +23,10 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <button
+  <component
+    :is="to ? NuxtLink : 'button'"
     :type="type"
+    :to="to"
     :disabled="disabled || loading"
     :class="[
       'ui-button',
@@ -34,7 +38,7 @@ const emit = defineEmits<{
   >
     <span v-if="loading" class="ui-button__spinner" />
     <slot />
-  </button>
+  </component>
 </template>
 
 <style scoped>
@@ -56,6 +60,10 @@ const emit = defineEmits<{
 
 .ui-button--outline-white {
   @apply border border-white text-white hover:bg-white hover:text-navy focus:ring-white;
+}
+
+.ui-button--light {
+  @apply bg-white text-navy hover:bg-gray-100 focus:ring-white;
 }
 
 .ui-button--ghost {

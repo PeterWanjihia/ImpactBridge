@@ -58,8 +58,9 @@ const photos: PhotoItem[] = [
           </p>
 
           <div class="mt-8">
-            <UiButton 
-              variant="primary" 
+            <UiButton
+              to="#reality"
+              variant="primary"
               class="inline-flex items-center gap-2 bg-cobalt hover:bg-cobalt/90 text-white font-medium rounded-lg px-5 py-3 shadow-elevation-1 transition-colors text-sm"
             >
               <div class="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center">

@@ -225,17 +225,13 @@ const reportItems = computed(() => overview.value?.reports ?? [
           confidence.
         </p>
         <div class="impact-hero-actions">
-          <UiButton variant="primary" size="lg" class="bg-cobalt-600 hover:bg-cobalt-700 text-white rounded-lg px-6 py-3 font-semibold">
-            <NuxtLink to="#early-results" class="flex items-center gap-2">
-              <span>Explore the results</span>
-              <span>→</span>
-            </NuxtLink>
+          <UiButton to="#early-results" variant="primary" size="lg" class="bg-cobalt-600 hover:bg-cobalt-700 text-white rounded-control">
+            <span>Explore the results</span>
+            <span>→</span>
           </UiButton>
-          <UiButton variant="outline-white" size="lg" class="border border-white/80 text-white hover:bg-white/10 rounded-lg px-6 py-3 font-semibold">
-            <NuxtLink to="#reports" class="flex items-center gap-2">
-              <span>Read the pilot report</span>
-              <Building2 class="w-4 h-4" />
-            </NuxtLink>
+          <UiButton to="#reports" variant="outline-white" size="lg" class="border-white/80 text-white hover:bg-white/10 rounded-control">
+            <span>Read the pilot report</span>
+            <Building2 class="w-4 h-4" />
           </UiButton>
         </div>
       </template>
@@ -349,7 +345,7 @@ const reportItems = computed(() => overview.value?.reports ?? [
 
 /* Pilot Stats Card */
 .impact-hero-card {
-  @apply bg-white rounded-2xl shadow-elevation-1 p-7 w-80;
+  @apply bg-white rounded-card shadow-elevation-1 p-card w-80;
 }
 
 .impact-hero-card-title {
