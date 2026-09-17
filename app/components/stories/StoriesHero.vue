@@ -63,11 +63,11 @@ defineProps<Props>()
             </div>
             <!-- Real inline player: plays in place, never opens a new tab -->
             <video
-              v-if="featuredStory.mediaType === 'video' && featuredStory.mediaUrl"
+              v-if="featuredStory.media?.kind === 'video'"
               class="stories-hero-video"
-              :src="featuredStory.mediaUrl"
-              :poster="featuredStory.imageUrl"
-              :aria-label="featuredStory.title"
+              :src="featuredStory.media.url"
+              :poster="featuredStory.media.poster ?? featuredStory.imageUrl"
+              :aria-label="featuredStory.media.alt ?? featuredStory.title"
               controls
               playsinline
               preload="none"

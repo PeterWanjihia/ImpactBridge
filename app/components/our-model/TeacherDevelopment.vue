@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ArrowRight } from '@lucide/vue'
+import type { MediaAsset } from '~/types'
 
 defineProps<{
   teacher: {
-    videoSrc?: string
-    posterUrl?: string
-    videoAlt?: string
+    /** CMS media reference, resolved through ~/utils/media. */
+    video?: MediaAsset
     championQualities: string[]
     journeySteps: string[]
   }
@@ -32,27 +32,17 @@ defineProps<{
         <!-- Teacher training video — real inline player -->
         <div class="model-teacher-video">
           <video
-            v-if="teacher.videoSrc"
+            v-if="teacher.video"
             class="model-teacher-video-player"
-            :src="teacher.videoSrc"
-            :poster="teacher.posterUrl"
-            :aria-label="teacher.videoAlt"
+            :src="teacher.video.url"
+            :poster="teacher.video.poster"
+            :aria-label="teacher.video.alt"
             controls
             playsinline
             preload="metadata"
           >
             Your browser does not support embedded video.
           </video>
-          <NuxtImg
-            v-else-if="teacher.posterUrl"
-            :src="teacher.posterUrl"
-            :alt="teacher.videoAlt"
-            class="model-teacher-video-img"
-            width="800"
-            height="600"
-            sizes="sm:100vw lg:50vw"
-            loading="lazy"
-          />
         </div>
 
         <!-- Champion Teacher Model -->
@@ -118,8 +108,7 @@ defineProps<{
 .model-teacher-video {
   @apply lg:col-span-1;
 }
-.model-teacher-video-player,
-.model-teacher-video-img {
+.model-teacher-video-player {
   @apply block w-full aspect-[4/3] rounded-card bg-navy-800 object-cover;
 }
 

@@ -57,16 +57,16 @@ const trustIcons: Record<DonateHeroData['trustItems'][number]['icon'], Component
           <p class="donate-hero__subtitle">{{ hero.subtitle }}</p>
 
           <!-- Real inline player: plays here, never opens a new tab -->
-          <figure class="donate-hero__media">
+          <figure v-if="hero.video" class="donate-hero__media">
             <figcaption class="donate-hero__video-label">
-              See how your support changes lives
+              {{ hero.video.caption || 'See how your support changes lives' }}
               <span class="donate-hero__video-duration">{{ hero.videoDuration }}</span>
             </figcaption>
             <video
               class="donate-hero__video"
-              :src="hero.videoSrc"
-              :poster="hero.videoPoster"
-              aria-label="See how your support changes lives"
+              :src="hero.video.url"
+              :poster="hero.video.poster"
+              :aria-label="hero.video.caption || hero.video.alt"
               controls
               playsinline
               preload="none"

@@ -41,6 +41,48 @@ export interface PageSection {
   data: Record<string, any>
 }
 
+// Media
+
+/** How a media asset can be rendered. */
+export type MediaKind = 'image' | 'video' | 'audio'
+
+/**
+ * Publication consent recorded against a media asset. Story and learner media
+ * cannot be published until this is `granted` (architecture: media consent).
+ */
+export type MediaConsentStatus = 'granted' | 'pending' | 'withdrawn'
+
+export type MediaClassification = 'public' | 'internal'
+
+/**
+ * A published media asset as delivered by the CMS/API.
+ *
+ * The CMS `media` collection owns this metadata and stores only references;
+ * originals live in R2/S3 and are served transformed through the CDN. Content
+ * records carry a `MediaRef`, which `~/utils/media` resolves to an asset.
+ */
+export interface MediaAsset {
+  /** Stable CMS asset id. */
+  id: string
+  kind: MediaKind
+  /** Delivered CDN URL of the media file. */
+  url: string
+  /** Poster/thumbnail frame shown before playback starts (video). */
+  poster?: string
+  /** Alt text for the poster and any accompanying image. */
+  alt?: string
+  /** Editorial caption. */
+  caption?: string
+  /** Photographer or source credit. */
+  credit?: string
+  consentStatus: MediaConsentStatus
+  classification: MediaClassification
+  mimeType?: string
+}
+
+/** Reference stored on a content record; resolved through the media library. */
+export type MediaRef = string
+
 // Stories
 export type StoryType = 'learner' | 'teacher' | 'school' | 'community' | 'partner'
 
@@ -65,8 +107,9 @@ export interface Story {
   programme?: Programme
   school?: School
   mediaType?: 'video' | 'audio' | 'photo' | 'article'
-  mediaUrl?: string
   mediaDuration?: string
+  /** Resolved media asset; `media.kind` is authoritative for playback. */
+  media?: MediaAsset
   readTime?: string
   seo?: SeoMetadata
 }
@@ -173,9 +216,8 @@ export interface ImpactTestimonial {
   attribution: string
   imageUrl?: string
   imageAlt?: string
-  mediaType?: 'audio' | 'video'
-  mediaDuration?: string
-  mediaUrl?: string
+  /** Resolved media asset; `media.kind` selects the player. */
+  media?: MediaAsset
   storyUrl?: string
   variant: 'learner' | 'teacher'
 }
@@ -334,10 +376,8 @@ export interface DonateHeroData {
   eyebrow: string
   title: string
   subtitle: string
-  /** Real media source played inline in the hero. */
-  videoSrc: string
-  /** Poster frame shown before playback starts. */
-  videoPoster: string
+  /** Resolved hero media asset; `video.kind` is authoritative for playback. */
+  video?: MediaAsset
   videoDuration: string
   trustItems: DonateHeroTrustItem[]
 }
@@ -698,7 +738,8 @@ export interface StoriesFeaturedStory {
   slug: string
   mediaType: 'video' | 'photo' | 'article'
   mediaDuration?: string
-  mediaUrl?: string
+  /** Resolved media asset; `media.kind` is authoritative for playback. */
+  media?: MediaAsset
   imageUrl: string
   imageAlt: string
 }
@@ -714,7 +755,8 @@ export interface StoriesStoryItem {
   imageAlt: string
   mediaType?: 'video' | 'photo' | 'article'
   mediaDuration?: string
-  mediaUrl?: string
+  /** Resolved media asset; `media.kind` is authoritative for playback. */
+  media?: MediaAsset
   readTime?: string
 }
 
@@ -727,7 +769,8 @@ export interface StoriesVoiceItem {
   description: string
   imageUrl: string
   imageAlt: string
-  audioUrl?: string
+  /** Resolved audio asset; never a raw source URL. */
+  audio?: MediaAsset
   audioDuration?: string
   storyUrl?: string
   variant: 'learner' | 'teacher'
@@ -1015,11 +1058,8 @@ export interface OurModelTeacher {
   championDescription: string
   championQualities: string[]
   journeySteps: string[]
-  /** Real media source played inline. */
-  videoSrc?: string
-  /** Poster frame shown before playback starts. */
-  posterUrl?: string
-  videoAlt?: string
+  /** Resolved teacher video asset; `video.kind` is authoritative. */
+  video?: MediaAsset
 }
 
 export interface OurModelLessonStep {

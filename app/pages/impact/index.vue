@@ -8,6 +8,7 @@ import type {
   ImpactEvidenceItem,
   ProgrammeContext,
 } from '~/types'
+import { resolveMedia } from '~/utils/media'
 
 const heroIconMap: Record<string, Component> = {
   server: Server,
@@ -94,9 +95,8 @@ const testimonials = computed(() => overview.value?.testimonials ?? {
     attribution: '- Learner, Grade 6',
     imageUrl: 'https://img.magnific.com/free-photo/african-american-woman-wearing-student-backpack-holding-books-smiling-happy-pointing-with-hand-finger-side_839833-34702.jpg?semt=ais_hybrid&w=740&q=80',
     imageAlt: 'Student smiling in classroom',
-    mediaType: 'audio' as const,
-    mediaDuration: '0:20',
-    mediaUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+    // CMS media reference (resolved via ~/utils/media), not a raw asset URL
+    media: resolveMedia('impact-learner-testimonial-audio'),
     storyUrl: '/stories/learner-grade-6',
     variant: 'learner' as const,
   },
@@ -107,9 +107,7 @@ const testimonials = computed(() => overview.value?.testimonials ?? {
     attribution: '- Champion Teacher',
     imageUrl: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?w=600&h=700&fit=crop&crop=face',
     imageAlt: 'Teacher in classroom',
-    mediaType: 'video' as const,
-    mediaDuration: '0:32',
-    mediaUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4',
+    media: resolveMedia('impact-teacher-testimonial-video'),
     variant: 'teacher' as const,
   },
 })

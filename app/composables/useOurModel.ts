@@ -1,4 +1,5 @@
 import type { OurModelData } from '~/types'
+import { resolveMedia } from '~/utils/media'
 
 /**
  * Hardcoded defaults for the Our Model page.
@@ -129,11 +130,8 @@ const DEFAULTS: OurModelData = {
       'Independent use',
       'Peer support',
     ],
-    videoSrc:
-      'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
-    posterUrl:
-      'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&q=80',
-    videoAlt: 'Teacher leading a classroom training session',
+    // CMS media reference, resolved through ~/utils/media
+    video: resolveMedia('teacher-training-video'),
   },
 
   lesson: {

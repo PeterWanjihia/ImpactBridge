@@ -164,14 +164,20 @@ New-tab playback removed:
 - Dropped `target="_blank"` from the story hero and story grid video controls; both now play in place.
 - The only remaining `target="_blank"` under `app/` is the PDF download in `ReportsExplore.vue`, which is correct for a document.
 
-Data and type updates the real players required:
+Data fixes the real players required:
 
-- `DonateHeroData` gained `videoSrc` and `videoPoster`; populated in `useDonatePage.ts`.
-- `OurModelTeacher.videoUrl` was actually holding an image, so it was renamed to `posterUrl` alongside a separate `videoSrc`, and the now-unused `videoDuration` was dropped; populated in `useOurModel.ts`.
-- Stories listing data: a YouTube watch-page URL, which can never play in a native player, was swapped for a direct media URL; voice `audioUrl: '#'` values became real sources and dead `storyUrl: '#'` values became real routes.
-- Impact testimonial fallbacks: `mediaUrl: '#'` values became real sources in `impact/index.vue` and `TestimonialQuotes.vue`.
+- A YouTube watch-page URL in the stories listing could never play in a native player and was replaced with a proper video asset.
+- Voice and testimonial `'#'` placeholder sources became real assets, and dead `storyUrl: '#'` values became real routes.
+- `OurModelTeacher.videoUrl` had been holding a poster image rather than a source; the asset now carries the delivered URL and the poster frame separately.
 
-Placeholder media URLs use the sample hosts already present in the repository, matching the current mock-data approach.
+Media sources now come from a single CMS-shaped seam:
+
+- Added `MediaAsset` and `MediaRef` types describing an asset the way the CMS returns it: kind, delivered URL, poster frame, alt text, caption, credit, consent status, classification and mime type.
+- Added `~/utils/media`, the placeholder stand-in for the CMS `media` collection and now the only place in the frontend where a video or audio URL lives.
+- Content records carry a resolved media asset (`media`, `audio`, `video`) instead of raw `mediaUrl`, `audioUrl`, `videoSrc`, `videoPoster` and `posterUrl` fields. `media.kind` is authoritative for playback, and every player is `v-if` guarded so a missing or unpublished asset degrades to an empty slot rather than a broken control.
+- Pages, composables and components resolve media through `resolveMedia()`, so page data holds CMS media references rather than URLs. Connecting the real source is a change to `~/utils/media` alone: swap the library lookup for the CMS/API read and preload the results. The asset shape, the references and every call site stay as they are.
+
+Per the architecture, the CMS `media` collection owns this metadata and stores only references; originals belong in R2/S3 behind the CDN (Part 04 — Media).
 
 Verified with `npm run typecheck`.
 
@@ -187,7 +193,7 @@ Verified with `npm run typecheck`.
 
 These items were identified during the final review but were not fully refactored in this pass:
 
-- Placeholder media sources (sample video and audio URLs) are still hardcoded in page data; real assets and poster frames should come from the CMS/API.
+- The CMS `media` collection is not connected yet: `~/utils/media` still serves placeholder assets, including sample video and audio files, until the CMS/API read replaces its library lookup.
 - Equipment draft data remains in browser `localStorage`; it should eventually use expiry, stronger minimization, explicit consent, or server-side draft storage.
 - CMS and Go API composition is still handled by browser composables rather than a single Nuxt BFF payload.
 - Some older components still contain arbitrary layout values and page-specific styling even though the main visual tokens are established.

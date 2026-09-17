@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import type { MediaAsset } from '~/types'
+
 interface Props {
-  imageUrl: string
-  imageAlt?: string
-  videoUrl?: string
+  /** CMS media reference, resolved through ~/utils/media. */
+  media: MediaAsset
 }
 
 defineProps<Props>()
@@ -11,11 +12,11 @@ defineProps<Props>()
 <template>
   <!-- Real inline player: plays in place, never opens a new tab -->
   <video
-    v-if="videoUrl"
+    v-if="media.kind === 'video'"
     class="video-thumbnail video-thumbnail--player"
-    :src="videoUrl"
-    :poster="imageUrl"
-    :aria-label="imageAlt"
+    :src="media.url"
+    :poster="media.poster"
+    :aria-label="media.alt ?? media.caption"
     controls
     playsinline
     preload="metadata"
@@ -24,8 +25,8 @@ defineProps<Props>()
   </video>
   <NuxtImg
     v-else
-    :src="imageUrl"
-    :alt="imageAlt"
+    :src="media.poster ?? media.url"
+    :alt="media.alt"
     class="video-thumbnail"
     width="1200"
     height="675"

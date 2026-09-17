@@ -9,6 +9,7 @@ import type {
   StoriesUpdateItem,
   StoriesCtaData,
 } from '~/types'
+import { resolveMedia } from '~/utils/media'
 
 // ---------------------------------------------------------------------------
 // SEO — shared composable (canonical, OG/Twitter cards, robots)
@@ -175,7 +176,8 @@ const featuredStory: StoriesFeaturedStory = {
   slug: 'science-simulation-lesson',
   mediaType: 'video',
   mediaDuration: '01:24',
-  mediaUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+  // CMS media reference (resolved via ~/utils/media), not a raw asset URL
+  media: resolveMedia('story-science-simulation-video'),
   imageUrl: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&q=80',
   imageAlt: 'Students exploring science',
 }
@@ -200,7 +202,7 @@ const mockStories: StoriesStoryItem[] = [
     imageAlt: 'Student in classroom',
     mediaType: 'video',
     mediaDuration: '03:12',
-    mediaUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+    media: resolveMedia('story-now-i-can-see-video'),
   },
   {
     id: '2',
@@ -212,7 +214,7 @@ const mockStories: StoriesStoryItem[] = [
     imageAlt: 'Teacher training',
     mediaType: 'video',
     mediaDuration: '02:37',
-    mediaUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
+    media: resolveMedia('story-demonstration-to-confidence-video'),
   },
   {
     id: '3',
@@ -256,7 +258,7 @@ const mockStories: StoriesStoryItem[] = [
     imageAlt: 'Partnership collaboration',
     mediaType: 'video',
     mediaDuration: '02:58',
-    mediaUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
+    media: resolveMedia('story-donated-laptops-video'),
   },
 ]
 
@@ -269,7 +271,7 @@ const voices: StoriesVoiceItem[] = [
     description: 'Talking about a science simulation lesson.',
     imageUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&q=80',
     imageAlt: 'Sarah',
-    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+    audio: resolveMedia('voice-sarah-audio'),
     audioDuration: '00:26',
     storyUrl: '/stories/now-i-can-see',
     variant: 'learner',
@@ -282,7 +284,7 @@ const voices: StoriesVoiceItem[] = [
     description: 'On preparing and delivering engaging lessons.',
     imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80',
     imageAlt: 'Mr. James',
-    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
+    audio: resolveMedia('voice-james-audio'),
     audioDuration: '00:34',
     storyUrl: '/stories/from-demonstration-to-confidence',
     variant: 'teacher',

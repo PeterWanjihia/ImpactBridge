@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { BarChart3, GraduationCap, Users, TrendingUp, Smile, Volume2 } from '@lucide/vue'
+import { resolveMedia } from '~/utils/media'
 
 const metrics = [
   { icon: BarChart3, value: '1', label: 'Learning hub implemented' },
@@ -10,9 +11,9 @@ const metrics = [
   { icon: Volume2, value: '78%', label: 'Reported less stress in tech lessons' }
 ]
 
-// Testimonial audio — real sources played inline by the native audio element
-const learnerAudioUrl = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3'
-const teacherAudioUrl = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3'
+// Testimonial audio — CMS media references, resolved through ~/utils/media
+const learnerAudio = resolveMedia('learner-namalwa-audio')
+const teacherAudio = resolveMedia('teacher-judith-audio')
 </script>
 
 <template>
@@ -55,9 +56,10 @@ const teacherAudioUrl = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song
           <p class="early-results-author">— Namalwa, P7 Student</p>
           <div class="early-results-audio">
             <audio
+              v-if="learnerAudio"
               class="early-results-audio-player"
-              :src="learnerAudioUrl"
-              aria-label="Hear Namalwa's story"
+              :src="learnerAudio.url"
+              :aria-label="learnerAudio.alt ?? 'Hear Namalwa\'s story'"
               controls
               playsinline
               preload="none"
@@ -81,9 +83,10 @@ const teacherAudioUrl = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song
           <p class="early-results-author">— Teacher Judith</p>
           <div class="early-results-audio">
             <audio
+              v-if="teacherAudio"
               class="early-results-audio-player"
-              :src="teacherAudioUrl"
-              aria-label="Hear Judith's story"
+              :src="teacherAudio.url"
+              :aria-label="teacherAudio.alt ?? 'Hear Judith\'s story'"
               controls
               playsinline
               preload="none"

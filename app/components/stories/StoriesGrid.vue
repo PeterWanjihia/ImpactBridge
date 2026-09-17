@@ -150,11 +150,11 @@ function getMediaLabel(type?: string): string {
 
             <div class="stories-grid-card-image">
               <video
-                v-if="story.mediaType === 'video' && story.mediaUrl"
+                v-if="story.media?.kind === 'video'"
                 class="stories-grid-card-video"
-                :src="story.mediaUrl"
-                :poster="story.imageUrl"
-                :aria-label="`Play video: ${story.title}`"
+                :src="story.media.url"
+                :poster="story.media.poster ?? story.imageUrl"
+                :aria-label="story.media.alt ?? `Play video: ${story.title}`"
                 controls
                 playsinline
                 preload="none"

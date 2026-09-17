@@ -37,10 +37,10 @@ defineProps<Props>()
 
             <!-- Real inline audio player -->
             <audio
-              v-if="voice.audioUrl"
+              v-if="voice.audio"
               class="stories-voice-audio"
-              :src="voice.audioUrl"
-              :aria-label="`Hear ${voice.author}`"
+              :src="voice.audio.url"
+              :aria-label="voice.audio.alt ?? `Hear ${voice.author}`"
               controls
               playsinline
               preload="none"

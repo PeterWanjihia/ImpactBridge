@@ -8,13 +8,14 @@ import {
   Play,
 } from '@lucide/vue'
 import type { Component } from 'vue'
+import { resolveMedia } from '~/utils/media'
 
 // Video player state
 const isPlaying = ref(false)
 const videoRef = ref<HTMLVideoElement | null>(null)
 
-const videoUrl = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4'
-const posterUrl = 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&h=600&fit=crop&crop=center'
+// CMS media reference, resolved through ~/utils/media
+const video = resolveMedia('reality-classroom-video')
 
 function handlePlayVideo() {
   isPlaying.value = true
@@ -40,16 +41,26 @@ const realityConstraints: Array<{ icon: Component; label: string }> = [
         <div class="reality-media">
 
           <!-- Native HTML5 Video Player -->
-          <video v-if="isPlaying" ref="videoRef" :src="videoUrl" controls autoplay class="reality-video">
+          <video
+            v-if="isPlaying && video"
+            ref="videoRef"
+            :src="video.url"
+            :poster="video.poster"
+            :aria-label="video.alt ?? video.caption"
+            controls
+            autoplay
+            playsinline
+            class="reality-video"
+          >
             Your browser does not support the video tag.
           </video>
 
           <!-- Video Thumbnail & Play Overlay Button -->
-          <template v-else>
-            <NuxtImg :src="posterUrl" alt="Classroom learning environment"
+          <template v-else-if="video">
+            <NuxtImg :src="video.poster ?? video.url" :alt="video.alt"
               class="reality-poster" width="800" height="600" sizes="sm:100vw lg:42vw" loading="lazy" />
 
-            <button type="button" aria-label="Play video" @click="handlePlayVideo"
+            <button type="button" :aria-label="`Play video: ${video.caption ?? video.alt}`" @click="handlePlayVideo"
               class="group reality-play-overlay">
               <div class="reality-play-btn">
                 <Play class="w-7 h-7 fill-cobalt text-cobalt translate-x-0.5" />

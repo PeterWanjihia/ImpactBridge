@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Quote, ArrowRight } from '@lucide/vue'
 import type { ImpactTestimonial } from '~/types'
+import { resolveMedia } from '~/utils/media'
 
 interface Props {
   sectionNumber?: number
@@ -17,9 +18,8 @@ const props = withDefaults(defineProps<Props>(), {
     attribution: '- Learner, Grade 6',
     imageUrl: 'https://img.magnific.com/free-photo/african-american-woman-wearing-student-backpack-holding-books-smiling-happy-pointing-with-hand-finger-side_839833-34702.jpg?semt=ais_hybrid&w=740&q=80',
     imageAlt: 'Student smiling in classroom',
-    mediaType: 'audio',
-    mediaDuration: '0:20',
-    mediaUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+    // CMS media references (resolved via ~/utils/media), not raw asset URLs
+    media: resolveMedia('impact-learner-testimonial-audio'),
     storyUrl: '/stories/learner-grade-6',
     variant: 'learner'
   }),
@@ -30,9 +30,7 @@ const props = withDefaults(defineProps<Props>(), {
     attribution: '- Champion Teacher',
     imageUrl: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?w=600&h=700&fit=crop&crop=face',
     imageAlt: 'Teacher in classroom',
-    mediaType: 'video',
-    mediaDuration: '0:32',
-    mediaUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4',
+    media: resolveMedia('impact-teacher-testimonial-video'),
     variant: 'teacher'
   })
 })
@@ -62,10 +60,10 @@ const props = withDefaults(defineProps<Props>(), {
               <p class="testimonial-card-attribution">{{ learner.attribution }}</p>
               <div class="testimonial-card-actions">
                 <audio
-                  v-if="learner.mediaUrl"
+                  v-if="learner.media"
                   class="testimonial-card-audio"
-                  :src="learner.mediaUrl"
-                  :aria-label="`Listen to ${learner.attribution}`"
+                  :src="learner.media.url"
+                  :aria-label="learner.media.alt ?? `Listen to ${learner.attribution}`"
                   controls
                   playsinline
                   preload="none"
@@ -103,11 +101,11 @@ const props = withDefaults(defineProps<Props>(), {
             </div>
             <div class="testimonial-card-media">
               <video
-                v-if="teacher.mediaType === 'video' && teacher.mediaUrl"
+                v-if="teacher.media?.kind === 'video'"
                 class="testimonial-card-video"
-                :src="teacher.mediaUrl"
-                :poster="teacher.imageUrl"
-                :aria-label="teacher.heading"
+                :src="teacher.media.url"
+                :poster="teacher.media.poster ?? teacher.imageUrl"
+                :aria-label="teacher.media.alt ?? teacher.heading"
                 controls
                 playsinline
                 preload="none"

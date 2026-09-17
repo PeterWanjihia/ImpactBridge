@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { CirclePlay, ChevronLeft, Clock, Volume2 } from '@lucide/vue'
 import type { Story } from '~/types'
+import { resolveMedia } from '~/utils/media'
 
 // ---------------------------------------------------------------------------
 // Data layer — SSR via useAsyncData against GET /v1/stories/:slug
@@ -36,8 +37,9 @@ const fallbackStory: Story = {
   publishedAt: '2025-05-20T09:00:00.000Z',
   readTime: '4 min read',
   mediaType: 'video',
-  mediaUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
   mediaDuration: '01:24',
+  // CMS media reference (resolved via ~/utils/media), not a raw asset URL
+  media: resolveMedia('story-science-simulation-video'),
   programme: {
     id: 'p1',
     slug: 'pilot-hub',
@@ -63,9 +65,13 @@ const story = computed<Story | null>(() => {
 // ---------------------------------------------------------------------------
 const media = computed(() => {
   const s = story.value
+  const asset = s?.media
   return {
-    type: s?.mediaType ?? (s?.mediaUrl ? 'video' : s?.imageUrl ? 'photo' : 'article'),
-    url: s?.mediaUrl,
+    type: asset?.kind ?? s?.mediaType ?? (s?.imageUrl ? 'photo' : 'article'),
+    url: asset?.url,
+    poster: asset?.poster ?? s?.imageUrl,
+    alt: asset?.alt ?? s?.imageAlt,
+    caption: asset?.caption,
     duration: s?.mediaDuration,
   }
 })
@@ -236,14 +242,14 @@ const publishedDate = computed(() => {
               <video
                 controls
                 preload="none"
-                :poster="story.imageUrl"
+                :poster="media.poster"
                 :src="media.url"
                 class="story-video-player"
               >
                 Your browser does not support embedded video.
               </video>
-              <figcaption v-if="story.imageAlt" class="story-video-caption">
-                {{ story.imageAlt }}
+              <figcaption v-if="media.caption || media.alt" class="story-video-caption">
+                {{ media.caption || media.alt }}
               </figcaption>
             </figure>
 
