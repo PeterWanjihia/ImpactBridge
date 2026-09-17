@@ -334,6 +334,10 @@ export interface DonateHeroData {
   eyebrow: string
   title: string
   subtitle: string
+  /** Real media source played inline in the hero. */
+  videoSrc: string
+  /** Poster frame shown before playback starts. */
+  videoPoster: string
   videoDuration: string
   trustItems: DonateHeroTrustItem[]
 }
@@ -1011,9 +1015,11 @@ export interface OurModelTeacher {
   championDescription: string
   championQualities: string[]
   journeySteps: string[]
-  videoUrl?: string
+  /** Real media source played inline. */
+  videoSrc?: string
+  /** Poster frame shown before playback starts. */
+  posterUrl?: string
   videoAlt?: string
-  videoDuration?: string
 }
 
 export interface OurModelLessonStep {

@@ -3,9 +3,9 @@ import { ArrowRight } from '@lucide/vue'
 
 defineProps<{
   teacher: {
-    videoUrl: string
-    videoAlt: string
-    videoDuration: string
+    videoSrc?: string
+    posterUrl?: string
+    videoAlt?: string
     championQualities: string[]
     journeySteps: string[]
   }
@@ -29,23 +29,30 @@ defineProps<{
           </NuxtLink>
         </div>
 
-        <!-- Video Thumbnail -->
+        <!-- Teacher training video — real inline player -->
         <div class="model-teacher-video">
-          <ClientOnly>
-            <div class="model-teacher-video-wrap">
-              <NuxtImg :src="teacher.videoUrl"
-                :alt="teacher.videoAlt" class="model-teacher-video-img" width="800" height="600" sizes="sm:100vw lg:50vw" loading="lazy" />
-              <button class="model-teacher-play" aria-label="Play teacher training video">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                  <polygon points="5 3 19 12 5 21 5 3" />
-                </svg>
-              </button>
-              <span class="model-teacher-duration">{{ teacher.videoDuration }}</span>
-            </div>
-            <template #fallback>
-              <div class="model-teacher-video-wrap model-teacher-video-wrap--placeholder" />
-            </template>
-          </ClientOnly>
+          <video
+            v-if="teacher.videoSrc"
+            class="model-teacher-video-player"
+            :src="teacher.videoSrc"
+            :poster="teacher.posterUrl"
+            :aria-label="teacher.videoAlt"
+            controls
+            playsinline
+            preload="metadata"
+          >
+            Your browser does not support embedded video.
+          </video>
+          <NuxtImg
+            v-else-if="teacher.posterUrl"
+            :src="teacher.posterUrl"
+            :alt="teacher.videoAlt"
+            class="model-teacher-video-img"
+            width="800"
+            height="600"
+            sizes="sm:100vw lg:50vw"
+            loading="lazy"
+          />
         </div>
 
         <!-- Champion Teacher Model -->
@@ -111,23 +118,9 @@ defineProps<{
 .model-teacher-video {
   @apply lg:col-span-1;
 }
-.model-teacher-video-wrap {
-  @apply relative w-full aspect-[4/3] rounded-card overflow-hidden bg-navy-800;
-}
-.model-teacher-video-wrap--placeholder {
-  @apply bg-gray-300;
-}
+.model-teacher-video-player,
 .model-teacher-video-img {
-  @apply w-full h-full object-cover;
-}
-.model-teacher-play {
-  @apply absolute inset-0 flex items-center justify-center w-full h-full bg-navy/30 hover:bg-navy/40 transition-colors cursor-pointer;
-}
-.model-teacher-play svg {
-  @apply text-white drop-shadow-legibility;
-}
-.model-teacher-duration {
-  @apply absolute bottom-3 right-3 px-2 py-0.5 bg-navy/80 text-white text-xs font-sans font-medium rounded;
+  @apply block w-full aspect-[4/3] rounded-card bg-navy-800 object-cover;
 }
 
 /* Champion Teacher */

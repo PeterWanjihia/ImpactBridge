@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Quote, Headphones, Play, ArrowRight } from '@lucide/vue'
+import { Quote, ArrowRight } from '@lucide/vue'
 import type { ImpactTestimonial } from '~/types'
 
 interface Props {
@@ -19,6 +19,7 @@ const props = withDefaults(defineProps<Props>(), {
     imageAlt: 'Student smiling in classroom',
     mediaType: 'audio',
     mediaDuration: '0:20',
+    mediaUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
     storyUrl: '/stories/learner-grade-6',
     variant: 'learner'
   }),
@@ -31,7 +32,7 @@ const props = withDefaults(defineProps<Props>(), {
     imageAlt: 'Teacher in classroom',
     mediaType: 'video',
     mediaDuration: '0:32',
-    mediaUrl: '#',
+    mediaUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4',
     variant: 'teacher'
   })
 })
@@ -60,10 +61,17 @@ const props = withDefaults(defineProps<Props>(), {
               <p class="testimonial-card-description">{{ learner.description }}</p>
               <p class="testimonial-card-attribution">{{ learner.attribution }}</p>
               <div class="testimonial-card-actions">
-                <UiButton variant="outline" size="sm">
-                  <Headphones class="w-4 h-4" />
-                  <span>Listen ({{ learner.mediaDuration }})</span>
-                </UiButton>
+                <audio
+                  v-if="learner.mediaUrl"
+                  class="testimonial-card-audio"
+                  :src="learner.mediaUrl"
+                  :aria-label="`Listen to ${learner.attribution}`"
+                  controls
+                  playsinline
+                  preload="none"
+                >
+                  Your browser does not support embedded audio.
+                </audio>
                 <UiButton :to="learner.storyUrl" variant="ghost" size="sm">
                   Read the full story
                   <ArrowRight class="w-4 h-4" />
@@ -92,15 +100,22 @@ const props = withDefaults(defineProps<Props>(), {
               <blockquote class="testimonial-card-quote">{{ teacher.quote }}</blockquote>
               <p class="testimonial-card-description">{{ teacher.description }}</p>
               <p class="testimonial-card-attribution">{{ teacher.attribution }}</p>
-              <div class="testimonial-card-actions">
-                <UiButton variant="outline" size="sm">
-                  <Play class="w-4 h-4" />
-                  <span>Watch teacher story ({{ teacher.mediaDuration }})</span>
-                </UiButton>
-              </div>
             </div>
             <div class="testimonial-card-media">
+              <video
+                v-if="teacher.mediaType === 'video' && teacher.mediaUrl"
+                class="testimonial-card-video"
+                :src="teacher.mediaUrl"
+                :poster="teacher.imageUrl"
+                :aria-label="teacher.heading"
+                controls
+                playsinline
+                preload="none"
+              >
+                Your browser does not support embedded video.
+              </video>
               <NuxtImg
+                v-else
                 :src="teacher.imageUrl"
                 :alt="teacher.imageAlt"
                 class="testimonial-card-image"
@@ -180,5 +195,13 @@ const props = withDefaults(defineProps<Props>(), {
 
 .testimonial-card-image {
   @apply w-full h-48 md:h-full object-cover;
+}
+
+.testimonial-card-audio {
+  @apply w-full;
+}
+
+.testimonial-card-video {
+  @apply w-full h-48 md:h-full object-cover bg-navy-900;
 }
 </style>

@@ -61,16 +61,19 @@ defineProps<Props>()
                 {{ featuredStory.mediaDuration }}
               </span>
             </div>
-            <a
-              v-if="featuredStory.mediaUrl"
-              :href="featuredStory.mediaUrl"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="stories-hero-watch-link"
+            <!-- Real inline player: plays in place, never opens a new tab -->
+            <video
+              v-if="featuredStory.mediaType === 'video' && featuredStory.mediaUrl"
+              class="stories-hero-video"
+              :src="featuredStory.mediaUrl"
+              :poster="featuredStory.imageUrl"
+              :aria-label="featuredStory.title"
+              controls
+              playsinline
+              preload="none"
             >
-              <Play class="w-4 h-4 fill-current" />
-              Watch video
-            </a>
+              Your browser does not support embedded video.
+            </video>
             <NuxtLink :to="`/stories/${featuredStory.slug}`" class="stories-hero-card-link">
               Read the story
               <ArrowRight class="w-4 h-4" />
@@ -148,8 +151,8 @@ defineProps<Props>()
   @apply flex items-center gap-1.5;
 }
 
-.stories-hero-watch-link {
-  @apply mt-5 inline-flex items-center gap-2 rounded-full bg-cobalt px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-cobalt/80;
+.stories-hero-video {
+  @apply mt-5 block w-full aspect-video rounded-card bg-navy-900;
 }
 
 .stories-hero-card-link {

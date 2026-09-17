@@ -11,6 +11,10 @@ const DEFAULTS: DonatePageData = {
     title: 'Fund the next classroom.',
     subtitle:
       'Help bring offline learning resources, prepared teachers and ongoing support to schools where connectivity should not limit opportunity.',
+    videoSrc:
+      'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+    videoPoster:
+      'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80',
     videoDuration: '1:29',
     trustItems: [
       { icon: 'shield', label: 'Secure & trusted payments' },

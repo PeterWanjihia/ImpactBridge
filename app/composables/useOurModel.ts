@@ -129,10 +129,11 @@ const DEFAULTS: OurModelData = {
       'Independent use',
       'Peer support',
     ],
-    videoUrl:
+    videoSrc:
+      'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
+    posterUrl:
       'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&q=80',
     videoAlt: 'Teacher leading a classroom training session',
-    videoDuration: '0:45',
   },
 
   lesson: {

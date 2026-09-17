@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Play, ShieldCheck, ReceiptText, Lock } from '@lucide/vue'
+import { ShieldCheck, ReceiptText, Lock } from '@lucide/vue'
 import type { Component } from 'vue'
 import type { DonateHeroData, Fund, PaymentMethod } from '~/types'
 
@@ -56,15 +56,24 @@ const trustIcons: Record<DonateHeroData['trustItems'][number]['icon'], Component
           <h1 class="donate-hero__title">{{ hero.title }}</h1>
           <p class="donate-hero__subtitle">{{ hero.subtitle }}</p>
 
-          <a href="#how-it-works" class="donate-hero__video">
-            <span class="donate-hero__play">
-              <Play class="w-4 h-4 ml-0.5" fill="currentColor" />
-            </span>
-            <span>
-              <span class="donate-hero__video-label">See how your support changes lives</span>
+          <!-- Real inline player: plays here, never opens a new tab -->
+          <figure class="donate-hero__media">
+            <figcaption class="donate-hero__video-label">
+              See how your support changes lives
               <span class="donate-hero__video-duration">{{ hero.videoDuration }}</span>
-            </span>
-          </a>
+            </figcaption>
+            <video
+              class="donate-hero__video"
+              :src="hero.videoSrc"
+              :poster="hero.videoPoster"
+              aria-label="See how your support changes lives"
+              controls
+              playsinline
+              preload="none"
+            >
+              Your browser does not support embedded video.
+            </video>
+          </figure>
 
           <ul class="donate-hero__trust">
             <li
@@ -133,20 +142,20 @@ const trustIcons: Record<DonateHeroData['trustItems'][number]['icon'], Component
   @apply mt-6 text-base sm:text-lg text-gray-200 leading-relaxed max-w-xl;
 }
 
-.donate-hero__video {
-  @apply mt-8 inline-flex items-center gap-3.5 text-white hover:text-gray-200 transition-colors w-max;
+.donate-hero__media {
+  @apply mt-8 w-full max-w-sm;
 }
 
-.donate-hero__play {
-  @apply flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white text-navy-900 hover:bg-gray-100 transition-all shadow-elevation-2;
+.donate-hero__video {
+  @apply mt-3 block w-full aspect-video rounded-card bg-navy-900 shadow-elevation-2;
 }
 
 .donate-hero__video-label {
-  @apply block text-sm font-sans font-semibold leading-tight;
+  @apply block text-sm font-sans font-semibold text-white leading-tight;
 }
 
 .donate-hero__video-duration {
-  @apply block text-xs font-sans text-gray-400 leading-tight mt-0.5;
+  @apply ml-2 text-xs font-sans text-gray-400;
 }
 
 .donate-hero__trust {

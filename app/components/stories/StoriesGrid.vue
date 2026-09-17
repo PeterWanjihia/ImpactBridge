@@ -149,24 +149,29 @@ function getMediaLabel(type?: string): string {
             </div>
 
             <div class="stories-grid-card-image">
-              <a
+              <video
                 v-if="story.mediaType === 'video' && story.mediaUrl"
-                :href="story.mediaUrl"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="stories-grid-card-video-link"
+                class="stories-grid-card-video"
+                :src="story.mediaUrl"
+                :poster="story.imageUrl"
                 :aria-label="`Play video: ${story.title}`"
+                controls
+                playsinline
+                preload="none"
               >
-                <NuxtImg :src="story.imageUrl" :alt="story.imageAlt" loading="lazy" decoding="async" class="stories-grid-card-img" width="800" height="520" sizes="sm:100vw md:50vw lg:800px" />
-                <div class="stories-grid-card-play">
-                  <div class="w-12 h-12 rounded-full border-2 border-white/80 bg-black/30 backdrop-blur-xs flex items-center justify-center">
-                    <Play class="w-5 h-5 text-white fill-white translate-x-0.5" />
-                  </div>
-                </div>
-              </a>
-              <template v-else>
-                <NuxtImg :src="story.imageUrl" :alt="story.imageAlt" loading="lazy" decoding="async" class="stories-grid-card-img" width="800" height="520" sizes="sm:100vw md:50vw lg:800px" />
-              </template>
+                Your browser does not support embedded video.
+              </video>
+              <NuxtImg
+                v-else
+                :src="story.imageUrl"
+                :alt="story.imageAlt"
+                loading="lazy"
+                decoding="async"
+                class="stories-grid-card-img"
+                width="800"
+                height="520"
+                sizes="sm:100vw md:50vw lg:800px"
+              />
             </div>
           </template>
         </div>
@@ -259,12 +264,8 @@ function getMediaLabel(type?: string): string {
   @apply w-full h-full object-cover;
 }
 
-.stories-grid-card-video-link {
-  @apply relative block w-full h-full;
-}
-
-.stories-grid-card-play {
-  @apply absolute inset-0 flex items-center justify-center;
+.stories-grid-card-video {
+  @apply block w-full h-full object-cover bg-navy-900;
 }
 
 .stories-grid-empty {

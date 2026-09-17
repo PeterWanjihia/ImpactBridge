@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref, nextTick } from 'vue'
 import { BarChart3, GraduationCap, Users, TrendingUp, Smile, Volume2 } from '@lucide/vue'
 
 const metrics = [
@@ -11,19 +10,9 @@ const metrics = [
   { icon: Volume2, value: '78%', label: 'Reported less stress in tech lessons' }
 ]
 
-// Audio players for testimonials
-const activeAudio = ref<string | null>(null)
-const audioRef = ref<HTMLAudioElement | null>(null)
-
-function toggleAudio(id: string) {
-  if (activeAudio.value === id) {
-    audioRef.value?.pause()
-    activeAudio.value = null
-  } else {
-    activeAudio.value = id
-    // In real app, would play actual audio
-  }
-}
+// Testimonial audio — real sources played inline by the native audio element
+const learnerAudioUrl = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3'
+const teacherAudioUrl = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3'
 </script>
 
 <template>
@@ -65,14 +54,16 @@ function toggleAudio(id: string) {
           </blockquote>
           <p class="early-results-author">— Namalwa, P7 Student</p>
           <div class="early-results-audio">
-            <button
-              type="button"
-              class="early-results-audio-btn"
-              @click="toggleAudio('learner')"
+            <audio
+              class="early-results-audio-player"
+              :src="learnerAudioUrl"
+              aria-label="Hear Namalwa's story"
+              controls
+              playsinline
+              preload="none"
             >
-              <Volume2 class="w-4 h-4" />
-              {{ activeAudio === 'learner' ? 'Pause Namalwa\'s story' : 'Hear Namalwa\'s story' }}
-            </button>
+              Your browser does not support embedded audio.
+            </audio>
           </div>
           <div class="early-results-testimonial-cta">
             <UiButton to="/stories/learner-grade-6" variant="ghost" class="text-cobalt hover:bg-cobalt/5">
@@ -89,14 +80,16 @@ function toggleAudio(id: string) {
           </blockquote>
           <p class="early-results-author">— Teacher Judith</p>
           <div class="early-results-audio">
-            <button
-              type="button"
-              class="early-results-audio-btn"
-              @click="toggleAudio('teacher')"
+            <audio
+              class="early-results-audio-player"
+              :src="teacherAudioUrl"
+              aria-label="Hear Judith's story"
+              controls
+              playsinline
+              preload="none"
             >
-              <Volume2 class="w-4 h-4" />
-              {{ activeAudio === 'teacher' ? 'Pause Judith\'s story' : 'Hear Judith\'s story' }}
-            </button>
+              Your browser does not support embedded audio.
+            </audio>
           </div>
           <div class="early-results-testimonial-cta">
             <UiButton to="/stories" variant="ghost" class="text-cobalt hover:bg-cobalt/5">
@@ -175,8 +168,8 @@ function toggleAudio(id: string) {
 .early-results-audio {
   @apply mt-4;
 }
-.early-results-audio-btn {
-  @apply flex items-center gap-2 text-sm text-cobalt hover:text-cobalt/80 font-medium transition-colors cursor-pointer;
+.early-results-audio-player {
+  @apply block w-full;
 }
 .early-results-testimonial-cta {
   @apply mt-4 pt-4 border-t border-gray-100;

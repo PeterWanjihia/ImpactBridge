@@ -200,7 +200,7 @@ const mockStories: StoriesStoryItem[] = [
     imageAlt: 'Student in classroom',
     mediaType: 'video',
     mediaDuration: '03:12',
-    mediaUrl: 'https://www.youtube.com/watch?v=YO-XQGDqxJc',
+    mediaUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
   },
   {
     id: '2',
@@ -269,9 +269,9 @@ const voices: StoriesVoiceItem[] = [
     description: 'Talking about a science simulation lesson.',
     imageUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&q=80',
     imageAlt: 'Sarah',
-    audioUrl: '#',
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
     audioDuration: '00:26',
-    storyUrl: '#',
+    storyUrl: '/stories/now-i-can-see',
     variant: 'learner',
   },
   {
@@ -282,9 +282,9 @@ const voices: StoriesVoiceItem[] = [
     description: 'On preparing and delivering engaging lessons.',
     imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80',
     imageAlt: 'Mr. James',
-    audioUrl: '#',
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
     audioDuration: '00:34',
-    storyUrl: '#',
+    storyUrl: '/stories/from-demonstration-to-confidence',
     variant: 'teacher',
   },
 ]

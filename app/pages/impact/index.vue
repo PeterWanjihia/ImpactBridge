@@ -96,6 +96,7 @@ const testimonials = computed(() => overview.value?.testimonials ?? {
     imageAlt: 'Student smiling in classroom',
     mediaType: 'audio' as const,
     mediaDuration: '0:20',
+    mediaUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
     storyUrl: '/stories/learner-grade-6',
     variant: 'learner' as const,
   },
@@ -108,7 +109,7 @@ const testimonials = computed(() => overview.value?.testimonials ?? {
     imageAlt: 'Teacher in classroom',
     mediaType: 'video' as const,
     mediaDuration: '0:32',
-    mediaUrl: '#',
+    mediaUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4',
     variant: 'teacher' as const,
   },
 })
