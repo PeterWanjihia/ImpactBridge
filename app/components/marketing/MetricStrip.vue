@@ -41,7 +41,7 @@ const props = defineProps<Props>()
 }
 
 .metric-strip-value {
-  @apply text-3xl md:text-4xl font-display font-bold text-white;
+  @apply text-3xl md:text-4xl font-sans font-bold text-white;
 }
 
 .metric-strip-suffix {

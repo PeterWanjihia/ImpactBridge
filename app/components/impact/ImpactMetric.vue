@@ -39,7 +39,7 @@ const props = defineProps<Props>()
 }
 
 .impact-metric-value {
-  @apply text-4xl md:text-5xl font-display font-bold text-navy;
+  @apply text-4xl md:text-5xl font-sans font-bold text-navy;
 }
 
 .impact-metric-prefix {
