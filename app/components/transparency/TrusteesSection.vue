@@ -59,7 +59,7 @@ const props = defineProps<{
 
 <style scoped>
 .trustees {
-  @apply bg-white py-14 md:py-16 border-b border-slate-100;
+  @apply bg-white py-section-md md:py-section border-b border-gray-100;
 }
 
 .trustees__header {
@@ -71,15 +71,15 @@ const props = defineProps<{
 }
 
 .trustees__title {
-  @apply text-2xl md:text-3xl font-serif font-bold text-slate-900;
+  @apply text-2xl md:text-3xl font-display font-bold text-ink;
 }
 
 .trustees__description {
-  @apply mt-3 text-sm font-sans leading-relaxed text-slate-500;
+  @apply mt-3 text-sm font-sans leading-relaxed text-gray-500;
 }
 
 .trustees__cta {
-  @apply inline-flex items-center gap-2 text-sm font-sans font-bold text-blue-600 hover:text-blue-700 whitespace-nowrap lg:mt-2;
+  @apply inline-flex items-center gap-2 text-sm font-sans font-bold text-cobalt-600 hover:text-cobalt-700 whitespace-nowrap lg:mt-2;
 }
 
 /* Grid */
@@ -89,11 +89,11 @@ const props = defineProps<{
 
 /* Card */
 .trustee-card {
-  @apply flex flex-col rounded-xl border border-slate-200 bg-white overflow-hidden shadow-sm;
+  @apply flex flex-col rounded-xl border border-gray-200 bg-white overflow-hidden shadow-elevation-1;
 }
 
 .trustee-card__media {
-  @apply aspect-square overflow-hidden bg-slate-100;
+  @apply aspect-square overflow-hidden bg-gray-100;
 }
 
 .trustee-card__image {
@@ -105,18 +105,18 @@ const props = defineProps<{
 }
 
 .trustee-card__name {
-  @apply text-base font-serif font-bold text-slate-900;
+  @apply text-base font-display font-bold text-ink;
 }
 
 .trustee-card__role {
-  @apply mt-1 text-[13px] font-sans font-bold text-blue-600 leading-snug;
+  @apply mt-1 text-label font-sans font-bold text-cobalt-600 leading-snug;
 }
 
 .trustee-card__bio {
-  @apply mt-2.5 text-[13px] font-sans leading-relaxed text-slate-500 flex-1;
+  @apply mt-2.5 text-label font-sans leading-relaxed text-gray-500 flex-1;
 }
 
 .trustee-card__link {
-  @apply mt-4 inline-flex items-center gap-1.5 text-[13px] font-sans font-bold text-blue-600 hover:text-blue-700 hover:underline;
+  @apply mt-4 inline-flex items-center gap-1.5 text-label font-sans font-bold text-cobalt-600 hover:text-cobalt-700 hover:underline;
 }
 </style>

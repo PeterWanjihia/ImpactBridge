@@ -111,7 +111,7 @@ function toggleAudio(id: string) {
 
 <style scoped>
 .early-results-section {
-  @apply py-12 md:py-16 bg-gray-50;
+  @apply py-section-sm md:py-section bg-gray-50;
 }
 .early-results-header {
   @apply max-w-3xl mb-12;
@@ -123,7 +123,7 @@ function toggleAudio(id: string) {
   @apply w-6 h-6 rounded-full border border-cobalt/30 text-cobalt text-xs font-semibold flex items-center justify-center;
 }
 .early-results-eyebrow-label {
-  @apply text-xs font-bold tracking-wider text-cobalt uppercase;
+  @apply text-2xs font-bold tracking-eyebrow text-cobalt uppercase;
 }
 
 .early-results-grid {
@@ -132,13 +132,13 @@ function toggleAudio(id: string) {
 
 /* Findings Card */
 .early-results-findings {
-  @apply bg-white rounded-xl p-6 border border-slate-200 shadow-sm;
+  @apply bg-white rounded-xl p-6 border border-gray-200 shadow-elevation-1;
 }
 .early-results-findings-title {
-  @apply text-xl font-bold text-slate-900 mb-1;
+  @apply text-xl font-bold text-ink mb-1;
 }
 .early-results-findings-date {
-  @apply text-sm text-slate-500 mb-6;
+  @apply text-sm text-gray-500 mb-6;
 }
 .early-results-metrics {
   @apply space-y-3;
@@ -150,27 +150,27 @@ function toggleAudio(id: string) {
   @apply flex items-baseline gap-2;
 }
 .early-results-metric-value {
-  @apply text-sm font-bold text-slate-900;
+  @apply text-sm font-bold text-ink;
 }
 .early-results-metric-label {
-  @apply text-sm text-slate-600;
+  @apply text-sm text-gray-600;
 }
 .early-results-findings-cta {
-  @apply mt-6 pt-4 border-t border-slate-100;
+  @apply mt-6 pt-4 border-t border-gray-100;
 }
 
 /* Testimonial Cards */
 .early-results-testimonial {
-  @apply bg-white rounded-xl p-6 border border-slate-200 shadow-sm flex flex-col;
+  @apply bg-white rounded-xl p-6 border border-gray-200 shadow-elevation-1 flex flex-col;
 }
 .early-results-testimonial-title {
-  @apply text-lg font-bold text-slate-900 mb-4;
+  @apply text-lg font-bold text-ink mb-4;
 }
 .early-results-quote {
-  @apply text-xl font-serif text-slate-800 italic leading-relaxed flex-grow;
+  @apply text-xl font-display text-gray-800 italic leading-relaxed flex-grow;
 }
 .early-results-author {
-  @apply text-sm text-slate-500 mt-4;
+  @apply text-sm text-gray-500 mt-4;
 }
 .early-results-audio {
   @apply mt-4;
@@ -179,6 +179,6 @@ function toggleAudio(id: string) {
   @apply flex items-center gap-2 text-sm text-cobalt hover:text-cobalt/80 font-medium transition-colors cursor-pointer;
 }
 .early-results-testimonial-cta {
-  @apply mt-4 pt-4 border-t border-slate-100;
+  @apply mt-4 pt-4 border-t border-gray-100;
 }
 </style>

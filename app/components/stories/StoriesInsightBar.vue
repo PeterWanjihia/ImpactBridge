@@ -43,7 +43,7 @@ import { ArrowRight } from '@lucide/vue'
 
         <!-- Center Detailed Fingerprint SVG -->
         <div class="fingerprint-wrapper">
-          <svg viewBox="0 0 64 80" class="fingerprint-svg" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round">
+          <svg viewBox="0 0 64 80" class="fingerprint-svg text-cobalt" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
             <path d="M32 6 C16 6 6 18 6 38 C6 58 16 70 32 70 C48 70 58 58 58 38" />
             <path d="M32 14 C20 14 12 24 12 38 C12 52 20 62 32 62 C44 62 52 52 52 38" />
             <path d="M32 22 C24 22 18 29 18 38 C18 47 24 54 32 54 C40 54 46 47 46 38" />
@@ -74,12 +74,12 @@ import { ArrowRight } from '@lucide/vue'
       <!-- Section 4: Analytics Circle Badge -->
       <div class="badge-wrapper">
         <div class="badge-circle">
-          <svg viewBox="0 0 48 48" class="chart-svg" fill="none" stroke="#2563eb" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 48 48" class="chart-svg text-cobalt" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="14" y1="34" x2="14" y2="28" />
             <line x1="22" y1="34" x2="22" y2="22" />
             <line x1="30" y1="34" x2="30" y2="16" />
             <path d="M12 26 L20 18 L28 22 L36 12" />
-            <circle cx="36" cy="12" r="1.8" fill="#2563eb" />
+            <circle cx="36" cy="12" r="1.8" fill="currentColor" />
             <line x1="10" y1="34" x2="38" y2="34" />
           </svg>
         </div>
@@ -90,11 +90,11 @@ import { ArrowRight } from '@lucide/vue'
 
 <style scoped>
 .stories-banner {
-  @apply relative w-full bg-[#f4f7fc] rounded-2xl p-6 md:p-8 overflow-hidden;
+  @apply relative w-full bg-cobalt-50 rounded-2xl p-6 md:p-8 overflow-hidden;
 }
 
 .watermark-container {
-  @apply absolute -left-6 -top-4 w-48 h-48 text-blue-200/50 pointer-events-none select-none;
+  @apply absolute -left-6 -top-4 w-48 h-48 text-cobalt-200/50 pointer-events-none select-none;
 }
 
 .watermark-svg {
@@ -110,7 +110,7 @@ import { ArrowRight } from '@lucide/vue'
 }
 
 .banner-title {
-  @apply text-xl md:text-2xl font-sans font-bold text-[#0c1a30] leading-snug tracking-tight;
+  @apply text-xl md:text-2xl font-sans font-bold text-ink-soft leading-snug tracking-tight;
 }
 
 .banner-desc {
@@ -122,7 +122,7 @@ import { ArrowRight } from '@lucide/vue'
 }
 
 .avatar-ring {
-  @apply w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden shrink-0 border-2 border-white shadow-sm;
+  @apply w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden shrink-0 border-2 border-white shadow-elevation-1;
 }
 
 .avatar-img {
@@ -134,11 +134,11 @@ import { ArrowRight } from '@lucide/vue'
 }
 
 .dash-connector .line {
-  @apply flex-1 border-b-2 border-dashed border-blue-300;
+  @apply flex-1 border-b-2 border-dashed border-cobalt-300;
 }
 
 .dash-connector .dot {
-  @apply w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0;
+  @apply w-1.5 h-1.5 rounded-full bg-cobalt-600 shrink-0;
 }
 
 .fingerprint-wrapper {
@@ -150,7 +150,7 @@ import { ArrowRight } from '@lucide/vue'
 }
 
 .action-link {
-  @apply mt-2 inline-flex items-center gap-1.5 text-sm font-sans font-semibold text-blue-600 hover:text-blue-700 transition-colors;
+  @apply mt-2 inline-flex items-center gap-1.5 text-sm font-sans font-semibold text-cobalt-600 hover:text-cobalt-700 transition-colors;
 }
 
 .badge-wrapper {
@@ -158,7 +158,7 @@ import { ArrowRight } from '@lucide/vue'
 }
 
 .badge-circle {
-  @apply w-16 h-16 md:w-20 md:h-20 rounded-full bg-blue-100/70 border border-blue-200/60 flex items-center justify-center;
+  @apply w-16 h-16 md:w-20 md:h-20 rounded-full bg-cobalt-100/70 border border-cobalt-200/60 flex items-center justify-center;
 }
 
 .chart-svg {

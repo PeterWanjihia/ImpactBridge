@@ -37,7 +37,7 @@ const selectId = computed(() => `select-${useId()}`)
       class="ui-select-label"
     >
       {{ label }}
-      <span v-if="required" class="text-red-500">*</span>
+      <span v-if="required" class="text-danger-500">*</span>
     </label>
     <select
       :id="selectId"
@@ -78,10 +78,10 @@ const selectId = computed(() => `select-${useId()}`)
 }
 
 .ui-select--error {
-  @apply border-red-500 focus:ring-red-500 focus:border-red-500;
+  @apply border-danger-500 focus:ring-danger-500 focus:border-danger-500;
 }
 
 .ui-select-error {
-  @apply text-sm text-red-600;
+  @apply text-sm text-danger-600;
 }
 </style>

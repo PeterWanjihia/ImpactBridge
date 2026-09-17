@@ -68,7 +68,7 @@ callOnce('donate-page', () => load())
 
 <style scoped>
 .page-donate__campaign-row {
-  @apply py-10 bg-gray-50/60;
+  @apply py-section-xs bg-gray-50/60;
 }
 
 .page-donate__campaign-grid {

@@ -74,11 +74,11 @@ const props = withDefaults(defineProps<Props>(), {
 }
 
 .hero-overlay-content {
-  @apply relative z-10 w-full py-20 md:py-24 lg:py-32;
+  @apply relative z-10 w-full py-section-lg md:py-section-xl lg:py-32;
 }
 
 .hero-overlay-content--slim {
-  @apply py-12 md:py-16;
+  @apply py-section-sm md:py-section;
 }
 
 .hero-overlay-grid {
@@ -90,11 +90,11 @@ const props = withDefaults(defineProps<Props>(), {
 }
 
 .hero-overlay-tag {
-  @apply inline-block text-teal font-sans font-semibold text-sm tracking-wide uppercase mb-4;
+  @apply inline-block text-teal font-sans font-semibold text-2xs tracking-eyebrow uppercase mb-4;
 }
 
 .hero-overlay-title {
-  @apply text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white;
+  @apply text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white;
 }
 
 .hero-overlay-subtitle {

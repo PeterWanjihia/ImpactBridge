@@ -42,16 +42,16 @@ defineProps<{
 
 <style scoped>
 .implementation-title {
-  @apply text-3xl md:text-4xl font-serif font-bold text-navy text-center mb-12;
+  @apply text-3xl md:text-4xl font-display font-bold text-navy text-center mb-12;
 }
 .implementation-card {
-  @apply block bg-white border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow;
+  @apply block bg-white border border-gray-200 rounded-xl p-6 hover:shadow-elevation-1 transition-shadow;
 }
 .implementation-card-icon {
   @apply w-10 h-10 flex items-center justify-center bg-cobalt/10 rounded-lg text-cobalt;
 }
 .implementation-card-title {
-  @apply mt-4 text-base font-serif font-bold text-navy;
+  @apply mt-4 text-base font-display font-bold text-navy;
 }
 .implementation-card-description {
   @apply mt-2 text-sm text-gray-600;

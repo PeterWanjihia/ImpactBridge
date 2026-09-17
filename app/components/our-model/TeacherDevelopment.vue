@@ -86,7 +86,7 @@ defineProps<{
 
 <style scoped>
 .model-teacher {
-  @apply py-12 md:py-16 bg-gray-50;
+  @apply py-section-sm md:py-section bg-gray-50;
 }
 .model-teacher-layout {
   @apply grid grid-cols-1 lg:grid-cols-[220px_1fr_280px_220px] gap-8 items-start;
@@ -98,7 +98,7 @@ defineProps<{
   @apply inline-flex items-center justify-center w-10 h-10 rounded-full bg-cobalt/10 text-cobalt font-sans font-bold text-sm;
 }
 .model-teacher-title {
-  @apply mt-4 text-3xl md:text-4xl font-serif font-bold text-navy leading-tight;
+  @apply mt-4 text-3xl md:text-4xl font-display font-bold text-navy leading-tight;
 }
 .model-teacher-description {
   @apply mt-4 text-gray-600;
@@ -124,7 +124,7 @@ defineProps<{
   @apply absolute inset-0 flex items-center justify-center w-full h-full bg-navy/30 hover:bg-navy/40 transition-colors cursor-pointer;
 }
 .model-teacher-play svg {
-  @apply text-white drop-shadow-lg;
+  @apply text-white drop-shadow-legibility;
 }
 .model-teacher-duration {
   @apply absolute bottom-3 right-3 px-2 py-0.5 bg-navy/80 text-white text-xs font-sans font-medium rounded;
@@ -132,7 +132,7 @@ defineProps<{
 
 /* Champion Teacher */
 .model-teacher-champion {
-  @apply bg-white rounded-xl p-6 shadow-sm border border-gray-100;
+  @apply bg-white rounded-xl p-6 shadow-elevation-1 border border-gray-100;
 }
 .model-teacher-champion-title {
   @apply text-lg font-sans font-bold text-navy;

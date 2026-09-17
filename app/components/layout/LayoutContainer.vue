@@ -31,10 +31,10 @@ const props = withDefaults(defineProps<Props>(), {
 }
 
 .layout-container--padded {
-  @apply px-4 sm:px-6 lg:px-8;
+  @apply px-gutter-sm sm:px-gutter lg:px-gutter-lg;
 }
 
 .layout-container--constrained {
-  @apply max-w-7xl mx-auto;
+  @apply max-w-container mx-auto;
 }
 </style>

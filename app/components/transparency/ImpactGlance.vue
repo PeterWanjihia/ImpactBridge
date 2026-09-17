@@ -45,16 +45,16 @@ const iconMap: Record<string, Component> = {
 
 <style scoped>
 .glance {
-  @apply bg-white py-2 pb-14 md:pb-16 border-b border-slate-100;
+  @apply bg-white py-2 pb-14 md:pb-16 border-b border-gray-100;
 }
 
 .glance__title {
-  @apply text-2xl md:text-3xl font-serif font-bold text-slate-900 mb-8;
+  @apply text-2xl md:text-3xl font-display font-bold text-ink mb-8;
 }
 
 /* Panel */
 .glance__panel {
-  @apply rounded-2xl border border-slate-200 bg-slate-50/60 p-6 md:p-8;
+  @apply rounded-2xl border border-gray-200 bg-gray-50/60 p-6 md:p-8;
 }
 
 .glance__grid {
@@ -62,7 +62,7 @@ const iconMap: Record<string, Component> = {
 }
 
 .glance__item {
-  @apply flex flex-col items-center text-center gap-2 px-2 lg:border-r lg:border-slate-200 lg:last:border-r-0;
+  @apply flex flex-col items-center text-center gap-2 px-2 lg:border-r lg:border-gray-200 lg:last:border-r-0;
 }
 
 .glance__icon {
@@ -70,15 +70,15 @@ const iconMap: Record<string, Component> = {
 }
 
 .glance__value {
-  @apply text-2xl md:text-3xl font-sans font-bold text-slate-900 tabular-nums;
+  @apply text-2xl md:text-3xl font-sans font-bold text-ink tabular-nums;
 }
 
 .glance__label {
-  @apply text-xs font-sans text-slate-500 leading-tight max-w-[140px];
+  @apply text-xs font-sans text-gray-500 leading-tight max-w-[140px];
 }
 
 /* As-of note */
 .glance__asof {
-  @apply mt-6 pt-4 border-t border-slate-200 text-[11px] font-sans text-slate-400;
+  @apply mt-6 pt-4 border-t border-gray-200 text-2xs font-sans text-gray-400;
 }
 </style>

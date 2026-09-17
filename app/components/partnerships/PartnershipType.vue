@@ -41,7 +41,7 @@ const props = defineProps<Props>()
 }
 
 .partnership-type-title {
-  @apply text-lg font-serif font-semibold text-navy;
+  @apply text-lg font-display font-semibold text-navy;
 }
 
 .partnership-type-description {
@@ -57,6 +57,6 @@ const props = defineProps<Props>()
 }
 
 .partnership-type-check {
-  @apply w-4 h-4 text-green-500 mt-0.5 flex-shrink-0;
+  @apply w-4 h-4 text-success-500 mt-0.5 flex-shrink-0;
 }
 </style>

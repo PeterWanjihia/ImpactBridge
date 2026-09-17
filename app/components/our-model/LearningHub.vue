@@ -63,7 +63,7 @@ defineProps<{
 
 <style scoped>
 .model-hub {
-  @apply relative py-12 md:py-16 bg-[#0a2540] overflow-hidden text-white;
+  @apply relative py-section-sm md:py-section bg-ink-soft overflow-hidden text-white;
 }
 .model-hub-grid {
   @apply grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-10 items-center;
@@ -74,16 +74,16 @@ defineProps<{
   @apply flex flex-col items-start;
 }
 .model-hub-number {
-  @apply inline-flex items-center justify-center w-10 h-10 rounded-full border border-blue-400/30 text-blue-300 font-sans font-semibold text-xs mb-4;
+  @apply inline-flex items-center justify-center w-10 h-10 rounded-full border border-cobalt-400/30 text-cobalt-300 font-sans font-semibold text-xs mb-4;
 }
 .model-hub-title {
-  @apply text-3xl md:text-4xl font-serif font-bold leading-tight text-white;
+  @apply text-3xl md:text-4xl font-display font-bold leading-tight text-white;
 }
 .model-hub-description {
-  @apply mt-4 text-sm text-blue-100/70 leading-relaxed max-w-xs;
+  @apply mt-4 text-sm text-cobalt-100/70 leading-relaxed max-w-xs;
 }
 .model-hub-cta-btn {
-  @apply mt-8 inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-cobalt hover:bg-cobalt/90 text-white font-sans font-medium text-sm transition-colors shadow-lg shadow-cobalt/20;
+  @apply mt-8 inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-cobalt hover:bg-cobalt/90 text-white font-sans font-medium text-sm transition-colors shadow-elevation-2;
 }
 
 /* Center Stage */
@@ -94,23 +94,23 @@ defineProps<{
   @apply relative w-full flex items-center justify-center overflow-hidden rounded-xl;
 }
 .model-hub-graphic-img {
-  @apply w-full h-auto object-contain max-h-[480px] drop-shadow-xl;
+  @apply w-full h-auto object-contain max-h-[480px] drop-shadow-elevation-2;
 }
 .model-hub-graphic-placeholder {
-  @apply w-full aspect-[16/9] bg-blue-950/40 rounded-xl animate-pulse;
+  @apply w-full aspect-[16/9] bg-cobalt-950/40 rounded-xl animate-pulse;
 }
 
 /* Bottom Feature Dock */
 .model-hub-feature-bar {
-  @apply grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 bg-[#071d33]/90 border border-blue-500/20 rounded-xl p-3 gap-2 backdrop-blur-sm;
+  @apply grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 bg-ink-soft/90 border border-cobalt-500/20 rounded-xl p-3 gap-2 backdrop-blur-sm;
 }
 .model-hub-feature-card {
-  @apply flex items-center gap-2.5 px-3 py-2 border-r border-blue-500/10 last:border-r-0;
+  @apply flex items-center gap-2.5 px-3 py-2 border-r border-cobalt-500/10 last:border-r-0;
 }
 .model-hub-feature-icon-box {
-  @apply w-7 h-7 rounded border border-blue-400/20 bg-blue-900/40 flex items-center justify-center flex-shrink-0;
+  @apply w-7 h-7 rounded border border-cobalt-400/20 bg-cobalt-900/40 flex items-center justify-center flex-shrink-0;
 }
 .model-hub-feature-text {
-  @apply text-xs font-sans font-medium text-blue-100/80 leading-snug;
+  @apply text-xs font-sans font-medium text-cobalt-100/80 leading-snug;
 }
 </style>

@@ -52,11 +52,9 @@ export default defineNuxtConfig({
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'description', content: 'Bridging the educational digital divide with offline-first learning hubs.' },
       ],
-      link: [
-        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
-        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@400;500;600;700&display=swap' },
-      ],
+      // Typography uses the system token stacks declared in tailwind.config.ts
+      // (Georgia for editorial headings, Arial for body/controls/metrics/nav),
+      // so no external font stylesheet is requested.
     },
   },
 

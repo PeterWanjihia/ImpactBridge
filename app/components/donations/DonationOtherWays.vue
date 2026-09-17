@@ -53,7 +53,7 @@ const icons: Record<OtherWayToGive['icon'], Component> = {
 }
 
 .other-ways__title {
-  @apply text-[11px] font-sans font-semibold tracking-[0.14em] uppercase text-navy mb-4;
+  @apply text-2xs font-sans font-semibold tracking-eyebrow uppercase text-navy mb-4;
 }
 
 .other-ways__list {
@@ -61,7 +61,7 @@ const icons: Record<OtherWayToGive['icon'], Component> = {
 }
 
 .other-ways__card {
-  @apply flex items-start gap-4 rounded-xl border border-gray-200 bg-white p-5 md:p-6 shadow-sm flex-1;
+  @apply flex items-start gap-4 rounded-xl border border-gray-200 bg-white p-5 md:p-6 shadow-elevation-1 flex-1;
 }
 
 .other-ways__icon {
@@ -77,7 +77,7 @@ const icons: Record<OtherWayToGive['icon'], Component> = {
 }
 
 .other-ways__description {
-  @apply mt-1.5 text-[13px] font-sans text-gray-600 leading-relaxed;
+  @apply mt-1.5 text-label font-sans text-gray-600 leading-relaxed;
 }
 
 .other-ways__link {

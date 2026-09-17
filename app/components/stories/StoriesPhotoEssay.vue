@@ -45,7 +45,7 @@ defineProps<Props>()
 }
 
 .stories-photo-essay-title {
-  @apply text-3xl md:text-4xl font-serif font-bold text-navy;
+  @apply text-3xl md:text-4xl font-display font-bold text-navy;
 }
 
 .stories-photo-essay-link {

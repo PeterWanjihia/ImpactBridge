@@ -75,12 +75,11 @@ function closeMenu() {
 
 <style scoped>
 .site-header {
-  @apply sticky top-0 z-50 bg-white border-b border-gray-100;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  @apply sticky top-0 z-50 bg-white border-b border-gray-100 shadow-elevation-1;
 }
 
 .site-header-container {
-  @apply max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8;
+  @apply max-w-container mx-auto px-gutter-sm sm:px-gutter lg:px-gutter-lg;
   @apply flex items-center justify-between h-20;
 }
 
@@ -93,11 +92,11 @@ function closeMenu() {
 }
 
 .site-header-logo-text {
-  @apply flex flex-col text-[15px] font-sans font-black text-black leading-none tracking-tight uppercase;
+  @apply flex flex-col text-body font-sans font-black text-black leading-none tracking-tight uppercase;
 }
 
 .site-header-logo-tagline {
-  @apply text-[11px] text-gray-600 leading-tight font-normal pl-2 border-l border-gray-300;
+  @apply text-2xs text-gray-600 leading-tight font-normal pl-2 border-l border-gray-300;
 }
 
 .site-header-nav {
@@ -110,30 +109,30 @@ function closeMenu() {
 }
 
 .site-header-link {
-  @apply text-[14px] font-sans font-semibold text-gray-800 hover:text-blue-600 transition-colors whitespace-nowrap;
+  @apply text-sm font-sans font-semibold text-gray-800 hover:text-cobalt-600 transition-colors whitespace-nowrap;
 }
 
 .site-header-link--active {
-  @apply text-blue-600 font-bold;
+  @apply text-cobalt-600 font-bold;
 }
 
 .site-header-btn-outline {
   @apply inline-flex items-center justify-center px-5 py-2.5 ml-2;
-  @apply text-[14px] font-sans font-semibold text-gray-800;
-  @apply border border-blue-400 rounded-xl;
-  @apply hover:bg-blue-50 transition-colors whitespace-nowrap;
-  @apply focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-blue-600;
+  @apply text-sm font-sans font-semibold text-gray-800;
+  @apply border border-cobalt-400 rounded-xl;
+  @apply hover:bg-cobalt-50 transition-colors whitespace-nowrap;
+  @apply focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-cobalt-600;
 }
 
 .site-header-btn-donate {
   @apply inline-flex items-center justify-center gap-2 px-6 py-2.5;
-  @apply text-[14px] font-sans font-semibold text-white;
-  @apply bg-[#1d4ed8] rounded-xl;
-  @apply hover:bg-[#1e40af] transition-colors whitespace-nowrap;
-  @apply focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-blue-600;
+  @apply text-sm font-sans font-semibold text-white;
+  @apply bg-cobalt-700 rounded-xl;
+  @apply hover:bg-cobalt-800 transition-colors whitespace-nowrap;
+  @apply focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-cobalt-600;
 }
 
 .site-header-menu-btn {
-  @apply lg:hidden p-2 text-gray-600 hover:text-gray-900 rounded-md focus:outline-none;
+  @apply lg:hidden p-2 text-gray-600 hover:text-ink rounded-md focus:outline-none;
 }
 </style>

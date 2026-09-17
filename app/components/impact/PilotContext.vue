@@ -149,7 +149,7 @@ const props = defineProps<Props>()
 }
 
 .pilot-context-label-text {
-  @apply text-sm font-sans font-bold text-navy tracking-widest uppercase;
+  @apply text-2xs font-sans font-bold text-navy tracking-eyebrow uppercase;
 }
 
 .pilot-context-grid {
@@ -161,7 +161,7 @@ const props = defineProps<Props>()
 }
 
 .pilot-context-image {
-  @apply w-full rounded-xl shadow-lg;
+  @apply w-full rounded-xl shadow-elevation-2;
   aspect-ratio: 4/3;
   object-fit: cover;
 }
@@ -171,7 +171,7 @@ const props = defineProps<Props>()
 }
 
 .pilot-context-school-name {
-  @apply text-3xl md:text-4xl font-serif font-bold text-navy;
+  @apply text-3xl md:text-4xl font-display font-bold text-navy;
 }
 
 .pilot-context-meta {
@@ -191,11 +191,11 @@ const props = defineProps<Props>()
 }
 
 .pilot-context-info-icon {
-  @apply flex-shrink-0 w-10 h-10 rounded-lg bg-white flex items-center justify-center text-cobalt shadow-sm;
+  @apply flex-shrink-0 w-10 h-10 rounded-lg bg-white flex items-center justify-center text-cobalt shadow-elevation-1;
 }
 
 .pilot-context-info-label {
-  @apply block text-xs font-sans font-semibold text-cobalt uppercase tracking-wide;
+  @apply block text-2xs font-sans font-semibold text-cobalt uppercase tracking-eyebrow;
 }
 
 .pilot-context-info-value {

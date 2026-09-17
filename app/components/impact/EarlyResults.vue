@@ -53,8 +53,8 @@ function resolveIcon(iconName?: string): Component {
 }
 
 const iconColorMap: Record<string, string> = {
-  users: 'text-green-600 bg-green-50',
-  graduation: 'text-orange-500 bg-orange-50',
+  users: 'text-success-600 bg-success-50',
+  graduation: 'text-warning-500 bg-warning-50',
   heart: 'text-cobalt bg-cobalt/10',
   trending: 'text-navy bg-navy/10'
 }
@@ -124,7 +124,7 @@ function resolveIconColor(iconName?: string): string {
 }
 
 .early-results-label-text {
-  @apply text-sm font-sans font-bold text-navy tracking-widest uppercase;
+  @apply text-2xs font-sans font-bold text-navy tracking-eyebrow uppercase;
 }
 
 .early-results-grid {
@@ -132,7 +132,7 @@ function resolveIconColor(iconName?: string): string {
 }
 
 .early-results-card {
-  @apply bg-white rounded-xl p-6 shadow-sm border border-gray-100;
+  @apply bg-white rounded-xl p-6 shadow-elevation-1 border border-gray-100;
 }
 
 .early-results-card-icon {

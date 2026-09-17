@@ -45,7 +45,7 @@ const icons: Record<DonationAssurance['icon'], Component> = {
 
 <style scoped>
 .assurance-strip {
-  @apply py-10 bg-white;
+  @apply py-section-xs bg-white;
 }
 
 .assurance-strip__grid {

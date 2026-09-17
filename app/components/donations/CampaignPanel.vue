@@ -85,7 +85,7 @@ const statIcons: Record<CampaignStat['icon'], Component> = {
 
 <style scoped>
 .campaign-panel {
-  @apply rounded-xl border border-gray-200 bg-white p-6 md:p-7 shadow-sm h-full flex flex-col;
+  @apply rounded-xl border border-gray-200 bg-white p-6 md:p-7 shadow-elevation-1 h-full flex flex-col;
 }
 
 .campaign-panel__header {
@@ -93,7 +93,7 @@ const statIcons: Record<CampaignStat['icon'], Component> = {
 }
 
 .campaign-panel__name {
-  @apply text-[11px] font-sans font-semibold tracking-[0.14em] uppercase text-navy;
+  @apply text-2xs font-sans font-semibold tracking-eyebrow uppercase text-navy;
 }
 
 .campaign-panel__amount {
@@ -137,7 +137,7 @@ const statIcons: Record<CampaignStat['icon'], Component> = {
 }
 
 .campaign-panel__stat-label {
-  @apply text-[11px] font-sans text-gray-500 leading-tight;
+  @apply text-2xs font-sans text-gray-500 leading-tight;
 }
 
 .campaign-panel__details-link {

@@ -38,7 +38,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 <style scoped>
 .media-split {
-  @apply py-16 md:py-20;
+  @apply py-section md:py-section-lg;
 }
 
 .media-split-grid {
@@ -54,7 +54,7 @@ const props = withDefaults(defineProps<Props>(), {
 }
 
 .media-split-title {
-  @apply text-2xl md:text-3xl font-serif font-bold text-navy;
+  @apply text-2xl md:text-3xl font-display font-bold text-navy;
 }
 
 .media-split-description {
@@ -62,6 +62,6 @@ const props = withDefaults(defineProps<Props>(), {
 }
 
 .media-split-image {
-  @apply w-full rounded-lg shadow-lg;
+  @apply w-full rounded-lg shadow-elevation-2;
 }
 </style>

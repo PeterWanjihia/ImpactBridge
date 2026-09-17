@@ -3,12 +3,12 @@ import { Heart, Building2 } from '@lucide/vue'
 </script>
 
 <template>
-  <section class="py-12 md:py-16 bg-white">
+  <section class="py-section-sm md:py-section bg-white">
     <LayoutContainer>
-      <div class="relative overflow-hidden rounded-3xl bg-slate-950 text-white min-h-[320px] flex items-center shadow-xl">
+      <div class="relative overflow-hidden rounded-card-lg bg-ink-deep text-white min-h-[320px] flex items-center shadow-elevation-3">
         
         <!-- Dark Overlay Gradient & Background Imagery -->
-        <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-slate-950/80 to-slate-950/90 z-10" />
+        <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-ink-deep/80 to-ink-deep/90 z-10" />
         
         <!-- Background Photo (Left Aligned Student Profile) -->
         <div class="absolute left-0 top-0 bottom-0 w-full sm:w-1/2 z-0 opacity-40 sm:opacity-60">
@@ -36,16 +36,16 @@ import { Heart, Building2 } from '@lucide/vue'
         </div>
 
         <!-- Banner Content Grid -->
-        <div class="relative z-20 w-full px-6 py-10 sm:px-12 md:px-16 text-center">
+        <div class="relative z-20 w-full px-6 py-section-xs sm:px-12 md:px-16 text-center">
           <div class="max-w-3xl mx-auto space-y-6">
             
             <!-- Eyebrow -->
-            <span class="text-xs font-bold tracking-widest text-cobalt-light uppercase block">
+            <span class="text-2xs font-bold tracking-eyebrow text-cobalt-300 uppercase block">
               THE NEXT CHAPTER
             </span>
 
             <!-- Main Headline -->
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-white leading-tight">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-white leading-tight">
               One classroom showed what is possible.<br class="hidden sm:inline" />
               The next ten can show how far it can travel.
             </h2>
@@ -56,7 +56,7 @@ import { Heart, Building2 } from '@lucide/vue'
               <!-- Primary CTA: Fund a classroom -->
               <NuxtLink 
                 to="/donate" 
-                class="w-full sm:w-auto px-6 py-3 bg-cobalt hover:bg-cobalt/90 text-white font-bold text-xs rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 group"
+                class="w-full sm:w-auto px-6 py-3 bg-cobalt hover:bg-cobalt/90 text-white font-bold text-xs rounded-xl shadow-elevation-2 transition-all flex items-center justify-center gap-2 group"
               >
                 <Heart class="w-4 h-4 fill-white" />
                 <span>Fund a classroom</span>
@@ -65,13 +65,13 @@ import { Heart, Building2 } from '@lucide/vue'
               <!-- Secondary CTA: Partner with us -->
               <NuxtLink 
                 to="/partnerships" 
-                class="w-full sm:w-auto px-6 py-2.5 bg-slate-900/80 hover:bg-slate-800 border border-emerald-500/40 text-emerald-400 font-bold text-xs rounded-xl transition-all flex flex-col items-center justify-center gap-0.5 group"
+                class="w-full sm:w-auto px-6 py-2.5 bg-ink/80 hover:bg-ink-soft border border-aqua/40 text-aqua font-bold text-xs rounded-xl transition-all flex flex-col items-center justify-center gap-0.5 group"
               >
                 <div class="flex items-center gap-2">
-                  <Building2 class="w-4 h-4 text-emerald-400" />
+                  <Building2 class="w-4 h-4 text-aqua" />
                   <span>Partner with us</span>
                 </div>
-                <span class="text-[9px] text-slate-400 font-normal">
+                <span class="text-2xs text-gray-400 font-normal">
                   Funding, suitable technology, logistics or expertise.
                 </span>
               </NuxtLink>

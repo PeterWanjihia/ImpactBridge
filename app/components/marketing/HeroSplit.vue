@@ -36,7 +36,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 <style scoped>
 .hero-split {
-  @apply py-16 md:py-20 lg:py-24 bg-white;
+  @apply py-section md:py-section-lg lg:py-section-xl bg-white;
 }
 
 .hero-split-grid {
@@ -52,7 +52,7 @@ const props = withDefaults(defineProps<Props>(), {
 }
 
 .hero-split-title {
-  @apply text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-navy;
+  @apply text-3xl md:text-4xl lg:text-5xl font-display font-bold text-navy;
 }
 
 .hero-split-subtitle {
@@ -64,6 +64,6 @@ const props = withDefaults(defineProps<Props>(), {
 }
 
 .hero-split-image {
-  @apply w-full rounded-lg shadow-lg;
+  @apply w-full rounded-lg shadow-elevation-2;
 }
 </style>

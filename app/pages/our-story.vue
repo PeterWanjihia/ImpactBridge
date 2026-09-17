@@ -95,7 +95,7 @@ onMounted(async () => {
 
 <style scoped>
 .hero-title {
-  @apply text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white leading-tight;
+  @apply text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-tight;
 }
 
 .hero-subtitle {
@@ -131,6 +131,6 @@ onMounted(async () => {
 }
 
 .hero-still-building {
-  @apply text-xs text-gray-400 italic font-serif text-right leading-tight;
+  @apply text-xs text-gray-400 italic font-display text-right leading-tight;
 }
 </style>

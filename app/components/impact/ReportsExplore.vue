@@ -114,7 +114,7 @@ const props = withDefaults(defineProps<Props>(), {
 }
 
 .reports-explore-label-text {
-  @apply text-sm font-sans font-bold text-navy tracking-widest uppercase;
+  @apply text-2xs font-sans font-bold text-navy tracking-eyebrow uppercase;
 }
 
 .reports-explore-content {
@@ -126,7 +126,7 @@ const props = withDefaults(defineProps<Props>(), {
 }
 
 .report-card {
-  @apply bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm;
+  @apply bg-white rounded-xl overflow-hidden border border-gray-100 shadow-elevation-1;
 }
 
 .report-card-media {
@@ -162,7 +162,7 @@ const props = withDefaults(defineProps<Props>(), {
 }
 
 .reports-cta {
-  @apply lg:w-56 flex-shrink-0 bg-white rounded-xl p-6 border border-gray-100 shadow-sm flex flex-col items-center text-center justify-center;
+  @apply lg:w-56 flex-shrink-0 bg-white rounded-xl p-6 border border-gray-100 shadow-elevation-1 flex flex-col items-center text-center justify-center;
 }
 
 .reports-cta-icon {

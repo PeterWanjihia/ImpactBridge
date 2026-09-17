@@ -110,11 +110,11 @@ const cannotAcceptItems = [
 }
 
 .suitability-card {
-  @apply bg-slate-50 border border-slate-200 rounded-xl p-7;
+  @apply bg-gray-50 border border-gray-200 rounded-xl p-7;
 }
 
 .suitability-card__title {
-  @apply text-lg font-serif font-bold text-slate-900;
+  @apply text-lg font-display font-bold text-ink;
 }
 
 .suitability-card__list {
@@ -122,7 +122,7 @@ const cannotAcceptItems = [
 }
 
 .suitability-item {
-  @apply flex items-start gap-3 text-[13px] font-sans leading-snug text-slate-700;
+  @apply flex items-start gap-3 text-label font-sans leading-snug text-gray-700;
 }
 
 .suitability-item__icon {
@@ -130,19 +130,19 @@ const cannotAcceptItems = [
 }
 
 .suitability-item__icon--check {
-  @apply text-emerald-600;
+  @apply text-success-600;
 }
 
 .suitability-item__icon--x {
-  @apply text-red-500;
+  @apply text-danger-500;
 }
 
 .suitability-card__link {
-  @apply mt-6 inline-flex items-center gap-2 text-[13px] font-sans font-semibold text-cobalt-600 hover:text-cobalt-700;
+  @apply mt-6 inline-flex items-center gap-2 text-label font-sans font-semibold text-cobalt-600 hover:text-cobalt-700;
 }
 
 .assurance-card {
-  @apply flex-1 bg-white border border-slate-200 rounded-xl p-7;
+  @apply flex-1 bg-white border border-gray-200 rounded-xl p-7;
 }
 
 .assurance-card__icon {
@@ -154,18 +154,18 @@ const cannotAcceptItems = [
 }
 
 .assurance-card__icon--green {
-  @apply bg-emerald-50 text-emerald-600;
+  @apply bg-success-50 text-success-600;
 }
 
 .assurance-card__title {
-  @apply mt-4 text-[15px] font-sans font-bold text-slate-900;
+  @apply mt-4 text-body font-sans font-bold text-ink;
 }
 
 .assurance-card__description {
-  @apply mt-2 text-[13px] font-sans leading-relaxed text-slate-500;
+  @apply mt-2 text-label font-sans leading-relaxed text-gray-500;
 }
 
 .assurance-card__link {
-  @apply mt-4 inline-flex items-center gap-2 text-[13px] font-sans font-semibold text-cobalt-600 hover:text-cobalt-700;
+  @apply mt-4 inline-flex items-center gap-2 text-label font-sans font-semibold text-cobalt-600 hover:text-cobalt-700;
 }
 </style>

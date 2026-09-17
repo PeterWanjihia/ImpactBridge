@@ -74,7 +74,7 @@ defineProps<{
               </NuxtLink>
             </UiButton>
 
-            <UiButton variant="outline-white" size="lg" class="border-1 border-white/90">
+            <UiButton variant="outline-white" size="lg" class="border-white/90">
               <NuxtLink :to="hero.secondaryCta.to" class="flex items-center gap-2"
                 aria-label="See a hub in action — view how a learning hub operates">
                 {{ hero.secondaryCta.text }}
@@ -133,13 +133,13 @@ defineProps<{
 
 /* Hero Content */
 .model-hero-content {
-  @apply relative z-10 flex-1 flex items-center py-16 md:py-20;
+  @apply relative z-10 flex-1 flex items-center py-section md:py-section-lg;
 }
 .model-hero-inner {
   @apply max-w-3xl;
 }
 .model-hero-title {
-  @apply text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white leading-tight;
+  @apply text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-tight;
 }
 .model-hero-title-accent {
   @apply block mt-2 italic text-cobalt-400;

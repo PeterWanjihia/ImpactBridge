@@ -115,11 +115,11 @@ async function handleSubscribe() {
 
 <style scoped>
 .band {
-  @apply bg-white py-14 md:py-16;
+  @apply bg-white py-section-md md:py-section;
 }
 
 .band__card {
-  @apply flex flex-col lg:flex-row items-stretch rounded-2xl overflow-hidden bg-[#071324] shadow-2xl;
+  @apply flex flex-col lg:flex-row items-stretch rounded-2xl overflow-hidden bg-ink-soft shadow-elevation-3;
 }
 
 /* Content */
@@ -137,11 +137,11 @@ async function handleSubscribe() {
 }
 
 .band__title {
-  @apply text-xl md:text-2xl font-serif font-bold text-white;
+  @apply text-xl md:text-2xl font-display font-bold text-white;
 }
 
 .band__description {
-  @apply mt-1 text-sm font-sans text-slate-300;
+  @apply mt-1 text-sm font-sans text-gray-300;
 }
 
 /* Form */
@@ -155,7 +155,7 @@ async function handleSubscribe() {
 
 .band__input {
   @apply flex-1 px-4 py-2.5 rounded-lg bg-white/10 border border-white/25;
-  @apply text-sm font-sans text-white placeholder:text-slate-400;
+  @apply text-sm font-sans text-white placeholder:text-gray-400;
   @apply focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-transparent;
 }
 
@@ -164,15 +164,15 @@ async function handleSubscribe() {
 }
 
 .band__error {
-  @apply mt-2 text-sm font-sans text-red-300;
+  @apply mt-2 text-sm font-sans text-danger-300;
 }
 
 .band__success {
-  @apply mt-6 inline-flex items-center gap-2 text-sm font-sans font-medium text-emerald-300;
+  @apply mt-6 inline-flex items-center gap-2 text-sm font-sans font-medium text-success-300;
 }
 
 .band__privacy {
-  @apply mt-3 text-[11px] font-sans text-slate-400;
+  @apply mt-3 text-2xs font-sans text-gray-400;
 }
 
 /* Media */

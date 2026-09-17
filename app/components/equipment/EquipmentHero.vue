@@ -160,7 +160,7 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
 
 <style scoped>
 .equipment-hero {
-  @apply relative bg-[#071324] overflow-hidden;
+  @apply relative bg-ink-soft overflow-hidden;
 }
 
 .equipment-hero__bg-wrapper {
@@ -212,15 +212,15 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
 }
 
 .equipment-hero__eyebrow {
-  @apply inline-block text-[#00a896] font-sans font-semibold text-xs tracking-[0.14em] uppercase mb-4;
+  @apply inline-block text-aqua-deep font-sans font-semibold text-xs tracking-eyebrow uppercase mb-4;
 }
 
 .equipment-hero__title {
-  @apply text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white leading-[1.15];
+  @apply text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white leading-heading;
 }
 
 .equipment-hero__subtitle {
-  @apply mt-5 text-sm md:text-base leading-relaxed text-slate-300 max-w-lg;
+  @apply mt-5 text-sm md:text-base leading-relaxed text-gray-300 max-w-lg;
 }
 
 .equipment-hero__actions {
@@ -233,7 +233,7 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
 }
 
 .equipment-hero__cta--primary {
-  @apply bg-[#00a896] hover:bg-[#009182] text-white;
+  @apply bg-aqua-deep hover:bg-aqua-darker text-white;
 }
 
 .equipment-hero__cta--secondary {
@@ -245,34 +245,34 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
 }
 
 .equipment-hero__warning {
-  @apply flex items-start gap-3.5 rounded-xl bg-white p-4 md:p-5 shadow-2xl;
+  @apply flex items-start gap-3.5 rounded-xl bg-white p-4 md:p-5 shadow-elevation-1;
 }
 
 .equipment-hero__warning-icon {
-  @apply w-6 h-6 text-[#0d213a] flex-shrink-0 mt-0.5;
+  @apply w-6 h-6 text-navy-800 flex-shrink-0 mt-0.5;
 }
 
 .equipment-hero__warning-title {
-  @apply text-sm font-sans font-bold text-slate-900;
+  @apply text-sm font-sans font-bold text-ink;
 }
 
 .equipment-hero__warning-text {
-  @apply mt-1 text-xs font-sans leading-snug text-slate-600;
+  @apply mt-1 text-xs font-sans leading-snug text-gray-600;
 }
 
 .equipment-hero__warning-link {
-  @apply mt-2.5 inline-flex items-center gap-1 text-xs font-sans font-bold text-blue-600 hover:text-blue-700;
+  @apply mt-2.5 inline-flex items-center gap-1 text-xs font-sans font-bold text-cobalt-600 hover:text-cobalt-700;
 }
 
 /* Updated positioning to keep the laptop badge centered directly on the border curve seam */
 .equipment-hero__center-badge {
-  @apply hidden lg:flex absolute top-1/2 -translate-y-1/2 right-[40.5%] w-[3.25rem] h-[3.25rem] rounded-full bg-[#00a896];
-  @apply items-center justify-center shadow-xl ring-4 ring-white/30 z-20;
+  @apply hidden lg:flex absolute top-1/2 -translate-y-1/2 right-[40.5%] w-[3.25rem] h-[3.25rem] rounded-full bg-aqua-deep;
+  @apply items-center justify-center shadow-elevation-1 ring-4 ring-white/30 z-20;
 }
 
 /* Bottom Trust Bar Card */
 .equipment-hero__trust-card {
-  @apply rounded-xl border border-white/15 bg-[#061121]/90 backdrop-blur-md p-4 lg:p-5 shadow-2xl;
+  @apply rounded-xl border border-white/15 bg-ink-deep/90 backdrop-blur-md p-4 lg:p-5 shadow-elevation-1;
 }
 
 .equipment-hero__trust-grid {
@@ -292,6 +292,6 @@ const trustItems: { icon: Component; title: string; description: string }[] = [
 }
 
 .equipment-hero__trust-description {
-  @apply mt-0.5 text-[11px] font-sans leading-tight text-slate-300 max-w-[210px];
+  @apply mt-0.5 text-2xs font-sans leading-tight text-gray-300 max-w-[210px];
 }
 </style>

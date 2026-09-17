@@ -96,7 +96,7 @@ const iconMap: Record<string, Component> = {
 }
 
 .account-hero__container {
-  @apply relative z-10 py-14 md:py-20;
+  @apply relative z-10 py-section-md md:py-section-lg;
 }
 
 .account-hero__grid {
@@ -108,36 +108,36 @@ const iconMap: Record<string, Component> = {
 }
 
 .account-hero__tag {
-  @apply inline-block text-[#00a896] font-sans font-semibold text-xs tracking-[0.14em] uppercase mb-4;
+  @apply inline-block text-aqua-deep font-sans font-semibold text-xs tracking-eyebrow uppercase mb-4;
 }
 
 .account-hero__title {
-  @apply text-4xl md:text-5xl font-serif font-bold text-white leading-[1.12];
+  @apply text-4xl md:text-5xl font-display font-bold text-white leading-heading;
 }
 
 .account-hero__description {
-  @apply mt-5 text-sm md:text-base leading-relaxed text-slate-300 max-w-lg;
+  @apply mt-5 text-sm md:text-base leading-relaxed text-gray-300 max-w-lg;
 }
 
 .account-hero__cta-row {
-  @apply mt-7 inline-flex items-center bg-white rounded-lg p-1.5 pl-4 shadow-xl w-fit;
+  @apply mt-7 inline-flex items-center bg-white rounded-lg p-1.5 pl-4 shadow-elevation-1 w-fit;
 }
 
 .account-hero__cta-label {
-  @apply text-sm font-sans font-bold text-slate-900 mr-4 whitespace-nowrap;
+  @apply text-sm font-sans font-bold text-ink mr-4 whitespace-nowrap;
 }
 
 .account-hero__cta {
-  @apply inline-flex items-center gap-2 px-4 py-2 rounded-md bg-white text-sm font-sans font-bold text-slate-900 hover:bg-slate-100 transition-colors;
+  @apply inline-flex items-center gap-2 px-4 py-2 rounded-md bg-white text-sm font-sans font-bold text-ink hover:bg-gray-100 transition-colors;
 }
 
 /* Commitment panel */
 .account-hero__panel {
-  @apply w-full lg:w-[320px] flex-shrink-0 bg-white rounded-xl p-6 shadow-2xl;
+  @apply w-full lg:w-[320px] flex-shrink-0 bg-white rounded-xl p-6 shadow-elevation-1;
 }
 
 .account-hero__panel-title {
-  @apply text-base font-serif font-bold text-slate-900 pb-4 border-b border-slate-200;
+  @apply text-base font-display font-bold text-ink pb-4 border-b border-gray-200;
 }
 
 .account-hero__commitments {
@@ -145,7 +145,7 @@ const iconMap: Record<string, Component> = {
 }
 
 .account-commitment {
-  @apply flex items-start gap-3.5 py-4 border-b border-slate-100 last:border-b-0;
+  @apply flex items-start gap-3.5 py-4 border-b border-gray-100 last:border-b-0;
 }
 
 .account-commitment__icon {
@@ -154,10 +154,10 @@ const iconMap: Record<string, Component> = {
 }
 
 .account-commitment__title {
-  @apply text-[13px] font-sans font-bold text-slate-900;
+  @apply text-label font-sans font-bold text-ink;
 }
 
 .account-commitment__description {
-  @apply mt-0.5 text-xs font-sans leading-snug text-slate-500;
+  @apply mt-0.5 text-xs font-sans leading-snug text-gray-500;
 }
 </style>

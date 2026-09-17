@@ -32,7 +32,7 @@ const photos: PhotoItem[] = [
 </script>
 
 <template>
-  <section class="py-12 md:py-16 bg-slate-50/50">
+  <section class="py-section-sm md:py-section bg-gray-50/50">
     <LayoutContainer>
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
         
@@ -42,16 +42,16 @@ const photos: PhotoItem[] = [
             <span class="w-6 h-6 rounded-full border border-cobalt/30 text-cobalt text-xs font-semibold flex items-center justify-center">
               04
             </span>
-            <span class="text-xs font-bold tracking-wider text-cobalt uppercase">
+            <span class="text-2xs font-bold tracking-eyebrow text-cobalt uppercase">
               THE FIRST CLASSROOM
             </span>
           </div>
 
-          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-slate-900 leading-[1.15]">
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-ink leading-heading">
             Then the idea entered a real classroom.
           </h2>
 
-          <p class="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed">
+          <p class="mt-4 text-sm sm:text-base text-gray-600 leading-relaxed">
             In April 2025, the first hub was installed at Our Lady Seat of Wisdom in Kansanga. 
             Two Champion Teachers were trained, and a two-day CPD program introduced the 
             system to teachers and learners.
@@ -60,7 +60,7 @@ const photos: PhotoItem[] = [
           <div class="mt-8">
             <UiButton 
               variant="primary" 
-              class="inline-flex items-center gap-2 bg-cobalt hover:bg-cobalt/90 text-white font-medium rounded-lg px-5 py-3 shadow-sm transition-colors text-sm"
+              class="inline-flex items-center gap-2 bg-cobalt hover:bg-cobalt/90 text-white font-medium rounded-lg px-5 py-3 shadow-elevation-1 transition-colors text-sm"
             >
               <div class="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center">
                 <Play class="w-3 h-3 fill-white text-white translate-x-0.5" />

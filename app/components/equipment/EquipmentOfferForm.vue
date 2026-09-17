@@ -587,7 +587,7 @@ const reassurances = [
 
 <style scoped>
 .offer-section {
-  @apply bg-white py-14 md:py-16 border-t border-slate-100;
+  @apply bg-white py-section-md md:py-section border-t border-gray-100;
 }
 
 .offer-section__grid {
@@ -599,11 +599,11 @@ const reassurances = [
 }
 
 .offer-section__title {
-  @apply text-2xl md:text-3xl font-serif font-bold text-slate-900;
+  @apply text-2xl md:text-3xl font-display font-bold text-ink;
 }
 
 .offer-section__subtitle {
-  @apply mt-3 text-sm font-sans leading-relaxed text-slate-500 max-w-xs;
+  @apply mt-3 text-sm font-sans leading-relaxed text-gray-500 max-w-xs;
 }
 
 .offer-section__reassurances {
@@ -611,7 +611,7 @@ const reassurances = [
 }
 
 .offer-reassurance {
-  @apply flex items-center gap-2.5 text-[13px] font-sans text-slate-600;
+  @apply flex items-center gap-2.5 text-label font-sans text-gray-600;
 }
 
 .offer-reassurance__icon {
@@ -619,7 +619,7 @@ const reassurances = [
 }
 
 .offer-section__card {
-  @apply lg:col-span-8 bg-slate-50 border border-slate-200 rounded-xl p-6 md:p-8;
+  @apply lg:col-span-8 bg-gray-50 border border-gray-200 rounded-xl p-6 md:p-8;
 }
 
 /* Stepper */
@@ -636,7 +636,7 @@ const reassurances = [
 }
 
 .offer-stepper__circle {
-  @apply w-7 h-7 rounded-full border border-slate-300 bg-white text-[12px] font-sans font-bold text-slate-500;
+  @apply w-7 h-7 rounded-full border border-gray-300 bg-white text-xs font-sans font-bold text-gray-500;
   @apply flex items-center justify-center flex-shrink-0;
 }
 
@@ -645,21 +645,21 @@ const reassurances = [
 }
 
 .offer-stepper__label {
-  @apply text-[13px] font-sans font-medium text-slate-600 truncate;
+  @apply text-label font-sans font-medium text-gray-600 truncate;
 }
 
 .offer-stepper__button--active .offer-stepper__label {
-  @apply text-slate-900 font-semibold;
+  @apply text-ink font-semibold;
 }
 
 /* Draft restored notice */
 .offer-draft-notice {
-  @apply mt-5 flex items-center gap-2 rounded-lg bg-blue-50 border border-blue-200 px-3.5 py-2.5;
-  @apply text-[13px] font-sans text-blue-800;
+  @apply mt-5 flex items-center gap-2 rounded-lg bg-cobalt-50 border border-cobalt-200 px-3.5 py-2.5;
+  @apply text-label font-sans text-cobalt-800;
 }
 
 .offer-draft-notice__dismiss {
-  @apply ml-auto text-[13px] font-sans font-semibold text-blue-700 hover:text-blue-900 underline;
+  @apply ml-auto text-label font-sans font-semibold text-cobalt-700 hover:text-cobalt-900 underline;
 }
 
 /* Forms */
@@ -676,8 +676,8 @@ const reassurances = [
 }
 
 .offer-form__textarea {
-  @apply w-full px-3 py-2.5 text-base font-sans border border-slate-300 rounded-md;
-  @apply placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-cobalt-500 focus:border-cobalt-500;
+  @apply w-full px-3 py-2.5 text-base font-sans border border-gray-300 rounded-md;
+  @apply placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-cobalt-500 focus:border-cobalt-500;
   @apply transition-shadow resize-y;
 }
 
@@ -694,12 +694,12 @@ const reassurances = [
 }
 
 .offer-form__error {
-  @apply text-sm font-sans text-red-600;
+  @apply text-sm font-sans text-danger-600;
 }
 
 /* Item blocks */
 .offer-item {
-  @apply rounded-lg border border-slate-200 bg-white p-5;
+  @apply rounded-lg border border-gray-200 bg-white p-5;
 }
 
 .offer-item__header {
@@ -707,21 +707,21 @@ const reassurances = [
 }
 
 .offer-item__number {
-  @apply text-[13px] font-sans font-bold text-slate-900;
+  @apply text-label font-sans font-bold text-ink;
 }
 
 .offer-item__remove {
-  @apply inline-flex items-center gap-1.5 text-[13px] font-sans font-medium text-red-500 hover:text-red-700;
+  @apply inline-flex items-center gap-1.5 text-label font-sans font-medium text-danger-500 hover:text-danger-700;
 }
 
 .offer-add-item {
-  @apply self-start inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-dashed border-slate-300;
-  @apply text-[13px] font-sans font-semibold text-cobalt-600 hover:border-cobalt-400 hover:bg-blue-50/50 transition-colors;
+  @apply self-start inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-dashed border-gray-300;
+  @apply text-label font-sans font-semibold text-cobalt-600 hover:border-cobalt-400 hover:bg-cobalt-50/50 transition-colors;
 }
 
 /* Review */
 .offer-review {
-  @apply flex flex-col divide-y divide-slate-200 rounded-lg border border-slate-200 bg-white px-5;
+  @apply flex flex-col divide-y divide-gray-200 rounded-lg border border-gray-200 bg-white px-5;
 }
 
 .offer-review__row {
@@ -729,11 +729,11 @@ const reassurances = [
 }
 
 .offer-review__row dt {
-  @apply text-[13px] font-sans font-semibold text-slate-500;
+  @apply text-label font-sans font-semibold text-gray-500;
 }
 
 .offer-review__row dd {
-  @apply text-sm font-sans text-slate-900;
+  @apply text-sm font-sans text-ink;
 }
 
 .offer-review__item {
@@ -746,14 +746,14 @@ const reassurances = [
 }
 
 .offer-success__icon {
-  @apply w-10 h-10 text-emerald-600;
+  @apply w-10 h-10 text-success-600;
 }
 
 .offer-success__title {
-  @apply text-lg font-sans font-bold text-slate-900;
+  @apply text-lg font-sans font-bold text-ink;
 }
 
 .offer-success__text {
-  @apply text-sm font-sans leading-relaxed text-slate-600 max-w-md;
+  @apply text-sm font-sans leading-relaxed text-gray-600 max-w-md;
 }
 </style>

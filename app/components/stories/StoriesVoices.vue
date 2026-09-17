@@ -64,7 +64,7 @@ defineProps<Props>()
 }
 
 .stories-voices-title {
-  @apply text-3xl md:text-4xl font-serif font-bold text-navy;
+  @apply text-3xl md:text-4xl font-display font-bold text-navy;
 }
 
 .stories-voices-link {
@@ -76,7 +76,7 @@ defineProps<Props>()
 }
 
 .stories-voice-card {
-  @apply bg-white rounded-xl p-6 shadow-md border border-gray-100;
+  @apply bg-white rounded-xl p-6 shadow-elevation-1 border border-gray-100;
 }
 
 .stories-voice-image {
@@ -88,7 +88,7 @@ defineProps<Props>()
 }
 
 .stories-voice-quote {
-  @apply text-lg font-serif text-navy leading-relaxed italic;
+  @apply text-lg font-display text-navy leading-relaxed italic;
 }
 
 .stories-voice-author {

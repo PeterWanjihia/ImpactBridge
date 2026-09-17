@@ -13,22 +13,22 @@ const props = withDefaults(defineProps<Props>(), {
   items: () => [
     {
       icon: 'wrench',
-      iconBg: 'bg-emerald-100',
-      iconColor: 'text-emerald-600',
+      iconBg: 'bg-success-100',
+      iconColor: 'text-success-600',
       observed: 'The original hardware needed greater protection and reliability.',
       changed: 'The hub architecture was refined.'
     },
     {
       icon: 'user',
-      iconBg: 'bg-orange-100',
-      iconColor: 'text-orange-500',
+      iconBg: 'bg-warning-100',
+      iconColor: 'text-warning-500',
       observed: 'Teachers needed more than an initial demonstration.',
       changed: 'Training expanded into guided practice and continued support.'
     },
     {
       icon: 'book',
-      iconBg: 'bg-purple-100',
-      iconColor: 'text-purple-600',
+      iconBg: 'bg-cobalt-100',
+      iconColor: 'text-cobalt-600',
       observed: 'Content needed stronger classroom alignment.',
       changed: 'The content-review and curriculum-alignment process was strengthened.'
     }
@@ -81,13 +81,13 @@ function resolveIcon(iconName?: string): Component {
             <!-- Arrow Divider between cards -->
             <ArrowRight
               v-if="index < items.length - 1"
-              class="evidence-changes-arrow hidden lg:block w-5 h-5 text-blue-900 flex-shrink-0"
+              class="evidence-changes-arrow hidden lg:block w-5 h-5 text-cobalt-900 flex-shrink-0"
             />
           </template>
 
           <!-- Callout Box -->
           <div class="evidence-changes-callout">
-            <Star class="w-8 h-8 text-blue-600 flex-shrink-0" />
+            <Star class="w-8 h-8 text-cobalt-600 flex-shrink-0" />
             <div class="evidence-changes-callout-content">
               <p class="evidence-changes-callout-text">
                 We do not collect evidence only to report success.
@@ -113,11 +113,11 @@ function resolveIcon(iconName?: string): Component {
 }
 
 .evidence-changes-label-icon {
-  @apply w-6 h-6 rounded-full bg-blue-700 flex items-center justify-center flex-shrink-0;
+  @apply w-6 h-6 rounded-full bg-cobalt-700 flex items-center justify-center flex-shrink-0;
 }
 
 .evidence-changes-label-text {
-  @apply text-sm font-sans font-extrabold text-blue-700 tracking-wider uppercase;
+  @apply text-2xs font-sans font-extrabold text-cobalt-700 tracking-eyebrow uppercase;
 }
 
 .evidence-changes-flow {
@@ -125,7 +125,7 @@ function resolveIcon(iconName?: string): Component {
 }
 
 .evidence-card {
-  @apply flex-1 bg-white rounded-xl p-5 border border-gray-200 flex items-start gap-4 shadow-sm;
+  @apply flex-1 bg-white rounded-xl p-5 border border-gray-200 flex items-start gap-4 shadow-elevation-1;
 }
 
 .evidence-card-icon {
@@ -141,7 +141,7 @@ function resolveIcon(iconName?: string): Component {
 }
 
 .evidence-card-label {
-  @apply text-xs font-sans font-extrabold text-blue-900 block;
+  @apply text-xs font-sans font-extrabold text-cobalt-900 block;
 }
 
 .evidence-card-text {
@@ -153,7 +153,7 @@ function resolveIcon(iconName?: string): Component {
 }
 
 .evidence-changes-callout {
-  @apply flex-1 bg-blue-50/50 rounded-xl p-5 flex items-center gap-4;
+  @apply flex-1 bg-cobalt-50/50 rounded-xl p-5 flex items-center gap-4;
 }
 
 .evidence-changes-callout-content {
@@ -161,10 +161,10 @@ function resolveIcon(iconName?: string): Component {
 }
 
 .evidence-changes-callout-text {
-  @apply text-xs font-sans font-bold text-blue-900 leading-snug;
+  @apply text-xs font-sans font-bold text-cobalt-900 leading-snug;
 }
 
 .evidence-changes-callout-highlight {
-  @apply text-xs font-sans font-bold text-blue-900 leading-snug;
+  @apply text-xs font-sans font-bold text-cobalt-900 leading-snug;
 }
 </style>

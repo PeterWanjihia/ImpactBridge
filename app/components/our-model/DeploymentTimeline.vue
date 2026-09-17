@@ -39,7 +39,7 @@ const phases = ['PREPARE', 'BUILD', 'LAUNCH', 'SUSTAIN']
           <!-- Timeline Line -->
           <div class="model-timeline-line" aria-hidden="true">
             <svg class="model-timeline-line-svg" viewBox="0 0 1000 4" preserveAspectRatio="none">
-              <line x1="0" y1="2" x2="1000" y2="2" stroke="#9fb3c8" stroke-width="2" stroke-dasharray="8 4" />
+              <line x1="0" y1="2" x2="1000" y2="2" class="stroke-navy-300" stroke-width="2" stroke-dasharray="8 4" />
             </svg>
           </div>
 
@@ -61,7 +61,7 @@ const phases = ['PREPARE', 'BUILD', 'LAUNCH', 'SUSTAIN']
 
 <style scoped>
 .model-timeline {
-  @apply py-12 md:py-16 bg-white;
+  @apply py-section-sm md:py-section bg-white;
 }
 .model-timeline-layout {
   @apply grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-12 lg:gap-8 items-start;
@@ -73,7 +73,7 @@ const phases = ['PREPARE', 'BUILD', 'LAUNCH', 'SUSTAIN']
   @apply inline-flex items-center justify-center w-10 h-10 rounded-full bg-cobalt/10 text-cobalt font-sans font-bold text-sm;
 }
 .model-timeline-title {
-  @apply mt-4 text-3xl md:text-4xl font-serif font-bold text-navy leading-tight;
+  @apply mt-4 text-3xl md:text-4xl font-display font-bold text-navy leading-tight;
 }
 .model-timeline-description {
   @apply mt-4 text-gray-600;

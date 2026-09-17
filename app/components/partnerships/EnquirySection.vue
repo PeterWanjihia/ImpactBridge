@@ -190,15 +190,15 @@ const reassurances = [
 
 <style scoped>
 .enquiry-section {
-  @apply bg-white py-14 md:py-16;
+  @apply bg-white py-section-md md:py-section;
 }
 
 .enquiry-section__title {
-  @apply text-2xl md:text-3xl font-serif font-bold text-slate-900;
+  @apply text-2xl md:text-3xl font-display font-bold text-ink;
 }
 
 .enquiry-section__subtitle {
-  @apply mt-2 text-sm font-sans text-slate-500;
+  @apply mt-2 text-sm font-sans text-gray-500;
 }
 
 .enquiry-section__grid {
@@ -214,29 +214,29 @@ const reassurances = [
 }
 
 .enquiry-form__textarea {
-  @apply w-full px-3 py-2.5 text-base font-sans border border-slate-300 rounded-md;
-  @apply placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-cobalt-500 focus:border-cobalt-500;
+  @apply w-full px-3 py-2.5 text-base font-sans border border-gray-300 rounded-md;
+  @apply placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-cobalt-500 focus:border-cobalt-500;
   @apply transition-shadow resize-y;
 }
 
 .enquiry-form__error {
-  @apply text-sm font-sans text-red-600;
+  @apply text-sm font-sans text-danger-600;
 }
 
 .enquiry-success {
-  @apply lg:col-span-8 flex flex-col items-start justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50/50 p-8;
+  @apply lg:col-span-8 flex flex-col items-start justify-center gap-2 rounded-xl border border-success-200 bg-success-50/50 p-8;
 }
 
 .enquiry-success__icon {
-  @apply w-10 h-10 text-emerald-600;
+  @apply w-10 h-10 text-success-600;
 }
 
 .enquiry-success__title {
-  @apply text-lg font-sans font-bold text-slate-900;
+  @apply text-lg font-sans font-bold text-ink;
 }
 
 .enquiry-success__text {
-  @apply text-sm font-sans text-slate-600;
+  @apply text-sm font-sans text-gray-600;
 }
 
 .enquiry-aside {
@@ -252,11 +252,11 @@ const reassurances = [
 }
 
 .enquiry-aside__icon {
-  @apply w-8 h-8 rounded-full border border-slate-200 flex items-center justify-center text-cobalt-600 flex-shrink-0;
+  @apply w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-cobalt-600 flex-shrink-0;
 }
 
 .enquiry-aside__text {
-  @apply text-sm font-sans text-slate-700;
+  @apply text-sm font-sans text-gray-700;
 }
 
 .enquiry-aside__submit {

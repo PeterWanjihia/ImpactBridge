@@ -123,11 +123,11 @@ const socialLinks = [
 
 <style scoped>
 .site-footer {
-  @apply bg-[#011438] text-white py-12;
+  @apply bg-ink text-white py-section-sm;
 }
 
 .site-footer-container {
-  @apply max-w-7xl mx-auto px-6 sm:px-8 lg:px-12;
+  @apply max-w-container mx-auto px-gutter-sm sm:px-gutter lg:px-gutter-lg;
 }
 
 .site-footer-grid {
@@ -151,7 +151,7 @@ const socialLinks = [
 }
 
 .site-footer-tagline {
-  @apply mt-4 text-[13px] font-sans text-gray-300 leading-snug;
+  @apply mt-4 text-label font-sans text-gray-300 leading-snug;
 }
 
 .site-footer-social {
@@ -159,11 +159,11 @@ const socialLinks = [
 }
 
 .site-footer-social-link {
-  @apply text-[#1450f5] hover:text-white transition-colors;
+  @apply text-bridge hover:text-white transition-colors;
 }
 
 .site-footer-copyright {
-  @apply mt-6 text-[11px] font-sans text-gray-400 whitespace-nowrap;
+  @apply mt-6 text-2xs font-sans text-gray-400 whitespace-nowrap;
 }
 
 .site-footer-heading {
@@ -175,7 +175,7 @@ const socialLinks = [
 }
 
 .site-footer-link {
-  @apply text-[13px] font-sans text-gray-300 hover:text-white transition-colors;
+  @apply text-label font-sans text-gray-300 hover:text-white transition-colors;
 }
 
 .site-footer-newsletter-col {
@@ -183,7 +183,7 @@ const socialLinks = [
 }
 
 .site-footer-newsletter-text {
-  @apply text-[13px] font-sans text-gray-300 leading-snug mb-4;
+  @apply text-label font-sans text-gray-300 leading-snug mb-4;
 }
 
 .site-footer-newsletter-form {
@@ -191,11 +191,11 @@ const socialLinks = [
 }
 
 .site-footer-newsletter-input {
-  @apply flex-1 bg-transparent px-3 py-1.5 text-[12px] text-white placeholder:text-gray-400 focus:outline-none;
+  @apply flex-1 bg-transparent px-3 py-1.5 text-xs text-white placeholder:text-gray-400 focus:outline-none;
 }
 
 .site-footer-newsletter-btn {
-  @apply px-4 py-1.5 text-[12px] font-sans font-semibold text-white bg-[#1450f5] hover:bg-blue-600 rounded-md transition-colors whitespace-nowrap;
+  @apply px-4 py-1.5 text-xs font-sans font-semibold text-white bg-bridge hover:bg-cobalt-600 rounded-md transition-colors whitespace-nowrap;
 }
 
 .site-footer-legal {
@@ -203,6 +203,6 @@ const socialLinks = [
 }
 
 .site-footer-legal-link {
-  @apply text-[12px] font-sans text-gray-400 hover:text-white transition-colors;
+  @apply text-xs font-sans text-gray-400 hover:text-white transition-colors;
 }
 </style>

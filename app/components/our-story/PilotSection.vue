@@ -42,7 +42,7 @@ const evidenceList: EvidenceItem[] = [
 </script>
 
 <template>
-  <section class="py-12 md:py-16 bg-blue-50/60">
+  <section class="py-section-sm md:py-section bg-cobalt-50/60">
     <LayoutContainer>
       <!-- Section Header (Centered) -->
       <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
@@ -50,18 +50,18 @@ const evidenceList: EvidenceItem[] = [
           <span class="w-6 h-6 rounded-full border border-cobalt/30 text-cobalt text-xs font-bold flex items-center justify-center bg-white/80">
             05
           </span>
-          <span class="text-xs font-bold tracking-wider text-cobalt uppercase">
+          <span class="text-2xs font-bold tracking-eyebrow text-cobalt uppercase">
             WHAT WE LEARNED
           </span>
         </div>
 
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-slate-900 leading-tight">
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-ink leading-tight">
           The pilot gave us evidence to improve.
         </h2>
       </div>
 
       <!-- 4-Column Evidence Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 lg:divide-x lg:divide-blue-200/80">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 lg:divide-x lg:divide-cobalt-200/80">
         <div 
           v-for="(item, index) in evidenceList" 
           :key="index"
@@ -70,23 +70,23 @@ const evidenceList: EvidenceItem[] = [
           <!-- Text Content -->
           <div class="mb-6">
             <!-- Icon Badge -->
-            <div class="w-11 h-11 rounded-full bg-white text-cobalt border border-blue-100 shadow-sm flex items-center justify-center mb-4">
+            <div class="w-11 h-11 rounded-full bg-white text-cobalt border border-cobalt-100 shadow-elevation-1 flex items-center justify-center mb-4">
               <component :is="item.icon" class="w-5 h-5 text-cobalt" />
             </div>
 
             <!-- Title -->
-            <h3 class="text-base font-bold text-slate-900 mb-2 leading-snug">
+            <h3 class="text-base font-bold text-ink mb-2 leading-snug">
               {{ item.title }}
             </h3>
 
             <!-- Description -->
-            <p class="text-xs text-slate-600 leading-relaxed font-sans">
+            <p class="text-xs text-gray-600 leading-relaxed font-sans">
               {{ item.description }}
             </p>
           </div>
 
           <!-- Bottom Image Card -->
-          <div class="mt-auto rounded-2xl overflow-hidden bg-slate-200 aspect-[4/3] shadow-sm">
+          <div class="mt-auto rounded-2xl overflow-hidden bg-gray-200 aspect-[4/3] shadow-elevation-1">
             <img
               :src="item.image"
               :alt="item.alt"

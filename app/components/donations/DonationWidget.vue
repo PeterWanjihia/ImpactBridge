@@ -348,7 +348,7 @@ const summary = computed(
 }
 
 .donation-widget__method {
-  @apply flex items-center justify-center gap-2 px-3 py-3 rounded-lg border border-gray-200 text-[13px] font-sans font-medium text-gray-700 bg-white;
+  @apply flex items-center justify-center gap-2 px-3 py-3 rounded-lg border border-gray-200 text-label font-sans font-medium text-gray-700 bg-white;
   @apply hover:border-cobalt hover:text-cobalt transition-colors focus:outline-none focus:ring-2 focus:ring-cobalt;
 }
 
@@ -398,7 +398,7 @@ const summary = computed(
 
 /* Errors */
 .donation-widget__error {
-  @apply text-sm font-sans text-red-600;
+  @apply text-sm font-sans text-danger-600;
 }
 
 /* Step 3 placeholder */

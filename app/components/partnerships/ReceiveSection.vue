@@ -87,11 +87,11 @@ const benefits: Benefit[] = [
 
 <style scoped>
 .receive-section {
-  @apply bg-white py-14 md:py-16 border-t border-slate-100;
+  @apply bg-white py-section-md md:py-section border-t border-gray-100;
 }
 
 .receive-section__title {
-  @apply text-2xl md:text-3xl font-serif font-bold text-slate-900 mb-10;
+  @apply text-2xl md:text-3xl font-display font-bold text-ink mb-10;
 }
 
 .receive-section__grid {
@@ -111,27 +111,27 @@ const benefits: Benefit[] = [
 }
 
 .receive-benefit__title {
-  @apply text-[15px] font-sans font-bold text-slate-900;
+  @apply text-body font-sans font-bold text-ink;
 }
 
 .receive-benefit__description {
-  @apply mt-1 text-[13px] font-sans leading-relaxed text-slate-500;
+  @apply mt-1 text-label font-sans leading-relaxed text-gray-500;
 }
 
 .receive-quote {
-  @apply lg:col-span-4 relative rounded-2xl bg-blue-50 p-8 flex flex-col;
+  @apply lg:col-span-4 relative rounded-2xl bg-cobalt-50 p-8 flex flex-col;
 }
 
 .receive-quote__mark {
-  @apply text-5xl leading-none font-serif text-navy-700;
+  @apply text-5xl leading-none font-display text-navy-700;
 }
 
 .receive-quote__text {
-  @apply mt-2 text-[15px] font-sans leading-relaxed text-navy-800;
+  @apply mt-2 text-body font-sans leading-relaxed text-navy-800;
 }
 
 .receive-quote__author {
-  @apply mt-4 text-xs font-sans text-slate-500;
+  @apply mt-4 text-xs font-sans text-gray-500;
 }
 
 .receive-quote__dots {
@@ -147,7 +147,7 @@ const benefits: Benefit[] = [
 }
 
 .receive-photo {
-  @apply lg:col-span-3 rounded-2xl overflow-hidden bg-slate-100 min-h-[280px];
+  @apply lg:col-span-3 rounded-2xl overflow-hidden bg-gray-100 min-h-[280px];
 }
 
 .receive-photo__image {

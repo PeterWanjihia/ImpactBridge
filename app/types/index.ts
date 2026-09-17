@@ -552,8 +552,8 @@ export interface TransparencySpendSlice {
   label: string
   /** Whole-number share; percentages must total 100 */
   percentage: number
-  /** Tailwind-ish colour token used by the donut component */
-  color: 'cobalt' | 'teal' | 'purple' | 'amber'
+  /** Design-token colour used by the donut component */
+  color: 'cobalt' | 'teal' | 'aqua' | 'warning'
 }
 
 export interface TransparencyFinancials {

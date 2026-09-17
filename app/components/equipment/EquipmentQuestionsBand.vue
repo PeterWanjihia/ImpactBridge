@@ -29,7 +29,7 @@ import { Mail, ArrowRight } from '@lucide/vue'
 
 <style scoped>
 .questions-band {
-  @apply bg-navy-800 py-10;
+  @apply bg-navy-800 py-section-xs;
 }
 
 .questions-band__inner {
@@ -45,11 +45,11 @@ import { Mail, ArrowRight } from '@lucide/vue'
 }
 
 .questions-band__title {
-  @apply text-lg md:text-xl font-serif font-bold text-white;
+  @apply text-lg md:text-xl font-display font-bold text-white;
 }
 
 .questions-band__subtitle {
-  @apply mt-1 text-sm font-sans text-slate-300;
+  @apply mt-1 text-sm font-sans text-gray-300;
 }
 
 .questions-band__cta {

@@ -163,13 +163,13 @@ const publishedDate = computed(() => {
   <div class="page-story-detail">
     <!-- Loading state -->
     <LayoutContainer v-if="!story">
-      <div v-if="status === 'pending'" class="py-20 text-center font-sans text-gray-500">
+      <div v-if="status === 'pending'" class="py-section-lg text-center font-sans text-gray-500">
         <p>Loading story...</p>
       </div>
 
       <!-- Not found -->
-      <div v-else class="py-20 text-center">
-        <p class="font-serif text-lg text-navy">Story not found.</p>
+      <div v-else class="py-section-lg text-center">
+        <p class="font-display text-lg text-navy">Story not found.</p>
         <NuxtLink to="/stories" class="mt-4 inline-block font-sans font-semibold text-cobalt hover:underline">
           ← Back to stories
         </NuxtLink>
@@ -303,11 +303,11 @@ const publishedDate = computed(() => {
 <style scoped>
 /* Hero */
 .story-hero-tag {
-  @apply inline-block text-teal font-sans font-semibold text-sm tracking-wide uppercase mb-4;
+  @apply inline-block text-teal font-sans font-semibold text-2xs tracking-eyebrow uppercase mb-4;
 }
 
 .story-hero-title {
-  @apply text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white leading-tight max-w-3xl;
+  @apply text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white leading-tight max-w-3xl;
 }
 
 .story-hero-summary {
@@ -315,7 +315,7 @@ const publishedDate = computed(() => {
 }
 
 .story-hero-meta {
-  @apply mt-5 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-blue-100/90 font-sans;
+  @apply mt-5 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-cobalt-100/90 font-sans;
 }
 
 .story-hero-meta-item {
@@ -328,7 +328,7 @@ const publishedDate = computed(() => {
 
 /* Layout */
 .story-detail {
-  @apply py-10 md:py-14 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_320px] gap-10;
+  @apply py-section-xs md:py-section-md grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_320px] gap-10;
 }
 
 .story-back-link {
@@ -354,7 +354,7 @@ const publishedDate = computed(() => {
 }
 
 .story-quote-text {
-  @apply font-serif text-xl md:text-2xl text-navy italic leading-snug;
+  @apply font-display text-xl md:text-2xl text-navy italic leading-snug;
 }
 
 /* Body prose (no typography plugin installed — hand-rolled article styles) */
@@ -363,11 +363,11 @@ const publishedDate = computed(() => {
 }
 
 .story-prose :deep(h2) {
-  @apply mt-10 mb-4 font-serif text-2xl font-bold text-navy;
+  @apply mt-10 mb-4 font-display text-2xl font-bold text-navy;
 }
 
 .story-prose :deep(h3) {
-  @apply mt-8 mb-3 font-serif text-xl font-bold text-navy;
+  @apply mt-8 mb-3 font-display text-xl font-bold text-navy;
 }
 
 .story-prose :deep(ul) {
@@ -383,7 +383,7 @@ const publishedDate = computed(() => {
 }
 
 .story-prose :deep(blockquote) {
-  @apply my-6 border-l-4 border-cobalt pl-4 font-serif text-lg text-navy italic;
+  @apply my-6 border-l-4 border-cobalt pl-4 font-display text-lg text-navy italic;
 }
 
 .story-prose :deep(img) {
@@ -400,7 +400,7 @@ const publishedDate = computed(() => {
 }
 
 .story-video-player {
-  @apply w-full aspect-video rounded-lg bg-navy-900 shadow-md;
+  @apply w-full aspect-video rounded-lg bg-navy-900 shadow-elevation-1;
 }
 
 .story-video-caption {
@@ -426,7 +426,7 @@ const publishedDate = computed(() => {
 }
 
 .story-aside-title {
-  @apply font-serif text-lg font-bold text-navy mb-4;
+  @apply font-display text-lg font-bold text-navy mb-4;
 }
 
 .story-aside-link {
@@ -450,7 +450,7 @@ const publishedDate = computed(() => {
 }
 
 .story-aside-cta-title {
-  @apply font-serif text-lg font-semibold leading-snug;
+  @apply font-display text-lg font-semibold leading-snug;
 }
 
 .story-aside-cta-btn {

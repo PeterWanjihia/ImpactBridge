@@ -31,8 +31,8 @@ const phases: ProcessPhase[] = [
   {
     number: 1,
     name: 'QUALIFY & APPROVE',
-    colorClass: 'text-emerald-600',
-    borderClass: 'border-emerald-500',
+    colorClass: 'text-success-600',
+    borderClass: 'border-success-500',
     steps: [
       {
         title: 'Offer submitted',
@@ -54,8 +54,8 @@ const phases: ProcessPhase[] = [
   {
     number: 2,
     name: 'TRANSFER & RECEIVE',
-    colorClass: 'text-blue-600',
-    borderClass: 'border-blue-600',
+    colorClass: 'text-cobalt-600',
+    borderClass: 'border-cobalt-600',
     steps: [
       {
         title: 'Prepare transfer',
@@ -72,8 +72,8 @@ const phases: ProcessPhase[] = [
   {
     number: 3,
     name: 'INSPECT & PREPARE',
-    colorClass: 'text-purple-600',
-    borderClass: 'border-purple-600',
+    colorClass: 'text-cobalt-600',
+    borderClass: 'border-cobalt-600',
     steps: [
       {
         title: 'Inspect & assess',
@@ -90,8 +90,8 @@ const phases: ProcessPhase[] = [
   {
     number: 4,
     name: 'DEPLOY & REPORT',
-    colorClass: 'text-emerald-600',
-    borderClass: 'border-emerald-500',
+    colorClass: 'text-success-600',
+    borderClass: 'border-success-500',
     steps: [
       {
         title: 'Deploy to school',
@@ -112,11 +112,11 @@ const allSteps = phases.flatMap((phase) => phase.steps)
 </script>
 
 <template>
-  <section class="py-12 px-6 max-w-7xl mx-auto bg-white">
-    <h2 class="text-3xl font-serif font-bold text-slate-900 tracking-tight">
+  <section class="py-section-sm px-6 max-w-container mx-auto bg-white">
+    <h2 class="text-3xl font-display font-bold text-ink tracking-tight">
       From offer to classroom
     </h2>
-    <p class="mt-2 text-sm text-slate-600">
+    <p class="mt-2 text-sm text-gray-600">
       A responsible journey from your organisation to a classroom where learners thrive.
     </p>
 
@@ -133,7 +133,7 @@ const allSteps = phases.flatMap((phase) => phase.steps)
           ]"
         >
           <div class="text-center pb-2 border-b-2" :class="[phase.borderClass, phase.colorClass]">
-            <span class="text-xs font-bold uppercase tracking-wider">
+            <span class="text-2xs font-bold uppercase tracking-eyebrow">
               {{ phase.number }}. {{ phase.name }}
             </span>
           </div>
@@ -146,24 +146,24 @@ const allSteps = phases.flatMap((phase) => phase.steps)
           <div class="flex flex-col items-center">
             <div class="relative flex items-center justify-center w-full">
               <!-- Step Icon Circle -->
-              <div class="w-16 h-16 rounded-full border border-slate-200 bg-white flex items-center justify-center shadow-sm text-indigo-950">
+              <div class="w-16 h-16 rounded-full border border-gray-200 bg-white flex items-center justify-center shadow-elevation-1 text-navy-950">
                 <component :is="step.icon" class="w-7 h-7 stroke-[1.5]" />
               </div>
 
               <!-- Arrow Connector to Next Step -->
               <div 
                 v-if="index < allSteps.length - 1" 
-                class="absolute left-[calc(50%+2rem)] right-[-50%] flex items-center justify-center text-slate-400"
+                class="absolute left-[calc(50%+2rem)] right-[-50%] flex items-center justify-center text-gray-400"
               >
                 <ArrowRight class="w-4 h-4 stroke-[1.5]" />
               </div>
             </div>
 
             <!-- Title & Description -->
-            <h3 class="mt-5 text-sm font-bold text-slate-900 leading-snug">
+            <h3 class="mt-5 text-sm font-bold text-ink leading-snug">
               {{ step.title }}
             </h3>
-            <p class="mt-2 text-[12px] text-slate-500 leading-relaxed max-w-[130px]">
+            <p class="mt-2 text-xs text-gray-500 leading-relaxed max-w-[130px]">
               {{ step.description }}
             </p>
           </div>
@@ -175,18 +175,18 @@ const allSteps = phases.flatMap((phase) => phase.steps)
     <div class="lg:hidden mt-10 space-y-10">
       <div v-for="phase in phases" :key="phase.number">
         <div class="pb-2 border-b-2 mb-6" :class="[phase.borderClass, phase.colorClass]">
-          <span class="text-xs font-bold uppercase tracking-wider">
+          <span class="text-2xs font-bold uppercase tracking-eyebrow">
             {{ phase.number }}. {{ phase.name }}
           </span>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div v-for="step in phase.steps" :key="step.title" class="flex gap-4 items-start">
-            <div class="w-12 h-12 rounded-full border border-slate-200 bg-white flex-shrink-0 flex items-center justify-center text-indigo-950">
+            <div class="w-12 h-12 rounded-full border border-gray-200 bg-white flex-shrink-0 flex items-center justify-center text-navy-950">
               <component :is="step.icon" class="w-5 h-5 stroke-[1.5]" />
             </div>
             <div>
-              <h3 class="text-sm font-bold text-slate-900">{{ step.title }}</h3>
-              <p class="text-xs text-slate-500 mt-1">{{ step.description }}</p>
+              <h3 class="text-sm font-bold text-ink">{{ step.title }}</h3>
+              <p class="text-xs text-gray-500 mt-1">{{ step.description }}</p>
             </div>
           </div>
         </div>

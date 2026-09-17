@@ -10,9 +10,9 @@ interface Props {
 const props = defineProps<Props>()
 
 const priorityColors: Record<string, string> = {
-  high: 'bg-red-100 text-red-700',
-  medium: 'bg-orange-100 text-orange-700',
-  low: 'bg-green-100 text-green-700'
+  high: 'bg-danger-100 text-danger-700',
+  medium: 'bg-warning-100 text-warning-700',
+  low: 'bg-success-100 text-success-700'
 }
 </script>
 
@@ -44,7 +44,7 @@ const priorityColors: Record<string, string> = {
 }
 
 .equipment-need-card-category {
-  @apply text-lg font-serif font-semibold text-navy;
+  @apply text-lg font-display font-semibold text-navy;
 }
 
 .equipment-need-card-description {

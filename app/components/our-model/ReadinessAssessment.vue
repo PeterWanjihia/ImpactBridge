@@ -53,7 +53,7 @@ defineProps<{
 
 <style scoped>
 .model-readiness {
-  @apply py-12 md:py-16 bg-white;
+  @apply py-section-sm md:py-section bg-white;
 }
 .model-readiness-layout {
   @apply grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-12 lg:gap-16 items-start;
@@ -65,7 +65,7 @@ defineProps<{
   @apply inline-flex items-center justify-center w-10 h-10 rounded-full bg-cobalt/10 text-cobalt font-sans font-bold text-sm;
 }
 .model-readiness-title {
-  @apply mt-4 text-3xl md:text-4xl font-serif font-bold text-navy leading-tight;
+  @apply mt-4 text-3xl md:text-4xl font-display font-bold text-navy leading-tight;
 }
 .model-readiness-description {
   @apply mt-4 text-gray-600;

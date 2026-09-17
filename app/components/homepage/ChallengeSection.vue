@@ -60,10 +60,10 @@ defineProps<{
   @apply grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center;
 }
 .challenge-eyebrow {
-  @apply text-sm font-sans font-semibold text-cobalt uppercase tracking-wider mb-3;
+  @apply text-2xs font-sans font-semibold text-cobalt uppercase tracking-eyebrow mb-3;
 }
 .challenge-title {
-  @apply text-3xl md:text-4xl font-serif font-bold text-navy;
+  @apply text-3xl md:text-4xl font-display font-bold text-navy;
 }
 .challenge-description {
   @apply mt-4 text-gray-600;
@@ -87,6 +87,6 @@ defineProps<{
   @apply mt-4 text-xs text-gray-400;
 }
 .challenge-image {
-  @apply w-full rounded-lg shadow-lg;
+  @apply w-full rounded-lg shadow-elevation-2;
 }
 </style>

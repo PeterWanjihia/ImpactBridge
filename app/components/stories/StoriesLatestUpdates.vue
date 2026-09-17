@@ -59,7 +59,7 @@ defineProps<Props>()
 }
 
 .stories-updates-title {
-  @apply text-3xl md:text-4xl font-serif font-bold text-navy;
+  @apply text-3xl md:text-4xl font-display font-bold text-navy;
 }
 
 .stories-updates-link {
@@ -71,7 +71,7 @@ defineProps<Props>()
 }
 
 .stories-update-card {
-  @apply bg-white rounded-xl overflow-hidden shadow-md border border-gray-100;
+  @apply bg-white rounded-xl overflow-hidden shadow-elevation-1 border border-gray-100;
 }
 
 .stories-update-image {
@@ -87,7 +87,7 @@ defineProps<Props>()
 }
 
 .stories-update-date {
-  @apply text-xs font-sans font-semibold text-cobalt uppercase tracking-wide;
+  @apply text-2xs font-sans font-semibold text-cobalt uppercase tracking-eyebrow;
 }
 
 .stories-update-title {
@@ -107,7 +107,7 @@ defineProps<Props>()
 }
 
 .stories-update-cta-title {
-  @apply text-lg font-serif font-bold text-navy;
+  @apply text-lg font-display font-bold text-navy;
 }
 
 .stories-update-cta-desc {

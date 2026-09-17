@@ -56,7 +56,7 @@ withDefaults(defineProps<Props>(), {
 
 <style scoped>
 .donate-faq {
-  @apply py-10 md:py-12 bg-white;
+  @apply py-section-xs md:py-section-sm bg-white;
 }
 
 .donate-faq__header {
@@ -64,7 +64,7 @@ withDefaults(defineProps<Props>(), {
 }
 
 .donate-faq__title {
-  @apply text-xl md:text-2xl font-serif font-bold text-navy;
+  @apply text-xl md:text-2xl font-display font-bold text-navy;
 }
 
 .donate-faq__link {
@@ -84,7 +84,7 @@ withDefaults(defineProps<Props>(), {
 }
 
 .donate-faq__accordion :deep(.ui-accordion-trigger) {
-  @apply px-3 py-2 text-xs md:text-[13px] text-gray-700;
+  @apply px-3 py-2 text-xs md:text-label text-gray-700;
 }
 
 .donate-faq__accordion :deep(.ui-accordion-content) {

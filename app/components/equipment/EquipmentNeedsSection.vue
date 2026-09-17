@@ -76,15 +76,15 @@ const statusMeta: Record<
 > = {
   active: {
     label: 'Actively needed',
-    badgeClass: 'bg-emerald-50 text-emerald-700 ring-emerald-600/20',
+    badgeClass: 'bg-success-50 text-success-700 ring-success-600/20',
   },
   conditional: {
     label: 'Conditionally considered',
-    badgeClass: 'bg-amber-50 text-amber-700 ring-amber-600/20',
+    badgeClass: 'bg-warning-50 text-warning-700 ring-warning-600/20',
   },
   'not-needed': {
     label: 'Not currently required',
-    badgeClass: 'bg-red-50 text-red-700 ring-red-600/20',
+    badgeClass: 'bg-danger-50 text-danger-700 ring-danger-600/20',
   },
 }
 </script>
@@ -133,7 +133,7 @@ const statusMeta: Record<
 
 <style scoped>
 .needs-section {
-  @apply bg-white py-14 md:py-16;
+  @apply bg-white py-section-md md:py-section;
 }
 
 .needs-section__header {
@@ -141,11 +141,11 @@ const statusMeta: Record<
 }
 
 .needs-section__title {
-  @apply text-2xl md:text-3xl font-serif font-bold text-slate-900;
+  @apply text-2xl md:text-3xl font-display font-bold text-ink;
 }
 
 .needs-section__subtitle {
-  @apply mt-2 text-sm font-sans text-slate-500;
+  @apply mt-2 text-sm font-sans text-gray-500;
 }
 
 .needs-section__link {
@@ -157,27 +157,27 @@ const statusMeta: Record<
 }
 
 .need-card {
-  @apply flex flex-col bg-white border border-slate-200 rounded-xl p-6;
-  @apply transition-shadow hover:shadow-md;
+  @apply flex flex-col bg-white border border-gray-200 rounded-xl p-6;
+  @apply transition-shadow hover:shadow-elevation-1;
 }
 
 .need-card__icon {
-  @apply w-12 h-12 rounded-lg border border-slate-200 flex items-center justify-center text-navy-700;
+  @apply w-12 h-12 rounded-lg border border-gray-200 flex items-center justify-center text-navy-700;
 }
 
 .need-card__title {
-  @apply mt-5 text-[15px] font-sans font-bold text-slate-900 leading-snug;
+  @apply mt-5 text-body font-sans font-bold text-ink leading-snug;
 }
 
 .need-card__badge {
-  @apply mt-3 inline-flex w-fit items-center rounded-full px-2.5 py-1 text-[11px] font-sans font-semibold ring-1 ring-inset;
+  @apply mt-3 inline-flex w-fit items-center rounded-full px-2.5 py-1 text-2xs font-sans font-semibold ring-1 ring-inset;
 }
 
 .need-card__description {
-  @apply mt-3 text-[13px] font-sans leading-relaxed text-slate-500;
+  @apply mt-3 text-label font-sans leading-relaxed text-gray-500;
 }
 
 .need-card__link {
-  @apply mt-auto pt-5 inline-flex items-center gap-1.5 text-[13px] font-sans font-semibold text-cobalt-600;
+  @apply mt-auto pt-5 inline-flex items-center gap-1.5 text-label font-sans font-semibold text-cobalt-600;
 }
 </style>

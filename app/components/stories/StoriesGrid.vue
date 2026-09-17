@@ -18,12 +18,12 @@ const typeLabels: Record<string, string> = {
 }
 
 const typeColors: Record<string, string> = {
-  learner: 'text-indigo-900',
-  teacher: 'text-red-900',
-  school: 'text-indigo-900',
-  classroom: 'text-indigo-900',
-  community: 'text-indigo-900',
-  partner: 'text-blue-700',
+  learner: 'text-navy-900',
+  teacher: 'text-danger-900',
+  school: 'text-navy-900',
+  classroom: 'text-navy-900',
+  community: 'text-navy-900',
+  partner: 'text-cobalt-700',
 }
 
 const mediaIcons: Record<string, any> = {
@@ -80,32 +80,32 @@ function getMediaLabel(type?: string): string {
             <!-- Overlaid Content -->
             <div class="stories-banner-content">
               <div class="space-y-2 max-w-sm">
-                <span class="text-[11px] font-black tracking-wider uppercase text-blue-700 inline-block">
+                <span class="text-2xs font-black tracking-eyebrow uppercase text-cobalt-700 inline-block">
                   {{ typeLabels[story.type] || story.type }}
                 </span>
                 
-                <h3 class="text-2xl font-serif font-extrabold text-slate-900 leading-tight">
+                <h3 class="text-2xl font-display font-extrabold text-ink leading-tight">
                   {{ story.title }}
                 </h3>
-                <p class="text-xs text-slate-600 font-medium leading-relaxed">
+                <p class="text-xs text-gray-600 font-medium leading-relaxed">
                   {{ story.summary }}
                 </p>
               </div>
 
               <!-- Floating Metadata & Action Pill Bar -->
-              <div class="mt-6 inline-flex items-center gap-4 bg-white/95 backdrop-blur-md px-4 py-2 rounded-full shadow-sm border border-slate-100 max-w-max">
-                <div class="flex items-center gap-3 text-xs text-slate-600 font-semibold">
+              <div class="mt-6 inline-flex items-center gap-4 bg-white/95 backdrop-blur-md px-4 py-2 rounded-full shadow-elevation-1 border border-gray-100 max-w-max">
+                <div class="flex items-center gap-3 text-xs text-gray-600 font-semibold">
                   <span v-if="story.mediaType" class="flex items-center gap-1.5">
-                    <component :is="mediaIcons[story.mediaType] || FileText" class="w-3.5 h-3.5 text-slate-700" />
+                    <component :is="mediaIcons[story.mediaType] || FileText" class="w-3.5 h-3.5 text-gray-700" />
                     {{ getMediaLabel(story.mediaType) }}
                   </span>
                   <span v-if="story.mediaDuration" class="flex items-center gap-1">
-                    <Clock class="w-3.5 h-3.5 text-slate-500" />
+                    <Clock class="w-3.5 h-3.5 text-gray-500" />
                     {{ story.mediaDuration }}
                   </span>
                 </div>
 
-                <NuxtLink :to="`/stories/${story.slug}`" class="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-700 transition-colors pl-2 border-l border-gray-200">
+                <NuxtLink :to="`/stories/${story.slug}`" class="inline-flex items-center gap-1.5 text-xs font-bold text-cobalt-600 hover:text-cobalt-700 transition-colors pl-2 border-l border-gray-200">
                   Read the story <ArrowRight class="w-3.5 h-3.5" />
                 </NuxtLink>
               </div>
@@ -117,8 +117,8 @@ function getMediaLabel(type?: string): string {
             <div class="stories-grid-card-content">
               <div class="space-y-2">
                 <span 
-                  class="text-[11px] font-extrabold tracking-wider uppercase inline-block"
-                  :class="typeColors[story.type] || 'text-indigo-900'"
+                  class="text-2xs font-extrabold tracking-eyebrow uppercase inline-block"
+                  :class="typeColors[story.type] || 'text-navy-900'"
                 >
                   {{ typeLabels[story.type] || story.type }}
                 </span>
@@ -177,7 +177,7 @@ function getMediaLabel(type?: string): string {
 
 <style scoped>
 .stories-grid-section {
-  @apply py-8 md:py-12;
+  @apply py-8 md:py-section-sm;
 }
 
 .stories-grid {
@@ -185,7 +185,7 @@ function getMediaLabel(type?: string): string {
 }
 
 .stories-grid-card {
-  @apply bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-200/80 flex flex-col sm:flex-row h-full relative;
+  @apply bg-white rounded-2xl overflow-hidden shadow-elevation-1 border border-gray-200/80 flex flex-col sm:flex-row h-full relative;
 }
 
 /* Banner / Partner Card Specific Styles */
@@ -232,7 +232,7 @@ function getMediaLabel(type?: string): string {
 }
 
 .stories-grid-card-title {
-  @apply text-xl font-serif font-bold text-slate-900 leading-snug tracking-tight;
+  @apply text-xl font-display font-bold text-ink leading-snug tracking-tight;
 }
 
 .stories-grid-card-summary {
@@ -248,7 +248,7 @@ function getMediaLabel(type?: string): string {
 }
 
 .stories-grid-card-link {
-  @apply inline-flex items-center gap-1 text-xs font-bold text-blue-600 hover:text-blue-700 transition-colors;
+  @apply inline-flex items-center gap-1 text-xs font-bold text-cobalt-600 hover:text-cobalt-700 transition-colors;
 }
 
 .stories-grid-card-image {
@@ -268,11 +268,11 @@ function getMediaLabel(type?: string): string {
 }
 
 .stories-grid-empty {
-  @apply col-span-full flex flex-col items-center justify-center py-16 text-center;
+  @apply col-span-full flex flex-col items-center justify-center py-section text-center;
 }
 
 .stories-grid-empty-title {
-  @apply text-xl font-serif font-bold text-navy;
+  @apply text-xl font-display font-bold text-navy;
 }
 
 .stories-grid-empty-desc {

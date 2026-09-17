@@ -83,7 +83,7 @@ const quoteImage =
 
 <style scoped>
 .receive-section {
-  @apply bg-white py-14 md:py-16 border-t border-slate-100;
+  @apply bg-white py-section-md md:py-section border-t border-gray-100;
 }
 
 .receive-section__grid {
@@ -95,11 +95,11 @@ const quoteImage =
 }
 
 .receive-section__title {
-  @apply text-2xl md:text-3xl font-serif font-bold text-slate-900;
+  @apply text-2xl md:text-3xl font-display font-bold text-ink;
 }
 
 .receive-section__subtitle {
-  @apply mt-3 text-sm font-sans leading-relaxed text-slate-500 max-w-xs;
+  @apply mt-3 text-sm font-sans leading-relaxed text-gray-500 max-w-xs;
 }
 
 .receive-section__list {
@@ -107,15 +107,15 @@ const quoteImage =
 }
 
 .receive-benefit {
-  @apply flex items-start gap-2.5 text-[13px] font-sans text-slate-700;
+  @apply flex items-start gap-2.5 text-label font-sans text-gray-700;
 }
 
 .receive-benefit__icon {
-  @apply w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5;
+  @apply w-4 h-4 text-success-600 flex-shrink-0 mt-0.5;
 }
 
 .receive-section__link {
-  @apply mt-7 inline-flex items-center gap-2 text-[13px] font-sans font-semibold text-cobalt-600 hover:text-cobalt-700;
+  @apply mt-7 inline-flex items-center gap-2 text-label font-sans font-semibold text-cobalt-600 hover:text-cobalt-700;
 }
 
 .receive-section__media {
@@ -135,15 +135,15 @@ const quoteImage =
 }
 
 .receive-section__quote-mark {
-  @apply text-5xl leading-none font-serif text-blue-300;
+  @apply text-5xl leading-none font-display text-cobalt-300;
 }
 
 .receive-section__quote-text {
-  @apply mt-3 text-lg md:text-xl font-serif text-white leading-relaxed;
+  @apply mt-3 text-lg md:text-xl font-display text-white leading-relaxed;
 }
 
 .receive-section__quote-author {
-  @apply mt-5 text-[13px] font-sans text-slate-300;
+  @apply mt-5 text-label font-sans text-gray-300;
 }
 
 .receive-section__dots {

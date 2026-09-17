@@ -14,8 +14,8 @@ const props = defineProps<Props>()
 const typeColors: Record<string, string> = {
   learner: 'bg-cobalt/10 text-cobalt',
   teacher: 'bg-teal/10 text-teal',
-  school: 'bg-green-100 text-green-700',
-  partner: 'bg-purple-100 text-purple-700'
+  school: 'bg-success-100 text-success-700',
+  partner: 'bg-cobalt-100 text-cobalt-700'
 }
 </script>
 
@@ -37,7 +37,7 @@ const typeColors: Record<string, string> = {
 
 <style scoped>
 .story-card {
-  @apply block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow;
+  @apply block bg-white rounded-lg shadow-elevation-1 overflow-hidden hover:shadow-elevation-2 transition-shadow;
 }
 
 .story-card-image {
@@ -57,7 +57,7 @@ const typeColors: Record<string, string> = {
 }
 
 .story-card-title {
-  @apply text-lg font-serif font-semibold text-navy line-clamp-2;
+  @apply text-lg font-display font-semibold text-navy line-clamp-2;
 }
 
 .story-card-summary {

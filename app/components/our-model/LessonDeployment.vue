@@ -56,7 +56,7 @@ defineProps<{
 
 <style scoped>
 .model-lesson {
-  @apply py-12 md:py-16 bg-white;
+  @apply py-section-sm md:py-section bg-white;
 }
 .model-lesson-layout {
   @apply grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-12 lg:gap-8 items-start;
@@ -68,7 +68,7 @@ defineProps<{
   @apply inline-flex items-center justify-center w-10 h-10 rounded-full bg-cobalt/10 text-cobalt font-sans font-bold text-sm;
 }
 .model-lesson-title {
-  @apply mt-4 text-3xl md:text-4xl font-serif font-bold text-navy leading-tight;
+  @apply mt-4 text-3xl md:text-4xl font-display font-bold text-navy leading-tight;
 }
 .model-lesson-description {
   @apply mt-4 text-gray-600;

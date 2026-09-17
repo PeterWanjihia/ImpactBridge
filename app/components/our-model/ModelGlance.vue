@@ -43,9 +43,9 @@ defineProps<{
           <!-- Bottom bracket connector lines (from step 1 and step 6 down to the badge) -->
           <div class="model-glance-bracket-wrap" aria-hidden="true">
             <svg class="model-glance-bracket-svg" viewBox="0 0 1000 70" fill="none" preserveAspectRatio="none">
-              <path d="M 83.33 0 V 45 Q 83.33 60 98.33 60 H 280" stroke="#c7d2fe" stroke-width="1.5"
+              <path d="M 83.33 0 V 45 Q 83.33 60 98.33 60 H 280" class="stroke-cobalt-200" stroke-width="1.5"
                 stroke-dasharray="4 4" />
-              <path d="M 916.67 0 V 45 Q 916.67 60 901.67 60 H 720" stroke="#c7d2fe" stroke-width="1.5"
+              <path d="M 916.67 0 V 45 Q 916.67 60 901.67 60 H 720" class="stroke-cobalt-200" stroke-width="1.5"
                 stroke-dasharray="4 4" />
             </svg>
           </div>
@@ -68,7 +68,7 @@ defineProps<{
 
 <style scoped>
 .model-glance {
-  @apply py-12 md:py-16 bg-gray-50;
+  @apply py-section-sm md:py-section bg-gray-50;
 }
 .model-glance-layout {
   @apply grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-12 lg:gap-12 items-start;
@@ -80,7 +80,7 @@ defineProps<{
   @apply inline-flex items-center justify-center w-10 h-10 rounded-full bg-cobalt/10 text-cobalt font-sans font-bold text-sm;
 }
 .model-glance-title {
-  @apply mt-4 text-3xl md:text-4xl font-serif font-bold text-navy leading-tight;
+  @apply mt-4 text-3xl md:text-4xl font-display font-bold text-navy leading-tight;
 }
 .model-glance-description {
   @apply mt-4 text-gray-600 text-sm leading-relaxed;
@@ -91,7 +91,7 @@ defineProps<{
   @apply relative flex flex-col items-center w-full;
 }
 .model-glance-dashed-line {
-  @apply absolute top-7 left-[8.33%] right-[8.33%] h-px border-t border-dashed border-indigo-200 z-0 pointer-events-none;
+  @apply absolute top-7 left-[8.33%] right-[8.33%] h-px border-t border-dashed border-navy-200 z-0 pointer-events-none;
 }
 
 /* 6-step Grid */
@@ -102,7 +102,7 @@ defineProps<{
   @apply flex flex-col items-center text-center px-1;
 }
 .model-glance-step-circle {
-  @apply w-14 h-14 rounded-full border border-indigo-200 bg-white flex items-center justify-center text-cobalt shadow-sm mb-4 transition-transform hover:scale-105;
+  @apply w-14 h-14 rounded-full border border-navy-200 bg-white flex items-center justify-center text-cobalt shadow-elevation-1 mb-4 transition-transform hover:scale-105;
 }
 .model-glance-step-title {
   @apply text-sm font-sans font-bold text-navy leading-snug;
@@ -121,7 +121,7 @@ defineProps<{
 
 /* Central Pill Badge */
 .model-glance-result {
-  @apply relative z-10 flex items-center justify-between gap-6 px-6 py-3.5 mt-4 lg:-mt-3 bg-indigo-50/60 border border-indigo-200/80 rounded-full max-w-md w-full shadow-sm;
+  @apply relative z-10 flex items-center justify-between gap-6 px-6 py-3.5 mt-4 lg:-mt-3 bg-navy-50/60 border border-navy-200/80 rounded-full max-w-md w-full shadow-elevation-1;
 }
 .model-glance-result-icon {
   @apply flex items-center justify-center flex-shrink-0;

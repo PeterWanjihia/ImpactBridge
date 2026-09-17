@@ -55,7 +55,7 @@ const props = withDefaults(defineProps<Props>(), {
 }
 
 .ui-icon-badge--success .ui-icon-badge-icon {
-  @apply bg-green-100 text-green-600;
+  @apply bg-success-100 text-success-600;
 }
 
 .ui-icon-badge--sm .ui-icon-badge-icon {

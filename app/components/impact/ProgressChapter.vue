@@ -43,7 +43,7 @@ const props = withDefaults(defineProps<Props>(), {
       <!-- Completed Column -->
       <div class="progress-column">
         <div class="progress-column-header">
-          <CheckCircle class="w-5 h-5 text-green-600" />
+          <CheckCircle class="w-5 h-5 text-success-600" />
           <span class="progress-column-title progress-column-title--completed">Completed</span>
         </div>
         <ul class="progress-column-list">
@@ -104,7 +104,7 @@ const props = withDefaults(defineProps<Props>(), {
 }
 
 .progress-chapter-label-text {
-  @apply text-[11px] font-sans font-bold text-navy tracking-widest uppercase;
+  @apply text-2xs font-sans font-bold text-navy tracking-eyebrow uppercase;
 }
 
 .progress-chapter-content {
@@ -124,7 +124,7 @@ const props = withDefaults(defineProps<Props>(), {
 }
 
 .progress-column-title--completed {
-  @apply text-green-600;
+  @apply text-success-600;
 }
 
 .progress-column-title--target {
@@ -136,7 +136,7 @@ const props = withDefaults(defineProps<Props>(), {
 }
 
 .progress-column-item {
-  @apply text-[13px] font-sans text-gray-700;
+  @apply text-label font-sans text-gray-700;
 }
 
 .progress-arrow {
@@ -148,6 +148,6 @@ const props = withDefaults(defineProps<Props>(), {
 }
 
 .progress-chapter-footer-text {
-  @apply text-[13px] font-sans text-gray-600 leading-snug;
+  @apply text-label font-sans text-gray-600 leading-snug;
 }
 </style>

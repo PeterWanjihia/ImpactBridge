@@ -96,7 +96,7 @@ defineProps<Props>()
 }
 
 .stories-hero-content {
-  @apply relative z-10 w-full py-20 md:py-24;
+  @apply relative z-10 w-full py-section-lg md:py-section-xl;
 }
 
 .stories-hero-grid {
@@ -104,7 +104,7 @@ defineProps<Props>()
 }
 
 .stories-hero-title {
-  @apply text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white leading-tight;
+  @apply text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-tight;
 }
 
 .stories-hero-title-accent {
@@ -125,11 +125,11 @@ defineProps<Props>()
 }
 
 .stories-hero-card {
-  @apply bg-white rounded-xl p-6 shadow-2xl max-w-sm justify-self-end;
+  @apply bg-white rounded-xl p-6 shadow-elevation-1 max-w-sm justify-self-end;
 }
 
 .stories-hero-card-title {
-  @apply text-xl font-serif font-bold text-gray-900 leading-tight;
+  @apply text-xl font-display font-bold text-ink leading-tight;
 }
 
 .stories-hero-card-summary {

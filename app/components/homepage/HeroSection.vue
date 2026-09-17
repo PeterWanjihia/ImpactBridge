@@ -65,7 +65,7 @@ defineProps<{
                   {{ hero.primaryCta.text }}
                 </NuxtLink>
               </UiButton>
-              <UiButton variant="outline-white" class="border-1 border-white-90" size="lg">
+              <UiButton variant="outline-white" class="border-white/80" size="lg">
                 <NuxtLink
                   :to="hero.secondaryCta.to"
                   class="flex items-center gap-2"
@@ -100,7 +100,7 @@ defineProps<{
               <div class="hero-card-stats">
                 <div class="hero-card-stat">
                   <div class="hero-card-stat-icon">
-                    <MapPin class="w-5 h-5 text-blue-600" />
+                    <MapPin class="w-5 h-5 text-cobalt-600" />
                   </div>
                   <div class="hero-card-stat-content">
                     <span class="hero-card-stat-value">{{ hero.campaign.hubsFunded }}</span>
@@ -109,7 +109,7 @@ defineProps<{
                 </div>
                 <div class="hero-card-stat">
                   <div class="hero-card-stat-icon">
-                    <Laptop class="w-5 h-5 text-blue-600" />
+                    <Laptop class="w-5 h-5 text-cobalt-600" />
                   </div>
                   <div class="hero-card-stat-content">
                     <span class="hero-card-stat-value">{{ hero.campaign.devicesCommitted }}</span>
@@ -118,7 +118,7 @@ defineProps<{
                 </div>
                 <div class="hero-card-stat">
                   <div class="hero-card-stat-icon">
-                    <Users class="w-5 h-5 text-blue-600" />
+                    <Users class="w-5 h-5 text-cobalt-600" />
                   </div>
                   <div class="hero-card-stat-content">
                     <span class="hero-card-stat-value">{{ hero.campaign.learnersExpected }}</span>
@@ -129,14 +129,14 @@ defineProps<{
 
               <div class="hero-card-links">
                 <NuxtLink to="/corporate-partnerships" class="hero-card-link">
-                  <FileText class="w-4 h-4 text-blue-600 flex-shrink-0" />
+                  <FileText class="w-4 h-4 text-cobalt-600 flex-shrink-0" />
                   <span>View corporate partnership pack</span>
-                  <ArrowRight class="w-4 h-4 ml-auto text-blue-600" />
+                  <ArrowRight class="w-4 h-4 ml-auto text-cobalt-600" />
                 </NuxtLink>
                 <NuxtLink to="/donate-equipment" class="hero-card-link">
-                  <Box class="w-4 h-4 text-blue-600 flex-shrink-0" />
+                  <Box class="w-4 h-4 text-cobalt-600 flex-shrink-0" />
                   <span>View equipment donation guidelines</span>
-                  <ArrowRight class="w-4 h-4 ml-auto text-blue-600" />
+                  <ArrowRight class="w-4 h-4 ml-auto text-cobalt-600" />
                 </NuxtLink>
               </div>
             </div>
@@ -161,16 +161,16 @@ defineProps<{
   @apply absolute inset-0 bg-gradient-to-r from-navy/90 via-navy/70 to-navy/50;
 }
 .hero-content {
-  @apply relative z-10 w-full py-20 md:py-24;
+  @apply relative z-10 w-full py-section-lg md:py-section-xl;
 }
 .hero-grid {
   @apply grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center;
 }
 .hero-eyebrow {
-  @apply text-sm font-sans font-semibold text-cobalt uppercase tracking-wider mb-4;
+  @apply text-2xs font-sans font-semibold text-cobalt uppercase tracking-eyebrow mb-4;
 }
 .hero-title {
-  @apply text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white leading-tight;
+  @apply text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-tight;
 }
 .hero-title-accent {
   @apply italic text-cobalt relative;
@@ -192,13 +192,13 @@ defineProps<{
   @apply hidden justify-self-end ml-auto lg:block max-w-[300px];
 }
 .hero-card-inner {
-  @apply bg-white rounded-2xl p-6 shadow-2xl border border-gray-100;
+  @apply bg-white rounded-2xl p-6 shadow-elevation-3 border border-gray-100;
 }
 .hero-card-title {
-  @apply text-2xl font-serif font-bold text-gray-900 leading-tight tracking-tight;
+  @apply text-2xl font-display font-bold text-ink leading-tight tracking-tight;
 }
 .hero-card-amount {
-  @apply text-3xl font-sans font-bold text-gray-900 mt-4 leading-none;
+  @apply text-3xl font-sans font-bold text-ink mt-4 leading-none;
 }
 .hero-card-currency {
   @apply font-sans;
@@ -213,22 +213,22 @@ defineProps<{
   @apply flex items-center gap-4 py-3 border-t border-gray-100/80;
 }
 .hero-card-stat-icon {
-  @apply w-12 h-12 flex items-center justify-center bg-blue-50/80 rounded-2xl flex-shrink-0;
+  @apply w-12 h-12 flex items-center justify-center bg-cobalt-50/80 rounded-2xl flex-shrink-0;
 }
 .hero-card-stat-content {
   @apply flex flex-col justify-center;
 }
 .hero-card-stat-value {
-  @apply text-xl font-sans font-bold text-gray-900 leading-tight;
+  @apply text-xl font-sans font-bold text-ink leading-tight;
 }
 .hero-card-stat-label {
-  @apply text-[12px] font-sans text-gray-600 leading-snug mt-0.5;
+  @apply text-xs font-sans text-gray-600 leading-snug mt-0.5;
 }
 .hero-card-links {
   @apply mt-2 pt-4 border-t border-gray-100 space-y-3;
 }
 .hero-card-link {
-  @apply flex items-center gap-2.5 text-[13px] font-sans font-semibold text-blue-600 hover:text-blue-800 transition-colors;
+  @apply flex items-center gap-2.5 text-label font-sans font-semibold text-cobalt-600 hover:text-cobalt-800 transition-colors;
 }
 
 /* Accessibility: focus-visible */

@@ -120,11 +120,11 @@ const steps: PartnershipStep[] = [
 
 <style scoped>
 .process-section {
-  @apply bg-white py-14 md:py-16;
+  @apply bg-white py-section-md md:py-section;
 }
 
 .process-section__title {
-  @apply text-2xl md:text-3xl font-serif font-bold text-[#1a2b4c] mb-12;
+  @apply text-2xl md:text-3xl font-display font-bold text-ink-mid mb-12;
 }
 
 .process-step {
@@ -136,19 +136,19 @@ const steps: PartnershipStep[] = [
 }
 
 .process-step__icon {
-  @apply w-16 h-16 rounded-full bg-[#f0f4ff] text-[#1d4ed8] flex items-center justify-center flex-shrink-0;
+  @apply w-16 h-16 rounded-full bg-cobalt-50 text-cobalt-700 flex items-center justify-center flex-shrink-0;
 }
 
 .process-step__number {
-  @apply absolute -bottom-2 w-5 h-5 rounded-full bg-[#0042e6] text-white text-[11px] font-bold flex items-center justify-center z-10 shadow-sm;
+  @apply absolute -bottom-2 w-5 h-5 rounded-full bg-bridge text-white text-2xs font-bold flex items-center justify-center z-10 shadow-elevation-1;
 }
 
 .process-step__title {
-  @apply mt-2 text-[14px] font-sans font-bold text-[#0f172a] leading-tight;
+  @apply mt-2 text-sm font-sans font-bold text-ink leading-tight;
 }
 
 .process-step__description {
-  @apply mt-2 text-[12px] font-sans leading-snug text-slate-500 max-w-[140px];
+  @apply mt-2 text-xs font-sans leading-snug text-gray-500 max-w-[140px];
 }
 
 .process-connector {
@@ -156,10 +156,10 @@ const steps: PartnershipStep[] = [
 }
 
 .process-connector__line {
-  @apply w-full border-t border-dashed border-blue-300;
+  @apply w-full border-t border-dashed border-cobalt-300;
 }
 
 .process-connector__arrow {
-  @apply text-blue-400 text-xs font-bold -ml-1 -mt-[1px];
+  @apply text-cobalt-400 text-xs font-bold -ml-1 -mt-[1px];
 }
 </style>

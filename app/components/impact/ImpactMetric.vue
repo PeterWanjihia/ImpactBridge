@@ -39,7 +39,7 @@ const props = defineProps<Props>()
 }
 
 .impact-metric-value {
-  @apply text-4xl md:text-5xl font-serif font-bold text-navy;
+  @apply text-4xl md:text-5xl font-display font-bold text-navy;
 }
 
 .impact-metric-prefix {
@@ -63,11 +63,11 @@ const props = defineProps<Props>()
 }
 
 .impact-metric-trend--up {
-  @apply text-green-600;
+  @apply text-success-600;
 }
 
 .impact-metric-trend--down {
-  @apply text-red-600;
+  @apply text-danger-600;
 }
 
 .impact-metric-trend--neutral {

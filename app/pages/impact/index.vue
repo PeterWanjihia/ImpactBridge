@@ -116,22 +116,22 @@ const testimonials = computed(() => overview.value?.testimonials ?? {
 const evidenceItems = computed(() => overview.value?.evidence ?? ([
   {
     icon: 'wrench' as const,
-    iconBg: 'bg-emerald-100',
-    iconColor: 'text-emerald-600',
+    iconBg: 'bg-success-100',
+    iconColor: 'text-success-600',
     observed: 'The original hardware needed greater protection and reliability.',
     changed: 'The hub architecture was refined.',
   },
   {
     icon: 'user' as const,
-    iconBg: 'bg-orange-100',
-    iconColor: 'text-orange-500',
+    iconBg: 'bg-warning-100',
+    iconColor: 'text-warning-500',
     observed: 'Teachers needed more than an initial demonstration.',
     changed: 'Training expanded into guided practice and continued support.',
   },
   {
     icon: 'book' as const,
-    iconBg: 'bg-purple-100',
-    iconColor: 'text-purple-600',
+    iconBg: 'bg-cobalt-100',
+    iconColor: 'text-cobalt-600',
     observed: 'Content needed stronger classroom alignment.',
     changed: 'The content-review and curriculum-alignment process was strengthened.',
   },
@@ -225,7 +225,7 @@ const reportItems = computed(() => overview.value?.reports ?? [
           confidence.
         </p>
         <div class="impact-hero-actions">
-          <UiButton variant="primary" size="lg" class="bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-6 py-3 font-semibold">
+          <UiButton variant="primary" size="lg" class="bg-cobalt-600 hover:bg-cobalt-700 text-white rounded-lg px-6 py-3 font-semibold">
             <NuxtLink to="#early-results" class="flex items-center gap-2">
               <span>Explore the results</span>
               <span>→</span>
@@ -264,9 +264,9 @@ const reportItems = computed(() => overview.value?.reports ?? [
           </div>
 
           <div class="impact-hero-card-footer">
-            <Calendar class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+            <Calendar class="w-5 h-5 text-cobalt-600 flex-shrink-0 mt-0.5" />
             <div class="impact-hero-card-footer-text">
-              <span class="font-bold text-blue-950 block">April – June 2025</span>
+              <span class="font-bold text-cobalt-950 block">April – June 2025</span>
               <span class="text-gray-500 block">Early pilot findings</span>
             </div>
           </div>
@@ -328,15 +328,15 @@ const reportItems = computed(() => overview.value?.reports ?? [
 
 <style scoped>
 .impact-hero-tag {
-  @apply inline-block text-blue-500 font-sans font-bold text-xs tracking-wider uppercase mb-3;
+  @apply inline-block text-cobalt-500 font-sans font-bold text-2xs tracking-eyebrow uppercase mb-3;
 }
 
 .impact-hero-title {
-  @apply text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white leading-[1.15];
+  @apply text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-heading;
 }
 
 .impact-hero-title-accent {
-  @apply italic font-serif text-blue-500;
+  @apply italic font-display text-cobalt-500;
 }
 
 .impact-hero-description {
@@ -349,11 +349,11 @@ const reportItems = computed(() => overview.value?.reports ?? [
 
 /* Pilot Stats Card */
 .impact-hero-card {
-  @apply bg-white rounded-2xl shadow-2xl p-7 w-80;
+  @apply bg-white rounded-2xl shadow-elevation-1 p-7 w-80;
 }
 
 .impact-hero-card-title {
-  @apply text-xs font-sans font-extrabold text-blue-700 tracking-wider uppercase mb-6;
+  @apply text-2xs font-sans font-extrabold text-cobalt-700 tracking-eyebrow uppercase mb-6;
 }
 
 .impact-hero-card-stats {
@@ -366,7 +366,7 @@ const reportItems = computed(() => overview.value?.reports ?? [
 }
 
 .impact-hero-card-stat-icon {
-  @apply flex-shrink-0 w-6 h-6 text-blue-600;
+  @apply flex-shrink-0 w-6 h-6 text-cobalt-600;
 }
 
 .impact-hero-card-stat-content {
@@ -374,7 +374,7 @@ const reportItems = computed(() => overview.value?.reports ?? [
 }
 
 .impact-hero-card-stat-value {
-  @apply text-2xl font-sans font-bold text-blue-900 min-w-[2rem];
+  @apply text-2xl font-sans font-bold text-cobalt-900 min-w-[2rem];
 }
 
 .impact-hero-card-stat-label {
@@ -391,7 +391,7 @@ const reportItems = computed(() => overview.value?.reports ?? [
 
 /* Findings Row - Sections 5 & 6 side by side */
 .findings-row {
-  @apply py-12 md:py-16;
+  @apply py-section-sm md:py-section;
 }
 
 .findings-row-content {

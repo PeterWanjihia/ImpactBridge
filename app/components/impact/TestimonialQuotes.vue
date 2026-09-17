@@ -125,7 +125,7 @@ const props = withDefaults(defineProps<Props>(), {
 }
 
 .testimonial-quotes-label-text {
-  @apply text-sm font-sans font-bold text-navy tracking-widest uppercase;
+  @apply text-2xs font-sans font-bold text-navy tracking-eyebrow uppercase;
 }
 
 .testimonial-quotes-grid {
@@ -133,7 +133,7 @@ const props = withDefaults(defineProps<Props>(), {
 }
 
 .testimonial-card {
-  @apply flex flex-col md:flex-row bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm;
+  @apply flex flex-col md:flex-row bg-white rounded-xl overflow-hidden border border-gray-100 shadow-elevation-1;
 }
 
 .testimonial-card-content {
@@ -145,7 +145,7 @@ const props = withDefaults(defineProps<Props>(), {
 }
 
 .testimonial-card-heading {
-  @apply text-xl md:text-2xl font-serif font-bold text-navy mb-4;
+  @apply text-xl md:text-2xl font-display font-bold text-navy mb-4;
 }
 
 .testimonial-card-heading--teacher {
@@ -153,7 +153,7 @@ const props = withDefaults(defineProps<Props>(), {
 }
 
 .testimonial-card-quote {
-  @apply text-lg font-serif text-gray-800 italic mb-3;
+  @apply text-lg font-display text-gray-800 italic mb-3;
 }
 
 .testimonial-card-description {

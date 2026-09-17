@@ -110,7 +110,7 @@ const impactPoints = [
 }
 
 .partnership-hero__container {
-  @apply relative z-10 py-16 md:py-20 lg:py-24;
+  @apply relative z-10 py-section md:py-section-lg lg:py-section-xl;
 }
 
 .partnership-hero__grid {
@@ -122,19 +122,19 @@ const impactPoints = [
 }
 
 .partnership-hero__eyebrow {
-  @apply inline-block text-teal-300 font-sans font-semibold text-xs tracking-[0.14em] uppercase mb-5;
+  @apply inline-block text-teal-300 font-sans font-semibold text-xs tracking-eyebrow uppercase mb-5;
 }
 
 .partnership-hero__title {
-  @apply text-4xl md:text-5xl font-serif font-bold text-white leading-[1.12];
+  @apply text-4xl md:text-5xl font-display font-bold text-white leading-heading;
 }
 
 .partnership-hero__title-accent {
-  @apply text-blue-400;
+  @apply text-cobalt-400;
 }
 
 .partnership-hero__subtitle {
-  @apply mt-6 text-base md:text-[17px] leading-relaxed text-slate-200 max-w-xl;
+  @apply mt-6 text-base md:text-lead leading-relaxed text-gray-200 max-w-xl;
 }
 
 .partnership-hero__actions {
@@ -157,11 +157,11 @@ const impactPoints = [
 }
 
 .partnership-hero__card {
-  @apply rounded-xl border border-white/10 bg-[#0b1d33]/80 backdrop-blur-sm p-6 lg:p-7;
+  @apply rounded-xl border border-white/10 bg-ink-soft/80 backdrop-blur-sm p-6 lg:p-7;
 }
 
 .partnership-hero__card-icon {
-  @apply w-8 h-8 text-blue-400;
+  @apply w-8 h-8 text-cobalt-400;
 }
 
 .partnership-hero__card-title {
@@ -173,10 +173,10 @@ const impactPoints = [
 }
 
 .partnership-hero__card-item {
-  @apply flex items-center gap-3 text-sm font-sans text-slate-200;
+  @apply flex items-center gap-3 text-sm font-sans text-gray-200;
 }
 
 .partnership-hero__card-check {
-  @apply w-[18px] h-[18px] text-blue-400 flex-shrink-0;
+  @apply w-[18px] h-[18px] text-cobalt-400 flex-shrink-0;
 }
 </style>

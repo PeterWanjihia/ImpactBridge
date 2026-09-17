@@ -32,7 +32,7 @@ const inputId = computed(() => `input-${useId()}`)
       class="ui-input-label"
     >
       {{ label }}
-      <span v-if="required" class="text-red-500">*</span>
+      <span v-if="required" class="text-danger-500">*</span>
     </label>
     <input
       :id="inputId"
@@ -65,10 +65,10 @@ const inputId = computed(() => `input-${useId()}`)
 }
 
 .ui-input--error {
-  @apply border-red-500 focus:ring-red-500 focus:border-red-500;
+  @apply border-danger-500 focus:ring-danger-500 focus:border-danger-500;
 }
 
 .ui-input-error {
-  @apply text-sm text-red-600;
+  @apply text-sm text-danger-600;
 }
 </style>

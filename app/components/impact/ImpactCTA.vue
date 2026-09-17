@@ -61,7 +61,7 @@ withDefaults(defineProps<Props>(), {
 
 <style scoped>
 .impact-cta {
-  @apply py-14 md:py-16 bg-navy;
+  @apply py-section-md md:py-section bg-navy;
 }
 
 .impact-cta-content {
@@ -73,7 +73,7 @@ withDefaults(defineProps<Props>(), {
 }
 
 .impact-cta-title {
-  @apply text-3xl md:text-4xl font-serif font-bold text-white leading-tight;
+  @apply text-3xl md:text-4xl font-display font-bold text-white leading-tight;
 }
 
 .impact-cta-description {

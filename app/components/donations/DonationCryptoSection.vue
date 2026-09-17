@@ -62,7 +62,7 @@ const cryptoIcons: Record<string, string> = {
             <!-- View All Card -->
             <NuxtLink to="/#how-it-works" class="crypto-section__asset crypto-section__asset--more">
               <span class="crypto-section__asset-icon crypto-section__asset-icon--more">
-                <Grid class="w-5 h-5 text-blue-600" />
+                <Grid class="w-5 h-5 text-cobalt-600" />
               </span>
               <span class="crypto-section__asset-copy">
                 <span class="crypto-section__asset-network crypto-section__asset-network--link">
@@ -79,11 +79,11 @@ const cryptoIcons: Record<string, string> = {
 
 <style scoped>
 .crypto-section {
-  @apply py-12 bg-white;
+  @apply py-section-sm bg-white;
 }
 
 .crypto-section__container {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  @apply max-w-container mx-auto px-gutter-sm sm:px-gutter lg:px-gutter-lg;
 }
 
 .crypto-section__grid {
@@ -92,7 +92,7 @@ const cryptoIcons: Record<string, string> = {
 
 /* Copy Column */
 .crypto-section__title {
-  @apply text-3xl font-serif font-bold text-slate-900 leading-snug;
+  @apply text-3xl font-display font-bold text-ink leading-snug;
 }
 
 .crypto-section__title-accent {
@@ -100,20 +100,20 @@ const cryptoIcons: Record<string, string> = {
 }
 
 .crypto-section__description {
-  @apply mt-4 text-sm text-slate-600 leading-relaxed;
+  @apply mt-4 text-sm text-gray-600 leading-relaxed;
 }
 
 .crypto-section__link {
-  @apply mt-6 inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors;
+  @apply mt-6 inline-flex items-center gap-2 text-sm font-semibold text-cobalt-600 hover:text-cobalt-700 transition-colors;
 }
 
 /* Panel Column */
 .crypto-section__panel {
-  @apply rounded-2xl border border-blue-100/80 bg-blue-50/20 p-6 sm:p-8;
+  @apply rounded-2xl border border-cobalt-100/80 bg-cobalt-50/20 p-6 sm:p-8;
 }
 
 .crypto-section__panel-label {
-  @apply text-[11px] font-bold tracking-wider uppercase text-slate-600 mb-5;
+  @apply text-2xs font-bold tracking-eyebrow uppercase text-gray-600 mb-5;
 }
 
 .crypto-section__assets {
@@ -121,7 +121,7 @@ const cryptoIcons: Record<string, string> = {
 }
 
 .crypto-section__asset {
-  @apply flex items-center gap-3 p-3.5 rounded-xl border border-slate-200/80 bg-white text-left transition-all hover:border-slate-300 hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500;
+  @apply flex items-center gap-3 p-3.5 rounded-xl border border-gray-200/80 bg-white text-left transition-all hover:border-gray-300 hover:shadow-elevation-1 focus:outline-none focus:ring-2 focus:ring-cobalt-500;
 }
 
 .crypto-section__asset-icon {
@@ -129,7 +129,7 @@ const cryptoIcons: Record<string, string> = {
 }
 
 .crypto-section__asset-icon--more {
-  @apply bg-blue-50 w-8 h-8 rounded-full flex items-center justify-center;
+  @apply bg-cobalt-50 w-8 h-8 rounded-full flex items-center justify-center;
 }
 
 .crypto-section__asset-copy {
@@ -137,14 +137,14 @@ const cryptoIcons: Record<string, string> = {
 }
 
 .crypto-section__asset-symbol {
-  @apply text-xs font-bold text-slate-900;
+  @apply text-xs font-bold text-ink;
 }
 
 .crypto-section__asset-network {
-  @apply text-[11px] font-medium text-slate-500 mt-1;
+  @apply text-2xs font-medium text-gray-500 mt-1;
 }
 
 .crypto-section__asset-network--link {
-  @apply text-xs font-semibold text-slate-800 leading-tight;
+  @apply text-xs font-semibold text-gray-800 leading-tight;
 }
 </style>

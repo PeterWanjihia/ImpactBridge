@@ -33,7 +33,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 <style scoped>
 .cta-section {
-  @apply py-16 md:py-20;
+  @apply py-section md:py-section-lg;
 }
 
 .cta-section--primary {
@@ -49,7 +49,7 @@ const props = withDefaults(defineProps<Props>(), {
 }
 
 .cta-section-title {
-  @apply text-3xl md:text-4xl font-serif font-bold;
+  @apply text-3xl md:text-4xl font-display font-bold;
 }
 
 .cta-section-description {

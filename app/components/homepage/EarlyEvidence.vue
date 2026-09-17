@@ -27,7 +27,7 @@ defineProps<{
 </script>
 
 <template>
-  <LayoutSection class="bg-white py-12 lg:py-16">
+  <LayoutSection class="bg-white py-section-sm lg:py-section">
     <LayoutContainer>
       <h2 class="evidence-title">{{ evidence.title }}</h2>
 
@@ -96,61 +96,61 @@ defineProps<{
 
 <style scoped>
 .evidence-title {
-  @apply text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-6 tracking-tight;
+  @apply text-3xl md:text-4xl font-display font-bold text-ink mb-6 tracking-tight;
 }
 .evidence-grid {
   @apply grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch;
 }
 .evidence-stats-card {
-  @apply bg-[#f0f5fe] rounded-2xl p-6 md:p-8 flex flex-col justify-between h-full;
+  @apply bg-cobalt-50 rounded-2xl p-6 md:p-8 flex flex-col justify-between h-full;
 }
 .evidence-pilot-label {
-  @apply flex items-center gap-2 text-[11px] font-sans font-bold text-blue-500 tracking-wider uppercase mb-6;
+  @apply flex items-center gap-2 text-2xs font-sans font-bold text-cobalt-500 tracking-eyebrow uppercase mb-6;
 }
 .evidence-pilot-dot {
-  @apply text-blue-400;
+  @apply text-cobalt-400;
 }
 .evidence-stats {
   @apply grid grid-cols-5 gap-2.5 my-auto;
 }
 .evidence-stat-tile {
-  @apply bg-white rounded-xl p-3 md:py-5 md:px-3 text-center flex flex-col items-center justify-between shadow-sm min-h-[120px];
+  @apply bg-white rounded-xl p-3 md:py-5 md:px-3 text-center flex flex-col items-center justify-between shadow-elevation-1 min-h-[120px];
 }
 .evidence-stat-value {
-  @apply text-2xl md:text-3xl font-serif font-bold text-blue-700 leading-none mb-2;
+  @apply text-2xl md:text-3xl font-display font-bold text-cobalt-700 leading-none mb-2;
 }
 .evidence-stat-label {
-  @apply text-[11px] font-sans text-gray-600 leading-snug font-medium max-w-[85px] mx-auto;
+  @apply text-2xs font-sans text-gray-600 leading-snug font-medium max-w-[85px] mx-auto;
 }
 .evidence-link {
-  @apply mt-6 inline-flex items-center text-[13px] font-sans font-bold text-blue-600 hover:text-blue-800 transition-colors;
+  @apply mt-6 inline-flex items-center text-label font-sans font-bold text-cobalt-600 hover:text-cobalt-800 transition-colors;
 }
 .evidence-testimonial {
-  @apply relative rounded-2xl overflow-hidden min-h-[360px] flex items-center p-6 md:p-8 bg-gray-900 text-white;
+  @apply relative rounded-2xl overflow-hidden min-h-[360px] flex items-center p-6 md:p-8 bg-ink text-white;
 }
 .evidence-testimonial-bg {
   @apply absolute inset-0 w-full h-full object-cover object-right z-0;
 }
 .evidence-testimonial-overlay {
-  @apply absolute inset-0 bg-gradient-to-r from-[#030d1a] via-[#030d1a]/80 to-transparent z-10;
+  @apply absolute inset-0 bg-gradient-to-r from-ink-deep via-ink-deep/80 to-transparent z-10;
 }
 .evidence-testimonial-inner {
   @apply relative z-20 max-w-[65%] flex flex-col justify-center;
 }
 .evidence-quote {
-  @apply text-2xl md:text-3xl font-serif font-bold text-white leading-tight tracking-tight;
+  @apply text-2xl md:text-3xl font-display font-bold text-white leading-tight tracking-tight;
 }
 .evidence-attribution {
   @apply mt-2 mb-4;
 }
 .evidence-author {
-  @apply text-[13px] font-sans font-semibold text-gray-300;
+  @apply text-label font-sans font-semibold text-gray-300;
 }
 .evidence-story {
-  @apply text-[12px] font-sans text-gray-300 leading-relaxed max-w-[280px];
+  @apply text-xs font-sans text-gray-300 leading-relaxed max-w-[280px];
 }
 .evidence-story-link {
-  @apply mt-6 inline-flex items-center text-[13px] font-sans font-bold text-white hover:underline transition-all;
+  @apply mt-6 inline-flex items-center text-label font-sans font-bold text-white hover:underline transition-all;
 }
 
 /* Accessibility & touch targets */

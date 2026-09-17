@@ -31,7 +31,7 @@ defineProps<{
 </script>
 
 <template>
-  <LayoutSection class="bg-white py-12 lg:py-16">
+  <LayoutSection class="bg-white py-section-sm lg:py-section">
     <LayoutContainer>
       <h2 class="ways-title">{{ waysToGive.title }}</h2>
 
@@ -40,8 +40,8 @@ defineProps<{
         <div class="ways-card">
           <div class="ways-card-content">
             <div class="ways-card-header">
-              <Heart class="w-6 h-6 text-blue-600" />
-              <h3 class="ways-card-title text-blue-600">
+              <Heart class="w-6 h-6 text-cobalt-600" />
+              <h3 class="ways-card-title text-cobalt-600">
                 {{ waysToGive.individual.title }}
               </h3>
             </div>
@@ -54,7 +54,7 @@ defineProps<{
                 :key="i"
                 class="ways-card-item"
               >
-                <CheckCircle2 class="w-4 h-4 text-blue-600 flex-shrink-0" />
+                <CheckCircle2 class="w-4 h-4 text-cobalt-600 flex-shrink-0" />
                 <span>{{ item }}</span>
               </li>
             </ul>
@@ -80,8 +80,8 @@ defineProps<{
         <div class="ways-card">
           <div class="ways-card-content">
             <div class="ways-card-header">
-              <Building2 class="w-6 h-6 text-[#0d5c45]" />
-              <h3 class="ways-card-title text-[#0d5c45]">
+              <Building2 class="w-6 h-6 text-teal-900" />
+              <h3 class="ways-card-title text-teal-900">
                 {{ waysToGive.corporate.title }}
               </h3>
             </div>
@@ -94,7 +94,7 @@ defineProps<{
                 :key="i"
                 class="ways-card-item"
               >
-                <CheckCircle2 class="w-4 h-4 text-[#0d5c45] flex-shrink-0" />
+                <CheckCircle2 class="w-4 h-4 text-teal-900 flex-shrink-0" />
                 <span>{{ item }}</span>
               </li>
             </ul>
@@ -125,13 +125,13 @@ defineProps<{
 
 <style scoped>
 .ways-title {
-  @apply text-3xl md:text-4xl font-serif font-bold text-gray-900 text-center mb-10 tracking-tight;
+  @apply text-3xl md:text-4xl font-display font-bold text-ink text-center mb-10 tracking-tight;
 }
 .ways-grid {
   @apply grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch;
 }
 .ways-card {
-  @apply relative bg-white border border-gray-200/80 rounded-2xl overflow-hidden flex flex-col md:flex-row shadow-sm min-h-[380px];
+  @apply relative bg-white border border-gray-200/80 rounded-2xl overflow-hidden flex flex-col md:flex-row shadow-elevation-1 min-h-[380px];
 }
 .ways-card-content {
   @apply relative z-20 flex-1 p-6 md:p-8 flex flex-col justify-between max-w-full md:max-w-[62%];
@@ -140,28 +140,28 @@ defineProps<{
   @apply flex items-center gap-2.5 mb-2;
 }
 .ways-card-title {
-  @apply text-xl font-serif font-bold tracking-tight;
+  @apply text-xl font-display font-bold tracking-tight;
 }
 .ways-card-description {
-  @apply text-[13px] font-sans text-gray-600 leading-snug mb-5;
+  @apply text-label font-sans text-gray-600 leading-snug mb-5;
 }
 .ways-card-list {
   @apply space-y-2.5 mb-4;
 }
 .ways-card-item {
-  @apply flex items-center gap-2.5 text-[12px] font-sans font-medium text-gray-800;
+  @apply flex items-center gap-2.5 text-xs font-sans font-medium text-gray-800;
 }
 .ways-card-note {
-  @apply text-[11px] font-sans text-gray-500 leading-relaxed mb-4;
+  @apply text-2xs font-sans text-gray-500 leading-relaxed mb-4;
 }
 .ways-btn {
-  @apply inline-flex items-center justify-center px-5 py-2.5 rounded-full text-[13px] font-sans font-semibold text-white transition-all whitespace-nowrap self-start mt-auto;
+  @apply inline-flex items-center justify-center px-5 py-2.5 rounded-full text-label font-sans font-semibold text-white transition-all whitespace-nowrap self-start mt-auto;
 }
 .ways-btn-blue {
-  @apply bg-blue-600 hover:bg-blue-700;
+  @apply bg-cobalt-600 hover:bg-cobalt-700;
 }
 .ways-btn-green {
-  @apply bg-[#0d5c45] hover:bg-[#094231];
+  @apply bg-teal-900 hover:bg-teal-950;
 }
 .ways-card-image-wrap {
   @apply relative md:absolute md:right-0 md:top-0 md:bottom-0 md:w-[48%] h-48 md:h-full z-10 overflow-hidden;

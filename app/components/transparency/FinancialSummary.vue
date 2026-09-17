@@ -2,18 +2,23 @@
 import { PiggyBank, Wallet, TrendingUp, ArrowRight } from '@lucide/vue'
 import type { Component } from 'vue'
 import type { TransparencyFinancials } from '~/types'
+import { chartSeriesByMeaning } from '~/utils/designTokens'
 
 const props = defineProps<{
   financials: TransparencyFinancials
 }>()
 
-// Slice colours (RGB) for the SVG donut stroke
-const sliceColors: Record<string, string> = {
-  cobalt: '#2563eb',
-  teal: '#0d9488',
-  purple: '#7c3aed',
-  amber: '#f59e0b',
+// Slice colours for the donut stroke - sourced from the design tokens so the
+// chart can never drift from the palette declared in tailwind.config.ts
+const sliceColors: Record<TransparencyFinancials['spend'][number]['color'], string> = {
+  cobalt: chartSeriesByMeaning.cobalt,
+  teal: chartSeriesByMeaning.teal,
+  aqua: chartSeriesByMeaning.aqua,
+  warning: chartSeriesByMeaning.warning,
 }
+
+/** Fallback for any slice whose colour key is not recognised. */
+const defaultSliceColor = sliceColors.cobalt
 
 // Donut geometry
 const radius = 64
@@ -70,7 +75,7 @@ const headlineItems = computed(() => [
                   cy="80"
                   :r="radius"
                   fill="none"
-                  :stroke="sliceColors[slice.color] ?? '#2563eb'"
+                  :stroke="sliceColors[slice.color] ?? defaultSliceColor"
                   stroke-width="22"
                   :stroke-dasharray="sliceDash(slice.percentage)"
                   :stroke-dashoffset="sliceOffset(index)"
@@ -89,7 +94,7 @@ const headlineItems = computed(() => [
             <li v-for="slice in financials.spend" :key="slice.label" class="fin-legend__item">
               <span
                 class="fin-legend__dot"
-                :style="{ backgroundColor: sliceColors[slice.color] ?? '#2563eb' }"
+                :style="{ backgroundColor: sliceColors[slice.color] ?? defaultSliceColor }"
               />
               <span class="fin-legend__label">{{ slice.label }}</span>
               <span class="fin-legend__value">{{ slice.percentage }}%</span>
@@ -118,7 +123,7 @@ const headlineItems = computed(() => [
 
 <style scoped>
 .fin-section {
-  @apply bg-white py-14 md:py-16 border-b border-slate-100;
+  @apply bg-white py-section-md md:py-section border-b border-gray-100;
 }
 
 .fin-header {
@@ -126,20 +131,20 @@ const headlineItems = computed(() => [
 }
 
 .fin-header__title {
-  @apply text-2xl md:text-3xl font-serif font-bold text-slate-900;
+  @apply text-2xl md:text-3xl font-display font-bold text-ink;
 }
 
 .fin-header__description {
-  @apply mt-3 text-sm font-sans leading-relaxed text-slate-500 max-w-md;
+  @apply mt-3 text-sm font-sans leading-relaxed text-gray-500 max-w-md;
 }
 
 .fin-header__link {
-  @apply mt-3 inline-flex items-center gap-2 text-sm font-sans font-bold text-blue-600 hover:text-blue-700 hover:underline;
+  @apply mt-3 inline-flex items-center gap-2 text-sm font-sans font-bold text-cobalt-600 hover:text-cobalt-700 hover:underline;
 }
 
 /* Card */
 .fin-card {
-  @apply flex flex-col lg:flex-row gap-8 lg:gap-12 rounded-2xl border border-slate-200 bg-slate-50/60 p-6 md:p-8;
+  @apply flex flex-col lg:flex-row gap-8 lg:gap-12 rounded-2xl border border-gray-200 bg-gray-50/60 p-6 md:p-8;
 }
 
 .fin-card__main {
@@ -160,15 +165,15 @@ const headlineItems = computed(() => [
 }
 
 .fin-donut__year {
-  @apply text-lg font-sans font-bold text-slate-900 leading-none;
+  @apply text-lg font-sans font-bold text-ink leading-none;
 }
 
 .fin-donut__note {
-  @apply mt-1 text-[10px] font-sans text-slate-500 leading-tight max-w-[80px];
+  @apply mt-1 text-2xs font-sans text-gray-500 leading-tight max-w-[80px];
 }
 
 .fin-donut__amount {
-  @apply mt-1 text-xs font-sans font-bold text-slate-900;
+  @apply mt-1 text-xs font-sans font-bold text-ink;
 }
 
 /* Legend */
@@ -185,11 +190,11 @@ const headlineItems = computed(() => [
 }
 
 .fin-legend__label {
-  @apply text-[13px] font-sans text-slate-700 leading-snug;
+  @apply text-label font-sans text-gray-700 leading-snug;
 }
 
 .fin-legend__value {
-  @apply ml-auto text-[13px] font-sans font-semibold text-slate-900 tabular-nums;
+  @apply ml-auto text-label font-sans font-semibold text-ink tabular-nums;
 }
 
 /* Headline figures */
@@ -198,7 +203,7 @@ const headlineItems = computed(() => [
 }
 
 .fin-headline {
-  @apply flex items-center gap-4 rounded-xl border border-slate-200 bg-white p-4;
+  @apply flex items-center gap-4 rounded-xl border border-gray-200 bg-white p-4;
 }
 
 .fin-headline__icon {
@@ -207,15 +212,15 @@ const headlineItems = computed(() => [
 }
 
 .fin-headline__label {
-  @apply text-[11px] font-sans text-slate-500 leading-tight;
+  @apply text-2xs font-sans text-gray-500 leading-tight;
 }
 
 .fin-headline__value {
-  @apply mt-0.5 text-lg font-sans font-bold text-slate-900 tabular-nums;
+  @apply mt-0.5 text-lg font-sans font-bold text-ink tabular-nums;
 }
 
 /* Disclaimer */
 .fin-disclaimer {
-  @apply mt-4 text-[11px] font-sans text-slate-400;
+  @apply mt-4 text-2xs font-sans text-gray-400;
 }
 </style>

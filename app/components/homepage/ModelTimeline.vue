@@ -27,7 +27,7 @@ defineProps<{
             <div v-for="(step, index) in steps" :key="index" class="model-step">
               <div class="model-step-wrapper">
                 <div class="model-step-icon-badge">
-                  <component :is="iconMap[step.iconKey]" class="w-6 h-6 text-blue-600" />
+                  <component :is="iconMap[step.iconKey]" class="w-6 h-6 text-cobalt-600" />
                 </div>
                 <ArrowRight
                   v-if="index < steps.length - 1"
@@ -48,16 +48,16 @@ defineProps<{
 
 <style scoped>
 .model-section {
-  @apply relative bg-white py-12 lg:py-16;
+  @apply relative bg-white py-section-sm lg:py-section;
 }
 .model-header {
   @apply text-center mb-16;
 }
 .model-eyebrow {
-  @apply text-xs font-sans font-bold text-blue-600 uppercase tracking-widest mb-2;
+  @apply text-2xs font-sans font-bold text-cobalt-600 uppercase tracking-eyebrow mb-2;
 }
 .model-title {
-  @apply text-3xl md:text-4xl font-serif font-bold text-gray-900 tracking-tight;
+  @apply text-3xl md:text-4xl font-display font-bold text-ink tracking-tight;
 }
 .model-timeline {
   @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-4 items-start w-full;
@@ -69,18 +69,18 @@ defineProps<{
   @apply relative flex items-center justify-center w-full mb-5;
 }
 .model-step-icon-badge {
-  @apply w-16 h-16 rounded-full bg-blue-50/80 flex items-center justify-center flex-shrink-0 transition-transform duration-200 hover:scale-105;
+  @apply w-16 h-16 rounded-full bg-cobalt-50/80 flex items-center justify-center flex-shrink-0 transition-transform duration-200 hover:scale-105;
 }
 .model-step-arrow {
-  @apply hidden lg:block w-4 h-4 text-blue-500 absolute -right-2 top-1/2 -translate-y-1/2 z-10;
+  @apply hidden lg:block w-4 h-4 text-cobalt-500 absolute -right-2 top-1/2 -translate-y-1/2 z-10;
 }
 .model-step-title {
-  @apply text-[15px] font-sans font-bold text-gray-900 leading-snug;
+  @apply text-body font-sans font-bold text-ink leading-snug;
 }
 .model-step-number {
-  @apply font-bold text-gray-900;
+  @apply font-bold text-ink;
 }
 .model-step-description {
-  @apply mt-2 text-[13px] font-sans text-gray-600 leading-relaxed max-w-[200px] mx-auto;
+  @apply mt-2 text-label font-sans text-gray-600 leading-relaxed max-w-[200px] mx-auto;
 }
 </style>

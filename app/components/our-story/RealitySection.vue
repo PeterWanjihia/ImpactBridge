@@ -96,7 +96,7 @@ const realityConstraints: Array<{ icon: Component; label: string }> = [
 
 <style scoped>
 .reality-section {
-  @apply py-12 md:py-16 bg-slate-50/50;
+  @apply py-section-sm md:py-section bg-gray-50/50;
 }
 .reality-grid {
   @apply grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center;
@@ -104,7 +104,7 @@ const realityConstraints: Array<{ icon: Component; label: string }> = [
 
 /* Interactive Media Column */
 .reality-media {
-  @apply lg:col-span-5 relative overflow-hidden rounded-2xl shadow-md bg-slate-900 aspect-[4/3];
+  @apply lg:col-span-5 relative overflow-hidden rounded-2xl shadow-elevation-1 bg-ink aspect-[4/3];
 }
 .reality-video {
   @apply w-full h-full object-cover;
@@ -116,7 +116,7 @@ const realityConstraints: Array<{ icon: Component; label: string }> = [
   @apply absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition-colors cursor-pointer;
 }
 .reality-play-btn {
-  @apply w-16 h-16 rounded-full bg-white text-cobalt flex items-center justify-center shadow-xl transition-transform;
+  @apply w-16 h-16 rounded-full bg-white text-cobalt flex items-center justify-center shadow-elevation-1 transition-transform;
 }
 .group:hover .reality-play-btn {
   transform: scale(1.1);
@@ -133,26 +133,26 @@ const realityConstraints: Array<{ icon: Component; label: string }> = [
   @apply w-6 h-6 rounded-full border border-cobalt/30 text-cobalt text-xs font-semibold flex items-center justify-center;
 }
 .reality-eyebrow-label {
-  @apply text-xs font-bold tracking-wider text-cobalt uppercase;
+  @apply text-2xs font-bold tracking-eyebrow text-cobalt uppercase;
 }
 .reality-title {
-  @apply text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-slate-900 leading-tight;
+  @apply text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-ink leading-tight;
 }
 .reality-description {
-  @apply mt-4 text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl;
+  @apply mt-4 text-base sm:text-lg text-gray-600 leading-relaxed max-w-2xl;
 }
 
 /* Key Constraints Grid */
 .reality-constraints {
-  @apply mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 pt-6 border-t border-slate-200/80;
+  @apply mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 pt-6 border-t border-gray-200/80;
 }
 .reality-constraint {
   @apply flex items-start gap-3;
 }
 .reality-constraint-icon {
-  @apply p-2 rounded-lg bg-blue-50/80 text-cobalt shrink-0;
+  @apply p-2 rounded-lg bg-cobalt-50/80 text-cobalt shrink-0;
 }
 .reality-constraint-label {
-  @apply text-sm font-medium text-slate-700 leading-snug pt-1;
+  @apply text-sm font-medium text-gray-700 leading-snug pt-1;
 }
 </style>

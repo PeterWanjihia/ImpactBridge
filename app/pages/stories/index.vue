@@ -329,7 +329,7 @@ const ctaData: StoriesCtaData = {
     />
 
     <!-- Stories Grid -->
-    <div v-if="isFiltering" class="py-16 text-center font-sans text-gray-500">
+    <div v-if="isFiltering" class="py-section text-center font-sans text-gray-500">
       Loading stories…
     </div>
     <template v-else>

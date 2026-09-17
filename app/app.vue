@@ -4,7 +4,7 @@ useHead({
     lang: 'en'
   },
   bodyAttrs: {
-    class: 'font-sans text-gray-900 antialiased'
+    class: 'bg-white font-sans text-ink antialiased'
   }
 })
 </script>
@@ -27,24 +27,12 @@ useHead({
 @tailwind utilities;
 
 @layer base {
-  :root {
-    /* Impact Bridge Design Tokens */
-    --color-navy: #1e3a5f;
-    --color-cobalt: #2563eb;
-    --color-teal: #0d9488;
-    
-    /* Typography */
-    --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
-    --font-sans: Inter, Arial, 'Helvetica Neue', sans-serif;
-  }
-
   body {
-    @apply bg-white text-gray-900;
-    font-family: var(--font-sans);
+    @apply bg-white text-ink;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-serif);
+    @apply font-display;
   }
 
   /* Focus styles for accessibility */

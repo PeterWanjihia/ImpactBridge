@@ -60,11 +60,11 @@ const items: TrustItem[] = [
 
 <style scoped>
 .trust-strip {
-  @apply bg-slate-50 border-b border-slate-200 py-12;
+  @apply bg-gray-50 border-b border-gray-200 py-section-sm;
 }
 
 .trust-strip__eyebrow {
-  @apply text-center text-xs font-sans font-semibold tracking-[0.16em] uppercase text-navy-600 mb-10;
+  @apply text-center text-xs font-sans font-semibold tracking-eyebrow-wide uppercase text-navy-600 mb-10;
 }
 
 .trust-strip__grid {
@@ -76,7 +76,7 @@ const items: TrustItem[] = [
 }
 
 .trust-strip__icon {
-  @apply w-12 h-12 flex-shrink-0 flex items-center justify-center rounded-full bg-white border border-slate-200 text-navy-600 shadow-sm;
+  @apply w-12 h-12 flex-shrink-0 flex items-center justify-center rounded-full bg-white border border-gray-200 text-navy-600 shadow-elevation-1;
 }
 
 .trust-strip__title {
@@ -84,6 +84,6 @@ const items: TrustItem[] = [
 }
 
 .trust-strip__description {
-  @apply mt-1 text-[13px] font-sans leading-snug text-slate-500 max-w-[200px];
+  @apply mt-1 text-label font-sans leading-snug text-gray-500 max-w-[200px];
 }
 </style>

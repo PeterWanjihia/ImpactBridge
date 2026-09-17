@@ -58,7 +58,7 @@ const steps: StepItem[] = [
 </script>
 
 <template>
-  <section class="py-12 md:py-16 bg-white">
+  <section class="py-section-sm md:py-section bg-white">
     <LayoutContainer>
       <!-- Section Header -->
       <div class="max-w-3xl mb-12 md:mb-16">
@@ -66,14 +66,14 @@ const steps: StepItem[] = [
           <span class="w-6 h-6 rounded-full border border-cobalt/30 text-cobalt text-xs font-bold flex items-center justify-center">
             03
           </span>
-          <span class="text-xs font-bold tracking-wider text-cobalt uppercase">
+          <span class="text-2xs font-bold tracking-eyebrow text-cobalt uppercase">
             A SOLUTION BUILT AROUND TEACHERS
           </span>
         </div>
 
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-slate-900 leading-[1.15]">
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-ink leading-heading">
           Not a computer delivered to a school.<br />
-          <span class="text-slate-900">A learning system built around a teacher.</span>
+          <span class="text-ink">A learning system built around a teacher.</span>
         </h2>
       </div>
 
@@ -88,7 +88,7 @@ const steps: StepItem[] = [
           <div class="flex-1 flex flex-col mb-6">
             <!-- Header: Circular Icon + Step Link Arrow -->
             <div class="flex items-center justify-between mb-4">
-              <div class="w-12 h-12 rounded-full border border-blue-100 bg-blue-50/50 flex items-center justify-center text-cobalt shrink-0">
+              <div class="w-12 h-12 rounded-full border border-cobalt-100 bg-cobalt-50/50 flex items-center justify-center text-cobalt shrink-0">
                 <component :is="step.icon" class="w-5 h-5 text-cobalt" />
               </div>
 
@@ -102,25 +102,25 @@ const steps: StepItem[] = [
             </div>
 
             <!-- Title & Optional Tag -->
-            <h3 class="text-base font-bold text-slate-900 mb-2 flex items-center gap-1.5 flex-wrap">
+            <h3 class="text-base font-bold text-ink mb-2 flex items-center gap-1.5 flex-wrap">
               <span>{{ step.title }}</span>
               <span 
                 v-if="step.priceTag" 
-                class="text-xs font-semibold text-slate-500 font-sans"
+                class="text-xs font-semibold text-gray-500 font-sans"
               >
                 ({{ step.priceTag }})
               </span>
             </h3>
 
             <!-- Description -->
-            <p class="text-xs text-slate-600 leading-relaxed font-sans">
+            <p class="text-xs text-gray-600 leading-relaxed font-sans">
               {{ step.description }}
             </p>
           </div>
 
           <!-- Bottom Media Image & Link (Aligned at bottom) -->
           <div class="mt-auto">
-            <div class="rounded-2xl overflow-hidden shadow-sm aspect-[4/3] bg-slate-100 mb-4">
+            <div class="rounded-2xl overflow-hidden shadow-elevation-1 aspect-[4/3] bg-gray-100 mb-4">
               <img
                 :src="step.image"
                 :alt="step.alt"

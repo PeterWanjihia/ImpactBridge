@@ -38,7 +38,7 @@ const checkboxId = computed(() => `checkbox-${useId()}`)
         class="ui-checkbox-label"
       >
         {{ label }}
-        <span v-if="required" class="text-red-500">*</span>
+        <span v-if="required" class="text-danger-500">*</span>
       </label>
     </div>
     <p v-if="error" class="ui-checkbox-error">{{ error }}</p>
@@ -63,6 +63,6 @@ const checkboxId = computed(() => `checkbox-${useId()}`)
 }
 
 .ui-checkbox-error {
-  @apply text-sm text-red-600;
+  @apply text-sm text-danger-600;
 }
 </style>

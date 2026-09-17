@@ -29,21 +29,21 @@ const ways: PartnershipWay[] = [
     description:
       'Invest in Champion Teacher programmes, training materials and ongoing professional support.',
     icon: Users,
-    iconClass: 'bg-emerald-600 text-white',
+    iconClass: 'bg-success-600 text-white',
   },
   {
     title: 'Donate suitable technology',
     description:
       'Provide laptops, projectors or other equipment that meets our suitability criteria.',
     icon: Monitor,
-    iconClass: 'bg-violet-500 text-white',
+    iconClass: 'bg-cobalt-500 text-white',
   },
   {
     title: 'Contribute expertise & services',
     description:
       'Share professional skills in areas like tech, content, monitoring, logistics or strategy.',
     icon: UserRound,
-    iconClass: 'bg-orange-500 text-white',
+    iconClass: 'bg-warning-500 text-white',
   },
   {
     title: 'Mobilise your employees',
@@ -91,15 +91,15 @@ const ways: PartnershipWay[] = [
 
 <style scoped>
 .ways-section {
-  @apply bg-white py-14 md:py-16;
+  @apply bg-white py-section-md md:py-section;
 }
 
 .ways-section__title {
-  @apply text-2xl md:text-3xl font-serif font-bold text-slate-900;
+  @apply text-2xl md:text-3xl font-display font-bold text-ink;
 }
 
 .ways-section__subtitle {
-  @apply mt-2 text-sm font-sans text-slate-500;
+  @apply mt-2 text-sm font-sans text-gray-500;
 }
 
 .ways-section__grid {
@@ -107,8 +107,8 @@ const ways: PartnershipWay[] = [
 }
 
 .ways-card {
-  @apply flex flex-col items-center text-center bg-white border border-slate-200 rounded-xl p-6;
-  @apply transition-shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-cobalt-500;
+  @apply flex flex-col items-center text-center bg-white border border-gray-200 rounded-xl p-6;
+  @apply transition-shadow hover:shadow-elevation-1 focus:outline-none focus:ring-2 focus:ring-cobalt-500;
 }
 
 .ways-card__icon {
@@ -116,14 +116,14 @@ const ways: PartnershipWay[] = [
 }
 
 .ways-card__title {
-  @apply mt-5 text-base font-sans font-bold text-slate-900 leading-snug;
+  @apply mt-5 text-base font-sans font-bold text-ink leading-snug;
 }
 
 .ways-card__description {
-  @apply mt-3 text-[13px] font-sans leading-relaxed text-slate-500;
+  @apply mt-3 text-label font-sans leading-relaxed text-gray-500;
 }
 
 .ways-card__link {
-  @apply mt-auto pt-5 inline-flex items-center gap-1.5 text-[13px] font-sans font-semibold text-cobalt-600;
+  @apply mt-auto pt-5 inline-flex items-center gap-1.5 text-label font-sans font-semibold text-cobalt-600;
 }
 </style>

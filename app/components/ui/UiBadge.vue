@@ -32,19 +32,19 @@ const props = withDefaults(defineProps<Props>(), {
 }
 
 .ui-badge--success {
-  @apply bg-green-100 text-green-800;
+  @apply bg-success-100 text-success-800;
 }
 
 .ui-badge--warning {
-  @apply bg-orange-100 text-orange-800;
+  @apply bg-warning-100 text-warning-800;
 }
 
 .ui-badge--error {
-  @apply bg-red-100 text-red-800;
+  @apply bg-danger-100 text-danger-800;
 }
 
 .ui-badge--info {
-  @apply bg-blue-100 text-blue-800;
+  @apply bg-cobalt-100 text-cobalt-800;
 }
 
 .ui-badge--teal {

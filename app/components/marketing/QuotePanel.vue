@@ -30,7 +30,7 @@ const props = defineProps<Props>()
 
 <style scoped>
 .quote-panel {
-  @apply py-16 bg-gray-50;
+  @apply py-section bg-gray-50;
 }
 
 .quote-panel-content {
@@ -38,7 +38,7 @@ const props = defineProps<Props>()
 }
 
 .quote-panel-text {
-  @apply text-2xl md:text-3xl font-serif text-navy leading-relaxed;
+  @apply text-2xl md:text-3xl font-display text-navy leading-relaxed;
 }
 
 .quote-panel-attribution {

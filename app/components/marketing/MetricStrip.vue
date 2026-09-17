@@ -29,7 +29,7 @@ const props = defineProps<Props>()
 
 <style scoped>
 .metric-strip {
-  @apply py-12 bg-navy;
+  @apply py-section-sm bg-navy;
 }
 
 .metric-strip-grid {
@@ -41,7 +41,7 @@ const props = defineProps<Props>()
 }
 
 .metric-strip-value {
-  @apply text-3xl md:text-4xl font-serif font-bold text-white;
+  @apply text-3xl md:text-4xl font-display font-bold text-white;
 }
 
 .metric-strip-suffix {

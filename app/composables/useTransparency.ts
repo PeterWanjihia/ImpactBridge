@@ -54,8 +54,8 @@ const DEFAULTS: TransparencyData = {
     spend: [
       { label: 'Programmes (Learning Hubs, Training & Support)', percentage: 72, color: 'cobalt' },
       { label: 'Equipment & Content', percentage: 14, color: 'teal' },
-      { label: 'Operations & Administration', percentage: 8, color: 'purple' },
-      { label: 'Fundraising', percentage: 6, color: 'amber' },
+      { label: 'Operations & Administration', percentage: 8, color: 'aqua' },
+      { label: 'Fundraising', percentage: 6, color: 'warning' },
     ],
     headline: {
       totalIncome: 436210,

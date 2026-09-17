@@ -99,7 +99,7 @@ function resolveIcon(iconName?: string): Component {
 }
 
 .still-learning-label-text {
-  @apply text-[11px] font-sans font-bold text-white tracking-widest uppercase;
+  @apply text-2xs font-sans font-bold text-white tracking-eyebrow uppercase;
 }
 
 .still-learning-grid {
@@ -115,11 +115,11 @@ function resolveIcon(iconName?: string): Component {
 }
 
 .learning-card-question {
-  @apply text-[13px] font-sans font-semibold text-white leading-snug mb-1;
+  @apply text-label font-sans font-semibold text-white leading-snug mb-1;
 }
 
 .learning-card-description {
-  @apply text-[12px] font-sans text-gray-400 leading-snug;
+  @apply text-xs font-sans text-gray-400 leading-snug;
 }
 
 .still-learning-footer {

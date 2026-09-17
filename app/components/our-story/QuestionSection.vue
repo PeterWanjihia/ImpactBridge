@@ -37,7 +37,7 @@
 
 <style scoped>
 .question-section {
-  @apply py-12 md:py-16 bg-navy text-white;
+  @apply py-section-sm md:py-section bg-navy text-white;
 }
 .question-grid {
   @apply grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center;
@@ -52,10 +52,10 @@
   @apply w-6 h-6 rounded-full border border-white/30 text-white text-xs font-semibold flex items-center justify-center;
 }
 .question-eyebrow-label {
-  @apply text-xs font-bold tracking-wider text-white/80 uppercase;
+  @apply text-2xs font-bold tracking-eyebrow text-white/80 uppercase;
 }
 .question-title {
-  @apply text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-white leading-tight;
+  @apply text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-white leading-tight;
 }
 .question-description {
   @apply mt-6 text-base sm:text-lg text-gray-300 leading-relaxed max-w-xl;
@@ -64,6 +64,6 @@
   @apply lg:col-span-6 relative;
 }
 .question-image {
-  @apply w-full h-auto rounded-2xl shadow-xl object-cover;
+  @apply w-full h-auto rounded-2xl shadow-elevation-1 object-cover;
 }
 </style>

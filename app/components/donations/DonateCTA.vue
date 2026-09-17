@@ -65,7 +65,7 @@ withDefaults(defineProps<Props>(), {
 
 <style scoped>
 .donate-cta {
-  @apply py-10 md:py-14 bg-white;
+  @apply py-section-xs md:py-section-md bg-white;
 }
 
 .donate-cta__card {
@@ -77,7 +77,7 @@ withDefaults(defineProps<Props>(), {
 }
 
 .donate-cta__title {
-  @apply text-3xl md:text-4xl font-serif font-bold text-white leading-tight;
+  @apply text-3xl md:text-4xl font-display font-bold text-white leading-tight;
 }
 
 .donate-cta__title-accent {
@@ -85,7 +85,7 @@ withDefaults(defineProps<Props>(), {
 }
 
 .donate-cta__description {
-  @apply mt-4 text-sm md:text-base text-slate-300 leading-relaxed max-w-md;
+  @apply mt-4 text-sm md:text-base text-gray-300 leading-relaxed max-w-md;
 }
 
 .donate-cta__actions {

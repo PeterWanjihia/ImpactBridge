@@ -73,7 +73,7 @@ function handleKeydown(event: KeyboardEvent) {
 }
 
 .ui-modal {
-  @apply bg-white rounded-lg shadow-xl max-h-[90vh] overflow-hidden;
+  @apply bg-white rounded-lg shadow-elevation-3 max-h-[90vh] overflow-hidden;
 }
 
 .ui-modal--sm {
@@ -93,7 +93,7 @@ function handleKeydown(event: KeyboardEvent) {
 }
 
 .ui-modal-title {
-  @apply text-lg font-serif font-semibold text-navy;
+  @apply text-lg font-display font-semibold text-navy;
 }
 
 .ui-modal-close {

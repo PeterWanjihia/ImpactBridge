@@ -86,7 +86,7 @@ const links: TransparencyLink[] = [
 
 <style scoped>
 .transparency-band {
-  @apply bg-navy-800 text-white py-12;
+  @apply bg-navy-800 text-white py-section-sm;
 }
 
 .transparency-band__grid {
@@ -102,11 +102,11 @@ const links: TransparencyLink[] = [
 }
 
 .transparency-band__title {
-  @apply text-xl font-serif font-bold text-white;
+  @apply text-xl font-display font-bold text-white;
 }
 
 .transparency-band__description {
-  @apply mt-2 text-sm font-sans text-slate-300 leading-relaxed;
+  @apply mt-2 text-sm font-sans text-gray-300 leading-relaxed;
 }
 
 .transparency-band__cta {
@@ -123,14 +123,14 @@ const links: TransparencyLink[] = [
 }
 
 .transparency-link__icon {
-  @apply w-5 h-5 text-blue-300 mb-3;
+  @apply w-5 h-5 text-cobalt-300 mb-3;
 }
 
 .transparency-link__title {
-  @apply text-[15px] font-sans font-bold text-white;
+  @apply text-body font-sans font-bold text-white;
 }
 
 .transparency-link__description {
-  @apply mt-1.5 text-xs font-sans leading-relaxed text-slate-400;
+  @apply mt-1.5 text-xs font-sans leading-relaxed text-gray-400;
 }
 </style>

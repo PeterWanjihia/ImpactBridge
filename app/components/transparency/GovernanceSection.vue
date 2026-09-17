@@ -34,7 +34,7 @@ const iconMap: Record<string, Component> = {
 
           <ul class="gov-card__items">
             <li v-for="item in card.items" :key="item" class="gov-card__item">
-              <Check class="w-4 h-4 text-emerald-600 flex-shrink-0" />
+              <Check class="w-4 h-4 text-success-600 flex-shrink-0" />
               <span>{{ item }}</span>
             </li>
           </ul>
@@ -46,7 +46,7 @@ const iconMap: Record<string, Component> = {
 
 <style scoped>
 .gov {
-  @apply bg-white py-2 pb-14 md:pb-16 border-b border-slate-100;
+  @apply bg-white py-2 pb-14 md:pb-16 border-b border-gray-100;
 }
 
 .gov__grid {
@@ -55,7 +55,7 @@ const iconMap: Record<string, Component> = {
 
 /* Card */
 .gov-card {
-  @apply rounded-xl border border-slate-200 bg-slate-50/60 p-6;
+  @apply rounded-xl border border-gray-200 bg-gray-50/60 p-6;
 }
 
 .gov-card__header {
@@ -68,11 +68,11 @@ const iconMap: Record<string, Component> = {
 }
 
 .gov-card__title {
-  @apply text-base font-serif font-bold text-slate-900;
+  @apply text-base font-display font-bold text-ink;
 }
 
 .gov-card__description {
-  @apply text-[13px] font-sans leading-relaxed text-slate-500;
+  @apply text-label font-sans leading-relaxed text-gray-500;
 }
 
 .gov-card__items {
@@ -80,6 +80,6 @@ const iconMap: Record<string, Component> = {
 }
 
 .gov-card__item {
-  @apply flex items-start gap-2.5 text-[13px] font-sans font-medium text-slate-700;
+  @apply flex items-start gap-2.5 text-label font-sans font-medium text-gray-700;
 }
 </style>
