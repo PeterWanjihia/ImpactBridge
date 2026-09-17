@@ -117,7 +117,7 @@ defineProps<{
   @apply bg-white rounded-xl p-3 md:py-5 md:px-3 text-center flex flex-col items-center justify-between shadow-elevation-1 min-h-[120px];
 }
 .evidence-stat-value {
-  @apply text-2xl md:text-3xl font-display font-bold text-cobalt-700 leading-none mb-2;
+  @apply text-2xl md:text-3xl font-sans font-bold text-cobalt-700 leading-none mb-2;
 }
 .evidence-stat-label {
   @apply text-2xs font-sans text-gray-600 leading-snug font-medium max-w-[85px] mx-auto;
