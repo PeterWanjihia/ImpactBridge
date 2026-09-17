@@ -32,10 +32,25 @@ function handleClick(event: MouseEvent) {
 </script>
 
 <template>
-  <component
-    :is="to ? NuxtLink : 'button'"
-    :type="type"
+  <NuxtLink
+    v-if="to"
     :to="to"
+    :aria-disabled="disabled || loading ? 'true' : undefined"
+    :tabindex="disabled || loading ? -1 : undefined"
+    :class="[
+      'ui-button',
+      `ui-button--${variant}`,
+      `ui-button--${size}`,
+      { 'ui-button--loading': loading }
+    ]"
+    @click="handleClick"
+  >
+    <span v-if="loading" class="ui-button__spinner" />
+    <slot />
+  </NuxtLink>
+  <button
+    v-else
+    :type="type"
     :disabled="disabled || loading"
     :aria-disabled="disabled || loading ? 'true' : undefined"
     :tabindex="disabled || loading ? -1 : undefined"
@@ -49,7 +64,7 @@ function handleClick(event: MouseEvent) {
   >
     <span v-if="loading" class="ui-button__spinner" />
     <slot />
-  </component>
+  </button>
 </template>
 
 <style scoped>
