@@ -1,4 +1,8 @@
 <script setup lang="ts">
+// Served from public/ so the optimizer can resolve it: Nuxt Image prepends a slash
+// to a `~/assets/...` string (giving `/~/assets/...`, a 404), and Vite-imported
+// `/_nuxt/...` files are not readable by IPX in dev.
+const modelHubEquipmentImage = '/images/model-hub-equipment-img.png'
 </script>
 
 <template>
@@ -24,7 +28,7 @@
         <!-- Media Column -->
         <div class="question-media">
           <NuxtImg
-            src="~/assets/images/model-hub-equipment-img.png"
+            :src="modelHubEquipmentImage"
             alt="Impact Bridge device held in hands"
             class="question-image"
             loading="lazy"

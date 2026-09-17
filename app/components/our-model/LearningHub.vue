@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ArrowRight } from '@lucide/vue'
 import type { Component } from 'vue'
-import modelHubEquipmentImage from '~/assets/images/model-hub-equipment-img.png'
+// Served from public/ so both the dev IPX handler and the production optimizer resolve it.
+const modelHubEquipmentImage = '/images/model-hub-equipment-img.png'
 
 defineProps<{
   hub: {
